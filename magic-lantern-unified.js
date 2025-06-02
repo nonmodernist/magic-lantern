@@ -181,31 +181,30 @@ class SearchStrategyGenerator {
 
     // 3. PRODUCTION SEARCHES - Studio/business focused
     productionSearches(film) {
-        const strategies = [];
-        const title = film.title || film.Title;
-        const studio = film.studio || film.Studio;
+    const strategies = [];
+    const title = film.title || film.Title;
+    const studio = film.studio || film.Studio;
+    
+    if (studio && studio !== '-') {
+        // Studio + title (will use keyword stacking)
+        strategies.push({
+            query: `"${studio}" "${title}"`,
+            type: 'studio_title',
+            confidence: 'high',
+            description: 'Studio + title (stacked keywords)'
+        });
         
-        if (studio && studio !== '-') {
-            // Studio + title
+        // Studio abbreviations
+        const studioAbbr = this.getStudioAbbreviation(studio);
+        if (studioAbbr) {
             strategies.push({
-                query: `"${studio}" "${title}"`,
-                type: 'studio_title',
-                confidence: 'high',
-                description: 'Studio + title'
+                query: `"${studioAbbr}" "${title}"`,
+                type: 'studio_abbr',
+                confidence: 'medium',
+                description: `Studio abbreviation + title`
             });
-            
-            // Studio abbreviations (MGM, RKO, etc.)
-            // TODO update abbreviations
-            const studioAbbr = this.getStudioAbbreviation(studio);
-            if (studioAbbr) {
-                strategies.push({
-                    query: `"${studioAbbr}" "${title}"`,
-                    type: 'studio_abbr',
-                    confidence: 'medium',
-                    description: `Studio abbreviation: ${studioAbbr}`
-                });
-            }
-
+        }
+    }
             // Studio + "production" filtered by year
             strategies.push({
                 query: `"${studio}" production`,
@@ -213,28 +212,28 @@ class SearchStrategyGenerator {
                 confidence: 'low',
                 description: 'Studio production news'
             });
-        }
+
         
-        // Production-specific searches - needs lantern keyword stacking to actually work
+        // These will now properly stack keywords
         strategies.push({
             query: `"${title}" "box office"`,
             type: 'title_box_office',
-            confidence: 'low',
-            description: 'Box office data'
+            confidence: 'medium',
+            description: 'Title + box office (stacked)'
         });
         
         strategies.push({
-            query: `"${title}" "exhibitor"`,
+            query: `"${title}" exhibitor`,
             type: 'title_exhibitor',
-            confidence: 'low',
-            description: 'Exhibition/opening'
+            confidence: 'medium',
+            description: 'Title + exhibitor (stacked)'
         });
 
-                strategies.push({
-            query: `"${title}" filming production`,
+        strategies.push({
+            query: `"${title}" production filming`,
             type: 'title_production',
-            confidence: 'low',
-            description: 'Production news'
+            confidence: 'medium',
+            description: 'Title + production + filming (3 keywords)'
         });
         
         return strategies;
@@ -320,32 +319,40 @@ class SearchStrategyGenerator {
     }
 
     // 7. CONTEXTUAL SEARCHES - Theme/genre based - needs keyword stacking
-    contextualSearches(film) {
-        const strategies = [];
-        const title = film.title || film.Title;
-        const year = film.year || film.Year;
-        const novel = film.novel || film.Novel || film.source || film.Source;
+contextualSearches(film) {
+    const strategies = [];
+    const title = film.title || film.Title;
+    const year = film.year || film.Year;
+    const novel = film.novel || film.Novel || film.source || film.Source;
+    
+    // If it's an adaptation
+    if (novel && novel !== title) {
+        strategies.push({
+            query: `"${novel}" adaptation`,
+            type: 'source_adaptation',
+            confidence: 'medium',
+            description: 'Source novel + adaptation (stacked)'
+        });
         
-        // If it's an adaptation
-        if (novel && novel !== title) {
-            strategies.push({
-                query: `"${novel}" adaptation`,
-                type: 'source_adaptation',
-                confidence: 'low',
-                description: 'Source novel adaptation'
-            });
-        }
-        
-        // Genre-specific (if we can infer)
-        const genre = this.inferGenre(title, film);
-        if (genre) {
-            strategies.push({
-                query: `"${title}" ${genre} film`,
-                type: 'title_genre',
-                confidence: 'low',
-                description: `Genre: ${genre}`
-            });
-        }
+        // Also try novel + film title
+        strategies.push({
+            query: `"${novel}" "${title}"`,
+            type: 'novel_film_title',
+            confidence: 'high',
+            description: 'Novel title + film title (stacked)'
+        });
+    }
+    
+    // Genre-specific with stacking
+    const genre = this.inferGenre(title, film);
+    if (genre) {
+        strategies.push({
+            query: `"${title}" ${genre}`,
+            type: 'title_genre',
+            confidence: 'low',
+            description: `Title + ${genre} (stacked)`
+        });
+    }
         
         // Remake searches (for known remakes)
         if (this.isKnownRemake(title)) {
@@ -535,18 +542,32 @@ class UnifiedMagicLantern {
 
     // Search method from v3 with date filtering
     async searchWithStrategy(strategy, film) {
-        const params = new URLSearchParams({
-            q: strategy.query,
-            per_page: '20',
-            sort: 'score desc, date desc',
-            search_field: 'all_fields'
-        });
 
-        params.append('f[format][]', 'Periodicals');
-        
+        // Parse the strategy query to extract multiple keywords
+        const keywords = this.parseStrategyKeywords(strategy, film);
+
+    // Build advanced search parameters
+        const params = new URLSearchParams({
+            search_field: 'advanced',
+            commit: 'Search',
+            sort: 'score desc, dateStart desc, title asc',
+            op: 'AND',  // AND operator for all keywords
+            per_page: '20'  // can adjust based on research needs
+    });
+
+        // Add the keywords (up to 3 supported by Lantern)
+        if (keywords.keyword) params.append('keyword', keywords.keyword);
+        if (keywords.second_keyword) params.append('second_keyword', keywords.second_keyword);
+        if (keywords.third_keyword) params.append('third_keyword', keywords.third_keyword);
+
+
+        // Add format filter
+        params.append('f_inclusive[format][]', 'Periodicals');
+    
+        // Add collection filters
         const collections = ['Fan Magazines', 'Hollywood Studio System', 'Early Cinema'];
         collections.forEach(collection => {
-            params.append('f[collection][]', collection);
+            params.append('f_inclusive[collection][]', collection);
         });
 
         // Date range filtering based on confidence
@@ -568,10 +589,13 @@ class UnifiedMagicLantern {
         const url = `${this.baseUrl}/catalog.json?${params}`;
         
         console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
-        console.log(`   Query: "${strategy.query}"`);
+        console.log(`   Keywords: ${keywords.keyword}${keywords.second_keyword ? ' + ' + keywords.second_keyword : ''}${keywords.third_keyword ? ' + ' + keywords.third_keyword : ''}`);
+    
         
         try {
-            const results = await this.makeRequest(url);
+            // Note: We need to use catalog.json endpoint
+            const jsonUrl = url.replace('/catalog?', '/catalog.json?');
+            const results = await this.makeRequest(jsonUrl);
             const count = results.meta?.pages?.total_count || 0;
             
             if (count > 0) {
@@ -585,7 +609,8 @@ class UnifiedMagicLantern {
                                 ...item,
                                 foundBy: strategy.type,
                                 searchQuery: strategy.query,
-                                strategyConfidence: strategy.confidence
+                                strategyConfidence: strategy.confidence,
+                                keywords: keywords
                             });
                         }
                     });
@@ -600,6 +625,72 @@ class UnifiedMagicLantern {
             return 0;
         }
     }
+
+    // Add this new helper method to parse keywords from strategies
+parseStrategyKeywords(strategy, film) {
+    const keywords = {};
+    
+    // Extract quoted phrases and keywords from the query
+    const quotedPhrases = strategy.query.match(/"[^"]+"/g) || [];
+    const remainingText = strategy.query.replace(/"[^"]+"/g, '').trim();
+    const unquotedWords = remainingText.split(/\s+/).filter(w => w.length > 0);
+    
+    // Build keywords based on strategy type
+    switch (strategy.type) {
+        case 'exact_title':
+        case 'title_no_article':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            break;
+            
+        case 'author_title':
+        case 'director_title':
+        case 'star_title':
+        case 'studio_title':
+            keywords.keyword = quotedPhrases[0]; // First quoted phrase (creator/studio)
+            keywords.second_keyword = quotedPhrases[1]; // Second quoted phrase (title)
+            break;
+            
+        case 'title_box_office':
+            keywords.keyword = quotedPhrases[0]; // Title
+            keywords.second_keyword = '"box office"';
+            break;
+            
+        case 'title_production':
+            keywords.keyword = quotedPhrases[0]; // Title
+            keywords.second_keyword = 'production';
+            keywords.third_keyword = 'filming';
+            break;
+            
+        case 'title_exhibitor':
+            keywords.keyword = quotedPhrases[0]; // Title
+            keywords.second_keyword = 'exhibitor';
+            break;
+            
+        case 'source_adaptation':
+            keywords.keyword = quotedPhrases[0]; // Novel title
+            keywords.second_keyword = 'adaptation';
+            break;
+            
+        case 'author_variant':
+            keywords.keyword = quotedPhrases[0]; // Author variant
+            keywords.second_keyword = quotedPhrases[1]; // Title
+            break;
+            
+        default:
+            // For other cases, use up to 3 keywords/phrases
+            if (quotedPhrases.length > 0) {
+                keywords.keyword = quotedPhrases[0];
+                if (quotedPhrases.length > 1) keywords.second_keyword = quotedPhrases[1];
+                if (quotedPhrases.length > 2) keywords.third_keyword = quotedPhrases[2];
+            } else if (unquotedWords.length > 0) {
+                keywords.keyword = unquotedWords[0];
+                if (unquotedWords.length > 1) keywords.second_keyword = unquotedWords[1];
+                if (unquotedWords.length > 2) keywords.third_keyword = unquotedWords[2];
+            }
+    }
+    
+    return keywords;
+}
 
     // Full text fetching from v1
     async fetchFullPageText(pageId) {

@@ -1,0 +1,2720 @@
+{
+  "film": {
+    "title": "Amarilly of Clothesline Alley",
+    "year": "1918",
+    "author": "Belle K. Maniates",
+    "novel": "Amarilly of Clothes-Line Alley",
+    "director": "Marshall A. Neilan",
+    "studio": "Mary Pickford Film Corp"
+  },
+  "totalUniqueSources": 45,
+  "searchStrategySummary": {
+    "exact_title": 14,
+    "lastname_title": 1,
+    "title_production": 5,
+    "title_box_office": 5,
+    "source_adaptation": 20
+  },
+  "sources": [
+    {
+      "id": "pho1314chic_0310",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0310#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0310#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0310\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0310#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n309/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0310#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n309/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0310#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0310#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  character  study  scarcely  less  remarkable, Amarilly  Jenkins  in  \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em>  <em>Alley</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0310"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pictureplaymagaz08unse_0599",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0599\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n598/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n598/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "The  Screen  in  Review \n265 \nMary  Pickford  in  \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em> <em>Alley</em>.\" \nto-be",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0599"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "phooct1213chic_0756",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0756#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Oct 1917 - Mar 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0756#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phooct1213chic_0756\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0756#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n755/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0756#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n755/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0756#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0756#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  tkne  on  the  celluloid  in  her  nsw  character  of  Amarilly  in \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em>  <em>Alley</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0756"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0931",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0931\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n930/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n930/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " Of  The  Strong  Heart.\" \nApril— The  Muff,  in  \"<em>Amarilly</em>  <em>Of</em> <em>Clothesline</em>  <em>Alley</em>.\" \nMay — Bessie",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0931"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pictureplaymagaz08unse_0677",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0677\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n676/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n676/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  each of  his  comedies.  Film  that  cost  $25,000 was  cut  from  '<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em> <em>Alley</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0677"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pho1314chic_0721",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0721#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0721#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0721\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0721#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n720/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0721#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n720/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0721#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0721#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  all.  Goodwins  played  in  \"<em>Amarilly</em>  <em>of</em> <em>Clothesline</em>  <em>Alley</em>\"  and  \"Mr.  Fix-It,\"  and was  formerly",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0721"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "phodec15chic_0097",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0097#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep - Dec 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0097#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phodec15chic_0097\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0097#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n96/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0097#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n96/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0097#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0097#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  inaccurate at  all.  Goodwins  played  in  \"<em>Amarilly</em>  <em>of</em> <em>Clothesline</em>  <em>Alley</em>\"  and  \"Mr.  Fix-It.\"  and was",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phodec15chic_0097"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pho1314chic_0266",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0266#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0266#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0266\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0266#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n265/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0266#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n265/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0266#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0266#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ". \nPhotoplays  Reviewed  in  Shadoiso  Stage   This  Issue \n<em>Amarilly</em>    <em>of</em>   <em>Clothesline</em>    <em>Alley</em>   Artcraft",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0266"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0326",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0326\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n325/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n325/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ",  Jean?\"  \"M'liss,\"  \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em> <em>Alley</em>,\"  \"Stella  Maris,\"  and  \"Rebecca  of  Sunnybrook",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0326"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0487",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0487\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n486/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n486/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ".  I  liked  Mary Pickford  in  \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em>  <em>Alley</em>,\"  although I  don't  consider  it",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0487"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "photoplayvolume11415chic_0367",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul-Dec 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11415chic_0367\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n366/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n366/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>of</em>  <em>Clothesline</em> <em>Alley</em>.\"  His  real  name  was  Norman  Kaiser — before  the  war.  He  is  not",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0367"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pho1314chic_0739",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0739#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0739#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0739\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0739#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n738/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0739#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n738/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0739#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0739#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  in  \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em> <em>Alley</em>.\"  His  real  name  was  Norman  Kaiser — before  the  war.  He",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0739"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pho1314chic_0131",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0131#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0131#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0131\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0131#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n130/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0131#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n130/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0131#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0131#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Little  Princess, Stella  Maris  and  <em>Amarilly</em>  <em>of</em>  <em>Clothesline</em> <em>Alley</em>.  Douglas  Fairbanks'  photoplays",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0131"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "phodec15chic_0115",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0115#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep - Dec 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0115#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phodec15chic_0115\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0115#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n114/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0115#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n114/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0115#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0115#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>of</em>  <em>Clothesline</em> <em>Alley</em>.\"  His  real  name  was  Norman  Kaiser — before  the  war.  He  is  not",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phodec15chic_0115"
+      },
+      "foundBy": "exact_title",
+      "searchQuery": "\"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "high"
+    },
+    {
+      "id": "pictureplaymagaz12unse_0500",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1920",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz12unse_0500\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz12unse#page/n499/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz12unse#page/n499/mode/2up/search/&quot;Maniates&quot; &quot;Amarilly of Clothesline Alley&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 08, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  empty  when  it  was  on.  When \"<em>Amarilly</em>  <em>of</em>  <em>Clothesline</em>  <em>Alley</em>\"  was  shown,  seats  were  not  to be",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0500"
+      },
+      "foundBy": "lastname_title",
+      "searchQuery": "\"Maniates\" \"Amarilly of Clothesline Alley\"",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz07unse_0359",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1917 - Feb 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz07unse_0359\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n358/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n358/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; filming production\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "Uncle  Sam's  fighting  photographer  <em>filming</em>  our  first  activity  in  the  great  war.    At",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0359"
+      },
+      "foundBy": "title_production",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" filming production",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pho1314chic_0063",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0063#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0063#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0063\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0063#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n62/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0063#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n62/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; filming production\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0063#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0063#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  nearly  three years  ago.  In  the  <em>filming</em>  of  \"Carmen\"  all  of  the  music of  Bizet's  opera  was",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0063"
+      },
+      "foundBy": "title_production",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" filming production",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz06unse_0342",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz06unse_0342\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz06unse#page/n341/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz06unse#page/n341/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; filming production\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 08, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "MIRIAM  COOPER \nin  a  fade-away  interval  during  the  <em>filming</em>  of  'The  Honor  System",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0342"
+      },
+      "foundBy": "title_production",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" filming production",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz05unse_0703",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1916 - Feb 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0703\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n702/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n702/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; filming production\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "<em>Filming</em>  Joan  of  Arc \n33 \nof  armor  for  more  than  two  thousand actors. \nBut  the  armor",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0703"
+      },
+      "foundBy": "title_production",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" filming production",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz06unse_0144",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz06unse_0144\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz06unse#page/n143/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz06unse#page/n143/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; filming production\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 08, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  during the  <em>filming</em>  of  \"Pidgin  Island,\"  the <em>production</em>  just  completed,  many  scenes for  which",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz06unse_0144"
+      },
+      "foundBy": "title_production",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" filming production",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pho1314chic_0452",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0452#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0452#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0452\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0452#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n451/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0452#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n451/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; &quot;box office&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0452#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0452#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " '  recovered.    Mack  Sennctt  discovered  her  and,  judging  jrom  <em>box</em>  <em>office</em>  reports, Mary's  comedies",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0452"
+      },
+      "foundBy": "title_box_office",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" \"box office\"",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11415chic_0074",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul-Dec 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11415chic_0074\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n73/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n73/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; &quot;box office&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ".  Mack  Scnnctt  discovered  her  and,  judging  jrom  <em>box</em>  <em>office</em>  reports, Mary's  comedies  prove",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0074"
+      },
+      "foundBy": "title_box_office",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" \"box office\"",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11112chic_1132",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Feb-Sep 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11112chic_1132\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1131/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1131/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; &quot;box office&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "January 15, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  bet  that  her  husband  doesn't  draw  quite  as  well  on \nthe  strings  as  he  does  in  the  <em>box</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1132"
+      },
+      "foundBy": "title_box_office",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" \"box office\"",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "phooct1213chic_0788",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0788#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Oct 1917 - Mar 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0788#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phooct1213chic_0788\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0788#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n787/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0788#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n787/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; &quot;box office&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0788#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0788#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  big  centers  showing  that  it  is  a  success  from the  <em>box</em>  <em>office</em>  viewpoint,  he  doesn't  know",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0788"
+      },
+      "foundBy": "title_box_office",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" \"box office\"",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz08unse_0463",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0463\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n462/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n462/mode/2up/search/&quot;Amarilly of Clothesline Alley&quot; &quot;box office&quot;\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ",\" I  am  bound  to  say  that  the  <em>box</em>  <em>office</em> is  not  starred.  The  purpose  is  vivid",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0463"
+      },
+      "foundBy": "title_box_office",
+      "searchQuery": "\"Amarilly of Clothesline Alley\" \"box office\"",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0483",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0483\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n482/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n482/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " was  Mrs.  Jenkins,  and  Fred  Goodwins  was Johnnv  Walker,  in  \"<em>Amarilly</em>  <em>of</em>  <em>Clothes</em>  <em>Line</em> <em>Alley</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pho1314chic_0257",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr - Sep 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pho1314chic_0257\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n256/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n256/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  latest  is  \"<em>Amarilly</em>  <em>of</em>  <em>Clothes</em>-<em>Line</em>  <em>Alley</em>\"  and  her  next one  will  be  \"M'liss,\"  Bret  Harte's",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0257"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz05unse_0468",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1916 - Feb 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0468\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n467/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n467/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "126 \nScreen  Gossip \ntook  before leaving  Los Angeles  was \" Through  the Wall,\"  an <em>adaptation</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0303",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0303\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n302/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n302/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  is  an <em>adaptation</em>  of  the  novel  by Charles  F.  Stocking,  and  in addition  to  Miss  Grey  will",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz08unse_0152",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0152\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n151/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n151/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>adaptation</em> made  for  the use  of  Miss  Young, \nit  is  said,  will  contain  nothing  offensive. Emile",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0504",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0504\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n503/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n503/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  accordance  with  her  universal appeal,  \"Everybody's  Girl.\"  The  film  is  an  <em>adaptation</em>  of  the  0",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11112chic_1016",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Feb-Sep 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11112chic_1016\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1015/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1015/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "January 15, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  written  for  the screen,  has  surpassed  the  <em>adaptation</em>  nearly every  time. \nHark  back  to  the  big",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0304",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0304\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n303/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n303/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>adaptation</em>  of  William Hurlburt's  comedy,  \"Saturday  to Monday.\"  Mr.  Washburn  made  his debut  on  the",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz10unse_0154",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz10unse_0154\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n153/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n153/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  it  by  heart.  Her  newest picture  is  an  <em>adaptation</em>  of  this  popular  story.  And  a  certain",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz08unse_0355",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0355\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n354/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n354/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  play  of  patriotic  appeal,  a  somewhat elaborated  <em>adaptation</em>  of  Hale's  \"The  Man  Without  a",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "phojuldec17chic_0565",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul - Dec 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phojuldec17chic_0565\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n564/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n564/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Dana \nPLEASE  GET MARRIED \nMiss  'Dayia's  first  picture, \nis  an  <em>adaptation</em>  op \n§amts  Cullens  and",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11112chic_0918",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Feb-Sep 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11112chic_0918\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n917/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n917/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "January 15, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  last  scene  in  \"Madam  Bo-Peep,\"  an  O.  Henry  <em>adaptation</em>  which  was  the  final  Fine  Arts play",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz07unse_0110",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1917 - Feb 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz07unse_0110\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n109/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n109/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " <em>adaptation</em>  of  Harold  Bell  Wright's  famous story  of  the  same  title,  startled her  associates  by",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz05unse_0699",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1916 - Feb 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0699\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n698/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n698/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Hyland being  his  leading  woman; in  \"The  Man  of  Mystery,\" an  <em>adaptation</em> of Archibald Clavering's",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "phooct1213chic_0060",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Oct 1917 - Mar 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phooct1213chic_0060\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n59/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n59/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  film  <em>adaptation</em> of  Margaret  Mayo's  delightful  play,  \"Polly  of the  Circus.\"  A  real  beauty",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0060"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11112chic_1269",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Feb-Sep 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11112chic_1269\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1268/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1268/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "January 15, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "An  Ingenue  Who  Won't  Ingenue \n37 \nrehearsed  by  Thomas  R.  Mills  in  a  film  <em>adaptation</em>  of",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz05unse_0802",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1916 - Feb 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0802\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n801/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n801/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  selecting  one  and  making  an  <em>adaptation</em> from  it.   There  is  just  about  one chance  out  of  five",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "phojanjun16chic_0376",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jan - Jun 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phojanjun16chic_0376\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojanjun16chic#page/n375/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojanjun16chic#page/n375/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>adaptation</em>  from  a  play  written  by J.  Hartley  Manners  and  Ian  Hay  Beith. \nThe  story,  strong",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz11unse_0181",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1919 - Feb 1920",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz11unse_0181\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n180/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n180/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " Entertaining  caliber  of  \"Girls,\"  an  <em>adaptation</em>  of  Clyde itch's  comedy.    The  lives  of  Pam — Miss",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz07unse_0581",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1917 - Feb 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz07unse_0581\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n580/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n580/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " detests  the  work  of  <em>adaptation</em>.  Handed a  novel  to  adapt  for  motion-picture  purposes, no  matter",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    }
+  ]
+}
