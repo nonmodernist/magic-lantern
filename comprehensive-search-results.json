@@ -82,7 +82,7 @@
         "positionScore": 100,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "new movie magazine",
         "finalScore": 100
       }
     },
@@ -224,7 +224,7 @@
         "positionScore": 90,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "movie mirror",
         "finalScore": 90
       }
     },
@@ -295,7 +295,7 @@
         "positionScore": 85,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "philadelphiaexhi",
         "finalScore": 85
       }
     },
@@ -579,7 +579,7 @@
         "positionScore": 65,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "philadelphiaexhi",
         "finalScore": 65
       }
     },
@@ -863,7 +863,7 @@
         "positionScore": 48,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "newyorkstateexhi",
         "finalScore": 48
       }
     },
@@ -934,7 +934,7 @@
         "positionScore": 46,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "new movie magazine",
         "finalScore": 46
       }
     },
@@ -1147,7 +1147,7 @@
         "positionScore": 40,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "philadelphiaexhi",
         "finalScore": 40
       }
     },
@@ -1791,7 +1791,7 @@
         "positionScore": 26,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "nationalboardofr",
         "finalScore": 26
       }
     },
@@ -1863,7 +1863,7 @@
         "positionScore": 25,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "newyorkstateexhi",
         "finalScore": 25
       }
     },
@@ -1935,7 +1935,7 @@
         "positionScore": 24,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "broadwayhollywoo",
         "finalScore": 24
       }
     },
@@ -2079,7 +2079,7 @@
         "positionScore": 22,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "new movie magazine",
         "finalScore": 22
       }
     },
@@ -2151,7 +2151,7 @@
         "positionScore": 21,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "broadwayhollywoo",
         "finalScore": 21
       }
     },
@@ -2439,7 +2439,7 @@
         "positionScore": 17,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "hollywood",
         "finalScore": 17
       }
     },
@@ -2655,7 +2655,7 @@
         "positionScore": 14,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "screenland",
         "finalScore": 14
       }
     },
@@ -2727,7 +2727,7 @@
         "positionScore": 13,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "new movie magazine",
         "finalScore": 13
       }
     },
@@ -2799,7 +2799,7 @@
         "positionScore": 12,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "hollywood reporter",
         "finalScore": 12
       }
     },
@@ -2871,7 +2871,7 @@
         "positionScore": 11,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "screenland",
         "finalScore": 11
       }
     },
@@ -2943,7 +2943,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "picture play",
         "finalScore": 10
       }
     },
@@ -3303,7 +3303,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "newyorkstateexhi",
         "finalScore": 10
       }
     },
@@ -3375,7 +3375,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "new movie magazine",
         "finalScore": 10
       }
     },
@@ -3447,7 +3447,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "picture play",
         "finalScore": 10
       }
     },
@@ -3519,7 +3519,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "wids",
         "finalScore": 10
       }
     },
@@ -3663,7 +3663,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "picture play",
         "finalScore": 10
       }
     },
@@ -4023,7 +4023,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "hollywood reporter",
         "finalScore": 10
       }
     },
@@ -4095,7 +4095,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": null,
+        "publication": "hollywoodfilmogr",
         "finalScore": 10
       }
     }

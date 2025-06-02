@@ -98,7 +98,7 @@ class SearchStrategyGenerator {
     }
 
 
-    // TODO implement multiple keyword searches using Lantern's search url formatting - keyword, then second keyword, then third keyword - will return fewer more precise results
+    // // DONE implement multiple keyword searches using Lantern's search url formatting - keyword, then second keyword, then third keyword - will return fewer more precise results
     // e.g. "https://lantern.mediahist.org/catalog?f%5Bcollection%5D%5B%5D=Early+Cinema&f%5Bcollection%5D%5B%5D=Hollywood+Studio+System&f%5Bcollection%5D%5B%5D=Fan+Magazines&range%5Byear%5D%5Bbegin%5D=1915&range%5Byear%5D%5Bend%5D=1919&op=AND&keyword=%22amarilly+of+clothesline+alley%22&second_keyword=%22mary+pickford%22&third_keyword=&title=&Author=&subject=&date_text=&publisher=&description=&sort=score+desc%2C+dateStart+desc%2C+title+asc&search_field=advanced&commit=Search"
 
     // 2. CREATOR SEARCHES - Author/Director focused
@@ -527,7 +527,7 @@ class UnifiedMagicLantern {
     this.scoringConfig = {
         maxFullTextFetches: 7,
         collectionWeights: {
-            "Fan Magazines": 1.0,
+            "Fan Magazines": 0.8,
             "Hollywood Studio System": 1.0,
             "Early Cinema": 1.0,
             "Broadcasting & Recorded Sound": 1.0,
@@ -562,35 +562,62 @@ getPositionScore(position) {
 extractPublication(itemId) {
     // Handle various ID patterns
     const id = itemId.toLowerCase();
-    
-    // Try exact matches first
-    for (const pub of Object.keys(this.scoringConfig.publicationWeights)) {
-        if (id.includes(pub.replace(/\s+/g, ''))) {
+
+    // Debug logging
+    console.log(`   Extracting from ID: ${id}`);
+
+    // More comprehensive patterns
+    const patterns = {
+        // Full names
+        'variety': /variety/,
+        'photoplay': /photo/,
+        'motion picture world': /motionpic|mopicwor|movingpic/,
+        'motion picture herald': /motionpictureher/,
+        'moving picture world': /movingpic|movpict/,
+        'film daily': /filmdaily/,
+        'exhibitors herald': /exhibher|exhibitorsh/,
+        'modern screen': /modernscreen/,
+        'motography': /motography/,
+        'new movie magazine': /newmoviemag/,
+        'movie mirror': /moviemirror/,
+        'silver screen': /silverscreen/,
+        'screenland': /screenland/,
+        'picture play': /pictureplay/,
+        'motion picture news': /motionpicturenew/,
+        'fan scrapbook': /fanscrapbook/,
+        'hollywood reporter': /hollywoodreport/,
+        'box office': /boxoffice/,
+        'independent': /independ/,
+        'wids': /wids/
+    };
+
+        for (const [pub, pattern] of Object.entries(patterns)) {
+        if (pattern.test(id)) {
             return pub;
         }
     }
-    
-    // Common abbreviations
-    const abbreviations = {
-        'mopicwor': 'motion picture world',
-        'motionpic': 'motion picture world',
-        'movpict': 'moving picture world',
-        'photo': 'photoplay',
-        'motionpictureher': 'motion picture herald',
-        'filmdaily': 'film daily',
-        'exhibher': 'exhibitors herald'
-    };
-    
-    for (const [abbr, full] of Object.entries(abbreviations)) {
-        if (id.includes(abbr)) return full;
+
+    // Try to extract the base publication name
+    const match = id.match(/^([a-z]+?)(?:\d|_)/);
+    if (match) {
+        console.log(`   Extracted base: ${match[1]}`);
+        return match[1];
     }
     
     return null;
 }
 
+
 // New method: Score and rank all results
 scoreAndRankResults() {
     console.log('\n📊 Scoring and ranking results...');
+
+        // Debug first result
+    if (this.allResults.length > 0) {
+        console.log('\n🔍 Debug first result structure:');
+        console.log('ID:', this.allResults[0].id);
+        console.log('Attributes keys:', Object.keys(this.allResults[0].attributes || {}));
+    }
     
     // Score each result
     this.allResults = this.allResults.map((result, index) => {
