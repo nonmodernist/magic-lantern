@@ -1,0 +1,825 @@
+#!/usr/bin/env node
+
+// magic-lantern-unified.js - Combines multi-strategy search with basic full text analysis
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
+
+// Import the SearchStrategyGenerator from v3
+class SearchStrategyGenerator {
+    constructor() {
+        this.articles = ['The', 'A', 'An'];
+        this.commonWords = ['of', 'and', 'in', 'at', 'to', 'for', 'with', 'on'];
+    }
+
+    generateAllStrategies(film) {
+        console.log(`\n🎯 Generating search strategies for: ${film.title || film.Title}`);
+        
+        const strategies = [
+            ...this.titleVariations(film),
+            ...this.creatorSearches(film),
+            ...this.productionSearches(film),
+            ...this.starSearches(film),
+            ...this.fuzzySearches(film),
+            ...this.contextualSearches(film)
+        ];
+
+        const uniqueStrategies = this.deduplicateStrategies(strategies);
+        console.log(`✨ Generated ${uniqueStrategies.length} unique search strategies!`);
+        return uniqueStrategies;
+    }
+
+    // [Include all the strategy methods from v3 here - titleVariations, creatorSearches, etc.]
+    // I'll summarize to save space, but you'd include the full implementations
+
+    titleVariations(film) {
+        const strategies = [];
+        const title = film.title || film.Title;
+        // DON'T include year in search query!
+
+
+        // Exact title (NO YEAR!)
+
+        strategies.push({
+            query: `"${title}"`,
+            type: 'exact_title',
+            confidence: 'high',
+            description: 'Exact title match'
+        });
+        
+        // Title without "The/A/An"
+        this.articles.forEach(article => {
+            if (title.startsWith(article + ' ')) {
+                const shortTitle = title.substring(article.length + 1);
+                strategies.push({
+                    query: `"${shortTitle}"`,
+                    type: 'title_no_article',
+                    confidence: 'high',
+                    description: `Title without "${article}"`
+                });
+                
+                // Also try without quotes for broader match
+                strategies.push({
+                    query: `${shortTitle}`,
+                    type: 'title_no_article_broad',
+                    confidence: 'medium',
+                    description: `Broad search without "${article}"`
+                });
+            }
+        });
+        
+        
+        // Abbreviated title (first 2-3 significant words)
+        const abbreviated = this.abbreviateTitle(title);
+        if (abbreviated !== title) {
+            strategies.push({
+                query: `"${abbreviated}"`,
+                type: 'abbreviated_title',
+                confidence: 'medium',
+                description: 'Abbreviated title'
+            });
+        }
+        
+        // Possessive forms (film's, picture's)
+        strategies.push({
+            query: `"${title}'s"`,
+            type: 'possessive_title',
+            confidence: 'low',
+            description: 'Possessive form'
+        });
+        
+        // Key word from title
+        const keyword = this.extractKeyword(title);
+        if (keyword && keyword !== title) {
+            strategies.push({
+                query: `"${keyword}" film`,
+                type: 'keyword_film',
+                confidence: 'low',
+                description: `Key word: "${keyword}"`
+            });
+        }
+        
+        return strategies;
+    }
+
+    // 2. CREATOR SEARCHES - Author/Director focused
+    creatorSearches(film) {
+        const strategies = [];
+        const title = film.title || film.Title;
+        
+        // Author searches (for adaptations)
+        const author = film.author || film.Author;
+        if (author && author !== '-') {
+            // Full author + title
+            strategies.push({
+                query: `"${author}" "${title}"`,
+                type: 'author_title',
+                confidence: 'high',
+                description: 'Author + exact title'
+            });
+            
+            // Author (finds "Baum's latest")
+            strategies.push({
+                query: `"${author}"`,
+                type: 'author_year',
+                confidence: 'medium',
+                description: 'Author name only'
+            });
+            
+            // Last name + title
+            const lastName = author.split(' ').pop();
+            strategies.push({
+                query: `"${lastName}" "${title}"`,
+                type: 'lastname_title',
+                confidence: 'medium',
+                description: 'Author last name + title'
+            });
+            
+            // Author variations (Fannie vs Fanny)
+            const authorVariations = this.getAuthorVariations(author);
+            authorVariations.forEach(variant => {
+                strategies.push({
+                    query: `"${variant}" "${title}"`,
+                    type: 'author_variant',
+                    confidence: 'medium',
+                    description: `Author variant: ${variant}`
+                });
+            });
+        }
+        
+        // Director searches
+        const director = film.director || film.Director;
+        if (director && director !== '-') {
+            // Director + title
+            strategies.push({
+                query: `"${director}" "${title}"`,
+                type: 'director_title',
+                confidence: 'high',
+                description: 'Director + title'
+            });
+            
+            // Director + year
+            strategies.push({
+                query: `"${director}" picture`,
+                type: 'director_picture',
+                confidence: 'medium',
+                description: 'Director + "picture"'
+            });
+            
+            // Director last name only
+            const dirLastName = director.split(' ').pop();
+            strategies.push({
+                query: `"${dirLastName}" director "${title}"`,
+                type: 'director_lastname',
+                confidence: 'low',
+                description: 'Director last name'
+            });
+        }
+        
+        return strategies;
+    }
+
+    // 3. PRODUCTION SEARCHES - Studio/business focused
+    productionSearches(film) {
+        const strategies = [];
+        const title = film.title || film.Title;
+        const studio = film.studio || film.Studio;
+        
+        if (studio && studio !== '-') {
+            // Studio + title
+            strategies.push({
+                query: `"${studio}" "${title}"`,
+                type: 'studio_title',
+                confidence: 'high',
+                description: 'Studio + title'
+            });
+            
+            // Studio + year + production
+            strategies.push({
+                query: `"${studio}" production`,
+                type: 'studio_production',
+                confidence: 'medium',
+                description: 'Studio production news'
+            });
+            
+            // Studio abbreviations (MGM, RKO, etc.)
+            const studioAbbr = this.getStudioAbbreviation(studio);
+            if (studioAbbr) {
+                strategies.push({
+                    query: `"${studioAbbr}" "${title}"`,
+                    type: 'studio_abbr',
+                    confidence: 'medium',
+                    description: `Studio abbreviation: ${studioAbbr}`
+                });
+            }
+        }
+        
+        // Production-specific searches
+        strategies.push({
+            query: `"${title}" filming production`,
+            type: 'title_production',
+            confidence: 'medium',
+            description: 'Production news'
+        });
+        
+        strategies.push({
+            query: `"${title}" "box office"`,
+            type: 'title_box_office',
+            confidence: 'medium',
+            description: 'Box office data'
+        });
+        
+        strategies.push({
+            query: `"${title}" opens theater`,
+            type: 'title_exhibition',
+            confidence: 'low',
+            description: 'Exhibition/opening'
+        });
+        
+        return strategies;
+    }
+
+    // 4. STAR SEARCHES - Actor-focused
+    starSearches(film) {
+        const strategies = [];
+        const title = film.title || film.Title;
+        
+        // If we have star data
+        const stars = film.stars || film.Stars || film.cast || film.Cast;
+        if (stars) {
+            const starList = Array.isArray(stars) ? stars : [stars];
+            
+            starList.slice(0, 2).forEach(star => { // Top 2 stars only
+                if (star && star !== '-') {
+                    strategies.push({
+                        query: `"${star}" "${title}"`,
+                        type: 'star_title',
+                        confidence: 'high',
+                        description: `Star: ${star}`
+                    });
+                    
+                    strategies.push({
+                        query: `"${star}" picture`,
+                        type: 'star_picture',
+                        confidence: 'medium',
+                        description: `${star} in ${year}`
+                    });
+                }
+            });
+        }
+        
+        // For specific films we might know the stars
+        const knownStars = this.getKnownStars(title);
+        knownStars.forEach(star => {
+            strategies.push({
+                query: `"${star}" "${title}"`,
+                type: 'known_star',
+                confidence: 'high',
+                description: `Known star: ${star}`
+            });
+        });
+        
+        return strategies;
+    }
+
+    // 5. TEMPORAL SEARCHES - Different time periods
+    temporalSearches(film) {
+        return [];
+    }
+
+    // 6. FUZZY SEARCHES - Handle OCR errors and variations
+    fuzzySearches(film) {
+        const strategies = [];
+        const title = film.title || film.Title;
+        const year = film.year || film.Year;
+        
+        // Common OCR errors
+        const ocrVariants = this.generateOCRVariants(title);
+        ocrVariants.forEach(variant => {
+            strategies.push({
+                query: `"${variant}" ${year}`,
+                type: 'ocr_variant',
+                confidence: 'low',
+                description: `OCR variant: ${variant}`
+            });
+        });
+        
+        // Partial title matches (for long titles)
+        if (title.split(' ').length > 4) {
+            const firstHalf = title.split(' ').slice(0, Math.ceil(title.split(' ').length / 2)).join(' ');
+            strategies.push({
+                query: `"${firstHalf}" ${year}`,
+                type: 'partial_title',
+                confidence: 'low',
+                description: 'First half of title'
+            });
+        }
+        
+        return strategies;
+    }
+
+    // 7. CONTEXTUAL SEARCHES - Theme/genre based
+    contextualSearches(film) {
+        const strategies = [];
+        const title = film.title || film.Title;
+        const year = film.year || film.Year;
+        const novel = film.novel || film.Novel || film.source || film.Source;
+        
+        // If it's an adaptation
+        if (novel && novel !== title) {
+            strategies.push({
+                query: `"${novel}" adaptation ${year}`,
+                type: 'source_adaptation',
+                confidence: 'medium',
+                description: 'Source novel adaptation'
+            });
+        }
+        
+        // Genre-specific (if we can infer)
+        const genre = this.inferGenre(title, film);
+        if (genre) {
+            strategies.push({
+                query: `"${title}" ${genre} film`,
+                type: 'title_genre',
+                confidence: 'low',
+                description: `Genre: ${genre}`
+            });
+        }
+        
+        // Remake searches (for known remakes)
+        if (this.isKnownRemake(title)) {
+            strategies.push({
+                query: `"${title}" remake ${year}`,
+                type: 'remake_search',
+                confidence: 'medium',
+                description: 'Remake coverage'
+            });
+        }
+        
+        return strategies;
+    }
+    
+    // HELPER METHODS
+    
+    abbreviateTitle(title) {
+        const words = title.split(' ');
+        const significantWords = words.filter(w => !this.commonWords.includes(w.toLowerCase()));
+        
+        if (significantWords.length >= 2) {
+            return significantWords.slice(0, 2).join(' ');
+        }
+        return title;
+    }
+    
+    extractKeyword(title) {
+        const words = title.split(' ');
+        const significantWords = words.filter(w => 
+            !this.commonWords.includes(w.toLowerCase()) && 
+            !this.articles.includes(w) &&
+            w.length > 3
+        );
+        
+        // Return the most unique/significant word
+        return significantWords[0] || null;
+    }
+    
+    getAuthorVariations(author) {
+        const variations = [];
+        
+        // Known author variations
+        const knownVariations = {
+            'Fannie Hurst': ['Fanny Hurst'],
+            'Gene Stratton-Porter': ['Gene Stratton Porter', 'Stratton-Porter'],
+        };
+        
+        if (knownVariations[author]) {
+            variations.push(...knownVariations[author]);
+        }
+        
+        return variations;
+    }
+    
+    getStudioAbbreviation(studio) {
+        const abbreviations = {
+            'Metro-Goldwyn-Mayer': 'MGM',
+            'Radio-Keith-Orpheum': 'RKO',
+            'RKO Radio Pictures': 'RKO',
+            'Paramount Pictures': 'Paramount',
+            '20th Century Fox': 'Fox',
+            'Universal Pictures': 'Universal',
+            'Columbia Pictures': 'Columbia',
+            'United Artists': 'UA'
+        };
+        
+        return abbreviations[studio] || null;
+    }
+    
+    getKnownStars(title) {
+        const starsByFilm = {
+            'The Wizard of Oz': ['Judy Garland', 'Ray Bolger', 'Bert Lahr'],
+            'Gone with the Wind': ['Clark Gable', 'Vivien Leigh'],
+            'Rebecca': ['Laurence Olivier', 'Joan Fontaine'],
+            'The Maltese Falcon': ['Humphrey Bogart', 'Mary Astor']
+        };
+        
+        return starsByFilm[title] || [];
+    }
+    
+    generateOCRVariants(title) {
+        const variants = [];
+        
+        // Common OCR substitutions
+        const ocrSubs = {
+            'l': ['1', 'i'],
+            'I': ['l', '1'],
+            '0': ['O'],
+            'O': ['0'],
+            'S': ['5'],
+            '5': ['S']
+        };
+        
+        // Generate a few variants (don't go crazy)
+        const words = title.split(' ');
+        if (words.length <= 3) {
+            // Try one substitution
+            for (let char in ocrSubs) {
+                if (title.includes(char)) {
+                    const variant = title.replace(char, ocrSubs[char][0]);
+                    if (variant !== title) {
+                        variants.push(variant);
+                        break; // Only one variant
+                    }
+                }
+            }
+        }
+        
+        return variants;
+    }
+    
+    inferGenre(title, film) {
+        // Simple genre inference from title/metadata
+        const titleLower = title.toLowerCase();
+        
+        if (titleLower.includes('love') || titleLower.includes('romance')) return 'romance';
+        if (titleLower.includes('murder') || titleLower.includes('death')) return 'mystery';
+        if (titleLower.includes('adventures') || titleLower.includes('adventure')) return 'adventure';
+        if (film.genre) return film.genre.toLowerCase();
+        
+        return null;
+    }
+    
+    isKnownRemake(title) {
+        const knownRemakes = [
+            'The Wizard of Oz', // Multiple versions
+            'Little Women',
+            'The Three Musketeers',
+            'Romeo and Juliet'
+        ];
+        
+        return knownRemakes.includes(title);
+    }
+    
+    deduplicateStrategies(strategies) {
+        const seen = new Set();
+        const unique = [];
+        
+        strategies.forEach(strategy => {
+            const key = strategy.query.toLowerCase().trim();
+            if (!seen.has(key)) {
+                seen.add(key);
+                unique.push(strategy);
+            }
+        });
+        
+        // Sort by confidence: high → medium → low
+        const order = { high: 0, medium: 1, low: 2 };
+        return unique.sort((a, b) => order[a.confidence] - order[b.confidence]);
+    }
+}
+
+class UnifiedMagicLantern {
+    constructor() {
+        this.baseUrl = 'https://lantern.mediahist.org';
+        this.rateLimitDelay = 200;
+        this.strategyGenerator = new SearchStrategyGenerator();
+        this.allResults = [];
+        this.seenIds = new Set();
+        
+        // Content patterns from v1 for full text analysis
+        this.contentPatterns = {
+            review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
+            production: /\b(production|producing|filming|started|completed|announced)\b/i,
+            boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
+            advertisement: /\b(cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
+            photo: /\b(photograph|photo|picture|scene from|production still)\b/i,
+            interview: /\b(interview|talks about|discusses|says)\b/i
+        };
+    }
+
+    async makeRequest(url) {
+        return new Promise((resolve, reject) => {
+            https.get(url, (res) => {
+                let data = '';
+                res.on('data', chunk => data += chunk);
+                res.on('end', () => {
+                    try {
+                        resolve(JSON.parse(data));
+                    } catch (e) {
+                        reject(new Error(`Failed to parse JSON from ${url}`));
+                    }
+                });
+            }).on('error', reject);
+        });
+    }
+
+    // Search method from v3 with date filtering
+    async searchWithStrategy(strategy, film) {
+        const params = new URLSearchParams({
+            q: strategy.query,
+            per_page: '20',
+            sort: 'score desc, date desc',
+            search_field: 'all_fields'
+        });
+
+        params.append('f[format][]', 'Periodicals');
+        
+        const collections = ['Fan Magazines', 'Hollywood Studio System', 'Early Cinema'];
+        collections.forEach(collection => {
+            params.append('f[collection][]', collection);
+        });
+
+        // Date range filtering based on confidence
+        const year = parseInt(film.year || film.Year);
+        if (year) {
+            const ranges = {
+                'high': { begin: year - 1, end: year + 1 },
+                'medium': { begin: year - 2, end: year + 2 },
+                'low': { begin: year - 3, end: year + 3 }
+            };
+            
+            const range = ranges[strategy.confidence];
+            if (range) {
+                params.append('range[year][begin]', range.begin);
+                params.append('range[year][end]', range.end);
+            }
+        }
+        
+        const url = `${this.baseUrl}/catalog.json?${params}`;
+        
+        console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
+        console.log(`   Query: "${strategy.query}"`);
+        
+        try {
+            const results = await this.makeRequest(url);
+            const count = results.meta?.pages?.total_count || 0;
+            
+            if (count > 0) {
+                console.log(`   ✅ Found ${count} results!`);
+                
+                if (results.data) {
+                    results.data.forEach(item => {
+                        if (!this.seenIds.has(item.id)) {
+                            this.seenIds.add(item.id);
+                            this.allResults.push({
+                                ...item,
+                                foundBy: strategy.type,
+                                searchQuery: strategy.query,
+                                strategyConfidence: strategy.confidence
+                            });
+                        }
+                    });
+                }
+            } else {
+                console.log(`   ○ No results`);
+            }
+            
+            return count;
+        } catch (error) {
+            console.log(`   ❌ Search failed: ${error.message}`);
+            return 0;
+        }
+    }
+
+    // Full text fetching from v1
+    async fetchFullPageText(pageId) {
+        const url = `${this.baseUrl}/catalog/${pageId}/raw.json`;
+        console.log(`   📄 Fetching full text for: ${pageId}`);
+        
+        try {
+            const pageData = await this.makeRequest(url);
+            
+            return {
+                id: pageId,
+                fullText: pageData.body || '',
+                title: pageData.title,
+                volume: pageData.volume,
+                date: pageData.date || pageData.dateString,
+                year: pageData.year,
+                creator: pageData.creator,
+                collection: pageData.collection,
+                iaPage: pageData.iaPage,
+                readUrl: pageData.read,
+                wordCount: (pageData.body || '').split(/\s+/).length
+            };
+        } catch (error) {
+            console.error(`   ❌ Failed to fetch full text for ${pageId}`);
+            return null;
+        }
+    }
+
+    // Content analysis from v1
+    identifyContentTypes(text) {
+        const types = [];
+        
+        for (const [type, pattern] of Object.entries(this.contentPatterns)) {
+            if (pattern.test(text)) {
+                types.push(type);
+            }
+        }
+        
+        return types.length > 0 ? types : ['mention'];
+    }
+
+    checkForPhoto(text) {
+        const photoIndicators = [
+            'scene from', 'production still', 'photograph',
+            'pictured above', 'shown here', 'exclusive photo',
+            'production cuts', 'mats'
+        ];
+        
+        const lowerText = text.toLowerCase();
+        return photoIndicators.some(indicator => lowerText.includes(indicator));
+    }
+
+    // Combined comprehensive search
+    async comprehensiveSearch(film) {
+        console.log(`\n${'='.repeat(70)}`);
+        console.log(`🎭 COMPREHENSIVE TREASURE HUNT: ${film.title || film.Title} (${film.year || film.Year})`);
+        console.log(`${'='.repeat(70)}`);
+        
+        // Reset for new film
+        this.allResults = [];
+        this.seenIds = new Set();
+        
+        // Generate and execute strategies
+        const strategies = this.strategyGenerator.generateAllStrategies(film);
+        const byConfidence = {
+            high: strategies.filter(s => s.confidence === 'high'),
+            medium: strategies.filter(s => s.confidence === 'medium'),
+            low: strategies.filter(s => s.confidence === 'low')
+        };
+        
+        // Execute high confidence strategies first
+        for (const strategy of byConfidence.high) {
+            await this.searchWithStrategy(strategy, film);
+            await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+        }
+        
+        // Continue with medium if needed
+        if (this.allResults.length < 25) {
+            for (const strategy of byConfidence.medium) {
+                await this.searchWithStrategy(strategy, film);
+                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+            }
+        }
+        
+        // Low confidence if really needed
+        if (this.allResults.length < 15) {
+            for (const strategy of byConfidence.low.slice(0, 5)) {
+                await this.searchWithStrategy(strategy, film);
+                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+            }
+        }
+        
+        // Sort all results by relevance score
+        this.allResults.sort((a, b) => {
+            // Sort by some relevance metric - you might want to enhance this
+            const scoreA = a.attributes?.score || 0;
+            const scoreB = b.attributes?.score || 0;
+            return scoreB - scoreA;
+        });
+        
+        // Fetch full text for top 3 results
+        console.log(`\n📚 Fetching full text for top 3 results...`);
+        const fullTextResults = [];
+        
+        for (let i = 0; i < Math.min(3, this.allResults.length); i++) {
+            const result = this.allResults[i];
+            
+            if (i > 0) {
+                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+            }
+            
+            const fullPageData = await this.fetchFullPageText(result.id);
+            
+            if (fullPageData) {
+                fullPageData.contentTypes = this.identifyContentTypes(fullPageData.fullText);
+                fullPageData.hasPhoto = this.checkForPhoto(fullPageData.fullText);
+                fullPageData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
+                fullPageData.foundBy = result.foundBy;
+                fullPageData.searchQuery = result.searchQuery;
+                fullPageData.strategyConfidence = result.strategyConfidence;
+                
+                fullTextResults.push(fullPageData);
+            }
+        }
+        
+        return {
+            film: film,
+            totalUniqueSources: this.allResults.length,
+            allSearchResults: this.allResults,
+            fullTextAnalysis: fullTextResults
+        };
+    }
+
+    async loadFilms(filePath) {
+        console.log('🎬 Loading films from:', filePath);
+        
+        const content = fs.readFileSync(filePath, 'utf8');
+        const lines = content.trim().split('\n');
+        const headers = lines[0].toLowerCase().split(',').map(h => h.trim());
+        
+        const films = lines.slice(1).map(line => {
+            const values = line.split(',').map(v => v.trim().replace(/"/g, ''));
+            const film = {};
+            headers.forEach((header, i) => {
+                film[header] = values[i];
+            });
+            return film;
+        });
+        
+        console.log(`✨ Found ${films.length} films to research!\n`);
+        return films;
+    }
+
+    async run(filePath) {
+        console.log('✨ MAGIC LANTERN UNIFIED - Multi-Strategy Search + Full Text Analysis ✨\n');
+        console.log('Combines comprehensive search strategies with deep text analysis\n');
+        
+        try {
+            const films = await this.loadFilms(filePath);
+            
+            console.log('🧪 Testing with first film...\n');
+            const results = await this.comprehensiveSearch(films[0]);
+            
+            // Save two separate JSON files
+            
+            // 1. All search results (v3 style)
+            const searchResultsData = {
+                film: results.film,
+                totalUniqueSources: results.totalUniqueSources,
+                searchStrategySummary: this.summarizeStrategies(results.allSearchResults),
+                sources: results.allSearchResults
+            };
+            fs.writeFileSync('comprehensive-search-results.json', 
+                JSON.stringify(searchResultsData, null, 2));
+            
+            // 2. Full text analysis of top 3 (v1 style)
+            const fullTextData = {
+                film: results.film,
+                searchQuery: `Multiple strategies (${results.totalUniqueSources} total found)`,
+                totalFound: results.totalUniqueSources,
+                fullTextAnalyzed: results.fullTextAnalysis.length,
+                treasures: results.fullTextAnalysis
+            };
+            fs.writeFileSync('full-text-results.json', 
+                JSON.stringify(fullTextData, null, 2));
+            
+            console.log('\n💾 Results saved:');
+            console.log('   - comprehensive-search-results.json (all search results)');
+            console.log('   - full-text-results.json (top 3 with full text)');
+            
+            console.log('\n🎉 Search complete!');
+            console.log(`   Total sources found: ${results.totalUniqueSources}`);
+            console.log(`   Full text analyzed: ${results.fullTextAnalysis.length}`);
+            
+        } catch (error) {
+            console.error('❌ Error:', error.message);
+            console.error(error.stack);
+        }
+    }
+
+    summarizeStrategies(results) {
+        const summary = {};
+        results.forEach(result => {
+            summary[result.foundBy] = (summary[result.foundBy] || 0) + 1;
+        });
+        return summary;
+    }
+}
+
+// Run it!
+if (require.main === module) {
+    const filePath = process.argv[2] || 'films.csv';
+    
+    if (!fs.existsSync(filePath)) {
+        console.error(`❌ File not found: ${filePath}`);
+        console.log('\nUsage: node magic-lantern-unified.js [path-to-csv]');
+        process.exit(1);
+    }
+    
+    const lantern = new UnifiedMagicLantern();
+    lantern.run(filePath);
+}
+
+module.exports = UnifiedMagicLantern;
