@@ -536,13 +536,13 @@ class UnifiedMagicLantern {
         },
         publicationWeights: {
             "variety": 1.0,
-            "motion picture world": 1.0,
-            "photoplay": 1.0,
+            "motion picture world": 1.3,
+            "photoplay": 1.2,
             "motion picture herald": 1.0,
             "film daily": 1.0,
             "exhibitors herald": 1.0,
-            "moving picture world": 1.0,
-            "motography": 1.0,
+            "moving picture world": 1.3,
+            "motography": 1.5,
             "modern screen": 1.0,
             "silver screen": 1.0
         }
