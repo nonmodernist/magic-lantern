@@ -12,10 +12,37 @@ class HistoricalTreasureAnalyzer {
             maxWindows: 5,  // maximum number of context windows to extract
             mergeThreshold: 100  // merge windows if they're this close
         };
-        // Period-appropriate patterns for 1910-1960 trade publications
+
+        
+        // Initialize patterns after methods are available
+        this.initializePatterns();
+    }
+
+        // Helper method for OCR-friendly patterns
+    createOCRFriendlyPattern(phrase) {
+        const words = phrase.split(/\s+/);
+        const pattern = words
+            .map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+            .join('\\s+');
+        
+        return new RegExp(pattern, 'i');
+    }
+
+    // Initialize patterns using the helper
+    initializePatterns() {
         this.treasurePatterns = {
             fullReview: {
                 patterns: [
+                    this.createOCRFriendlyPattern('picture is excellent'),
+                    this.createOCRFriendlyPattern('photoplay proves superb'),
+                    this.createOCRFriendlyPattern('film is mediocre'),
+                    this.createOCRFriendlyPattern('box office natural'),
+                    this.createOCRFriendlyPattern('should please audiences'),
+                    this.createOCRFriendlyPattern('will satisfy patrons'),
+                    this.createOCRFriendlyPattern('worth booking'),
+                    this.createOCRFriendlyPattern('entertainment value'),
+
+
                     // Period review language
                     /\b(picture|photoplay|film)\s+(is|proves)\s+(excellent|superb|mediocre|disappointing)/i,
                     /\b(rates?|rating)\s+(high|low|fair|good|excellent)/i,
@@ -25,6 +52,15 @@ class HistoricalTreasureAnalyzer {
                     /\bworth\s+(booking|playing|showing)/i,
                     /\b(entertainment|program)\s+value/i,
                     /\bexhibitor[s']?\s+(angle|slant|reports?)/i,
+                    // ADD: Patterns that handle OCR spacing
+                    /\bpicture\s+is\s+(?:a\s+)?(?:good|excellent|poor)/i,
+                    /\bstory\s+is\s+(?:well|poorly)\s+told/i,
+                    /\bacting\s+is\s+(?:good|excellent|poor)/i,
+                    // ADD: Simpler patterns that are more likely to match
+                    /\bgood\s+picture/i,
+                    /\bexcellent\s+film/i,
+                    /\bpoor\s+photoplay/i,
+                    /\bfine\s+production/i,
                     // Classic review structures
                     /Cast[:\s].*Director[:\s]/i,
                     /Running time[:\s]\d+\s*minutes/i,
@@ -37,15 +73,26 @@ class HistoricalTreasureAnalyzer {
             },
             productionPhoto: {
                 patterns: [
+
+                    this.createOCRFriendlyPattern('scene from the photoplay'),
+                    this.createOCRFriendlyPattern('scene from the picture'),
+                    this.createOCRFriendlyPattern('exclusive photograph'),
+                    this.createOCRFriendlyPattern('pictured above'),
+                    this.createOCRFriendlyPattern('production still'),
+                    this.createOCRFriendlyPattern('on the set'),
                     // Period photo captions
-                    /\bscene\s+from\s+(the\s+)?(photoplay|picture|production)/i,
-                    /\b(above|below)[:\s]+(scene|view|shot)\s+from/i,
+                    /\bscene\s+from/i,
+                    /\b(?:above|below|here)\s*:?\s*(?:scene|view|shot)/i,
                     /\bexclusive\s+(photo|photograph|picture)/i,
                     /\bpictured\s+(above|here|below)/i,
                     /\b(production|working)\s+still/i,
                     /\bon\s+the\s+set\s+(of|with)/i,
                     /\bcamera\s+catches/i,
                     /\b(see|note)\s+(illustration|photo)/i,
+                    // Add some very simple patterns
+                    /\bphoto(?:graph)?\b/i,
+                    /\bscene\b.*\bfrom\b/i,  // scene...from with anything in between
+                    
                     // Layout references common in period
                     /\b(top|bottom|left|right)\s+photo/i,
                     /\bcut\s+shows/i  // "cut" meant photo in trade papers
@@ -344,47 +391,48 @@ createFlexibleSearchPatterns(term) {
 }
 
 
-    checkForTreasure(text, config) {
-        const matches = {
-            found: false,
-            evidence: [],
-            confidence: 'low',
-            patternMatches: []
-        };
+checkForTreasure(text, config) {
+    const matches = {
+        found: false,
+        evidence: [],
+        confidence: 'low',
+        patternMatches: []
+    };
 
-        // Check minimum length requirement
-        if (config.minLength && text.length < config.minLength) {
-            return matches;
-        }
-
-        // Check patterns
-        let patternMatches = 0;
-        for (const pattern of config.patterns) {
-            const match = text.match(pattern);
-            if (match) {
-                patternMatches++;
-                matches.patternMatches.push(pattern.toString());
-                
-                // Extract context around match
-                const startIndex = Math.max(0, match.index - 75);
-                const endIndex = Math.min(text.length, match.index + match[0].length + 75);
-                const context = text.substring(startIndex, endIndex)
-                    .replace(/\s+/g, ' ')
-                    .trim();
-                    
-                // Highlight the matched portion
-                const highlightedContext = context.replace(match[0], `**${match[0]}**`);
-                matches.evidence.push(highlightedContext);
-            }
-        }
-
-        if (patternMatches > 0) {
-            matches.found = true;
-            matches.confidence = patternMatches >= 2 ? 'high' : 'medium';
-        }
-
+    // Check minimum length requirement
+    if (config.minLength && text.length < config.minLength) {
         return matches;
     }
+
+    // QUICK FIX 1: Normalize spacing before pattern matching
+    const normalizedText = text.replace(/\s+/g, ' ').trim();
+
+    // Check patterns
+    let patternMatches = 0;
+    for (const pattern of config.patterns) {
+        const match = normalizedText.match(pattern);
+        if (match) {
+            patternMatches++;
+            matches.patternMatches.push(pattern.toString());
+            
+            // Extract context around match
+            const startIndex = Math.max(0, match.index - 75);
+            const endIndex = Math.min(normalizedText.length, match.index + match[0].length + 75);
+            const context = normalizedText.substring(startIndex, endIndex);
+                
+            // Highlight the matched portion
+            const highlightedContext = context.replace(match[0], `**${match[0]}**`);
+            matches.evidence.push(highlightedContext);
+        }
+    }
+
+    if (patternMatches > 0) {
+        matches.found = true;
+        matches.confidence = patternMatches >= 2 ? 'high' : 'medium';
+    }
+
+    return matches;
+}
 
    // Modified analyzeTreasure method
     analyzeTreasure(fullText, itemId, metadata = {}) {
@@ -417,9 +465,15 @@ createFlexibleSearchPatterns(term) {
         contextWindows.forEach((window, idx) => {
             console.log(`\n   Analyzing window ${idx + 1}/${contextWindows.length} (${window.text.split(/\s+/).length} words)`);
             
+
+                // QUICK FIX: Normalize the window text before analysis
+    const normalizedWindowText = window.text.replace(/\s+/g, ' ').trim();
+    
             // Check each treasure type within this window
             for (const [type, config] of Object.entries(this.treasurePatterns)) {
-                const matches = this.checkForTreasure(window.text, config);
+        // Pass the normalized text instead
+        const matches = this.checkForTreasure(normalizedWindowText, config);
+     
                 
                 if (matches.found) {
                     console.log(`      ${config.icon} Found ${type}!`);
