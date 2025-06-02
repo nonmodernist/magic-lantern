@@ -1,0 +1,90 @@
+{
+  "testRun": "2025-06-02T20:24:00.839Z",
+  "inputFile": "results/full-text-results_20250602_145030.json",
+  "results": [
+    {
+      "id": "movingpicturewor23newy_1945",
+      "treasures": [],
+      "totalScore": 0,
+      "wordCount": 334,
+      "hasValuableContent": false,
+      "contextWindows": []
+    },
+    {
+      "id": "movingpicturewor20newy_0046",
+      "treasures": [],
+      "totalScore": 0,
+      "wordCount": 709,
+      "hasValuableContent": false,
+      "contextWindows": []
+    },
+    {
+      "id": "movingpicturewor19newy_1441",
+      "treasures": [],
+      "totalScore": 0,
+      "wordCount": 1007,
+      "hasValuableContent": false,
+      "contextWindows": []
+    },
+    {
+      "id": "movingpicturewor24newy_0883",
+      "treasures": [],
+      "totalScore": 0,
+      "wordCount": 96,
+      "hasValuableContent": false,
+      "contextWindows": []
+    },
+    {
+      "id": "movingpicturewor20newy_0635",
+      "treasures": [],
+      "totalScore": 0,
+      "wordCount": 113,
+      "hasValuableContent": false,
+      "contextWindows": []
+    },
+    {
+      "id": "motionp09moti_0775",
+      "treasures": [],
+      "totalScore": 0,
+      "wordCount": 1058,
+      "hasValuableContent": false,
+      "contextWindows": []
+    },
+    {
+      "id": "motography11elec_0279",
+      "treasures": [
+        {
+          "type": "mention",
+          "icon": "📄",
+          "score": 1,
+          "evidence": [
+            "...4,  1914. \nMOTOGRAPHY \n235 \n\"Tess  of  the  Storm  Country\"  a  Symphony \nMary  Pickford  Featured \n4  4r  I  \"\"  ESS  of  the  Storm  Country,\"  is  a  symphony  in acting,  story,  photography  a..."
+          ],
+          "confidence": "low"
+        }
+      ],
+      "totalScore": 1,
+      "wordCount": 772,
+      "hasValuableContent": false,
+      "contextWindows": [
+        {
+          "text": "...4,  1914. \nMOTOGRAPHY \n235 \n\"Tess  of  the  Storm  Country\"  a  Symphony \nMary  Pickford  Featured \n4  4r  I  \"\"  ESS  of  the  Storm  Country,\"  is  a  symphony  in acting,  story,  photography  and  production.  It gives  Mary  Pickford  the  greatest  opportunity she  has  had  so  far,  in  which  to  express  the  artistry  of which  she  is  so  peculiarly  mistress.  And  the  whole film  is  an  especial  tribute  to  the  genius  of  its  director, Edwin  Stanton  Porter.  The  story  is  that  of  the...",
+          "terms": [
+            "Motography"
+          ],
+          "position": {
+            "start": 0,
+            "end": 528
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "itemsAnalyzed": 7,
+    "totalTreasures": 1,
+    "treasureTypes": {
+      "mention": 1
+    }
+  }
+}

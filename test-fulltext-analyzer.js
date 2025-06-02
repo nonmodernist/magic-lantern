@@ -5,6 +5,13 @@ const fs = require('fs');
 
 class HistoricalTreasureAnalyzer {
     constructor() {
+                // Add configuration for context windows
+        this.contextConfig = {
+            windowSize: 500,  // characters before and after match
+            minWindowSize: 200,  // minimum context even for edge cases
+            maxWindows: 5,  // maximum number of context windows to extract
+            mergeThreshold: 100  // merge windows if they're this close
+        };
         // Period-appropriate patterns for 1910-1960 trade publications
         this.treasurePatterns = {
             fullReview: {
@@ -158,6 +165,185 @@ class HistoricalTreasureAnalyzer {
         };
     }
 
+    // New method to extract context windows around search terms
+    extractContextWindows(fullText, searchTerms) {
+        const windows = [];
+        const textLower = fullText.toLowerCase();
+        
+        // For each search term, find all occurrences
+        searchTerms.forEach(term => {
+            if (!term) return;
+
+                    // Create flexible search patterns
+        const searchPatterns = this.createFlexibleSearchPatterns(term);
+        
+        searchPatterns.forEach(pattern => {
+            if (pattern instanceof RegExp) {
+                // Use regex matching
+                let match;
+                while ((match = pattern.exec(textLower)) !== null) {
+                    const index = match.index;
+                    const matchLength = match[0].length;
+                    
+                    const start = Math.max(0, index - this.contextConfig.windowSize);
+                    const end = Math.min(fullText.length, index + matchLength + this.contextConfig.windowSize);
+                    
+                    windows.push({
+                        start,
+                        end,
+                        matchStart: index,
+                        matchEnd: index + matchLength,
+                        term: term,
+                        matchedText: match[0]
+                    });
+                }
+            } else {
+                // Use string matching for simple terms
+            
+            const termLower = term.toLowerCase();
+            let index = 0;
+            
+            while ((index = textLower.indexOf(termLower, index)) !== -1) {
+                const start = Math.max(0, index - this.contextConfig.windowSize);
+                const end = Math.min(fullText.length, index + termLower.length + this.contextConfig.windowSize);
+                
+                windows.push({
+                    start,
+                    end,
+                    matchStart: index,
+                    matchEnd: index + termLower.length,
+                    term: term,
+                    matchedText: termLower
+                });
+                
+                index += termLower.length;
+            }
+        }
+        });
+        });
+        
+        // Sort windows by start position
+        windows.sort((a, b) => a.start - b.start);
+        
+        // Merge overlapping windows
+        const mergedWindows = [];
+        for (const window of windows) {
+            if (mergedWindows.length === 0) {
+                mergedWindows.push(window);
+            } else {
+                const lastWindow = mergedWindows[mergedWindows.length - 1];
+                
+                // Check if windows overlap or are close enough to merge
+                if (window.start <= lastWindow.end + this.contextConfig.mergeThreshold) {
+                    // Merge windows
+                    lastWindow.end = Math.max(lastWindow.end, window.end);
+                    lastWindow.terms = lastWindow.terms || [lastWindow.term];
+                    if (!lastWindow.terms.includes(window.term)) {
+                        lastWindow.terms.push(window.term);
+                    }
+                } else {
+                    mergedWindows.push(window);
+                }
+            }
+        }
+
+            // Log what we found for debugging
+    console.log(`   Debug: Found ${windows.length} raw windows, merged to ${mergedWindows.length}`);
+    if (windows.length > 0) {
+        console.log(`   Debug: First match: "${windows[0].matchedText}" at position ${windows[0].matchStart}`);
+    }
+        
+        // Extract text for each window
+        return mergedWindows.slice(0, this.contextConfig.maxWindows).map(window => {
+            const text = fullText.substring(window.start, window.end);
+            
+            // Clean up the window edges to start/end at word boundaries
+            const cleanedText = this.cleanWindowBoundaries(text);
+            
+            return {
+                text: cleanedText,
+                terms: window.terms || [window.term],
+                position: {
+                    start: window.start,
+                    end: window.end
+                }
+            };
+        });
+    }
+    
+    // Helper to clean window boundaries
+    cleanWindowBoundaries(text) {
+        // Find first word boundary
+        const firstSpace = text.indexOf(' ');
+        const startClean = firstSpace > 0 && firstSpace < 50 ? firstSpace + 1 : 0;
+        
+        // Find last word boundary
+        const lastSpace = text.lastIndexOf(' ');
+        const endClean = lastSpace > text.length - 50 ? lastSpace : text.length;
+        
+        let cleaned = text.substring(startClean, endClean).trim();
+        
+        // Add ellipsis if we cut off text
+        if (startClean > 0) cleaned = '...' + cleaned;
+        if (endClean < text.length) cleaned = cleaned + '...';
+        
+        return cleaned;
+    }
+
+    // New helper method to create flexible search patterns
+createFlexibleSearchPatterns(term) {
+    const patterns = [];
+    
+    // Escape special regex characters
+    const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    
+    // 1. Try exact match first (lowercase)
+    patterns.push(term.toLowerCase());
+    
+    // 2. Create regex that handles OCR spacing issues
+    // Split the term into words and allow flexible spacing
+    const words = term.split(/\s+/);
+    const flexibleSpacingPattern = words
+        .map(word => escapeRegex(word))
+        .join('\\s+');  // One or more whitespace characters
+    
+    patterns.push(new RegExp(flexibleSpacingPattern, 'gi'));
+    
+    // 3. Handle potential OCR errors with quotes
+    // Replace smart quotes with regular quotes or wildcards
+    const quoteVariations = term
+        .replace(/[""]/g, '["""\']?')  // Handle various quote types
+        .replace(/'/g, "[\\']?");
+    
+    const quoteFlexiblePattern = quoteVariations
+        .split(/\s+/)
+        .map(word => escapeRegex(word))
+        .join('\\s+');
+    
+    patterns.push(new RegExp(quoteFlexiblePattern, 'gi'));
+    
+    // 4. For multi-word terms, also try searching for distinctive keywords
+    if (words.length > 2) {
+        // Try the most distinctive words (usually not common words)
+        const distinctiveWords = words.filter(word => 
+            word.length > 4 && !['the', 'of', 'and', 'in', 'at'].includes(word.toLowerCase())
+        );
+        
+        if (distinctiveWords.length >= 2) {
+            // Search for any two distinctive words near each other
+            const proximityPattern = distinctiveWords
+                .slice(0, 2)
+                .map(word => escapeRegex(word))
+                .join('.{0,20}');  // Allow up to 20 characters between words
+            
+            patterns.push(new RegExp(proximityPattern, 'gi'));
+        }
+    }
+    
+    return patterns;
+}
+
+
     checkForTreasure(text, config) {
         const matches = {
             found: false,
@@ -200,54 +386,79 @@ class HistoricalTreasureAnalyzer {
         return matches;
     }
 
+   // Modified analyzeTreasure method
     analyzeTreasure(fullText, itemId, metadata = {}) {
         const analysis = {
             id: itemId,
             treasures: [],
             totalScore: 0,
             wordCount: fullText.split(/\s+/).length,
-            hasValuableContent: false
+            hasValuableContent: false,
+            contextWindows: []
         };
 
+
         console.log(`\n📄 Analyzing: ${itemId}`);
-        console.log(`   Word count: ${analysis.wordCount}`);
-        console.log(`   Publisher: ${metadata.publisher || 'Unknown'}`);
+        console.log(`   Full page word count: ${analysis.wordCount}`);
+        
 
-        // Check each treasure type
-        for (const [type, config] of Object.entries(this.treasurePatterns)) {
-            const matches = this.checkForTreasure(fullText, config);
+        
+        // Extract search terms from metadata
+        const searchTerms = this.extractSearchTerms(metadata);
+        console.log(`   Search terms: ${searchTerms.join(', ')}`);
+        
+        // Extract context windows
+        const contextWindows = this.extractContextWindows(fullText, searchTerms);
+        analysis.contextWindows = contextWindows;
+        
+        console.log(`   Found ${contextWindows.length} relevant context windows`);
+        
+        // Analyze each context window instead of full text
+        contextWindows.forEach((window, idx) => {
+            console.log(`\n   Analyzing window ${idx + 1}/${contextWindows.length} (${window.text.split(/\s+/).length} words)`);
             
-            if (matches.found) {
-                console.log(`\n   ${config.icon} Found ${type}!`);
-                console.log(`      Confidence: ${matches.confidence}`);
-                console.log(`      Patterns matched: ${matches.patternMatches.length}`);
+            // Check each treasure type within this window
+            for (const [type, config] of Object.entries(this.treasurePatterns)) {
+                const matches = this.checkForTreasure(window.text, config);
                 
-                analysis.treasures.push({
-                    type: type,
-                    icon: config.icon,
-                    score: config.score,
-                    evidence: matches.evidence,
-                    confidence: matches.confidence,
-                    patternsMatched: matches.patternMatches.length
-                });
-                analysis.totalScore += config.score;
-                analysis.hasValuableContent = true;
-
-                // Show first evidence
-                if (matches.evidence.length > 0) {
-                    console.log(`      Evidence: "${matches.evidence[0]}"`);
+                if (matches.found) {
+                    console.log(`      ${config.icon} Found ${type}!`);
+                    
+                    // Check if we already found this treasure type
+                    const existingTreasure = analysis.treasures.find(t => t.type === type);
+                    
+                    if (existingTreasure) {
+                        // Add evidence to existing treasure
+                        existingTreasure.evidence.push(...matches.evidence);
+                        existingTreasure.windowsFound.push(idx);
+                    } else {
+                        // Create new treasure entry
+                        analysis.treasures.push({
+                            type: type,
+                            icon: config.icon,
+                            score: config.score,
+                            evidence: matches.evidence,
+                            confidence: matches.confidence,
+                            patternsMatched: matches.patternMatches.length,
+                            windowsFound: [idx]
+                        });
+                        analysis.totalScore += config.score;
+                        analysis.hasValuableContent = true;
+                    }
                 }
             }
-        }
+        });
 
-        // If no specific treasures but substantial text
-        if (analysis.treasures.length === 0 && analysis.wordCount > 50) {
-            console.log(`\n   📄 Basic mention (no specific patterns matched)`);
+         // If no specific treasures but we found the search terms
+        if (analysis.treasures.length === 0 && contextWindows.length > 0) {
+            console.log(`\n   📄 Basic mention (search terms found but no specific patterns)`);
             analysis.treasures.push({
                 type: 'mention',
                 icon: '📄',
                 score: 1,
-                evidence: ['Brief mention in trade publication'],
+                evidence: contextWindows.map(w => 
+                    w.text.substring(0, 200) + (w.text.length > 200 ? '...' : '')
+                ),
                 confidence: 'low'
             });
             analysis.totalScore = 1;
@@ -257,6 +468,38 @@ class HistoricalTreasureAnalyzer {
         
         return analysis;
     }
+
+        // Helper to extract search terms from metadata
+    extractSearchTerms(metadata) {
+        const terms = [];
+        
+        // Extract from the film object if available
+        if (metadata.film) {
+            if (metadata.film.title) terms.push(metadata.film.title);
+            if (metadata.film.Title) terms.push(metadata.film.Title);
+        }
+        
+        // Extract from searchQuery if available
+        if (metadata.searchQuery) {
+            // Extract quoted phrases
+            const quotedPhrases = metadata.searchQuery.match(/"([^"]+)"/g);
+            if (quotedPhrases) {
+                quotedPhrases.forEach(phrase => {
+                    terms.push(phrase.replace(/"/g, ''));
+                });
+            }
+        }
+        
+        // REMOVED: Don't add metadata.title as it's the publication name
+        // // Add any other likely search terms
+        // if (metadata.title && !terms.includes(metadata.title)) {
+        //     terms.push(metadata.title);
+        // }
+        
+        // Remove duplicates and filter out empty terms
+        return [...new Set(terms)].filter(term => term && term.length > 0);
+    }
+
 }
 
 // Test function
@@ -290,10 +533,15 @@ function testTreasureAnalyzer() {
         
         const fullText = item.fullText || item.body || '';
         const id = item.id || `item-${index}`;
+        
+        // Enhanced metadata to include search information
         const metadata = {
             publisher: item.publisher || item.title,
             date: item.date,
-            year: item.year
+            year: item.year,
+            film: data.film || item.film,  // Pass film data
+            searchQuery: item.searchQuery || data.searchQuery,  // Pass search query
+            title: item.title
         };
         
         const analysis = analyzer.analyzeTreasure(fullText, id, metadata);
