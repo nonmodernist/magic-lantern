@@ -389,8 +389,6 @@ class SearchStrategyGenerator {
         const knownVariations = {
             'Fannie Hurst': ['Fanny Hurst'],
             'Gene Stratton-Porter': ['Gene Stratton Porter', 'Stratton-Porter'],
-            'L. Frank Baum': ['Frank Baum', 'Baum'],
-            'F. Scott Fitzgerald': ['Scott Fitzgerald', 'Fitzgerald']
         };
         
         if (knownVariations[author]) {
