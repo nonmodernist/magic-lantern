@@ -151,7 +151,7 @@ Title,Year,Director,Author
 ```
 
 ### Markdown/Zola Format
-Magic Lantern can also read from markdown files with frontmatter (perfect for static site generators).
+Magic Lantern will also read from markdown files with frontmatter (perfect for static site generators).
 
 ### Advanced Configuration
 
@@ -189,6 +189,24 @@ node magic-lantern.js --publications "variety,motion picture herald"
 # Test with just a few films first
 node magic-lantern.js --limit 5 --verbose
 ```
+
+## Technical Documentation
+
+### Architecture Overview
+Magic Lantern uses a multi-stage pipeline:
+1. **Search Strategy Generation** - Creates 10-30+ search queries per film
+2. **Parallel Search Execution** - Queries Lantern API with smart rate limiting
+3. **Result Deduplication** - Tracks unique sources across all searches
+4. **Relevance Scoring** - Multi-factor scoring based on publication, position, content
+5. **Full Text Analysis** - Deep dive into top-scored results
+6. **Export & Visualization** - Multiple output formats for different workflows
+
+### Key Components
+- `SearchStrategyGenerator` - Generates intelligent search variations
+- `UnifiedMagicLantern` - Main orchestrator combining search + analysis
+- `scoringConfig` - Configurable weights for publications and collections
+
+[See full technical docs →](./docs/TECHNICAL.md)
 
 ## API Reference
 
