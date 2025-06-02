@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// magic-lantern.js - Fixed to fetch full OCR text
+// magic-lantern-v1.js - Fixed to fetch full OCR text for 3 results
 const fs = require('fs');
 const path = require('path');
 const https = require('https');

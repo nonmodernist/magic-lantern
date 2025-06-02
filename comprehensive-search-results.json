@@ -7,12 +7,10 @@
     "director": "Marshall A. Neilan",
     "studio": "Mary Pickford Film Corp"
   },
-  "totalUniqueSources": 85,
+  "totalUniqueSources": 45,
   "searchStrategySummary": {
     "exact_title": 14,
     "lastname_title": 1,
-    "director_picture": 20,
-    "studio_production": 20,
     "title_production": 5,
     "title_box_office": 5,
     "source_adaptation": 20
@@ -919,2406 +917,6 @@
       "strategyConfidence": "medium"
     },
     {
-      "id": "pictureplaymagaz05unse_0010",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1916 - Feb 1917",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz05unse_0010\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n9/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n9/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "July 04, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "   ........  Jan'  124 \nBefore  the  Stars  Shone  Al  Ray      \"Feb''  294 \nFavorite  <em>Picture</em>  Players  ;  '  ge",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0010"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz09unse_0080",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1918 - Feb 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0080\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n79/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n79/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  never  reach the  heart.  And  it's  the  heart  that  is  the  mark  the  <em>picture</em>  must  shoot  at",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0080"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz04unse_0012",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1916",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz04unse_0012\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz04unse#page/n11/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz04unse#page/n11/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "..  Al  Ray   Aug. \nFavorite  <em>Picture</em>  Players  June \nFavorite  <em>Picture</em>  Players  July \nFavorite  <em>Picture</em>",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0012"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz04unse_0014",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1916",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz04unse_0014\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz04unse#page/n13/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz04unse#page/n13/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Stars  Shone  Al  Ray   Aug \nFavorite  <em>Picture</em>  Players  June, \nFavorite  <em>Picture</em>  Players.  July",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0014"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phojuldec17chic_0338",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phojuldec17chic_0338\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n337/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n337/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "4H \nPhotoplay  Magazine \nchurch  will  have  its  motion  <em>picture</em>  machine — and  when  the church",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phojuldec17chic_0338"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phooct1213chic_0009",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0009#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Oct 1917 - Mar 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0009#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phooct1213chic_0009\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0009#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n8/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0009#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n8/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0009#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0009#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " — 10,000  strong: America's  foremost  motion  <em>picture</em>  organization.     The  sum  of  our  efforts  is  a",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0009"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz09unse_0401",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1918 - Feb 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0401\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n400/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n400/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " do  not  reach  are  those  who  never  go  to  motion-<em>picture</em>  theaters.  If  you  stop  to think",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0401"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz04unse_0035",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1916",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz04unse_0035\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz04unse#page/n34/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz04unse#page/n34/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  business.  The  <em>picture</em>  had  one of  the  biggest  bookings  of  any  film  produced, and  was  called",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz04unse_0035"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz05unse_0154",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1916 - Feb 1917",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz05unse_0154\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n153/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n153/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "July 04, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "140 \nHints  for  Scenario  Writers \nimportant  essentials  of  the  better  <em>picture</em>, but  neither",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0154"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz10unse_0326",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz10unse_0326\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n325/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n325/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " <em>picture</em>  that   seems  to  have  been  shown  nearly everywhere  in  the  American  Y.  M.  C.  A.  huts",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0326"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz07unse_0330",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1917 - Feb 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz07unse_0330\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n329/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n329/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 15, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  <em>picture</em>  organization.    The  sum  of our  efforts  is  a  Public  Service  of  uplift,  inspiration",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0330"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phodec15chic_0399",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0399#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep - Dec 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0399#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phodec15chic_0399\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0399#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n398/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0399#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n398/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0399#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0399#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "THE  WORLD'S  LEADING  MOVING  <em>PICTURE</em>  MAGAZINE \nPHOTOPLAY \nVOL.  XV \nDECEMBER,  1918 \nNO.  1",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phodec15chic_0399"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11415chic_0661",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul-Dec 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11415chic_0661\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n660/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n660/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "THE  WORLD'S  LEADING  MOVING  <em>PICTURE</em>  MAGAZINE \nPHOTOPLAY \nVOL.  XV \nDECEMBER,  1918 \nNO.  1 \n—2",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0661"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phodec15chic_0471",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0471#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep - Dec 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0471#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phodec15chic_0471\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0471#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n470/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0471#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phodec15chic#page/n470/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0471#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phodec15chic_0471#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  followed  the  days  when  moving <em>picture</em>  screens  flashed  forth  President Wilson's  neutrality",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phodec15chic_0471"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phooct1213chic_0057",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0057#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Oct 1917 - Mar 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0057#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phooct1213chic_0057\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0057#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n56/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0057#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n56/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0057#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0057#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "Bringing  the  Motion  <em>Picture</em>  to  Church \n<Bj  Frederick  James  Smith \nTHREE  years  ago  I",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0057"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11415chic_0743",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul-Dec 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11415chic_0743\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n742/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11415chic#page/n742/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  followed  the  days  when  moving <em>picture</em>  screens  flashed  forth  President Wilson's  neutrality",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11415chic_0743"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phojuldec17chic_0491",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phojuldec17chic_0491\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n490/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n490/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  the  motion <em>picture</em>  screen.  The  black  divisions  between  them represent  the  blank  screen",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phojuldec17chic_0491"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phojuldec17chic_0176",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phojuldec17chic_0176\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n175/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n175/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  enter  the  universal  arena  just  at  this  time.  The  motion <em>picture</em>  could,  if  it  would,  elect",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phojuldec17chic_0176"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz09unse_0591",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1918 - Feb 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0591\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n590/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n590/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591#body",
-          "type": "document_value",
-          "attributes": {
-            "value": ". \nWHEN  the  treasury  department  appointed  a  committee of  motion-<em>picture</em>  executives  to  prepare",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0591"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz08unse_0729",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz08unse_0729\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n728/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n728/mode/2up/search/&quot;Marshall A. Neilan&quot; picture\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " <em>Picture</em>  Committee. \nArrangements  have  been  made  so  that  the  training-camp theaters  may  rent",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0729"
-      },
-      "foundBy": "director_picture",
-      "searchQuery": "\"Marshall A. Neilan\" picture",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz13unse_0565",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1920 - Feb 1921",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz13unse_0565\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n564/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n564/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  March  1,  1921; \nGeorge   Melford's  <em>Production</em> ••Behold  My  Wife\" \nEthel  Clayton  In '•Sins  of",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0565"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplay1819chic_0538",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplay1819chic_0538\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n537/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n537/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  LISTED \nRo»cor  '\"Fany\"»  \\rbuckle  in \n\"The  Roon.l  L'p\" A  Ccortce  H.  Mctforil  <em>Production</em> \n*Knid",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplay1819chic_0538"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz13unse_0227",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1920 - Feb 1921",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz13unse_0227\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n226/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n226/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "\"     Arbuckle  in \n\"The  Round  Up\" A  George  H.    Melford  <em>Production</em> \nEnid  Bennett  in \n\"Her  Husband's",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0227"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplay1819chic_0676",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplay1819chic_0676\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n675/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n675/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " \nALPHABETICALLY LISTED \nRoscoe  (\"Fatty\") \nArbucklc  in \"The  Round  Up\" A  George  H.  Melford <em>Production</em> \nt",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplay1819chic_0676"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz12unse_0319",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz12unse_0319\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz12unse#page/n318/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz12unse#page/n318/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Copperhead\" \nWith  Lionel  Barrymore Directed  by  Charles  Maigne \nCecil  B.  DeMille's \n<em>Production</em> \n\"Male",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0319"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz13unse_0451",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1920 - Feb 1921",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz13unse_0451\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n450/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n450/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "Advertising  Section \na \nWilliam    DeMille's  <em>Production</em> \"Midsummer  Madness\" \nGeorge",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0451"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz13unse_0119",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1920 - Feb 1921",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz13unse_0119\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n118/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n118/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Maigne \nDOROTHY  DALTON  in \"GUILTY  OF  LOVE\" \nCECIL  B.  DeMILLE'S <em>Production</em> \"WHY  CHANGE  YOUR WIFE",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0119"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplay1819chic_0010",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplay1819chic_0010\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n9/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n9/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " \nCecil  B.  DeMille's \n<em>Production</em> \"  Male  and  Female  \" \nCecil  B.  DeMille's <em>Production</em> \"Why  Change",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplay1819chic_0010"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz11unse_0015",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1919 - Feb 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz11unse_0015\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n14/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n14/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  John  Emerson-Anita  Loos  <em>Production</em> Vivian  Martin  *\"  \"LOUISIANA\" Shirley  Mason  in  \"The  Final",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0015"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11718chic_0544",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jan-Jun 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11718chic_0544\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n543/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n543/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Clayton  ill \n\"Young  Mrs.  Winthrop\" \n\"The  Copperhead\" \nWith  Lionel  Barrymore Cosmopolitan  <em>Production</em>",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0544"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz12unse_0217",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz12unse_0217\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz12unse#page/n216/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz12unse#page/n216/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  by  Charles  Maigne \nCecil  B.  DeMihVs \n<em>Production</em> \n\"Male  &  Female\" \n\"Every  woman\" \nDirected  by",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz12unse_0217"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplay1819chic_0017",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplay1819chic_0017\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n16/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplay1819chic#page/n16/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " \nBlanche  Sweet  in  Bayard  Veiller's Play,  \"The  Deadlier  Sex,'  a  Jesie D.  Hampton  <em>production</em>; \"The",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplay1819chic_0017"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11718chic_0280",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jan-Jun 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11718chic_0280\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n279/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n279/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280#body",
-          "type": "document_value",
-          "attributes": {
-            "value": ".  WlNTHROP\" With  Lionel  Barrymore Cosmopolitan  <em>Production</em>  \"Th  e  Cin  em  a  Murder'  ' \"The  Cost",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0280"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz13unse_0011",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1920 - Feb 1921",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz13unse_0011\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n10/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n10/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Maigne \nCECIL  B.  DeMILLE'S <em>Production</em> \n2        \"WHY  CHANGE  YOUR  WIFE?' \nWILLIAM  DeMILLE'S",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0011"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11718chic_0412",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jan-Jun 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11718chic_0412\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n411/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n411/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " Cosmopolitan  <em>Production</em> \n\"The  Cinema  Murder\" \nCosmopolitan  <em>Production</em> \n\"The  Miracle  of  Love\" \nCecil  B",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0412"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11718chic_0150",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jan-Jun 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11718chic_0150\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n149/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11718chic#page/n149/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150#body",
-          "type": "document_value",
-          "attributes": {
-            "value": " \n\"The  Thirteenth  Commandment\" Cecil  B.  DeMille's  <em>Production</em> \n\"Male  and  Female\" *'Everywoman",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11718chic_0150"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "photoplayvolume11112chic_0687",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Feb-Sep 1917",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/photoplayvolume11112chic_0687\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n686/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n686/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "January 15, 2025",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  director and  the  manager  of  <em>production</em>,  discusses the  story  from  the  different  viewpoints. They",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0687"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phojuldec17chic_0294",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Jul - Dec 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phojuldec17chic_0294\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n293/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n293/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Lmiisa  M.  Alcotfs \n/.jnU'lis  boot) \n,,        .       ^  A  William  A.  Brady  <em>Production</em> \nMaunce",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phojuldec17chic_0294"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz11unse_0121",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1919 - Feb 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz11unse_0121\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n120/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n120/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Wives\" \nCharles  Ray  in  \"BILL  HENRY\" \nParam oun tA rtcraft  Specials \nMaurice  Tourneur's  <em>Production</em>",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0121"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz11unse_0527",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1919 - Feb 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz11unse_0527\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n526/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n526/mode/2up/search/&quot;Mary Pickford Film Corp&quot; production\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  Thirteenth  Commandment\" Cecil  B.  De  Mille's  <em>Production</em> \n\"Male  and  Female\" \"Everywoman\"  With  All",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0527"
-      },
-      "foundBy": "studio_production",
-      "searchQuery": "\"Mary Pickford Film Corp\" production",
-      "strategyConfidence": "medium"
-    },
-    {
       "id": "pictureplaymagaz07unse_0359",
       "type": "Periodicals",
       "attributes": {
@@ -3950,7 +1548,7 @@
           "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n482/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n482/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
@@ -3975,7 +1573,7 @@
         "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0483"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
@@ -4010,7 +1608,7 @@
           "id": "https://lantern.mediahist.org/catalog/pho1314chic_0257#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n256/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n256/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
@@ -4035,7 +1633,307 @@
         "self": "https://lantern.mediahist.org/catalog/pho1314chic_0257"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz05unse_0468",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1916 - Feb 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0468\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n467/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n467/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "126 \nScreen  Gossip \ntook  before leaving  Los Angeles  was \" Through  the Wall,\"  an <em>adaptation</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0468"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0303",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0303\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n302/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n302/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  is  an <em>adaptation</em>  of  the  novel  by Charles  F.  Stocking,  and  in addition  to  Miss  Grey  will",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0303"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz08unse_0152",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Mar-Aug 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0152\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n151/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n151/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>adaptation</em> made  for  the use  of  Miss  Young, \nit  is  said,  will  contain  nothing  offensive. Emile",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0152"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz09unse_0504",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1918 - Feb 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz09unse_0504\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n503/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n503/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  accordance  with  her  universal appeal,  \"Everybody's  Girl.\"  The  film  is  an  <em>adaptation</em>  of  the  0",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0504"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11112chic_1016",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Feb-Sep 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11112chic_1016\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1015/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1015/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "January 15, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  written  for  the screen,  has  surpassed  the  <em>adaptation</em>  nearly every  time. \nHark  back  to  the  big",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1016"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
@@ -4070,7 +1968,7 @@
           "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n303/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n303/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
@@ -4086,7 +1984,7 @@
           "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304#body",
           "type": "document_value",
           "attributes": {
-            "value": " productions  during  the  season of  <em>1918</em>-19,  and  has  nearly  completed his  first,  which  is  an",
+            "value": "  <em>adaptation</em>  of  William Hurlburt's  comedy,  \"Saturday  to Monday.\"  Mr.  Washburn  made  his debut  on  the",
             "label": "Excerpt"
           }
         }
@@ -4095,675 +1993,15 @@
         "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0304"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
-      "id": "pictureplaymagaz11unse_0406",
+      "id": "pictureplaymagaz10unse_0154",
       "type": "Periodicals",
       "attributes": {
         "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1919 - Feb 1920",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz11unse_0406\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n405/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n405/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  aviation  field  in Texas  in  <em>1918</em>.  Those  are  their  correct names.  George  Walsh  is  the  husband",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0406"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phooct1213chic_0247",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0247#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Oct 1917 - Mar 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0247#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phooct1213chic_0247\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0247#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n246/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0247#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n246/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0247#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0247#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  the  makers  of the  famous  Pompeian  MASSAGE  Cream. \n<em>1918</em>  Mary  Pickford  Art  Panel \n(No",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0247"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz07unse_0490",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1917 - Feb 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz07unse_0490\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n489/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n489/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 15, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490#body",
-          "type": "document_value",
-          "attributes": {
-            "value": ". \n<em>1918</em>  Mary  Pickford  Art  Panel \n(No  advertising  on  the  front) \nMiss  Pickford  has  granted",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0490"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz08unse_0343",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz08unse_0343\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n342/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n342/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "APR  -5  <em>1918</em>  \n©C1.B411260 \nI  PICTURE-PLAY MAGAZINE, \nVol.  VIII  CONTENTS  FOR  MAY,  <em>1918</em>  No",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0343"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz08unse_0015",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Mar-Aug 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz08unse_0015\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n14/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n14/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "PEB  -4  <em>1918</em> \n©CI.B408149 \nPICTURE-PLAY MAGAZINE \nIE \nVol.  VIII \nCONTENTS  FOR  MARCH,  <em>1918</em> \nNo",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0015"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz09unse_0335",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1918 - Feb 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0335\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n334/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n334/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "OCT  -2  <em>1918</em>.'-\" \nPICTURE-PLAY MAGAZINE \nVol.  IX \nCONTENTS  FOR  NOVEMBER,  <em>1918</em> \nFavorite",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0335"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "phooct1213chic_0577",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0577#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Oct 1917 - Mar 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0577#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/phooct1213chic_0577\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0577#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n576/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0577#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n576/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0577#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0577#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  MAGAZINE \n\"The  National  Movie  Publication\" \nCopyright,  <em>1918</em>,  by  the  Photoplay  Publishing  Company",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0577"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz09unse_0173",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1918 - Feb 1919",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0173\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n172/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n172/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "OCT  19  <em>1918</em>        ©CI.B4207J  3 \nifr   =====  =       ,..     :   ::.     % \nPICTURE-PLAY",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0173"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz07unse_0809",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1917 - Feb 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz07unse_0809\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n808/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n808/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 15, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "M  \"3 <em>1918</em> \n0>Cl.t)400547 \nPICTURE-PLAY MAGAZINE \nVol.  VII \nCONTENTS  FOR  FEBRUARY,  <em>1918</em> \nNo.  6",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0809"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz13unse_0480",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Sep 1920 - Feb 1921",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz13unse_0480\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n479/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz13unse#page/n479/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "August 08, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480#body",
-          "type": "document_value",
-          "attributes": {
-            "value": ",  <em>1918</em>,  1919,  1920. \n8 —  Sa. — Mary  Pickford  received  $30  for  a  hard  week's  work  at  the  old",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz13unse_0480"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pho1314chic_0113",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0113#dateString",
-          "type": "document_value",
-          "attributes": {
-            "value": "Apr - Sep 1918",
-            "label": "Date"
-          }
-        },
-        "id": {
-          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0113#id",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a href=\"catalog/pho1314chic_0113\">Details and Download Information</a>",
-            "label": "Item Details"
-          }
-        },
-        "read": {
-          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0113#read",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n112/\">Read this page in Context</a>",
-            "label": "Full Page"
-          }
-        },
-        "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0113#read_search_highlighting",
-          "type": "document_value",
-          "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pho1314chic#page/n112/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
-            "label": "Highlighting"
-          }
-        },
-        "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0113#dbUpdateDate",
-          "type": "document_value",
-          "attributes": {
-            "value": "June 20, 2024",
-            "label": "Date Added"
-          }
-        },
-        "body": {
-          "id": "https://lantern.mediahist.org/catalog/pho1314chic_0113#body",
-          "type": "document_value",
-          "attributes": {
-            "value": "  most  popular  woman, has  again honored  Pompeian  by  posing  exclusively for  the  <em>1918</em>  panel",
-            "label": "Excerpt"
-          }
-        }
-      },
-      "links": {
-        "self": "https://lantern.mediahist.org/catalog/pho1314chic_0113"
-      },
-      "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
-      "strategyConfidence": "medium"
-    },
-    {
-      "id": "pictureplaymagaz10unse_0643",
-      "type": "Periodicals",
-      "attributes": {
-        "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643#dateString",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#dateString",
           "type": "document_value",
           "attributes": {
             "value": "Mar-Aug 1919",
@@ -4771,31 +2009,31 @@
           }
         },
         "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643#id",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#id",
           "type": "document_value",
           "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz10unse_0643\">Details and Download Information</a>",
+            "value": "<a href=\"catalog/pictureplaymagaz10unse_0154\">Details and Download Information</a>",
             "label": "Item Details"
           }
         },
         "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643#read",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#read",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n642/\">Read this page in Context</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n153/\">Read this page in Context</a>",
             "label": "Full Page"
           }
         },
         "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643#read_search_highlighting",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n642/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz10unse#page/n153/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
         "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643#dbUpdateDate",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#dbUpdateDate",
           "type": "document_value",
           "attributes": {
             "value": "June 20, 2024",
@@ -4803,59 +2041,59 @@
           }
         },
         "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643#body",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154#body",
           "type": "document_value",
           "attributes": {
-            "value": "  these  figures do  not  balance. \nThey  Were  Called: In  1917 — \"actors.\" In  <em>1918</em> — \"players.\" In",
+            "value": "  it  by  heart.  Her  newest picture  is  an  <em>adaptation</em>  of  this  popular  story.  And  a  certain",
             "label": "Excerpt"
           }
         }
       },
       "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0643"
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz10unse_0154"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
-      "id": "pictureplaymagaz09unse_0495",
+      "id": "pictureplaymagaz08unse_0355",
       "type": "Periodicals",
       "attributes": {
         "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495#dateString",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#dateString",
           "type": "document_value",
           "attributes": {
-            "value": "Sep 1918 - Feb 1919",
+            "value": "Mar-Aug 1918",
             "label": "Date"
           }
         },
         "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495#id",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#id",
           "type": "document_value",
           "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0495\">Details and Download Information</a>",
+            "value": "<a href=\"catalog/pictureplaymagaz08unse_0355\">Details and Download Information</a>",
             "label": "Item Details"
           }
         },
         "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495#read",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#read",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n494/\">Read this page in Context</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n354/\">Read this page in Context</a>",
             "label": "Full Page"
           }
         },
         "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495#read_search_highlighting",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n494/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n354/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
         "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495#dbUpdateDate",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#dbUpdateDate",
           "type": "document_value",
           "attributes": {
             "value": "June 20, 2024",
@@ -4863,27 +2101,267 @@
           }
         },
         "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495#body",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355#body",
           "type": "document_value",
           "attributes": {
-            "value": "ME  RICA'S  FAVORITE  MAGAZINE OF  THE  SCREEN 9* \nDBC.,<em>1918</em> \nMAP  * \nDorothy  Mtton \nEXTRA!  Doin",
+            "value": "  play  of  patriotic  appeal,  a  somewhat elaborated  <em>adaptation</em>  of  Hale's  \"The  Man  Without  a",
             "label": "Excerpt"
           }
         }
       },
       "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0495"
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0355"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
-      "id": "phooct1213chic_0805",
+      "id": "phojuldec17chic_0565",
       "type": "Periodicals",
       "attributes": {
         "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0805#dateString",
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul - Dec 1919",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/phojuldec17chic_0565\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n564/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojuldec17chic#page/n564/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Dana \nPLEASE  GET MARRIED \nMiss  'Dayia's  first  picture, \nis  an  <em>adaptation</em>  op \n§amts  Cullens  and",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/phojuldec17chic_0565"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "photoplayvolume11112chic_0918",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Feb-Sep 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume11112chic_0918\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n917/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n917/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "January 15, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  last  scene  in  \"Madam  Bo-Peep,\"  an  O.  Henry  <em>adaptation</em>  which  was  the  final  Fine  Arts play",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_0918"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz07unse_0110",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1917 - Feb 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz07unse_0110\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n109/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n109/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " <em>adaptation</em>  of  Harold  Bell  Wright's  famous story  of  the  same  title,  startled her  associates  by",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0110"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz05unse_0699",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1916 - Feb 1917",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0699\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n698/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n698/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Hyland being  his  leading  woman; in  \"The  Man  of  Mystery,\" an  <em>adaptation</em> of Archibald Clavering's",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0699"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "phooct1213chic_0060",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#dateString",
           "type": "document_value",
           "attributes": {
             "value": "Oct 1917 - Mar 1918",
@@ -4891,31 +2369,31 @@
           }
         },
         "id": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0805#id",
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#id",
           "type": "document_value",
           "attributes": {
-            "value": "<a href=\"catalog/phooct1213chic_0805\">Details and Download Information</a>",
+            "value": "<a href=\"catalog/phooct1213chic_0060\">Details and Download Information</a>",
             "label": "Item Details"
           }
         },
         "read": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0805#read",
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#read",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n804/\">Read this page in Context</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n59/\">Read this page in Context</a>",
             "label": "Full Page"
           }
         },
         "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0805#read_search_highlighting",
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n804/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phooct1213chic#page/n59/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
         "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0805#dbUpdateDate",
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#dbUpdateDate",
           "type": "document_value",
           "attributes": {
             "value": "June 20, 2024",
@@ -4923,179 +2401,179 @@
           }
         },
         "body": {
-          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0805#body",
+          "id": "https://lantern.mediahist.org/catalog/phooct1213chic_0060#body",
           "type": "document_value",
           "attributes": {
-            "value": "  the  <em>1918</em>  panel.  Size  7%  x28  inches. Daintily  colored.  Please  clip  the  coupon  for panel",
+            "value": "  film  <em>adaptation</em> of  Margaret  Mayo's  delightful  play,  \"Polly  of the  Circus.\"  A  real  beauty",
             "label": "Excerpt"
           }
         }
       },
       "links": {
-        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0805"
+        "self": "https://lantern.mediahist.org/catalog/phooct1213chic_0060"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
-      "id": "pictureplaymagaz09unse_0077",
+      "id": "photoplayvolume11112chic_1269",
       "type": "Periodicals",
       "attributes": {
         "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077#dateString",
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#dateString",
           "type": "document_value",
           "attributes": {
-            "value": "Sep 1918 - Feb 1919",
+            "value": "Feb-Sep 1917",
             "label": "Date"
           }
         },
         "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077#id",
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#id",
           "type": "document_value",
           "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz09unse_0077\">Details and Download Information</a>",
+            "value": "<a href=\"catalog/photoplayvolume11112chic_1269\">Details and Download Information</a>",
             "label": "Item Details"
           }
         },
         "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077#read",
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#read",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n76/\">Read this page in Context</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1268/\">Read this page in Context</a>",
             "label": "Full Page"
           }
         },
         "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077#read_search_highlighting",
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz09unse#page/n76/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume11112chic#page/n1268/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
         "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077#dbUpdateDate",
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#dbUpdateDate",
           "type": "document_value",
           "attributes": {
-            "value": "June 20, 2024",
+            "value": "January 15, 2025",
             "label": "Date Added"
           }
         },
         "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077#body",
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269#body",
           "type": "document_value",
           "attributes": {
-            "value": " <em>1918</em>-1919  season  than  in  1917-<em>1918</em> — -an  average  of  more  than  three  a  week. Goldwyn  plans",
+            "value": "An  Ingenue  Who  Won't  Ingenue \n37 \nrehearsed  by  Thomas  R.  Mills  in  a  film  <em>adaptation</em>  of",
             "label": "Excerpt"
           }
         }
       },
       "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz09unse_0077"
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume11112chic_1269"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
-      "id": "pictureplaymagaz08unse_0811",
+      "id": "pictureplaymagaz05unse_0802",
       "type": "Periodicals",
       "attributes": {
         "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811#dateString",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#dateString",
           "type": "document_value",
           "attributes": {
-            "value": "Mar-Aug 1918",
+            "value": "Sep 1916 - Feb 1917",
             "label": "Date"
           }
         },
         "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811#id",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#id",
           "type": "document_value",
           "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz08unse_0811\">Details and Download Information</a>",
+            "value": "<a href=\"catalog/pictureplaymagaz05unse_0802\">Details and Download Information</a>",
             "label": "Item Details"
           }
         },
         "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811#read",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#read",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n810/\">Read this page in Context</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n801/\">Read this page in Context</a>",
             "label": "Full Page"
           }
         },
         "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811#read_search_highlighting",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n810/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz05unse#page/n801/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
         "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811#dbUpdateDate",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#dbUpdateDate",
           "type": "document_value",
           "attributes": {
-            "value": "June 20, 2024",
+            "value": "July 04, 2024",
             "label": "Date Added"
           }
         },
         "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811#body",
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802#body",
           "type": "document_value",
           "attributes": {
-            "value": "America's  Favorite  Mada.5i.ne of  ft\\e  Screen.  0  ' \nMAGAZINE \nUGUST-<em>1918</em> \nto  Reaifcr. Wkes  y",
+            "value": "  selecting  one  and  making  an  <em>adaptation</em> from  it.   There  is  just  about  one chance  out  of  five",
             "label": "Excerpt"
           }
         }
       },
       "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0811"
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz05unse_0802"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     },
     {
-      "id": "pictureplaymagaz08unse_0181",
+      "id": "phojanjun16chic_0376",
       "type": "Periodicals",
       "attributes": {
         "dateString": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181#dateString",
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#dateString",
           "type": "document_value",
           "attributes": {
-            "value": "Mar-Aug 1918",
+            "value": "Jan - Jun 1919",
             "label": "Date"
           }
         },
         "id": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181#id",
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#id",
           "type": "document_value",
           "attributes": {
-            "value": "<a href=\"catalog/pictureplaymagaz08unse_0181\">Details and Download Information</a>",
+            "value": "<a href=\"catalog/phojanjun16chic_0376\">Details and Download Information</a>",
             "label": "Item Details"
           }
         },
         "read": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181#read",
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#read",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n180/\">Read this page in Context</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojanjun16chic#page/n375/\">Read this page in Context</a>",
             "label": "Full Page"
           }
         },
         "read_search_highlighting": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181#read_search_highlighting",
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#read_search_highlighting",
           "type": "document_value",
           "attributes": {
-            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz08unse#page/n180/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation 1918\">Read in Context with Search Highlighted</a>",
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/phojanjun16chic#page/n375/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
             "label": "Highlighting"
           }
         },
         "dbUpdateDate": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181#dbUpdateDate",
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#dbUpdateDate",
           "type": "document_value",
           "attributes": {
             "value": "June 20, 2024",
@@ -5103,19 +2581,139 @@
           }
         },
         "body": {
-          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181#body",
+          "id": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376#body",
           "type": "document_value",
           "attributes": {
-            "value": "  Treasurer.     Copyright,  <em>1918</em>,  by  Street  &  Smith  Corporation,  New  York.     Copyright.  <em>1918</em>,  by",
+            "value": "  <em>adaptation</em>  from  a  play  written  by J.  Hartley  Manners  and  Ian  Hay  Beith. \nThe  story,  strong",
             "label": "Excerpt"
           }
         }
       },
       "links": {
-        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz08unse_0181"
+        "self": "https://lantern.mediahist.org/catalog/phojanjun16chic_0376"
       },
       "foundBy": "source_adaptation",
-      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation 1918",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz11unse_0181",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1919 - Feb 1920",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz11unse_0181\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n180/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz11unse#page/n180/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " Entertaining  caliber  of  \"Girls,\"  an  <em>adaptation</em>  of  Clyde itch's  comedy.    The  lives  of  Pam — Miss",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz11unse_0181"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
+      "strategyConfidence": "medium"
+    },
+    {
+      "id": "pictureplaymagaz07unse_0581",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Sep 1917 - Feb 1918",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/pictureplaymagaz07unse_0581\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n580/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/pictureplaymagaz07unse#page/n580/mode/2up/search/&quot;Amarilly of Clothes-Line Alley&quot; adaptation\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " detests  the  work  of  <em>adaptation</em>.  Handed a  novel  to  adapt  for  motion-picture  purposes, no  matter",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/pictureplaymagaz07unse_0581"
+      },
+      "foundBy": "source_adaptation",
+      "searchQuery": "\"Amarilly of Clothes-Line Alley\" adaptation",
       "strategyConfidence": "medium"
     }
   ]

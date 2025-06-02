@@ -8,7 +8,7 @@
     "studio": "Mary Pickford Film Corp"
   },
   "totalUniqueSources": 85,
-  "strategySuccess": {
+  "searchStrategySummary": {
     "exact_title": 14,
     "lastname_title": 1,
     "director_picture": 20,

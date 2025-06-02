@@ -29,17 +29,12 @@ class SearchStrategyGenerator {
         return uniqueStrategies;
     }
 
-    // [Include all the strategy methods from v3 here - titleVariations, creatorSearches, etc.]
-    // I'll summarize to save space, but you'd include the full implementations
-
     titleVariations(film) {
         const strategies = [];
         const title = film.title || film.Title;
         // DON'T include year in search query!
 
-
         // Exact title (NO YEAR!)
-
         strategies.push({
             query: `"${title}"`,
             type: 'exact_title',
@@ -102,6 +97,10 @@ class SearchStrategyGenerator {
         return strategies;
     }
 
+
+    // TODO implement multiple keyword searches using Lantern's search url formatting - keyword, then second keyword, then third keyword - will return fewer more precise results
+    // e.g. "https://lantern.mediahist.org/catalog?f%5Bcollection%5D%5B%5D=Early+Cinema&f%5Bcollection%5D%5B%5D=Hollywood+Studio+System&f%5Bcollection%5D%5B%5D=Fan+Magazines&range%5Byear%5D%5Bbegin%5D=1915&range%5Byear%5D%5Bend%5D=1919&op=AND&keyword=%22amarilly+of+clothesline+alley%22&second_keyword=%22mary+pickford%22&third_keyword=&title=&Author=&subject=&date_text=&publisher=&description=&sort=score+desc%2C+dateStart+desc%2C+title+asc&search_field=advanced&commit=Search"
+
     // 2. CREATOR SEARCHES - Author/Director focused
     creatorSearches(film) {
         const strategies = [];
@@ -118,10 +117,10 @@ class SearchStrategyGenerator {
                 description: 'Author + exact title'
             });
             
-            // Author (finds "Baum's latest")
+            // Author (finds date filtered mentions of author)
             strategies.push({
                 query: `"${author}"`,
-                type: 'author_year',
+                type: 'author',
                 confidence: 'medium',
                 description: 'Author name only'
             });
@@ -136,6 +135,7 @@ class SearchStrategyGenerator {
             });
             
             // Author variations (Fannie vs Fanny)
+            // TODO expand list of author variations
             const authorVariations = this.getAuthorVariations(author);
             authorVariations.forEach(variant => {
                 strategies.push({
@@ -158,12 +158,12 @@ class SearchStrategyGenerator {
                 description: 'Director + title'
             });
             
-            // Director + year
+            // Director name only - finds mentions of director within date filter
             strategies.push({
-                query: `"${director}" picture`,
-                type: 'director_picture',
+                query: `"${director}"`,
+                type: 'director_only',
                 confidence: 'medium',
-                description: 'Director + "picture"'
+                description: 'Director name only'
             });
             
             // Director last name only
@@ -194,15 +194,8 @@ class SearchStrategyGenerator {
                 description: 'Studio + title'
             });
             
-            // Studio + year + production
-            strategies.push({
-                query: `"${studio}" production`,
-                type: 'studio_production',
-                confidence: 'medium',
-                description: 'Studio production news'
-            });
-            
             // Studio abbreviations (MGM, RKO, etc.)
+            // TODO update abbreviations
             const studioAbbr = this.getStudioAbbreviation(studio);
             if (studioAbbr) {
                 strategies.push({
@@ -212,28 +205,36 @@ class SearchStrategyGenerator {
                     description: `Studio abbreviation: ${studioAbbr}`
                 });
             }
+
+            // Studio + "production" filtered by year
+            strategies.push({
+                query: `"${studio}" production`,
+                type: 'studio_production',
+                confidence: 'low',
+                description: 'Studio production news'
+            });
         }
         
-        // Production-specific searches
-        strategies.push({
-            query: `"${title}" filming production`,
-            type: 'title_production',
-            confidence: 'medium',
-            description: 'Production news'
-        });
-        
+        // Production-specific searches - needs lantern keyword stacking to actually work
         strategies.push({
             query: `"${title}" "box office"`,
             type: 'title_box_office',
-            confidence: 'medium',
+            confidence: 'low',
             description: 'Box office data'
         });
         
         strategies.push({
-            query: `"${title}" opens theater`,
-            type: 'title_exhibition',
+            query: `"${title}" "exhibitor"`,
+            type: 'title_exhibitor',
             confidence: 'low',
             description: 'Exhibition/opening'
+        });
+
+                strategies.push({
+            query: `"${title}" filming production`,
+            type: 'title_production',
+            confidence: 'low',
+            description: 'Production news'
         });
         
         return strategies;
@@ -259,8 +260,8 @@ class SearchStrategyGenerator {
                     });
                     
                     strategies.push({
-                        query: `"${star}" picture`,
-                        type: 'star_picture',
+                        query: `"${star}"`,
+                        type: 'star_only',
                         confidence: 'medium',
                         description: `${star} in ${year}`
                     });
@@ -282,7 +283,7 @@ class SearchStrategyGenerator {
         return strategies;
     }
 
-    // 5. TEMPORAL SEARCHES - Different time periods
+    // 5. TEMPORAL SEARCHES - Different time periods - currently turned off
     temporalSearches(film) {
         return [];
     }
@@ -297,7 +298,7 @@ class SearchStrategyGenerator {
         const ocrVariants = this.generateOCRVariants(title);
         ocrVariants.forEach(variant => {
             strategies.push({
-                query: `"${variant}" ${year}`,
+                query: `"${variant}"`,
                 type: 'ocr_variant',
                 confidence: 'low',
                 description: `OCR variant: ${variant}`
@@ -308,7 +309,7 @@ class SearchStrategyGenerator {
         if (title.split(' ').length > 4) {
             const firstHalf = title.split(' ').slice(0, Math.ceil(title.split(' ').length / 2)).join(' ');
             strategies.push({
-                query: `"${firstHalf}" ${year}`,
+                query: `"${firstHalf}"`,
                 type: 'partial_title',
                 confidence: 'low',
                 description: 'First half of title'
@@ -318,7 +319,7 @@ class SearchStrategyGenerator {
         return strategies;
     }
 
-    // 7. CONTEXTUAL SEARCHES - Theme/genre based
+    // 7. CONTEXTUAL SEARCHES - Theme/genre based - needs keyword stacking
     contextualSearches(film) {
         const strategies = [];
         const title = film.title || film.Title;
@@ -328,9 +329,9 @@ class SearchStrategyGenerator {
         // If it's an adaptation
         if (novel && novel !== title) {
             strategies.push({
-                query: `"${novel}" adaptation ${year}`,
+                query: `"${novel}" adaptation`,
                 type: 'source_adaptation',
-                confidence: 'medium',
+                confidence: 'low',
                 description: 'Source novel adaptation'
             });
         }
@@ -351,7 +352,7 @@ class SearchStrategyGenerator {
             strategies.push({
                 query: `"${title}" remake ${year}`,
                 type: 'remake_search',
-                confidence: 'medium',
+                confidence: 'low',
                 description: 'Remake coverage'
             });
         }
