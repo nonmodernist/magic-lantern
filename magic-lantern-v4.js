@@ -522,6 +522,125 @@ class UnifiedMagicLantern {
             photo: /\b(photograph|photo|picture|scene from|production still)\b/i,
             interview: /\b(interview|talks about|discusses|says)\b/i
         };
+
+            // Scoring configuration
+    this.scoringConfig = {
+        maxFullTextFetches: 7,
+        collectionWeights: {
+            "Fan Magazines": 1.0,
+            "Hollywood Studio System": 1.0,
+            "Early Cinema": 1.0,
+            "Broadcasting & Recorded Sound": 1.0,
+            "Theatre and Vaudeville": 0.8,
+            "Year Book": 0.7
+        },
+        publicationWeights: {
+            "variety": 1.0,
+            "motion picture world": 1.0,
+            "photoplay": 1.0,
+            "motion picture herald": 1.0,
+            "film daily": 1.0,
+            "exhibitors herald": 1.0,
+            "moving picture world": 1.0,
+            "motography": 1.0,
+            "modern screen": 1.0,
+            "silver screen": 1.0
+        }
+    };
+}
+
+// New method: Calculate position-based score
+getPositionScore(position) {
+    // Give high scores to top positions, declining gradually
+    if (position <= 5) return 100 - (position - 1) * 5;  // 100, 95, 90, 85, 80
+    if (position <= 10) return 75 - (position - 6) * 5;  // 75, 70, 65, 60, 55
+    if (position <= 20) return 50 - (position - 11) * 2; // 50, 48, 46...
+    return Math.max(10, 30 - (position - 21));           // Minimum score of 10
+}
+
+// New method: Extract publication from item ID
+extractPublication(itemId) {
+    // Handle various ID patterns
+    const id = itemId.toLowerCase();
+    
+    // Try exact matches first
+    for (const pub of Object.keys(this.scoringConfig.publicationWeights)) {
+        if (id.includes(pub.replace(/\s+/g, ''))) {
+            return pub;
+        }
+    }
+    
+    // Common abbreviations
+    const abbreviations = {
+        'mopicwor': 'motion picture world',
+        'motionpic': 'motion picture world',
+        'movpict': 'moving picture world',
+        'photo': 'photoplay',
+        'motionpictureher': 'motion picture herald',
+        'filmdaily': 'film daily',
+        'exhibher': 'exhibitors herald'
+    };
+    
+    for (const [abbr, full] of Object.entries(abbreviations)) {
+        if (id.includes(abbr)) return full;
+    }
+    
+    return null;
+}
+
+// New method: Score and rank all results
+scoreAndRankResults() {
+    console.log('\n📊 Scoring and ranking results...');
+    
+    // Score each result
+    this.allResults = this.allResults.map((result, index) => {
+        // 1. Base score from Lantern position
+        const positionScore = this.getPositionScore(index + 1);
+        
+        // 2. Collection weight
+        const collections = result.attributes?.collection?.attributes?.value || [];
+        let collectionWeight = 1.0;
+        
+        // Use highest weight if in multiple collections
+        for (const collection of collections) {
+            const weight = this.scoringConfig.collectionWeights[collection] || 1.0;
+            collectionWeight = Math.max(collectionWeight, weight);
+        }
+        
+        // 3. Publication weight
+        const publication = this.extractPublication(result.id);
+        const publicationWeight = publication ? 
+            (this.scoringConfig.publicationWeights[publication] || 1.0) : 1.0;
+        
+        // Calculate final score
+        const finalScore = positionScore * collectionWeight * publicationWeight;
+        
+        return {
+            ...result,
+            scoring: {
+                position: index + 1,
+                positionScore,
+                collectionWeight,
+                publicationWeight,
+                publication,
+                finalScore
+            }
+        };
+    });
+    
+    // Re-sort by final score
+    this.allResults.sort((a, b) => b.scoring.finalScore - a.scoring.finalScore);
+    
+    // Show top 5 for verification
+    console.log('\n🏆 Top 5 scored results:');
+    this.allResults.slice(0, 5).forEach((result, i) => {
+        const s = result.scoring;
+        console.log(`${i + 1}. [Score: ${s.finalScore.toFixed(1)}] ${s.publication || 'unknown'}`);
+        console.log(`   Position: ${s.position} (${s.positionScore}) × ` +
+                    `Collection: ${s.collectionWeight} × ` +
+                    `Publication: ${s.publicationWeight}`);
+    });
+
     }
 
     async makeRequest(url) {
@@ -784,44 +903,47 @@ parseStrategyKeywords(strategy, film) {
         }
         
         // Sort all results by relevance score
-        this.allResults.sort((a, b) => {
-            // Sort by some relevance metric - you might want to enhance this
-            const scoreA = a.attributes?.score || 0;
-            const scoreB = b.attributes?.score || 0;
-            return scoreB - scoreA;
-        });
+
+// After all searches complete, score and rank
+    this.scoreAndRankResults();
+    
+    // Fetch full text for TOP scored results (not just first N)
+    console.log(`\n📚 Fetching full text for top ${this.scoringConfig.maxFullTextFetches} results...`);
+    const fullTextResults = [];
+    
+    const topResults = this.allResults.slice(0, this.scoringConfig.maxFullTextFetches);
+    
+    for (let i = 0; i < topResults.length; i++) {
+        const result = topResults[i];
         
-        // Fetch full text for top 3 results
-        console.log(`\n📚 Fetching full text for top 3 results...`);
-        const fullTextResults = [];
-        
-        for (let i = 0; i < Math.min(3, this.allResults.length); i++) {
-            const result = this.allResults[i];
-            
-            if (i > 0) {
-                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
-            }
-            
-            const fullPageData = await this.fetchFullPageText(result.id);
-            
-            if (fullPageData) {
-                fullPageData.contentTypes = this.identifyContentTypes(fullPageData.fullText);
-                fullPageData.hasPhoto = this.checkForPhoto(fullPageData.fullText);
-                fullPageData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
-                fullPageData.foundBy = result.foundBy;
-                fullPageData.searchQuery = result.searchQuery;
-                fullPageData.strategyConfidence = result.strategyConfidence;
-                
-                fullTextResults.push(fullPageData);
-            }
+        if (i > 0) {
+            await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
         }
         
-        return {
-            film: film,
-            totalUniqueSources: this.allResults.length,
-            allSearchResults: this.allResults,
-            fullTextAnalysis: fullTextResults
-        };
+        const fullPageData = await this.fetchFullPageText(result.id);
+        
+        if (fullPageData) {
+            // Add all the metadata
+            fullPageData.contentTypes = this.identifyContentTypes(fullPageData.fullText);
+            fullPageData.hasPhoto = this.checkForPhoto(fullPageData.fullText);
+            fullPageData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
+            fullPageData.foundBy = result.foundBy;
+            fullPageData.searchQuery = result.searchQuery;
+            fullPageData.strategyConfidence = result.strategyConfidence;
+            fullPageData.finalScore = result.scoring.finalScore;
+            fullPageData.publication = result.scoring.publication;
+            
+            fullTextResults.push(fullPageData);
+        }
+    }
+    
+    return {
+        film: film,
+        totalUniqueSources: this.allResults.length,
+        allSearchResults: this.allResults,
+        fullTextAnalysis: fullTextResults
+    };
+
     }
 
     async loadFilms(filePath) {
