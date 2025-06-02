@@ -1,0 +1,38 @@
+{
+  "project": {
+    "name": "Literary Adaptations in Classic Hollywood",
+    "description": "Researching film adaptations of novels 1930-1945",
+    "author": "Dr. Sarah Johnson",
+    "created": "2024-01-15T10:00:00.000Z"
+  },
+  "data": {
+    "format": "csv",
+    "inputPath": "./",
+    "outputPath": "./output/film-adaptations",
+    "encoding": "utf8"
+  },
+  "schema": {
+    "primaryKey": "id",
+    "requiredFields": ["title", "year"],
+    "optionalFields": ["author", "novel", "director", "studio"],
+    "fieldMappings": {
+      "title": "title",
+      "year": "year",
+      "author": "author",
+      "novel": "novel",
+      "director": "director",
+      "studio": "studio"
+    }
+  },
+  "search": {
+    "strategy": "author-focused",
+    "customWeights": {},
+    "rateLimitMs": 200,
+    "maxResultsPerItem": 20
+  },
+  "lantern": {
+    "baseUrl": "https://lantern.mediahist.org",
+    "collections": ["Hollywood Studio System", "Fan Magazines"],
+    "format": "Periodicals"
+  }
+}

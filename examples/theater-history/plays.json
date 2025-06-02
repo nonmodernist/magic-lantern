@@ -1,0 +1,76 @@
+[
+  {
+    "title": "A Streetcar Named Desire",
+    "year": 1947,
+    "playwright": "Tennessee Williams",
+    "premiere_theater": "Ethel Barrymore Theatre",
+    "director": "Elia Kazan",
+    "city": "New York",
+    "genre": "Drama"
+  },
+  {
+    "title": "Death of a Salesman",
+    "year": 1949,
+    "playwright": "Arthur Miller",
+    "premiere_theater": "Morosco Theatre",
+    "director": "Elia Kazan",
+    "city": "New York",
+    "genre": "Drama"
+  },
+  {
+    "title": "Oklahoma!",
+    "year": 1943,
+    "playwright": "Oscar Hammerstein II",
+    "composer": "Richard Rodgers",
+    "premiere_theater": "St. James Theatre",
+    "director": "Rouben Mamoulian",
+    "city": "New York",
+    "genre": "Musical"
+  },
+  {
+    "title": "Our Town",
+    "year": 1938,
+    "playwright": "Thornton Wilder",
+    "premiere_theater": "Henry Miller's Theatre",
+    "director": "Jed Harris",
+    "city": "New York",
+    "genre": "Drama"
+  },
+  {
+    "title": "The Glass Menagerie",
+    "year": 1944,
+    "playwright": "Tennessee Williams",
+    "premiere_theater": "Civic Theatre",
+    "director": "Eddie Dowling",
+    "city": "Chicago",
+    "genre": "Memory Play"
+  },
+  {
+    "title": "South Pacific",
+    "year": 1949,
+    "playwright": "Oscar Hammerstein II",
+    "composer": "Richard Rodgers",
+    "premiere_theater": "Majestic Theatre",
+    "director": "Joshua Logan",
+    "city": "New York",
+    "genre": "Musical"
+  },
+  {
+    "title": "The Crucible",
+    "year": 1953,
+    "playwright": "Arthur Miller",
+    "premiere_theater": "Martin Beck Theatre",
+    "director": "Jed Harris",
+    "city": "New York",
+    "genre": "Drama"
+  },
+  {
+    "title": "Waiting for Godot",
+    "year": 1955,
+    "playwright": "Samuel Beckett",
+    "premiere_theater": "John Golden Theatre",
+    "director": "Herbert Berghof",
+    "city": "New York",
+    "genre": "Absurdist"
+  }
+]

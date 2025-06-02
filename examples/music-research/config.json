@@ -1,0 +1,48 @@
+{
+  "project": {
+    "name": "Jazz Standards in Early Recordings",
+    "description": "Researching early recordings and performances of jazz standards 1920-1950",
+    "author": "Dr. Sarah Johnson",
+    "domain": "music",
+    "created": "2025-01-07T10:00:00Z"
+  },
+  "data": {
+    "format": "csv",
+    "inputPath": "./examples/music-research",
+    "outputPath": "./output/music-research",
+    "encoding": "utf8"
+  },
+  "schema": {
+    "primaryKey": "id",
+    "requiredFields": ["title", "year"],
+    "optionalFields": ["composer", "performer", "album", "label"],
+    "fieldMappings": {
+      "title": "song_title",
+      "year": "recording_year",
+      "composer": "composer",
+      "performer": "artist",
+      "album": "album_title",
+      "label": "record_label"
+    }
+  },
+  "search": {
+    "strategy": "creator-focused",
+    "customWeights": {
+      "composerMatch": 2.0,
+      "performerMatch": 1.5
+    },
+    "rateLimitMs": 200,
+    "maxResultsPerItem": 20
+  },
+  "lantern": {
+    "baseUrl": "https://lantern.mediahist.org",
+    "collections": [
+      "Broadcasting & Recorded Sound",
+      "Recorded Sound",
+      "Fan Magazines",
+      "Theatre and Vaudeville"
+    ],
+    "formats": ["Periodicals", "Catalogs"],
+    "languages": ["English"]
+  }
+}
