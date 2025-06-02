@@ -1,0 +1,2016 @@
+{
+  "links": {
+    "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939",
+    "next": "https://lantern.mediahist.org/catalog.json?page=2&per_page=20&q=%22The+Wizard+of+Oz%22+1939",
+    "last": "https://lantern.mediahist.org/catalog.json?page=3221&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+  },
+  "meta": {
+    "pages": {
+      "current_page": 1,
+      "next_page": 2,
+      "prev_page": null,
+      "total_pages": 3221,
+      "limit_value": 20,
+      "offset_value": 0,
+      "total_count": 64402,
+      "first_page?": true,
+      "last_page?": false
+    }
+  },
+  "data": [
+    {
+      "id": "copyrighttermfil00unit_0476",
+      "type": "Books",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1996",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/copyrighttermfil00unit_0476\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/copyrighttermfil00unit#page/n475/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/copyrighttermfil00unit#page/n475/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 19, 2022",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Kwai  (1957),  Gone  with  the Wind  (<em>1939</em>),  and  <em>The</em>  <em>Wizard</em>  <em>of</em>  <em>Oz</em>  (<em>1939</em>),  and  thus  furthering",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/copyrighttermfil00unit_0476"
+      }
+    },
+    {
+      "id": "harrisonsreports31harr_0128",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1949",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/harrisonsreports31harr_0128\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/harrisonsreports31harr#page/n127/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/harrisonsreports31harr#page/n127/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 29, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>Wizard</em>  <em>of</em>  <em>Oz</em>\" (<em>1939</em>),  with  Judy  Garland,  Ray  Bolger  and  Jack Haley;  \"Boom  Town\"  (1940),  with",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/harrisonsreports31harr_0128"
+      }
+    },
+    {
+      "id": "showmenstraderev30lewi_1_0464",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/showmenstraderev30lewi_1_0464\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/showmenstraderev30lewi_1#page/n463/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/showmenstraderev30lewi_1#page/n463/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  <em>of</em>  <em>Oz</em> \n<em>1939</em>-40 \nSelling  44-52  pictures. \nCOMPLETED \n1  The  Women \n5  Black  Mail \n4  Thunder",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/showmenstraderev30lewi_1_0464"
+      }
+    },
+    {
+      "id": "exhibitorjun193922jaye_0722",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jun-Oct 1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/exhibitorjun193922jaye_0722\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/exhibitorjun193922jaye#page/n721/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/exhibitorjun193922jaye#page/n721/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 25, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  representative. \n\"<em>THE</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em>.”  \"<em>The</em>  <em>Wizard</em>  <em>of</em> <em>Oz</em>”  trophy  is  presented  to  baseballer  Joe  Cronin",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0722"
+      }
+    },
+    {
+      "id": "filmdailyyearboo00film_9_0805",
+      "type": "Annuals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1940",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/filmdailyyearboo00film_9_0805\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdailyyearboo00film_9#page/n804/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdailyyearboo00film_9#page/n804/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 01, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  companies. \nM-G-M's  Campaign  On \n\"<em>The</em>  <em>Wizard</em>  <em>Of</em>  <em>Oz</em>* \nFLANKED  by  a  record  advance  advertising",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0805"
+      }
+    },
+    {
+      "id": "motionpicturedai46unse_0313",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul-Sep 1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/motionpicturedai46unse_0313\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/motionpicturedai46unse#page/n312/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/motionpicturedai46unse#page/n312/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 04, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  greets \"<em>The</em>  <em>Wizard</em>  <em>of</em>  <em>Oz</em>\"!  Just  a  fraction  of  it  listed  below ! \nMost  of  publications",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/motionpicturedai46unse_0313"
+      }
+    },
+    {
+      "id": "boxofficejulsep135unse_0857",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul-Sep 1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/boxofficejulsep135unse_0857\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficejulsep135unse#page/n856/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficejulsep135unse#page/n856/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 06, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " \"<em>The</em>  <em>Wizard</em>  <em>of</em>  <em>Oz</em>”!  Just  a   fraction  of  it  listed  below! \nMost  of  publications  mentioned",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/boxofficejulsep135unse_0857"
+      }
+    },
+    {
+      "id": "filmdaily76wids_0309",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/filmdaily76wids_0309\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdaily76wids#page/n308/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdaily76wids#page/n308/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 01, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Section.   Front Cover,  August  20,  <em>1939</em>. \nM-G-M's  Technicolor  Wonder  Show  \"<em>THE</em>  <em>WIZARD</em>  <em>OF</em> <em>OZ</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/filmdaily76wids_0309"
+      }
+    },
+    {
+      "id": "showmenstraderev50lewi_0_0673",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr-Jun 1949",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/showmenstraderev50lewi_0_0673\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/showmenstraderev50lewi_0#page/n672/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/showmenstraderev50lewi_0#page/n672/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 15, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Garland,  Ray  Bolger  and  Jack  Haley  in  \"<em>The</em> <em>Wizard</em>  <em>of</em>  <em>Oz</em>\"  (<em>1939</em>);  Clark  Gable  and  Spencer",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/showmenstraderev50lewi_0_0673"
+      }
+    },
+    {
+      "id": "motionpictureher136unse_0731",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jul-Aug 1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/motionpictureher136unse_0731\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/motionpictureher136unse#page/n730/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/motionpictureher136unse#page/n730/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "May 30, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Section.  Front Cover,  August  20,  <em>1939</em>. \nM-G-M's  Technicolor  Wonder  Show  \"<em>THE</em>  <em>WIZARD</em>  <em>OF</em> <em>OZ</em>\"  with",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/motionpictureher136unse_0731"
+      }
+    },
+    {
+      "id": "moviespeoplewhom00thea_0089",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/moviespeoplewhom00thea_0089\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/moviespeoplewhom00thea#page/n88/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/moviespeoplewhom00thea#page/n88/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "May 30, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "\"The  MOVIES \n•   •   •   • \n<em>1939</em>\" \n) \nRay  Bolger  Judy  Garland  Bert  Lahr \n“<em>The</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/moviespeoplewhom00thea_0089"
+      }
+    },
+    {
+      "id": "boxofficebaromet00boxo_5_0145",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1949",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/boxofficebaromet00boxo_5_0145\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficebaromet00boxo_5#page/n144/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficebaromet00boxo_5#page/n144/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 06, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "\" \nAugust,  1933 \n\"<em>THE</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em>\" \nSeptember,  <em>1939</em> \n\"BLOSSOMS  IN  THE  DUST\" \nAugust,.  1941",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_5_0145"
+      }
+    },
+    {
+      "id": "boxofficebaromet00boxo_0_0130",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1942",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/boxofficebaromet00boxo_0_0130\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficebaromet00boxo_0#page/n129/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficebaromet00boxo_0#page/n129/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "May 02, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ",  1933 \nTUGBOAT  ANNIE \nBLUE  RIBBON  AWARD,  AUGUST,  1933 \n<em>THE</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em> \nBLUE  RIBBON  AWARD",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_0_0130"
+      }
+    },
+    {
+      "id": "photoplayvolume554chicx_0294",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jan-Jun 1940",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume554chicx_0294\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume554chicx#page/n293/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume554chicx#page/n293/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  Rains C.'ine\"  .  .  .  \"Stanley  and  Livingstone\"  .  .  . \"Gunga  Din\"  and  \"<em>The</em>  <em>Wizard</em>  <em>of</em>  <em>Oz</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume554chicx_0294"
+      }
+    },
+    {
+      "id": "boxofficebaromet00boxo_2_0066",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1945",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/boxofficebaromet00boxo_2_0066\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficebaromet00boxo_2#page/n65/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/boxofficebaromet00boxo_2#page/n65/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "May 02, 2025",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ": \n\"MADAME  CURIE\" \nMetro \n(February,  1944) \nPRODUCER: \n\"<em>THE</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em>\" \nMetro \n(September,  <em>1939</em>",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/boxofficebaromet00boxo_2_0066"
+      }
+    },
+    {
+      "id": "exhibitorjun193922jaye_0797",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jun-Oct 1939",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/exhibitorjun193922jaye_0797\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/exhibitorjun193922jaye#page/n796/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/exhibitorjun193922jaye#page/n796/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "July 25, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  the  World. \n“<em>THE</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em>.”  Manager  Ed  Fitzpatrick,  Loew’s,  Waterbury,  Connecticut,  has",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/exhibitorjun193922jaye_0797"
+      }
+    },
+    {
+      "id": "motionpicturedai55unse_0_0647",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Apr-Jun 1944",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/motionpicturedai55unse_0_0647\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/motionpicturedai55unse_0#page/n646/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/motionpicturedai55unse_0#page/n646/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "May 30, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647#body",
+          "type": "document_value",
+          "attributes": {
+            "value": " \n<em>1939</em> \n<em>THE</em>  <em>WIZARD</em>  <em>OF</em>  <em>OZ</em> \nl940  BOOM  TO \nInn \n^931  TRADER  HORN \n7^32  GRAND  HOTEL \nft  $ \n1933",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/motionpicturedai55unse_0_0647"
+      }
+    },
+    {
+      "id": "filmdaily77wids_0112",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1940",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/filmdaily77wids_0112\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdaily77wids#page/n111/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdaily77wids#page/n111/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 01, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  sixth place,  \"The  Women\"  photo-finishing ahead  of  \"<em>The</em>  <em>Wizard</em>  <em>of</em>  <em>Oz</em>\"  by  a margin  of  10",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/filmdaily77wids_0112"
+      }
+    },
+    {
+      "id": "filmdailyyearboo00film_9_0397",
+      "type": "Annuals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "1940",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/filmdailyyearboo00film_9_0397\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdailyyearboo00film_9#page/n396/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/filmdailyyearboo00film_9#page/n396/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "August 01, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397#body",
+          "type": "document_value",
+          "attributes": {
+            "value": ":  <em>The</em>  <em>Wizard</em>  <em>of</em>  <em>Oz</em>. \nBOND,  LILIAN \n<em>1939</em>:  The  Housekeeper's Daughter. \nBOND,  RICHARD \n1938",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/filmdailyyearboo00film_9_0397"
+      }
+    },
+    {
+      "id": "photoplayvolume554chic_0296",
+      "type": "Periodicals",
+      "attributes": {
+        "dateString": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296#dateString",
+          "type": "document_value",
+          "attributes": {
+            "value": "Jan-Jun 1940",
+            "label": "Date"
+          }
+        },
+        "id": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296#id",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a href=\"catalog/photoplayvolume554chic_0296\">Details and Download Information</a>",
+            "label": "Item Details"
+          }
+        },
+        "read": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296#read",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume554chic#page/n295/\">Read this page in Context</a>",
+            "label": "Full Page"
+          }
+        },
+        "read_search_highlighting": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296#read_search_highlighting",
+          "type": "document_value",
+          "attributes": {
+            "value": "<a target=\"_blank\" href=\"http://archive.org/stream/photoplayvolume554chic#page/n295/mode/2up/search/&quot;The Wizard of Oz&quot; 1939\">Read in Context with Search Highlighted</a>",
+            "label": "Highlighting"
+          }
+        },
+        "dbUpdateDate": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296#dbUpdateDate",
+          "type": "document_value",
+          "attributes": {
+            "value": "June 20, 2024",
+            "label": "Date Added"
+          }
+        },
+        "body": {
+          "id": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296#body",
+          "type": "document_value",
+          "attributes": {
+            "value": "  .  .  .  \"Rose  of  Washington Square\"  had  a  few  songs  but  only  \"<em>The</em> <em>Wizard</em>  <em>of</em>  <em>Oz</em>\"  can  truly  be",
+            "label": "Excerpt"
+          }
+        }
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/photoplayvolume554chic_0296"
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "facet",
+      "id": "year",
+      "attributes": {
+        "label": "Year",
+        "items": [
+          {
+            "attributes": {
+              "label": "1939",
+              "value": "1939",
+              "hits": 25240
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1940",
+              "value": "1940",
+              "hits": 7040
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1940"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1938",
+              "value": "1938",
+              "hits": 3210
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1938"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1941",
+              "value": "1941",
+              "hits": 3030
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1941"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1951",
+              "value": "1951",
+              "hits": 1762
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1951"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1945",
+              "value": "1945",
+              "hits": 1671
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1945"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1942",
+              "value": "1942",
+              "hits": 1429
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1942"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1930",
+              "value": "1930",
+              "hits": 1363
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1930"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1946",
+              "value": "1946",
+              "hits": 1331
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1946"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1948",
+              "value": "1948",
+              "hits": 1298
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1948"
+            }
+          },
+          {
+            "attributes": {
+              "label": "1953",
+              "value": "1953",
+              "hits": 1265
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&range%5Byear%5D%5B%5D=1953"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/facet/year.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+      }
+    },
+    {
+      "type": "facet",
+      "id": "title",
+      "attributes": {
+        "label": "Title",
+        "items": [
+          {
+            "attributes": {
+              "label": "Boxoffice",
+              "value": "Boxoffice",
+              "hits": 6770
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Boxoffice&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Variety",
+              "value": "Variety",
+              "hits": 6244
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Variety&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Motion Picture Herald",
+              "value": "Motion Picture Herald",
+              "hits": 5191
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Motion+Picture+Herald&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Broadcasting",
+              "value": "Broadcasting",
+              "hits": 3749
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Broadcasting&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "The Film Daily",
+              "value": "The Film Daily",
+              "hits": 3047
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=The+Film+Daily&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Motion Picture Daily",
+              "value": "Motion Picture Daily",
+              "hits": 2958
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Motion+Picture+Daily&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "The Exhibitor",
+              "value": "The Exhibitor",
+              "hits": 2432
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=The+Exhibitor&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Showmen's Trade Review",
+              "value": "Showmen's Trade Review",
+              "hits": 2137
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Showmen%27s+Trade+Review&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Film year book",
+              "value": "Film year book",
+              "hits": 2026
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Film+year+book&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Educational film guide",
+              "value": "Educational film guide",
+              "hits": 1555
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Educational+film+guide&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Journal of the Society of Motion Picture Engineers",
+              "value": "Journal of the Society of Motion Picture Engineers",
+              "hits": 1283
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Btitle%5D%5B%5D=Journal+of+the+Society+of+Motion+Picture+Engineers&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/facet/title.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+      }
+    },
+    {
+      "type": "facet",
+      "id": "collection",
+      "attributes": {
+        "label": "Collection",
+        "items": [
+          {
+            "attributes": {
+              "label": "Hollywood Studio System",
+              "value": "Hollywood Studio System",
+              "hits": 36751
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Hollywood+Studio+System&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Broadcasting & Recorded Sound",
+              "value": "Broadcasting & Recorded Sound",
+              "hits": 12447
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Broadcasting+%26+Recorded+Sound&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Early Cinema",
+              "value": "Early Cinema",
+              "hits": 9969
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Early+Cinema&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Year Book",
+              "value": "Year Book",
+              "hits": 6729
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Year+Book&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Theatre and Vaudeville",
+              "value": "Theatre and Vaudeville",
+              "hits": 6418
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Theatre+and+Vaudeville&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Books",
+              "value": "Books",
+              "hits": 3887
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Books&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Non-Theatrical Film",
+              "value": "Non-Theatrical Film",
+              "hits": 3536
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Non-Theatrical+Film&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Fan Magazines",
+              "value": "Fan Magazines",
+              "hits": 2929
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Fan+Magazines&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Global Cinema",
+              "value": "Global Cinema",
+              "hits": 2242
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Global+Cinema&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Technical Journals",
+              "value": "Technical Journals",
+              "hits": 2028
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Technical+Journals&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "French Cinema",
+              "value": "French Cinema",
+              "hits": 1252
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=French+Cinema&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Spanish Publications",
+              "value": "Spanish Publications",
+              "hits": 461
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Spanish+Publications&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "United Kingdom",
+              "value": "United Kingdom",
+              "hits": 437
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=United+Kingdom&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Canada",
+              "value": "Canada",
+              "hits": 386
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Canada&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Recorded Sound",
+              "value": "Recorded Sound",
+              "hits": 284
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Recorded+Sound&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Government & Law",
+              "value": "Government & Law",
+              "hits": 253
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Government+%26+Law&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "India",
+              "value": "India",
+              "hits": 173
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=India&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Pressbooks",
+              "value": "Pressbooks",
+              "hits": 169
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Pressbooks&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Italy",
+              "value": "Italy",
+              "hits": 136
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Italy&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Germany",
+              "value": "Germany",
+              "hits": 19
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Germany&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Magic Lantern and Lantern Slide Catalog",
+              "value": "Magic Lantern and Lantern Slide Catalog",
+              "hits": 11
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Magic+Lantern+and+Lantern+Slide+Catalog&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Iran",
+              "value": "Iran",
+              "hits": 7
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Iran&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Switzerland",
+              "value": "Switzerland",
+              "hits": 4
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Switzerland&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "China",
+              "value": "China",
+              "hits": 2
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=China&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Japan",
+              "value": "Japan",
+              "hits": 0
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Japan&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Netherlands",
+              "value": "Netherlands",
+              "hits": 0
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bcollection%5D%5B%5D=Netherlands&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/facet/collection.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+      }
+    },
+    {
+      "type": "facet",
+      "id": "format",
+      "attributes": {
+        "label": "Format",
+        "items": [
+          {
+            "attributes": {
+              "label": "Periodicals",
+              "value": "Periodicals",
+              "hits": 42530
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=Periodicals&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Books",
+              "value": "Books",
+              "hits": 7949
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=Books&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Annuals",
+              "value": "Annuals",
+              "hits": 4581
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=Annuals&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "periodicals",
+              "value": "periodicals",
+              "hits": 169
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=periodicals&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Catalogs",
+              "value": "Catalogs",
+              "hits": 60
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=Catalogs&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Yearbooks",
+              "value": "Yearbooks",
+              "hits": 12
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=Yearbooks&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Newsletters",
+              "value": "Newsletters",
+              "hits": 2
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=Newsletters&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "dissertations",
+              "value": "dissertations",
+              "hits": 0
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Bformat%5D%5B%5D=dissertations&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/facet/format.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+      }
+    },
+    {
+      "type": "facet",
+      "id": "language",
+      "attributes": {
+        "label": "Language",
+        "items": [
+          {
+            "attributes": {
+              "label": "English",
+              "value": "English",
+              "hits": 62069
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=English&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "French",
+              "value": "French",
+              "hits": 1378
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=French&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Spanish",
+              "value": "Spanish",
+              "hits": 462
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Spanish&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Russian",
+              "value": "Russian",
+              "hits": 227
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Russian&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Italian",
+              "value": "Italian",
+              "hits": 123
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Italian&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Undetermined",
+              "value": "Undetermined",
+              "hits": 74
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Undetermined&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "German",
+              "value": "German",
+              "hits": 60
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=German&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Persian",
+              "value": "Persian",
+              "hits": 7
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Persian&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Chinese",
+              "value": "Chinese",
+              "hits": 2
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Chinese&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "Dutch",
+              "value": "Dutch",
+              "hits": 0
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=Dutch&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "No linguistic content",
+              "value": "No linguistic content",
+              "hits": 0
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5Blanguage%5D%5B%5D=No+linguistic+content&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/facet/language.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+      }
+    },
+    {
+      "type": "facet",
+      "id": "dbUpdateDate",
+      "attributes": {
+        "label": "Date Added",
+        "items": [
+          {
+            "attributes": {
+              "label": "within 30 Days",
+              "value": "days_30",
+              "hits": 786
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5BdbUpdateDate%5D%5B%5D=days_30&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "within 6 Months",
+              "value": "month_6",
+              "hits": 1947
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5BdbUpdateDate%5D%5B%5D=month_6&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "within 1 Year",
+              "value": "year_1w",
+              "hits": 36463
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5BdbUpdateDate%5D%5B%5D=year_1w&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "More than 1 Year",
+              "value": "year_1m",
+              "hits": 27939
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5BdbUpdateDate%5D%5B%5D=year_1m&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "More than 2 Years",
+              "value": "year_2",
+              "hits": 14643
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5BdbUpdateDate%5D%5B%5D=year_2&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          },
+          {
+            "attributes": {
+              "label": "More than 5 Years",
+              "value": "year_5",
+              "hits": 230
+            },
+            "links": {
+              "self": "https://lantern.mediahist.org/catalog.json?f%5BdbUpdateDate%5D%5B%5D=year_5&per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+            }
+          }
+        ]
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog/facet/dbUpdateDate.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939"
+      }
+    },
+    {
+      "type": "sort",
+      "id": "score desc, dateStart desc, title asc",
+      "attributes": {
+        "label": "Relevance"
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&sort=score+desc%2C+dateStart+desc%2C+title+asc"
+      }
+    },
+    {
+      "type": "sort",
+      "id": "dateStart asc, title asc",
+      "attributes": {
+        "label": "Date (Old to New)"
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&sort=dateStart+asc%2C+title+asc"
+      }
+    },
+    {
+      "type": "sort",
+      "id": "dateStart desc, title asc",
+      "attributes": {
+        "label": "Date (New to Old)"
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&sort=dateStart+desc%2C+title+asc"
+      }
+    },
+    {
+      "type": "sort",
+      "id": "dbUpdateDate asc, title asc",
+      "attributes": {
+        "label": "Date Added (Old to New)"
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&sort=dbUpdateDate+asc%2C+title+asc"
+      }
+    },
+    {
+      "type": "sort",
+      "id": "dbUpdateDate desc, title asc",
+      "attributes": {
+        "label": "Date Added (New to Old)"
+      },
+      "links": {
+        "self": "https://lantern.mediahist.org/catalog.json?per_page=20&q=%22The+Wizard+of+Oz%22+1939&sort=dbUpdateDate+desc%2C+title+asc"
+      }
+    }
+  ]
+}
