@@ -518,9 +518,10 @@ class UnifiedMagicLantern {
             review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
             production: /\b(production|producing|filming|started|completed|announced)\b/i,
             boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
-            advertisement: /\b(cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
-            photo: /\b(photograph|photo|picture|scene from|production still)\b/i,
-            interview: /\b(interview|talks about|discusses|says)\b/i
+            advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
+            photo: /\b(photograph|photo|scene from|production still)\b/i,
+            interview: /\b(interview|talks about|discusses)\b/i,
+            listing: /\b(calendar|releases for|table|list)\b/i
         };
 
             // Scoring configuration
@@ -878,6 +879,8 @@ async fetchFullPageText(pageId) {
         return types.length > 0 ? types : ['mention'];
     }
 
+    // TODO fix checkForPhoto - it was working but now isn't
+
     checkForPhoto(text) {
         const photoIndicators = [
             'scene from', 'production still', 'photograph',
@@ -999,23 +1002,33 @@ async fetchFullPageText(pageId) {
         
         try {
             const films = await this.loadFilms(filePath);
-            
+
+            // 1. Create output folder if it doesn't exist
+            const outputDir = path.join(__dirname, 'results');
+            if (!fs.existsSync(outputDir)) {
+                fs.mkdirSync(outputDir, { recursive: true });
+            }
+
+            // 2. Generate timestamp string (e.g., 20250602_153045)
+            const now = new Date();
+            const pad = n => n.toString().padStart(2, '0');
+            const timestamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+
             console.log('🧪 Testing with first film...\n');
             const results = await this.comprehensiveSearch(films[0]);
             
-            // Save two separate JSON files
-            
-            // 1. All search results (v3 style)
+            // 3. Save two separate JSON files with timestamp in the results folder
             const searchResultsData = {
                 film: results.film,
                 totalUniqueSources: results.totalUniqueSources,
                 searchStrategySummary: this.summarizeStrategies(results.allSearchResults),
                 sources: results.allSearchResults
             };
-            fs.writeFileSync('comprehensive-search-results.json', 
-                JSON.stringify(searchResultsData, null, 2));
+            fs.writeFileSync(
+                path.join(outputDir, `comprehensive-search-results_${timestamp}.json`),
+                JSON.stringify(searchResultsData, null, 2)
+            );
             
-            // 2. Full text analysis of top 7 (v1 style)
             const fullTextData = {
                 film: results.film,
                 searchQuery: `Multiple strategies (${results.totalUniqueSources} total found)`,
@@ -1023,12 +1036,14 @@ async fetchFullPageText(pageId) {
                 fullTextAnalyzed: results.fullTextAnalysis.length,
                 treasures: results.fullTextAnalysis
             };
-            fs.writeFileSync('full-text-results.json', 
-                JSON.stringify(fullTextData, null, 2));
+            fs.writeFileSync(
+                path.join(outputDir, `full-text-results_${timestamp}.json`),
+                JSON.stringify(fullTextData, null, 2)
+            );
             
             console.log('\n💾 Results saved:');
-            console.log('   - comprehensive-search-results.json (all search results)');
-            console.log('   - full-text-results.json (top 7 with full text)');
+            console.log(`   - ${path.join(outputDir, `comprehensive-search-results_${timestamp}.json`)}`);
+            console.log(`   - ${path.join(outputDir, `full-text-results_${timestamp}.json`)}`);
             
             console.log('\n🎉 Search complete!');
             console.log(`   Total sources found: ${results.totalUniqueSources}`);
