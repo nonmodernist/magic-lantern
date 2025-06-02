@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// magic-lantern-unified.js - Combines multi-strategy search with basic full text analysis
+// magic-lantern-v4.js - Combines multi-strategy search with basic full text analysis
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
