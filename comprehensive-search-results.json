@@ -295,7 +295,7 @@
         "positionScore": 85,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "philadelphiaexhi",
+        "publication": "unknown",
         "finalScore": 85
       }
     },
@@ -366,7 +366,7 @@
         "positionScore": 80,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 80
       }
     },
@@ -437,7 +437,7 @@
         "positionScore": 75,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 75
       }
     },
@@ -579,7 +579,7 @@
         "positionScore": 65,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "philadelphiaexhi",
+        "publication": "unknown",
         "finalScore": 65
       }
     },
@@ -650,7 +650,7 @@
         "positionScore": 60,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 60
       }
     },
@@ -792,7 +792,7 @@
         "positionScore": 50,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 50
       }
     },
@@ -863,7 +863,7 @@
         "positionScore": 48,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "newyorkstateexhi",
+        "publication": "unknown",
         "finalScore": 48
       }
     },
@@ -1147,7 +1147,7 @@
         "positionScore": 40,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "philadelphiaexhi",
+        "publication": "unknown",
         "finalScore": 40
       }
     },
@@ -1360,7 +1360,7 @@
         "positionScore": 34,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 34
       }
     },
@@ -1431,7 +1431,7 @@
         "positionScore": 32,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 32
       }
     },
@@ -1503,7 +1503,7 @@
         "positionScore": 30,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 30
       }
     },
@@ -1719,7 +1719,7 @@
         "positionScore": 27,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 27
       }
     },
@@ -1791,7 +1791,7 @@
         "positionScore": 26,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "nationalboardofr",
+        "publication": "unknown",
         "finalScore": 26
       }
     },
@@ -1863,7 +1863,7 @@
         "positionScore": 25,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "newyorkstateexhi",
+        "publication": "unknown",
         "finalScore": 25
       }
     },
@@ -1935,7 +1935,7 @@
         "positionScore": 24,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "broadwayhollywoo",
+        "publication": "unknown",
         "finalScore": 24
       }
     },
@@ -2007,7 +2007,7 @@
         "positionScore": 23,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 23
       }
     },
@@ -2151,7 +2151,7 @@
         "positionScore": 21,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "broadwayhollywoo",
+        "publication": "unknown",
         "finalScore": 21
       }
     },
@@ -2223,7 +2223,7 @@
         "positionScore": 20,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 20
       }
     },
@@ -2295,7 +2295,7 @@
         "positionScore": 19,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 19
       }
     },
@@ -2367,7 +2367,7 @@
         "positionScore": 18,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 18
       }
     },
@@ -2439,7 +2439,7 @@
         "positionScore": 17,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "hollywood",
+        "publication": "unknown",
         "finalScore": 17
       }
     },
@@ -2511,7 +2511,7 @@
         "positionScore": 16,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 16
       }
     },
@@ -3231,7 +3231,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 10
       }
     },
@@ -3303,7 +3303,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "newyorkstateexhi",
+        "publication": "unknown",
         "finalScore": 10
       }
     },
@@ -3591,7 +3591,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 10
       }
     },
@@ -3735,7 +3735,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 10
       }
     },
@@ -3807,7 +3807,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "unknown",
         "finalScore": 10
       }
     },
@@ -3951,7 +3951,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "motion picture world",
+        "publication": "motion picture herald",
         "finalScore": 10
       }
     },
@@ -4095,7 +4095,7 @@
         "positionScore": 10,
         "collectionWeight": 1,
         "publicationWeight": 1,
-        "publication": "hollywoodfilmogr",
+        "publication": "unknown",
         "finalScore": 10
       }
     }

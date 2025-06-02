@@ -24,6 +24,7 @@
       "collection": [
         "Fan Magazines"
       ],
+      "collectionWeight": 1,
       "iaPage": "newmoviemagazin09weir_0628",
       "readUrl": "http://archive.org/stream/newmoviemagazin09weir#page/n627/",
       "wordCount": 783,
@@ -55,6 +56,7 @@
         "Fan Magazines",
         "Hollywood Studio System"
       ],
+      "collectionWeight": 1,
       "iaPage": "photo47chic_0550",
       "readUrl": "http://archive.org/stream/photo47chic#page/n549/",
       "wordCount": 360,
@@ -83,6 +85,7 @@
       "collection": [
         "Fan Magazines"
       ],
+      "collectionWeight": 1,
       "iaPage": "moviemirrorvol4j04unse_0423",
       "readUrl": "http://archive.org/stream/moviemirrorvol4j04unse#page/n422/",
       "wordCount": 129,
@@ -110,6 +113,7 @@
       "collection": [
         "Hollywood Studio System"
       ],
+      "collectionWeight": 1,
       "iaPage": "philadelphiaexhi15jaye_0138",
       "readUrl": "http://archive.org/stream/philadelphiaexhi15jaye#page/n137/",
       "wordCount": 364,
@@ -125,7 +129,7 @@
       "searchQuery": "\"Little Women\"",
       "strategyConfidence": "high",
       "finalScore": 85,
-      "publication": "philadelphiaexhi"
+      "publication": "unknown"
     },
     {
       "id": "motionpictureher113unse_0921",
@@ -140,6 +144,7 @@
       "collection": [
         "Hollywood Studio System"
       ],
+      "collectionWeight": 1,
       "iaPage": "motionpictureher113unse_0921",
       "readUrl": "http://archive.org/stream/motionpictureher113unse#page/n920/",
       "wordCount": 420,
@@ -155,7 +160,7 @@
       "searchQuery": "\"Little Women\"",
       "strategyConfidence": "high",
       "finalScore": 80,
-      "publication": "motion picture world"
+      "publication": "motion picture herald"
     },
     {
       "id": "motionpictureher113unse_0920",
@@ -170,6 +175,7 @@
       "collection": [
         "Hollywood Studio System"
       ],
+      "collectionWeight": 1,
       "iaPage": "motionpictureher113unse_0920",
       "readUrl": "http://archive.org/stream/motionpictureher113unse#page/n919/",
       "wordCount": 299,
@@ -185,7 +191,7 @@
       "searchQuery": "\"Little Women\"",
       "strategyConfidence": "high",
       "finalScore": 75,
-      "publication": "motion picture world"
+      "publication": "motion picture herald"
     },
     {
       "id": "photo47chic_0551",
@@ -202,6 +208,7 @@
         "Fan Magazines",
         "Hollywood Studio System"
       ],
+      "collectionWeight": 1,
       "iaPage": "photo47chic_0551",
       "readUrl": "http://archive.org/stream/photo47chic#page/n550/",
       "wordCount": 420,

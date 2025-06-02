@@ -566,42 +566,37 @@ extractPublication(itemId) {
     // Debug logging
     console.log(`   Extracting from ID: ${id}`);
 
-    // More comprehensive patterns
+    // Updated patterns based on actual IDs
     const patterns = {
-        // Full names
-        'variety': /variety/,
-        'photoplay': /photo/,
-        'motion picture world': /motionpic|mopicwor|movingpic/,
+        'new movie magazine': /newmoviemag/,
+        'photoplay': /photo(?!play)/,  // photo but not photoplay
+        'picture play': /pictureplay/,
+        'motion picture world': /motionpicture?wor|mopicwor/,
+        'moving picture world': /movingpicture|movpict/,
         'motion picture herald': /motionpictureher/,
-        'moving picture world': /movingpic|movpict/,
+        'variety': /variety/,
         'film daily': /filmdaily/,
         'exhibitors herald': /exhibher|exhibitorsh/,
         'modern screen': /modernscreen/,
         'motography': /motography/,
-        'new movie magazine': /newmoviemag/,
         'movie mirror': /moviemirror/,
         'silver screen': /silverscreen/,
         'screenland': /screenland/,
-        'picture play': /pictureplay/,
         'motion picture news': /motionpicturenew/,
         'fan scrapbook': /fanscrapbook/,
         'hollywood reporter': /hollywoodreport/,
         'box office': /boxoffice/,
         'independent': /independ/,
-        'wids': /wids/
+        'wids': /wids/,
+        'paramount press': /paramountpress|artcraftpress/,
+        'universal weekly': /universalweekly/
     };
 
-        for (const [pub, pattern] of Object.entries(patterns)) {
+    // Check patterns in order (most specific first)
+    for (const [pub, pattern] of Object.entries(patterns)) {
         if (pattern.test(id)) {
             return pub;
         }
-    }
-
-    // Try to extract the base publication name
-    const match = id.match(/^([a-z]+?)(?:\d|_)/);
-    if (match) {
-        console.log(`   Extracted base: ${match[1]}`);
-        return match[1];
     }
     
     return null;
@@ -619,20 +614,14 @@ scoreAndRankResults() {
         console.log('Attributes keys:', Object.keys(this.allResults[0].attributes || {}));
     }
     
-    // Score each result
+// Score each result
     this.allResults = this.allResults.map((result, index) => {
         // 1. Base score from Lantern position
         const positionScore = this.getPositionScore(index + 1);
         
-        // 2. Collection weight
-        const collections = result.attributes?.collection?.attributes?.value || [];
-        let collectionWeight = 1.0;
-        
-        // Use highest weight if in multiple collections
-        for (const collection of collections) {
-            const weight = this.scoringConfig.collectionWeights[collection] || 1.0;
-            collectionWeight = Math.max(collectionWeight, weight);
-        }
+        // 2. Collection weight - we'll apply this AFTER full text fetch
+        // For now, just use 1.0
+        const collectionWeight = 1.0;
         
         // 3. Publication weight
         const publication = this.extractPublication(result.id);
@@ -640,7 +629,7 @@ scoreAndRankResults() {
             (this.scoringConfig.publicationWeights[publication] || 1.0) : 1.0;
         
         // Calculate final score
-        const finalScore = positionScore * collectionWeight * publicationWeight;
+        const finalScore = positionScore * publicationWeight;
         
         return {
             ...result,
@@ -649,7 +638,7 @@ scoreAndRankResults() {
                 positionScore,
                 collectionWeight,
                 publicationWeight,
-                publication,
+                publication: publication || 'unknown',
                 finalScore
             }
         };
@@ -662,10 +651,10 @@ scoreAndRankResults() {
     console.log('\n🏆 Top 5 scored results:');
     this.allResults.slice(0, 5).forEach((result, i) => {
         const s = result.scoring;
-        console.log(`${i + 1}. [Score: ${s.finalScore.toFixed(1)}] ${s.publication || 'unknown'}`);
+        console.log(`${i + 1}. [Score: ${s.finalScore.toFixed(1)}] ${s.publication}`);
         console.log(`   Position: ${s.position} (${s.positionScore}) × ` +
-                    `Collection: ${s.collectionWeight} × ` +
                     `Publication: ${s.publicationWeight}`);
+        console.log(`   ID: ${result.id}`);
     });
 
     }
@@ -838,32 +827,43 @@ parseStrategyKeywords(strategy, film) {
     return keywords;
 }
 
-    // Full text fetching from v1
-    async fetchFullPageText(pageId) {
-        const url = `${this.baseUrl}/catalog/${pageId}/raw.json`;
-        console.log(`   📄 Fetching full text for: ${pageId}`);
+// And update the full text fetch to include collection scoring
+async fetchFullPageText(pageId) {
+    const url = `${this.baseUrl}/catalog/${pageId}/raw.json`;
+    console.log(`   📄 Fetching full text for: ${pageId}`);
+    
+    try {
+        const pageData = await this.makeRequest(url);
         
-        try {
-            const pageData = await this.makeRequest(url);
-            
-            return {
-                id: pageId,
-                fullText: pageData.body || '',
-                title: pageData.title,
-                volume: pageData.volume,
-                date: pageData.date || pageData.dateString,
-                year: pageData.year,
-                creator: pageData.creator,
-                collection: pageData.collection,
-                iaPage: pageData.iaPage,
-                readUrl: pageData.read,
-                wordCount: (pageData.body || '').split(/\s+/).length
-            };
-        } catch (error) {
-            console.error(`   ❌ Failed to fetch full text for ${pageId}`);
-            return null;
+        // Now we have collection data!
+        const collections = pageData.collection || [];
+        
+        // Calculate collection weight
+        let collectionWeight = 1.0;
+        for (const collection of collections) {
+            const weight = this.scoringConfig.collectionWeights[collection] || 1.0;
+            collectionWeight = Math.max(collectionWeight, weight);
         }
+        
+        return {
+            id: pageId,
+            fullText: pageData.body || '',
+            title: pageData.title,
+            volume: pageData.volume,
+            date: pageData.date || pageData.dateString,
+            year: pageData.year,
+            creator: pageData.creator,
+            collection: collections,  // Include the collections
+            collectionWeight: collectionWeight,  // Include the weight
+            iaPage: pageData.iaPage,
+            readUrl: pageData.read,
+            wordCount: (pageData.body || '').split(/\s+/).length
+        };
+    } catch (error) {
+        console.error(`   ❌ Failed to fetch full text for ${pageId}`);
+        return null;
     }
+}
 
     // Content analysis from v1
     identifyContentTypes(text) {
@@ -1015,7 +1015,7 @@ parseStrategyKeywords(strategy, film) {
             fs.writeFileSync('comprehensive-search-results.json', 
                 JSON.stringify(searchResultsData, null, 2));
             
-            // 2. Full text analysis of top 3 (v1 style)
+            // 2. Full text analysis of top 7 (v1 style)
             const fullTextData = {
                 film: results.film,
                 searchQuery: `Multiple strategies (${results.totalUniqueSources} total found)`,
@@ -1028,7 +1028,7 @@ parseStrategyKeywords(strategy, film) {
             
             console.log('\n💾 Results saved:');
             console.log('   - comprehensive-search-results.json (all search results)');
-            console.log('   - full-text-results.json (top 3 with full text)');
+            console.log('   - full-text-results.json (top 7 with full text)');
             
             console.log('\n🎉 Search complete!');
             console.log(`   Total sources found: ${results.totalUniqueSources}`);
