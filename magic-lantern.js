@@ -15,7 +15,7 @@ class MagicLantern {
             review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
             production: /\b(production|producing|filming|started|completed|announced)\b/i,
             boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
-            advertisement: /\b(now showing|coming|opens|playing|at the|theatre|theater)\b/i,
+            advertisement: /\b(cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
             photo: /\b(photograph|photo|picture|scene from|production still)\b/i,
             interview: /\b(interview|talks about|discusses|says)\b/i
         };
@@ -51,11 +51,13 @@ class MagicLantern {
                 id: pageId,
                 fullText: pageData.body || '',
                 title: pageData.title,
+                volume: pageData.volume,
                 date: pageData.date || pageData.dateString,
                 year: pageData.year,
-                publisher: pageData.publisher,
+                creator: pageData.creator,
+                collection: pageData.collection,
                 iaPage: pageData.iaPage,
-                readUrl: pageData.idAccess,
+                readUrl: pageData.read,
                 wordCount: (pageData.body || '').split(/\s+/).length
             };
         } catch (error) {
@@ -158,7 +160,9 @@ class MagicLantern {
             'photograph',
             'pictured above',
             'shown here',
-            'exclusive photo'
+            'exclusive photo',
+            'production cuts',
+            'mats'
         ];
         
         const lowerText = text.toLowerCase();
@@ -193,7 +197,7 @@ class MagicLantern {
         console.log(`\n🎭 Researching: ${title} (${year})`);
         
         // Initial search
-        const query = `"${title}" ${year}`;
+        const query = `"${title}"`;
         const searchResults = await this.searchLantern(query);
         
         // Fetch full text for top results
