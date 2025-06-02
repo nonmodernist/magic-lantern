@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// magic-lantern-v2.js - Multi-Strategy Treasure Finder
+// magic-lantern-v3.js - Multi-Strategy Treasure Finder
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
@@ -760,7 +760,7 @@ class MagicLantern {
     }
 
     async run(filePath) {
-        console.log('✨ MAGIC LANTERN v2.0 - Multi-Strategy Treasure Finder ✨\n');
+        console.log('✨ MAGIC LANTERN v3.0 - Multi-Strategy Treasure Finder ✨\n');
         console.log('This enhanced version searches 8-10 different ways per film');
         console.log('to uncover ALL the treasures, not just the obvious ones!\n');
         
@@ -789,7 +789,7 @@ if (require.main === module) {
     
     if (!fs.existsSync(filePath)) {
         console.error(`❌ File not found: ${filePath}`);
-        console.log('\nUsage: node magic-lantern-v2.js [path-to-csv]');
+        console.log('\nUsage: node magic-lantern-v3.js [path-to-csv]');
         process.exit(1);
     }
     
