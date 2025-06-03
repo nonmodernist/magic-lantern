@@ -290,7 +290,7 @@ MIT License - Use it for your research adventures!
 ## Quick Links
 
 - 📖 [Full Documentation](./docs/)
-- 🚀 [Getting Started Guide](./INSTALL.md)  
+- 🚀 [Getting Started Guide](./docs/QUICKSTART.md)  
 - 💡 [Usage Examples](./EXAMPLES.md)
 - 🐛 [Report Issues](https://github.com/nonmodernist/magic-lantern/issues)
 - 💬 [Discussions](https://github.com/nonmodernist/magic-lantern/discussions)
