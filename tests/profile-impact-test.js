@@ -1,5 +1,5 @@
 // test-profile-impact.js
-const config = require('./config');
+const config = require('../config');
 
 function simulateProfileImpact() {
     console.log('🎯 Simulating Profile Impact on Search Results\n');

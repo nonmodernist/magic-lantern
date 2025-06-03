@@ -1,5 +1,5 @@
 // validate-profiles-simple.js
-const config = require('./config');
+const config = require('../config');
 
 function validateProfiles() {
     console.log('🔍 Validating All Profiles\n');

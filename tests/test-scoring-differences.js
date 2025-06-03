@@ -1,5 +1,5 @@
 // test-scoring-differences.js
-const config = require('./config');
+const config = require('../config');
 
 function testScoringDifferences() {
     console.log('📊 Testing Scoring Weight Differences\n');

@@ -1,5 +1,5 @@
 // test-strategy-generation.js
-const UnifiedMagicLantern = require('./magic-lantern-v5');
+const UnifiedMagicLantern = require('../magic-lantern-v5');
 
 async function testStrategyGeneration() {
     console.log('🔍 Testing Search Strategy Generation Across Profiles\n');
