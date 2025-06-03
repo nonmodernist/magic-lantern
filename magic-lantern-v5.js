@@ -334,6 +334,8 @@ contextualSearches(film) {
     const title = film.title || film.Title;
     const year = film.year || film.Year;
     const novel = film.novel || film.Novel || film.source || film.Source;
+    const studio = film.studio || film.Studio; 
+
     
     // If it's an adaptation
     if (novel && novel !== title) {
@@ -363,7 +365,39 @@ contextualSearches(film) {
             description: `Title + ${genre} (stacked)`
         });
     }
-        
+        // Labor-specific searches (if profile includes labor keywords)
+if (this.strategyWeights && this.strategyWeights['title_strike']) {
+    strategies.push({
+        query: `"${title}" strike`,
+        type: 'title_strike',
+        confidence: 'high',
+        description: 'Film title + strike'
+    });
+    
+    strategies.push({
+        query: `"${title}" union`,
+        type: 'title_union',
+        confidence: 'medium',
+        description: 'Film title + union'
+    });
+}
+
+// Studio labor relations
+if (studio && studio !== '-' && this.strategyWeights && this.strategyWeights['studio_labor']) {
+    strategies.push({
+        query: `"${studio}" strike`,
+        type: 'studio_strike',
+        confidence: 'medium',
+        description: 'Studio + strike'
+    });
+    
+    strategies.push({
+        query: `"${studio}" labor`,
+        type: 'studio_labor',
+        confidence: 'medium',
+        description: 'Studio + labor'
+    });
+}
         
         // Remake searches (for known remakes)
         if (this.isKnownRemake(title)) {
@@ -692,9 +726,10 @@ class UnifiedMagicLantern {
         
         const url = `${this.baseUrl}/catalog.json?${params}`;
         
-        console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
-        console.log(`   Keywords: ${keywords.keyword}${keywords.second_keyword ? ' + ' + keywords.second_keyword : ''}${keywords.third_keyword ? ' + ' + keywords.third_keyword : ''}`);
-        
+    console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
+    console.log(`   Weight: ${strategy.profileWeight || 1.0} | Type: ${strategy.type}`);
+    console.log(`   Keywords: ${keywords.keyword}${keywords.second_keyword ? ' + ' + keywords.second_keyword : ''}${keywords.third_keyword ? ' + ' + keywords.third_keyword : ''}`);
+    
         try {
             const results = await this.makeRequest(url);
             const count = results.meta?.pages?.total_count || 0;
@@ -773,6 +808,31 @@ class UnifiedMagicLantern {
             keywords.keyword = quotedPhrases[0]; // Author variant
             keywords.second_keyword = quotedPhrases[1]; // Title
             break;
+
+            case 'title_strike':
+    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+    keywords.second_keyword = 'strike';
+    break;
+
+case 'title_union':
+    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+    keywords.second_keyword = 'union';
+    break;
+
+case 'studio_strike':
+    keywords.keyword = quotedPhrases[0]; // Studio name
+    keywords.second_keyword = 'strike';
+    break;
+
+case 'studio_labor':
+    keywords.keyword = quotedPhrases[0]; // Studio name
+    keywords.second_keyword = 'labor';
+    break;
+
+case 'studio_production':
+    keywords.keyword = quotedPhrases[0]; // Studio name  
+    keywords.second_keyword = 'production';
+    break;
             
         default:
             // For other cases, use up to 3 keywords/phrases
@@ -850,56 +910,68 @@ class UnifiedMagicLantern {
         return photoIndicators.some(indicator => lowerText.includes(indicator));
     }
 
-    async comprehensiveSearch(film) {
-        console.log(`\n${'='.repeat(70)}`);
-        console.log(`🎭 COMPREHENSIVE SEARCH: ${film.title || film.Title} (${film.year || film.Year})`);
-        console.log(`${'='.repeat(70)}`);
+async comprehensiveSearch(film) {
+    console.log(`\n${'='.repeat(70)}`);
+    console.log(`🎭 COMPREHENSIVE SEARCH: ${film.title || film.Title} (${film.year || film.Year})`);
+    console.log(`${'='.repeat(70)}`);
+    
+    this.allResults = [];
+    this.seenIds = new Set();
+    
+    // Generate strategies
+    let strategies = this.strategyGenerator.generateAllStrategies(film);
+    
+    // Apply corpus limits if configured
+    if (this.config.corpus && this.config.corpus.strategiesPerFilm) {
+        strategies = strategies.slice(0, this.config.corpus.strategiesPerFilm);
+    }
+    
+    // NEW: Apply profile weights and sort by them
+    if (this.strategyGenerator.strategyWeights) {
+        strategies = strategies.map(s => ({
+            ...s,
+            profileWeight: this.strategyGenerator.strategyWeights[s.type] || 1.0
+        }));
         
-        this.allResults = [];
-        this.seenIds = new Set();
+        // Filter out weight 0 strategies
+        strategies = strategies.filter(s => s.profileWeight > 0);
         
-        // Generate strategies (respecting config limits if in corpus mode)
-        let strategies = this.strategyGenerator.generateAllStrategies(film);
-        
-        // Apply corpus limits if configured
-        if (this.config.corpus && this.config.corpus.strategiesPerFilm) {
-            strategies = strategies.slice(0, this.config.corpus.strategiesPerFilm);
-        }
-        
-        const byConfidence = {
-            high: strategies.filter(s => s.confidence === 'high'),
-            medium: strategies.filter(s => s.confidence === 'medium'),
-            low: strategies.filter(s => s.confidence === 'low')
-        };
-        
-        // Execute strategies based on config stop conditions
-        for (const strategy of byConfidence.high) {
-            await this.searchWithStrategy(strategy, film);
-            await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+        // Sort by profile weight (highest first), then confidence as tiebreaker
+        strategies.sort((a, b) => {
+            const weightDiff = b.profileWeight - a.profileWeight;
+            if (weightDiff !== 0) return weightDiff;
             
-            if (this.allResults.length >= this.config.search.api.stopConditions.highQualityThreshold) {
-                console.log(`   ✨ Found sufficient high-quality coverage, stopping search`);
-                break;
-            }
+            // Tiebreaker: confidence
+            const confOrder = { high: 0, medium: 1, low: 2 };
+            return confOrder[a.confidence] - confOrder[b.confidence];
+        });
+        
+        console.log('\n📊 Strategy execution order (by profile weight):');
+        strategies.slice(0, 10).forEach((s, i) => {
+            console.log(`   ${i + 1}. [${s.profileWeight}] ${s.type} - ${s.description}`);
+        });
+    }
+    
+    // Execute strategies in profile-weighted order
+    console.log('\n🔍 Beginning searches...');
+    
+    for (const strategy of strategies) {
+        await this.searchWithStrategy(strategy, film);
+        await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+        
+        // Check stop conditions
+        if (this.allResults.length >= this.config.search.api.stopConditions.maxResultsPerFilm) {
+            console.log(`   ⚡ Reached maximum results limit (${this.config.search.api.stopConditions.maxResultsPerFilm})`);
+            break;
         }
         
-        if (this.allResults.length < this.config.search.api.stopConditions.minResultsBeforeMedium) {
-            for (const strategy of byConfidence.medium) {
-                await this.searchWithStrategy(strategy, film);
-                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
-                
-                if (this.allResults.length >= this.config.search.api.stopConditions.maxResultsPerFilm) {
-                    break;
-                }
-            }
+        // Optional: Different threshold for high-weight strategies
+        if (strategy.profileWeight < 1.0 && 
+            this.allResults.length >= this.config.search.api.stopConditions.highQualityThreshold) {
+            console.log(`   ✨ Found sufficient coverage for low-weight strategies`);
+            break;
         }
-        
-        if (this.allResults.length < this.config.search.api.stopConditions.minResultsBeforeMedium) {
-            for (const strategy of byConfidence.low.slice(0, 5)) {
-                await this.searchWithStrategy(strategy, film);
-                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
-            }
-        }
+    }
         
         this.scoreAndRankResults();
         
@@ -967,8 +1039,9 @@ class UnifiedMagicLantern {
 
     async run(filePath, options = {}) {
         const profileName = options.profile || 'test';
-        console.log(`✨ MAGIC LANTERN v5 - Using profile: ${profileName} ✨\n`);
-        
+console.log(`✨ MAGIC LANTERN v5`);
+console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);        
         try {
             const films = await this.loadFilms(filePath);
             
@@ -1002,11 +1075,10 @@ class UnifiedMagicLantern {
             // Save final results
             this.saveResults(allResults, outputDir, timestamp);
             
-            console.log('\n🎉 Search complete!');
-            console.log(`   Profile used: ${profileName}`);
-            console.log(`   Films processed: ${allResults.length}`);
-            console.log(`   Total sources found: ${allResults.reduce((sum, r) => sum + r.totalUniqueSources, 0)}`);
-            
+console.log('\n🎉 Search complete!');
+console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+console.log(`   Research Profile: ${this.config.profileInfo.research}`);
+console.log(`   Films processed: ${allResults.length}`);
         } catch (error) {
             console.error('❌ Error:', error.message);
             console.error(error.stack);

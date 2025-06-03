@@ -41,10 +41,25 @@ module.exports = {
   
   searchStrategies: {
     weights: {
-      'author_title': 2.0,
-      'author_only': 1.8,
-      'source_adaptation': 1.6,
-      'novel_film_title': 1.5
+        // Author/adaptation searches - RUN FIRST
+        'author_title': 2.5,
+        'novel_film_title': 2.0,
+        'author_only': 1.8,
+        'source_adaptation': 1.6,
+        'author_variant': 1.5,
+        'lastname_title': 1.4,
+        
+        // Director might mention author
+        'director_title': 1.0,
+        
+        // Title searches - RUN LAST
+        'exact_title': 0.3,
+        'title_no_article': 0.2,
+        'abbreviated_title': 0.2,
+        
+        // Skip these for adaptations
+        'title_box_office': 0,
+        'title_exhibitor': 0
     }
-  }
+}
 };
