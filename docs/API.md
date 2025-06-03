@@ -179,11 +179,19 @@ Magic Lantern handles API errors gracefully:
 Available MHDL collections:
 - Hollywood Studio System
 - Early Cinema
+- Global Cinema
 - Fan Magazines
 - Broadcasting & Recorded Sound
 - Theatre and Vaudeville
 - Books
+- Year Book
+- Non-Theatrical Film
+- Technical Journals
+- Pressbooks
+- Germany
 - etc. 
+
+Visit the [MHDL website](https://mediahistoryproject.org) to find a full list. 
 
 
 ### Common Item ID Patterns
