@@ -1,3 +1,6 @@
+const basePatterns = require('./base-patterns');
+
+
 module.exports = {
   name: "1950s Literary Adaptations",
   description: "Widescreen era adaptations, regional focus",
@@ -18,33 +21,14 @@ module.exports = {
       "photoplay": 1.3,              // Still running
       "modern screen": 1.2,
       "screenland": 1.1              // Until 1952
-    }
-  },
-
-    patterns: {
-      'new movie magazine': /newmoviemag/,
-      'photoplay': /photo(?!play)/,
-      'picture play': /pictureplay/,
-      'motion picture world': /motionpicture?wor|mopicwor/,
-      'moving picture world': /movingpicture|movpict/,
-      'motion picture herald': /motionpictureher/,
-      'variety': /variety/,
-      'film daily': /filmdaily/,
-      'exhibitors herald': /exhibher|exhibitorsh/,
-      'modern screen': /modernscreen/,
-      'motography': /motography/,
-      'movie mirror': /moviemirror/,
-      'silver screen': /silverscreen/,
-      'screenland': /screenland/,
-      'motion picture news': /motionpicturenew/,
-      'fan scrapbook': /fanscrapbook/,
-      'hollywood reporter': /hollywoodreport/,
-      'box office': /boxoffice/,
-      'independent': /independ/,
-      'wids': /wids/,
-      'paramount press': /paramountpress|artcraftpress/,
-      'universal weekly': /universalweekly/
     },
+
+
+    // ADD THIS - copy from default profile
+    patterns: basePatterns
+    
+
+      },
 
   searchStrategies: {
     enabled: {

@@ -1,4 +1,7 @@
 // config/profiles/early-cinema.profile.js
+
+const basePatterns = require('./base-patterns');
+
 module.exports = {
     name: "Early Cinema (1905-1920)",
     description: "Focused on early film industry formation",
@@ -14,30 +17,7 @@ module.exports = {
         },
 
                 // MUST include patterns for extractPublication to work!
-    patterns: {
-      'new movie magazine': /newmoviemag/,
-      'photoplay': /photo(?!play)/,
-      'picture play': /pictureplay/,
-      'motion picture world': /motionpicture?wor|mopicwor/,
-      'moving picture world': /movingpicture|movpict/,
-      'motion picture herald': /motionpictureher/,
-      'variety': /variety/,
-      'film daily': /filmdaily/,
-      'exhibitors herald': /exhibher|exhibitorsh/,
-      'modern screen': /modernscreen/,
-      'motography': /motography/,
-      'movie mirror': /moviemirror/,
-      'silver screen': /silverscreen/,
-      'screenland': /screenland/,
-      'motion picture news': /motionpicturenew/,
-      'fan scrapbook': /fanscrapbook/,
-      'hollywood reporter': /hollywoodreport/,
-      'box office': /boxoffice/,
-      'independent': /independ/,
-      'wids': /wids/,
-      'paramount press': /paramountpress|artcraftpress/,
-      'universal weekly': /universalweekly/
-    }
+    patterns: basePatterns
     },
     
     collections: {
