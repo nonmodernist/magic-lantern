@@ -34,16 +34,16 @@ Traditional Lantern research means juggling searches, results, and your sanity a
 
 **The old way:**
 
-🔍 Open tab 1: "Little Women"
-🔍 Open tab 2: "Louisa May Alcott" + "Little Women"  
-🔍 Open tab 3: "Alcott" + 1933
-🔍 Open tab 4: "RKO" + "Little Women"
-📋 Copy interesting results to notes...
-☕ Coffee break
-😰 "Wait, which searches did I already do?"
-🔍 Open tab 5: (accidentally repeat tab 2)
-💻 Browser crashes from too many tabs
-😭 Start over...
+- 🔍 Open tab 1: "Little Women"
+- 🔍 Open tab 2: "Louisa May Alcott" + "Little Women"  
+- 🔍 Open tab 3: "Alcott" + 1933
+- 🔍 Open tab 4: "RKO" + "Little Women"
+- 📋 Copy interesting results to notes...
+- ☕ Coffee break
+- 😰 "Wait, which searches did I already do?"
+- 🔍 Open tab 5: (accidentally repeat tab 2)
+- 💻 Browser crashes from too many tabs
+- 😭 Start over...
 
 
 **The Magic Lantern way (sweet, sweet automation):**
