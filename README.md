@@ -123,10 +123,10 @@ title,year,author,director,studio
 2. **Run Magic Lantern** and watch the magic happen:
 ```bash
 # Test mode (1 film) - perfect for getting your feet wet!
-node magic-lantern-v5.js films.csv
+node magic-lantern-v5.js data/films.csv
 
 # Ready for the full experience? 
-node magic-lantern-v5.js films.csv --corpus=full --profile=adaptation-studies
+node magic-lantern-v5.js data/films.csv --corpus=full --profile=adaptation-studies
 ```
 
 3. **Discover your treasures** in `results/`:
