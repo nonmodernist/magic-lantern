@@ -43,6 +43,12 @@ class ProfileLoader {
   
   // Merge a research profile with base config
   mergeWithConfig(baseConfig, profile) {
+  // Default date ranges as a safety net
+      const defaultDateRanges = {
+    high: { before: 1, after: 1 },
+    medium: { before: 2, after: 2 },
+    low: { before: 3, after: 3 }
+  };
     return {
       ...baseConfig,
       scoring: {
@@ -83,7 +89,7 @@ class ProfileLoader {
                        before: (profile.dateRange.before || 2) + 1, 
                        after: (profile.dateRange.after || 2) + 1 
                      }
-                   } : baseConfig.search.strategies?.dateRanges || {})
+                   } : baseConfig.search.strategies?.dateRanges || defaultDateRanges)
         }
       }
     };
