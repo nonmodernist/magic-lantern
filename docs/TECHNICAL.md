@@ -1,89 +1,302 @@
 # Magic Lantern Technical Documentation
 
-## Core Concepts
+## Architecture Overview
 
-### Search Strategies
-Magic Lantern doesn't just search once - it generates multiple intelligent queries:
+Magic Lantern v5 is built with a modular architecture:
 
-```javascript
-// Example: "Little Women" by Louisa May Alcott generates:
-"Little Women"                    // Exact title
-"Little Women" "Louisa May Alcott" // Title + Author
-"Alcott" "Little Women"           // Author last name + Title
-"Little Women" "RKO"              // Title + Studio
-"Little Women" "box office"      // Title + Commercial data
-// ... and 20+ more variations
+```
+magic-lantern/
+├── magic-lantern-v5.js      # Main entry point
+├── config/
+│   ├── index.js             # Configuration loader
+│   ├── scoring.config.js    # Base scoring configuration
+│   ├── search.config.js     # API and search settings
+│   └── profiles/            # Research profiles
+│       ├── index.js         # Profile loader
+│       ├── base-patterns.js # Shared publication patterns
+│       └── *.profile.js     # Individual profiles
+├── fulltext-analyzer.js     # OCR text analysis (experimental)
+└── results/                 # Output directory
 ```
 
-### Scoring Algorithm
+## Core Components
 
-Each result gets scored based on:
+### 1. Main Application (`magic-lantern-v5.js`)
 
-1. Position Score (100-10 points based on search ranking)
-2. Publication Weight (Variety = 1.0, Motography = 1.5, etc.)
-3. Collection Weight (Hollywood Studio System = 1.0, Fan Magazines = 0.8)
-4. Strategy Confidence (High/Medium/Low affects date range filtering)
+The main file contains two primary classes:
 
-Final Score = Position Score × Publication Weight × Collection Weight
+#### SearchStrategyGenerator
+Generates 15-30+ search queries per film across multiple strategy types:
+- Title variations
+- Creator searches (author/director)
+- Production searches (studio/business)
+- Star searches
+- Fuzzy searches (OCR variants)
+- Contextual searches (genre/adaptation)
 
-### API Integration
+#### UnifiedMagicLantern
+Main application class that:
+- Loads configuration and profiles
+- Executes searches with rate limiting
+- Deduplicates results
+- Scores and ranks results
+- Fetches full text for top results
+- Outputs structured JSON
 
-- Base URL: https://lantern.mediahist.org/catalog.json
-- Rate limit: 200ms between requests (respecting MHDL's guidelines)
-- Advanced search with keyword stacking (up to 3 keywords)
-- Date range filtering based on confidence level
+### 2. Configuration System
 
-
-## Configuration
-
-### Scoring Weights
-
-Edit `scoringConfig` in magic-lantern-v4.js:
-
+#### Profile Loading
 ```javascript
-scoringConfig: {
-    publicationWeights: {
-        "variety": 1.0,
-        "motography": 1.5,  // Higher weight for rare/valuable source
-        // Add custom weights
-    },
-    collectionWeights: {
-        "Hollywood Studio System": 1.0,
-        "Fan Magazines": 0.8,
-        // Adjust based on research focus
-    }
+// config/index.js
+const config = require('./config');
+const lantern = new UnifiedMagicLantern('medium', 'adaptation-studies');
+```
+
+#### Configuration Merge
+Profiles are merged with base configuration:
+```javascript
+Base Config + Research Profile = Active Configuration
+```
+
+#### Corpus Profiles
+Control search scope:
+- `test`: 1 film, 10 strategies, 3 full texts
+- `single`: 1 film, 20 strategies, 5 full texts  
+- `medium`: 20 films, 15 strategies, 5 full texts
+- `full`: All films, 20 strategies, 7 full texts
+
+### 3. Search Strategy System
+
+#### Strategy Structure
+```javascript
+{
+  query: '"The Wizard of Oz" "MGM"',
+  type: 'studio_title',
+  confidence: 'high',
+  description: 'Studio + title search',
+  profileWeight: 1.5  // Added by profile
 }
 ```
 
-### Search Strategies
+#### Keyword Parsing
+Converts strategy queries into Lantern API parameters:
+```javascript
+// Input: '"The Wizard of Oz" "box office"'
+// Output:
+{
+  keyword: '"The Wizard of Oz"',
+  second_keyword: '"box office"',
+  op: 'AND'
+}
+```
 
-Customize in `SearchStrategyGenerator`:
+#### Strategy Execution
+1. Generate all strategies for film
+2. Apply profile weights and filtering
+3. Sort by weight and confidence
+4. Execute in order with rate limiting
+5. Stop when limits reached
 
-- `titleVariations()` - Title-based searches
-- `creatorSearches()` - Author/Director focused
-- `productionSearches()` - Studio/business angle
-- `starSearches()` - Actor-based queries
-- `contextualSearches()` - Genre/adaptation searches
+### 4. Scoring Algorithm
 
+#### Position-Based Scoring
+```javascript
+Position 1-5:   100 to 80 points
+Position 6-10:  75 to 55 points
+Position 11-20: 50 to 30 points
+Position 21+:   30 down to 10 minimum
+```
 
+#### Weight Application
+```javascript
+Final Score = Position Score × Publication Weight × Collection Weight
+```
 
-## Troubleshooting
+#### Publication Identification
+Uses regex patterns to extract publication from item IDs:
+```javascript
+// variety137-1940-01_0054 → "variety"
+// motionpictureher21unse_0123 → "motion picture herald"
+```
 
-### Common Issues
+### 5. API Integration
 
-#### "No results found"
+#### Base Configuration
+```javascript
+baseUrl: 'https://lantern.mediahist.org'
+rateLimitMs: 200  // Respect MHDL's rate limits
+maxResultsPerPage: 20
+```
 
-- Check date ranges in confidence levels
-- Verify film metadata (especially year)
-- Try broader search strategies
+#### Search Parameters
+- `keyword`, `second_keyword`, `third_keyword`: Search terms
+- `search_field`: "advanced"
+- `op`: "AND" (operator between keywords)
+- `sort`: "score desc, dateStart desc, title asc"
+- `f_inclusive[collection][]`: Collection filters
+- `f_inclusive[format][]`: "Periodicals"
+- `range[year][begin/end]`: Date range filters
 
-#### "Too many results"
+#### Stop Conditions
+```javascript
+stopConditions: {
+  maxResultsPerFilm: 50,      // Hard limit
+  highQualityThreshold: 25,   // Stop if enough good results
+  minResultsBeforeMedium: 15  // Switch to medium confidence
+}
+```
 
-- Increase confidence thresholds
-- Adjust date range windows
-- Filter by publication quality
+### 6. Full Text Fetching
 
-#### "Duplicate results"
+#### Selection Criteria
+- Top N results based on score
+- Minimum score threshold (default: 50)
+- Number fetched based on corpus profile
 
-- Check `seenIds` Set is properly tracking
-- Verify deduplication logic
+#### Full Text Enhancement
+For each fetched page:
+- Extract full OCR text
+- Identify content types (review, production, etc.)
+- Check for photo indicators
+- Calculate collection weight
+- Preserve all metadata
+
+### 7. Output System
+
+#### File Naming
+```javascript
+// Timestamp format: YYYYMMDD_HHMMSS
+comprehensive-search-results_20241215_143022.json
+full-text-results_20241215_143022.json
+```
+
+#### Intermediate Saves
+Every 5 films, saves interim results to prevent data loss.
+
+## Data Flow
+
+1. **Load Film Data** → CSV parsed into film objects
+2. **Generate Strategies** → 15-30+ queries per film
+3. **Execute Searches** → Rate-limited API calls
+4. **Collect Results** → Deduplicated across strategies
+5. **Score & Rank** → Apply publication/position weights
+6. **Fetch Full Text** → Top N results only
+7. **Output JSON** → Structured for analysis
+
+## Performance Considerations
+
+### Memory Management
+- Results stored in memory during search
+- Cleared between films to prevent buildup
+- Intermediate saves prevent loss
+
+### API Rate Limiting
+- 200ms between all API calls
+- Includes both search and full-text fetches
+- Approximately 5 requests per second max
+
+### Time Estimates
+- Single film: 2-5 minutes
+- Medium corpus (20 films): 40-100 minutes
+- Full corpus (100+ films): 3-8 hours
+
+## Error Handling
+
+### Network Errors
+- Graceful failure on individual searches
+- Continues with remaining strategies
+- Logs errors but doesn't stop execution
+
+### Data Validation
+- Checks for required fields (title, year)
+- Handles missing optional fields gracefully
+- Validates API responses before parsing
+
+## Extensibility Points
+
+### Adding Search Strategies
+1. Add method to `SearchStrategyGenerator`
+2. Include in `generateAllStrategies()`
+3. Add keyword parsing logic if needed
+
+### Custom Scoring
+1. Modify `getPositionScore()` for position weights
+2. Update publication weights in profiles
+3. Adjust `scoreAndRankResults()` for new factors
+
+### New Output Formats
+1. Add method to `UnifiedMagicLantern`
+2. Call from `saveResults()`
+3. Follow timestamp naming convention
+
+## Debug Mode
+
+Enable verbose logging:
+```javascript
+// Add to any method
+console.log('🔍 Debug:', {
+  searchQuery: strategy.query,
+  resultsFound: results.length,
+  topScore: results[0]?.scoring
+});
+```
+
+## Testing
+
+### Test Single Strategy
+```javascript
+// In comprehensiveSearch()
+const strategies = this.strategyGenerator
+  .generateAllStrategies(film)
+  .filter(s => s.type === 'exact_title');
+```
+
+### Test API Connection
+```bash
+# Built-in API test
+node magic-lantern-v5.js --test-api
+```
+
+### Profile Testing
+```bash
+# Test profile with single film
+node magic-lantern-v5.js films.csv --corpus=test --profile=my-profile
+```
+
+## Common Customizations
+
+### Adjust Stop Conditions
+```javascript
+// config/search.config.js
+stopConditions: {
+  maxResultsPerFilm: 100,  // More results
+  highQualityThreshold: 50  // Higher threshold
+}
+```
+
+### Change Date Ranges
+```javascript
+// In profile
+dateRanges: {
+  high: { before: 2, after: 2 },    // Wider
+  medium: { before: 3, after: 3 },
+  low: { before: 5, after: 5 }
+}
+```
+
+### Skip Strategies
+```javascript
+// In profile
+searchStrategies: {
+  weights: {
+    'title_box_office': 0,  // Skip entirely
+    'author_title': 2.5     // Prioritize
+  }
+}
+```
+
+## Next Steps
+
+- See [Development Guide](./DEVELOPMENT.md) for contributing
+- Check [Custom Profiles](./CUSTOM-PROFILES.md) for research customization
+- Review [Troubleshooting](./TROUBLESHOOTING.md) for common issues
