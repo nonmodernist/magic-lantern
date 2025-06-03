@@ -103,6 +103,8 @@ Automatically generates clever variations like:
 
 ## 🚀 Getting Started
 
+**First, install [Node.js](https://nodejs.org/) (version 18+ recommended) if you don't have it already.**
+
 ```bash
 # Clone the repository
 git clone https://github.com/nonmodernist/magic-lantern.git
@@ -135,12 +137,15 @@ node magic-lantern-v5.js data/films.csv --corpus=full --profile=adaptation-studi
 
 ## 🎨 Configuration Options
 
-### Corpus Profiles
+### Corpus Profiles 
+
 Choose your adventure size:
 - `test` - 1 film, minimal searches (perfect for testing!)
 - `single` - 1 film, comprehensive searches (deep dive mode)
 - `medium` - 20 films, balanced approach (sweet spot)
 - `full` - All films, maximum coverage (grab that coffee!)
+
+Magic Lantern is optimized for small to medium-sized research corpora. In other words, the tool really shines when you give it a list of 20+ films and let it go to work running searches. 
 
 ### Research Profiles
 Choose a pre-made profile or craft your own in `config/profiles/`:
@@ -167,7 +172,7 @@ module.exports = {
 
 ## 📊 Output Format
 
-### Search Results JSON (The Workhorse)
+### Search Results JSON (The Motherlode)
 ```json
 {
   "film": {
@@ -240,9 +245,10 @@ publications: {
 ## 🚧 Coming Attractions
 
 Currently, Magic Lantern focuses on search automation and outputs JSON. Future possibilities include:
+- 📄 Human-readable reports
 - 📊 Interactive dashboards 
 - 📚 Direct bibliography formatting
-- 🔗 Zotero integration
+- 🔗 Zotero integration?
 
 For now, the JSON output plays nicely with your favorite analysis tools!
 
@@ -263,7 +269,7 @@ For now, the JSON output plays nicely with your favorite analysis tools!
 
 ## 🗂️ Legacy Tools
 
-Curious about the origins? The `legacy/` directory contains the original tools that inspired Magic Lantern. Built for a specific project (Hollywood Regionalism), they include features like HTML dashboards and interactive bibliography management!
+Curious about the origins? The `legacy/` directory contains the original tools that inspired Magic Lantern. Built for a specific project (Hollywood Regionalism, a digital research archive built in Zola), they include features like HTML dashboards and interactive bibliography management!
 
 ## 🤝 Contributing
 
