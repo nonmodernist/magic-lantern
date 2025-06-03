@@ -182,11 +182,9 @@ Available MHDL collections:
 - Fan Magazines
 - Broadcasting & Recorded Sound
 - Theatre and Vaudeville
-- Advertising
-- Animation
-- Annuals
 - Books
-- Cinema Technology
+- etc. 
+
 
 ### Common Item ID Patterns
 

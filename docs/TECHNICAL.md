@@ -148,6 +148,8 @@ stopConditions: {
 
 ### 6. Full Text Fetching
 
+Each full text fetch is an additional API call to Lantern, so we limit how many full text results we fetch. 
+
 #### Selection Criteria
 - Top N results based on score
 - Minimum score threshold (default: 50)
@@ -171,7 +173,11 @@ full-text-results_20241215_143022.json
 ```
 
 #### Intermediate Saves
-Every 5 films, saves interim results to prevent data loss.
+
+> **⚠️ Warning:**  
+> Intermediate saves have not been fully tested and may not work as intended. 
+
+Every 10 films, saves interim results to prevent data loss.
 
 ## Data Flow
 
@@ -252,6 +258,9 @@ const strategies = this.strategyGenerator
 ```
 
 ### Test API Connection
+
+> **Warning**: Legacy functionality that needs to be moved over to v5.
+
 ```bash
 # Built-in API test
 node magic-lantern-v5.js --test-api

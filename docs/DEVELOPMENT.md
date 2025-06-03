@@ -253,6 +253,10 @@ weights: {
 
 ### 3. Batch Processing
 
+
+> ⚠️ **Warning**  
+> Intermediate results saving hasn't been fully tested. Run large corpora with caution!
+
 For large corpora, modify the main loop:
 
 ```javascript

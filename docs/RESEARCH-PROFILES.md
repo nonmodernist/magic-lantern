@@ -45,6 +45,11 @@ node magic-lantern-v5.js films.csv --profile=adaptation-studies
 - `"Alcott" "RKO"`
 
 ### Labor History Profile
+
+> **⚠️ Experimental Profile**
+>
+> This research profile is experimental and may need further refinement. Contributions and feedback are welcome—see [issues](https://github.com/nonmodernist/magic-lantern/issues) to suggest improvements.
+
 Focuses on strikes, unions, and working conditions.
 
 **Best for:** Film industry labor research
@@ -248,7 +253,7 @@ module.exports = {
 
 1. **Start with the closest match** - Modify an existing profile rather than starting from scratch
 2. **Test with small corpus** - Use `--corpus=test` to see how a profile performs
-3. **Compare profiles** - Run the same film through different profiles to see variations
+3. **Compare profiles** - Run the same film(s) through different profiles to see variations
 4. **Document your choices** - Note why you weighted certain publications or strategies
 5. **Share your profiles** - Help other researchers with similar interests!
 
@@ -257,4 +262,3 @@ module.exports = {
 - Learn to [Create Custom Profiles](./CUSTOM-PROFILES.md)
 - Understand [Search Strategies](./SEARCH-STRATEGIES.md) that profiles control
 - See how [Scoring](./SCORING.md) uses profile weights
-- Explore [Configuration](./CONFIGURATION.md) for all options

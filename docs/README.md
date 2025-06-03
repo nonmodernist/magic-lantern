@@ -5,9 +5,7 @@ Welcome to the Magic Lantern documentation! This guide will help you understand 
 ## 📚 Documentation Structure
 
 ### Getting Started
-- [Installation & Setup](./INSTALL.md) - Get Magic Lantern running
 - [Quick Start Guide](./QUICKSTART.md) - Your first search in 5 minutes
-- [Configuration Overview](./CONFIGURATION.md) - Understanding profiles and settings
 
 ### Core Concepts
 - [Search Strategies](./SEARCH-STRATEGIES.md) - How Magic Lantern generates queries
@@ -15,14 +13,14 @@ Welcome to the Magic Lantern documentation! This guide will help you understand 
 - [Output Formats](./OUTPUT-FORMATS.md) - Understanding the JSON output
 
 ### Advanced Topics
-- [Research Profiles](./PROFILES.md) - Pre-configured and custom profiles
+- [Research Profiles](./RESEARCH-PROFILES.md) - Pre-configured and custom profiles
 - [API Reference](./API.md) - Lantern API integration details
 - [Technical Architecture](./TECHNICAL.md) - Under the hood
 
 ### Guides & Tutorials
 - [Creating Custom Profiles](./CUSTOM-PROFILES.md) - Tailor Magic Lantern to your research
-- [Analyzing Results](./ANALYZING-RESULTS.md) - Working with the output data
-- [Performance Optimization](./OPTIMIZATION.md) - Tips for large corpus searches
+
+More coming soon. 
 
 ### Development
 - [Development Guide](./DEVELOPMENT.md) - Contributing to Magic Lantern
@@ -34,7 +32,7 @@ Welcome to the Magic Lantern documentation! This guide will help you understand 
 Start with the [Quick Start Guide](./QUICKSTART.md)
 
 **Looking for specific research approaches?**
-Check out [Research Profiles](./PROFILES.md)
+Check out [Research Profiles](./RESEARCH-PROFILES.md)
 
 **Want to customize Magic Lantern?**
 See [Creating Custom Profiles](./CUSTOM-PROFILES.md)
@@ -46,7 +44,7 @@ Visit [Troubleshooting](./TROUBLESHOOTING.md)
 
 This documentation covers Magic Lantern v5, the current version that features:
 - Multiple research profiles for different scholarly approaches
-- Configurable corpus sizes for testing and production
+- Configurable corpus sizes for testing and real research use
 - Smart search strategy generation with 15+ query variations per film
 - Intelligent result scoring based on publication and collection weights
 - Full-text retrieval for top-scored results

@@ -106,10 +106,10 @@ Here's what you'll see in the console:
 ### Try Different Corpus Sizes
 
 ```bash
-# Deep dive into one film
+# Deep dive into the first film in your csv
 node magic-lantern-v5.js films.csv --corpus=single
 
-# Process 20 films
+# Process the first 20 films in your csv
 node magic-lantern-v5.js films.csv --corpus=medium
 
 # Process all films (can take hours!)
@@ -163,7 +163,6 @@ node magic-lantern-v5.js films.csv --corpus=medium --profile=adaptation-studies
 
 ## What's Next?
 
-- Learn about [Research Profiles](./PROFILES.md) to focus your searches
+- Learn about [Research Profiles](./RESEARCH-PROFILES.md) to focus your searches
 - Understand [Search Strategies](./SEARCH-STRATEGIES.md) to see how queries are generated
-- Explore [Analyzing Results](./ANALYZING-RESULTS.md) to work with the JSON output
 - Create [Custom Profiles](./CUSTOM-PROFILES.md) for your specific research needs

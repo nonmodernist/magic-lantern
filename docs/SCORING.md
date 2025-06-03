@@ -175,6 +175,8 @@ publications: {
 
 ### Adding New Publications
 
+Because the Lantern API returns an item ID that abbreviates the magazine title, Magic Lantern uses pattern matching to attempt to correctly identify result titles. See [API](./API.md) for more. 
+
 1. Add pattern to `base-patterns.js`:
 ```javascript
 'my publication': /mypub|my_publication/,
@@ -291,7 +293,6 @@ Common issues:
 
 ## Next Steps
 
-- Explore [Research Profiles](./PROFILES.md) to see scoring in context
+- Explore [Research Profiles](./RESEARCH-PROFILES.md) to see scoring in context
 - Learn to [Create Custom Profiles](./CUSTOM-PROFILES.md) with your own weights
 - Understand [Search Strategies](./SEARCH-STRATEGIES.md) that generate the results
-- See [Analyzing Results](./ANALYZING-RESULTS.md) to work with scored data

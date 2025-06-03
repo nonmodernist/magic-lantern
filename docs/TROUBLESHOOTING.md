@@ -45,10 +45,10 @@ Total unique results: 0
 1. **Title mismatch with historical usage:**
 ```csv
 # Your CSV has:
-"Wizard of Oz",1939
+"The Keeper of the Bees",1947
 
 # But historical sources used:
-"The Wizard of Oz",1939
+"Keeper of the Bees",1947
 ```
 
 2. **Wrong or missing year:**
@@ -129,7 +129,7 @@ curl https://lantern.mediahist.org
 
 3. Temporary MHDL outage:
 - Wait and retry
-- Check https://twitter.com/mhdl for updates
+- Check MHDL website for updates
 
 ### Scoring Issues
 
@@ -427,7 +427,6 @@ node --version
 
 - GitHub Issues: Report bugs
 - GitHub Discussions: Ask questions
-- Twitter: @your_handle (if applicable)
 
 ## Quick Fixes Checklist
 

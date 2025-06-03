@@ -348,7 +348,6 @@ for film_result in full_text:
 
 ## Next Steps
 
-- Learn about [Analyzing Results](./ANALYZING-RESULTS.md) for research workflows
 - Understand [Scoring](./SCORING.md) to know why items ranked highly
-- See [Research Profiles](./PROFILES.md) to generate different result sets
+- See [Research Profiles](./RESEARCH-PROFILES.md) to generate different result sets
 - Explore [Custom Profiles](./CUSTOM-PROFILES.md) to tailor output to your needs

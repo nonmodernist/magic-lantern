@@ -23,7 +23,7 @@ These strategies handle the many ways a film title might appear in historical te
 - **Query:** `"The Wizard of Oz"`
 - **Confidence:** MEDIUM
 - **Purpose:** Find exact title matches
-- **When useful:** Film titles that are unique and unlikely to have false positives
+- **When useful:** Film titles that are unique and unlikely to have false positives, films that don't have extensive media coverage (e.g., that rare short from 1910)
 
 #### Title Without Article
 - **Query:** `"Wizard of Oz"` (removes The/A/An)
@@ -280,5 +280,5 @@ Then include in `generateAllStrategies()`.
 ## Next Steps
 
 - Learn about [Scoring](./SCORING.md) to see how results are ranked
-- Explore [Research Profiles](./PROFILES.md) to customize strategy priorities
+- Explore [Research Profiles](./RESEARCH-PROFILES.md) to customize strategy priorities
 - Read [Custom Profiles](./CUSTOM-PROFILES.md) to add your own strategies
