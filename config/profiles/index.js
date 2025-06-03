@@ -75,7 +75,15 @@ class ProfileLoader {
             ...(profile.searchStrategies?.enabled ?? {})
           },
           weights: profile.searchStrategies?.weights || {},
-          dateRanges: profile.dateRanges || baseConfig.search.strategies?.dateRanges || {}
+          dateRanges: profile.dateRanges || 
+                   (profile.dateRange ? {
+                     high: profile.dateRange,
+                     medium: profile.dateRange,
+                     low: { 
+                       before: (profile.dateRange.before || 2) + 1, 
+                       after: (profile.dateRange.after || 2) + 1 
+                     }
+                   } : baseConfig.search.strategies?.dateRanges || {})
         }
       }
     };
