@@ -40,7 +40,7 @@ your-project/
 
 Your film files should include Zola-style frontmatter with these fields:
 
-```markdown
+```toml
 +++
 title = "Film Title"
 weight = 1925  # Used for sorting in Zola
