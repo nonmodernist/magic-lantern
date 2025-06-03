@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// test-treasure-analyzer.js - Test historical pattern matching on existing OCR data
+// test-fulltext-analyzer.js - Test historical pattern matching on existing OCR data
 const fs = require('fs');
 
 class HistoricalTreasureAnalyzer {

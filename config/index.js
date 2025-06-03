@@ -2,9 +2,17 @@
 const scoring = require('./scoring.config');
 const search = require('./search.config');
 
+const profiles = require('./profiles');
+
 module.exports = {
-  scoring,
-  search,
+  profiles,  // Add profile loader
+  scoring: {
+    contentTypes: scoring.contentTypes  // Keep this here
+  },
+  search: {
+    api: search.api,  // Keep API settings here
+    fullText: search.fullText  // Keep full text settings
+  },
   
   // Corpus profiles
   corpus: {
@@ -17,7 +25,7 @@ test: {
   single: {
     filmsToProcess: 1, //deep dive into one film
     strategiesPerFilm: 20,
-    fullTextFetches: 5,
+    fullTextFetches: 5, // could increase this - but only after improving scoring?
     stopEarlyThreshold: 50 // ? what does this do?
   },
   medium: {
@@ -34,19 +42,26 @@ test: {
   }
   },
   
-  // Override any config with environment variables
-  load(profile = 'test') {
-    const config = {
-      scoring: { ...scoring },
-      search: { ...search },
-      corpus: this.corpus[profile]
+ // Updated load method
+  load(corpusProfile = 'test', researchProfile = 'default') {
+    const profile = profiles.load(researchProfile);
+    const baseConfig = {
+      scoring: this.scoring,
+      search: this.search,
+      corpus: this.corpus[corpusProfile]
     };
     
-    // Allow env var overrides
-    if (process.env.LANTERN_RATE_LIMIT) {
-      config.search.api.rateLimitMs = parseInt(process.env.LANTERN_RATE_LIMIT);
-    }
+    // Merge profile settings with base config
+    const merged = profiles.mergeWithConfig(baseConfig, profile);
     
-    return config;
+    // Add profile info for reference
+    merged.profileInfo = {
+      corpus: corpusProfile,
+      research: researchProfile,
+      profileName: profile.name,
+      profileDescription: profile.description
+    };
+    
+    return merged;
   }
 };

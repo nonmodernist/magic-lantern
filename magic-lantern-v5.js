@@ -13,22 +13,35 @@ class SearchStrategyGenerator {
         this.commonWords = ['of', 'and', 'in', 'at', 'to', 'for', 'with', 'on'];
     }
 
-    generateAllStrategies(film) {
-        console.log(`\n🎯 Generating search strategies for: ${film.title || film.Title}`);
-        
-        const strategies = [
-            ...this.titleVariations(film),
-            ...this.creatorSearches(film),
-            ...this.productionSearches(film),
-            ...this.starSearches(film),
-            ...this.fuzzySearches(film),
-            ...this.contextualSearches(film)
-        ];
-
-        const uniqueStrategies = this.deduplicateStrategies(strategies);
-        console.log(`✨ Generated ${uniqueStrategies.length} unique search strategies!`);
-        return uniqueStrategies;
+generateAllStrategies(film) {
+    console.log(`\n🎯 Generating search strategies for: ${film.title || film.Title}`);
+    
+    const strategies = [];
+    
+    // Check if each strategy type is enabled
+    if (!this.enabledStrategies || this.enabledStrategies.titleVariations !== false) {
+        strategies.push(...this.titleVariations(film));
     }
+    if (!this.enabledStrategies || this.enabledStrategies.creatorSearches !== false) {
+        strategies.push(...this.creatorSearches(film));
+    }
+    if (!this.enabledStrategies || this.enabledStrategies.productionSearches !== false) {
+        strategies.push(...this.productionSearches(film));
+    }
+    if (!this.enabledStrategies || this.enabledStrategies.starSearches !== false) {
+        strategies.push(...this.starSearches(film));
+    }
+    if (!this.enabledStrategies || this.enabledStrategies.fuzzySearches !== false) {
+        strategies.push(...this.fuzzySearches(film));
+    }
+    if (!this.enabledStrategies || this.enabledStrategies.contextualSearches !== false) {
+        strategies.push(...this.contextualSearches(film));
+    }
+
+    const uniqueStrategies = this.deduplicateStrategies(strategies);
+    console.log(`✨ Generated ${uniqueStrategies.length} unique search strategies!`);
+    return uniqueStrategies;
+}
 
     titleVariations(film) {
         const strategies = [];
@@ -39,7 +52,7 @@ class SearchStrategyGenerator {
         strategies.push({
             query: `"${title}"`,
             type: 'exact_title',
-            confidence: 'high',
+            confidence: 'medium', // ! test setting this to medium to de-prioritize it
             description: 'Exact title match'
         });
         
@@ -99,9 +112,6 @@ class SearchStrategyGenerator {
     }
 
 
-    // // DONE implement multiple keyword searches using Lantern's search url formatting - keyword, then second keyword, then third keyword - will return fewer more precise results
-    // e.g. "https://lantern.mediahist.org/catalog?f%5Bcollection%5D%5B%5D=Early+Cinema&f%5Bcollection%5D%5B%5D=Hollywood+Studio+System&f%5Bcollection%5D%5B%5D=Fan+Magazines&range%5Byear%5D%5Bbegin%5D=1915&range%5Byear%5D%5Bend%5D=1919&op=AND&keyword=%22amarilly+of+clothesline+alley%22&second_keyword=%22mary+pickford%22&third_keyword=&title=&Author=&subject=&date_text=&publisher=&description=&sort=score+desc%2C+dateStart+desc%2C+title+asc&search_field=advanced&commit=Search"
-
     // 2. CREATOR SEARCHES - Author/Director focused
     creatorSearches(film) {
         const strategies = [];
@@ -136,7 +146,6 @@ class SearchStrategyGenerator {
             });
             
             // Author variations (Fannie vs Fanny)
-            // TODO expand list of author variations (below)
             const authorVariations = this.getAuthorVariations(author);
             authorVariations.forEach(variant => {
                 strategies.push({
@@ -397,9 +406,12 @@ contextualSearches(film) {
         const variations = [];
 
         // ! configurable
+        // TODO expand list of author variations (below)
+
         // Known author variations
         const knownVariations = {
             'Fannie Hurst': ['Fanny Hurst'],
+            'Harriet Comstock': ['Harriet T. Comstock'],
             'Gene Stratton-Porter': ['Gene Stratton Porter', 'Stratton-Porter'],
         };
         
@@ -516,17 +528,23 @@ contextualSearches(film) {
 }
 
 class UnifiedMagicLantern {
-    constructor(configProfile = 'test') {
-        // Load configuration
-        this.config = config.load(configProfile);
+    constructor(configProfile = 'test', researchProfile = 'default') {
+        // Load configuration with both profiles
+        this.config = config.load(configProfile, researchProfile);
         
-        // Set up from config
+        console.log(`\n📚 Research Profile: ${this.config.profileInfo.profileName}`);
+        console.log(`   ${this.config.profileInfo.profileDescription}`);
+        console.log(`📊 Corpus Profile: ${configProfile}\n`);
+        
+        // Set up from merged config
         this.baseUrl = this.config.search.api.baseUrl;
         this.rateLimitDelay = this.config.search.api.rateLimitMs;
         this.maxResultsPerPage = this.config.search.api.maxResultsPerPage;
         
-        // Initialize components
+        // Initialize strategy generator with profile awareness
         this.strategyGenerator = new SearchStrategyGenerator();
+        this.configureStrategyGenerator();
+        
         this.allResults = [];
         this.seenIds = new Set();
         
@@ -561,6 +579,27 @@ class UnifiedMagicLantern {
         }
         
         return null;
+    }
+
+        // New method to configure strategy generator based on profile
+    configureStrategyGenerator() {
+        const profileStrategies = this.config.search.strategies;
+        
+        // Apply enabled/disabled strategies
+        if (profileStrategies.enabled) {
+            this.strategyGenerator.enabledStrategies = profileStrategies.enabled;
+        }
+        
+        // Apply strategy weights if present
+        if (profileStrategies.weights) {
+            this.strategyGenerator.strategyWeights = profileStrategies.weights;
+        }
+        
+        // Apply custom author variations if present
+        if (this.config.profileInfo.research === 'adaptation-studies' && 
+            profileStrategies.customVariations) {
+            this.strategyGenerator.customAuthorVariations = profileStrategies.customVariations;
+        }
     }
 
     // Score and rank results using config weights
@@ -1015,18 +1054,46 @@ class UnifiedMagicLantern {
 
 // Run it!
 if (require.main === module) {
-    const filePath = process.argv[2] || 'films.csv';
-    const profile = process.argv[3] || 'test';
+    const args = process.argv.slice(2);
+    
+    // Parse arguments
+    const filePath = args.find(arg => !arg.startsWith('--')) || 'films.csv';
+    const corpusProfile = args.find(arg => arg.startsWith('--corpus='))?.split('=')[1] || 'test';
+    const researchProfile = args.find(arg => arg.startsWith('--profile='))?.split('=')[1] || 'default';
+    
+    // Check for help
+    if (args.includes('--help') || args.includes('-h')) {
+        console.log('\n✨ MAGIC LANTERN v5 - Research Toolkit');
+        console.log('\nUsage: node magic-lantern-v5.js [films.csv] [options]');
+        console.log('\nOptions:');
+        console.log('  --corpus=PROFILE     Corpus size profile: test, single, medium, full');
+        console.log('  --profile=PROFILE    Research profile name');
+        console.log('  --list-profiles      List available research profiles');
+        console.log('\nExamples:');
+        console.log('  node magic-lantern-v5.js films.csv --profile=adaptation-studies');
+        console.log('  node magic-lantern-v5.js --corpus=medium --profile=early-cinema');
+        process.exit(0);
+    }
+    
+    // List profiles
+    if (args.includes('--list-profiles')) {
+        console.log('\n📚 Available Research Profiles:\n');
+        const profiles = config.profiles.list();
+        profiles.forEach(p => {
+            console.log(`  ${p.key}:`);
+            console.log(`    ${p.description}\n`);
+        });
+        process.exit(0);
+    }
     
     if (!fs.existsSync(filePath)) {
         console.error(`❌ File not found: ${filePath}`);
-        console.log('\nUsage: node magic-lantern-v5.js [path-to-csv] [profile]');
-        console.log('Profiles: test, medium, full');
+        console.log('\nUse --help for usage information');
         process.exit(1);
     }
     
-    const lantern = new UnifiedMagicLantern(profile);
-    lantern.run(filePath, { profile });
+    const lantern = new UnifiedMagicLantern(corpusProfile, researchProfile);
+    lantern.run(filePath, { corpusProfile, researchProfile });
 }
 
 module.exports = UnifiedMagicLantern;
