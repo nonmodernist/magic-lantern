@@ -1,5 +1,12 @@
 # Magic Lantern 🪄
 
+![Status](https://img.shields.io/badge/status-beta-yellow)
+![Node](https://img.shields.io/badge/node-%3E%3D18-green)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+
+> ⚠️ **Beta Software**: This tool is under active development. 
+> Please report issues and backup your data!
+
 *Research automation toolkit for the Media History Digital Library's Lantern search platform*
 
 Transform weeks of manual searching into hours (or minutes) of automated discovery across historical film trade publications. ✨
