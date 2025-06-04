@@ -23,7 +23,7 @@ module.exports = {
   'boxoffice': /boxoffice/,
   'independent': /independ/,
   'wids': /wids/,
-  'paramount press': /paramountpress|artcraftpress/,
+  'paramount press': /paramountpress|artcraftpress|paramountartcraf/,
   'universal weekly': /universalweekly/,
   'the exhibitor': /\bexhibitor\b/,
   'exhibitors trade review': /exhibitorstrade/,
