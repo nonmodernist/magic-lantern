@@ -19,8 +19,9 @@ Magic Lantern is a Node.js tool that brings the joy of automation to historical 
 
 ## Why I Built It
 
-We've all been there. You're deep in MHDL research when suddenly:
-- 😱 **Tab chaos**: 47 browser tabs open, each with different search variations, page results, whole issues on the Internet Archive
+If you've ever done deep research in the MHDL, you've likely faced:
+
+- 😱 **Tab chaos**: 47 browser tabs open, each with different search variations, page results, and whole issues on the Internet Archive
 - 🤯 **Mental overload**: "Wait, did I already search 'Fannie Hurst' + 'Back Street' or just 'Hurst' + 1932?"
 - ☕ **Interruption anxiety**: Every coffee break means losing track of where you were
 - 📝 **Note sprawl**: Sticky notes, spreadsheets, and Word docs trying to track what you've found
@@ -217,7 +218,7 @@ module.exports = {
 ## 🛠️ Advanced Features
 
 ### Custom Search Strategies
-Add your own search patterns to `SearchStrategyGenerator`:
+Add your own search patterns to `lib/search-strategy-generator.js`:
 
 ```javascript
 myCustomStrategy(film) {
@@ -228,7 +229,6 @@ myCustomStrategy(film) {
     description: 'Studio + location shooting'
   }];
 }
-```
 
 ### Publication Scoring
 Fine-tune weights in your profile:

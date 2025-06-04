@@ -7,6 +7,9 @@ Magic Lantern v5 is built with a modular architecture:
 ```
 magic-lantern/
 ├── magic-lantern-v5.js      # Main entry point
+├── lib/                     # Core functionality
+│   ├── search-strategy-generator.js  # Strategy generation logic
+│   └── utils.js             # Configurable data and helpers
 ├── config/
 │   ├── index.js             # Configuration loader
 │   ├── scoring.config.js    # Base scoring configuration
@@ -23,9 +26,10 @@ magic-lantern/
 
 ### 1. Main Application (`magic-lantern-v5.js`)
 
-The main file contains two primary classes:
+The main file contains the `UnifiedMagicLantern` class that orchestrates the search process.
 
-#### SearchStrategyGenerator
+### 2. Search Strategy Generator (`lib/search-strategy-generator.js`)
+
 Generates 15-30+ search queries per film across multiple strategy types:
 - Title variations
 - Creator searches (author/director)
@@ -34,14 +38,15 @@ Generates 15-30+ search queries per film across multiple strategy types:
 - Fuzzy searches (OCR variants)
 - Contextual searches (genre/adaptation)
 
-#### UnifiedMagicLantern
-Main application class that:
-- Loads configuration and profiles
-- Executes searches with rate limiting
-- Deduplicates results
-- Scores and ranks results
-- Fetches full text for top results
-- Outputs structured JSON
+### 3. Utilities (`lib/utils.js`)
+
+Contains configurable data and helper functions:
+- **Author name variations** - Common spelling variants
+- **Studio abbreviations** - MGM, RKO, etc.
+- **Known stars by film** - Pre-configured star lists
+- **Known remakes** - Films with multiple versions
+- **OCR patterns** - Common scanning errors
+- **Genre inference** - Title-based genre detection
 
 ### 2. Configuration System
 

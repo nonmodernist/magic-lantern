@@ -7,6 +7,9 @@ This guide helps you extend and customize Magic Lantern for your research needs.
 ```
 magic-lantern/
 ├── magic-lantern-v5.js      # Main application
+├── lib/                     # Core libraries
+│   ├── search-strategy-generator.js  # Search strategy logic
+│   └── utils.js             # Configurable helpers (stars, remakes, etc.)
 ├── config/
 │   ├── index.js             # Configuration loader
 │   ├── scoring.config.js    # Base scoring settings
@@ -25,7 +28,7 @@ magic-lantern/
 
 ### 1. Create the Strategy Method
 
-Add to `SearchStrategyGenerator` class in `magic-lantern-v5.js`:
+Add to `search-strategy-generator.js`:
 
 ```javascript
 // Example: Search for films screening at specific theaters
@@ -406,7 +409,7 @@ Great profiles help other researchers! To share:
 ### Adding Time Period Logic
 
 ```javascript
-// In strategy generator
+// In lib/search-strategy-generator.js
 if (parseInt(film.year) < 1920) {
     // Silent era strategies
     strategies.push({

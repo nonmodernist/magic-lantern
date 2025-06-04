@@ -257,6 +257,7 @@ Additional searches for any film:
 To add new strategies, edit `SearchStrategyGenerator` class:
 
 ```javascript
+// In lib/search-strategy-generator.js
 myNewStrategy(film) {
   return [{
     query: `"${film.title}" "my search term"`,
@@ -268,6 +269,25 @@ myNewStrategy(film) {
 ```
 
 Then include in `generateAllStrategies()`.
+
+### Finding Configurable Data
+
+Many aspects of search strategies are configurable in `lib/utils.js`:
+
+- **Author name variations**: See `getAuthorVariations()` 
+  - Add your own author spelling variants
+- **Studio abbreviations**: See `getStudioAbbreviation()`
+  - Map full studio names to common abbreviations  
+- **Known stars by film**: See `getKnownStars()`
+  - Pre-populate star searches for specific films
+- **Known remakes**: See `isKnownRemake()`
+  - Films that have multiple versions
+- **OCR error patterns**: See `generateOCRVariants()`
+  - Common character substitutions in historical OCR
+
+To add new strategies, edit `SearchStrategyGenerator` class in `lib/search-strategy-generator.js`.
+
+To modify helper data (stars, studios, etc.), edit `lib/utils.js`.
 
 ## Best Practices
 

@@ -397,25 +397,22 @@ searchStrategies: {
 
 ### Custom Strategy Injection
 
-Add new strategies for your profile:
+Add new strategies for your profile by modifying `lib/search-strategy-generator.js`:
 
 ```javascript
-// In your profile
-customStrategies: [
-    {
-        query: film => `"${film.title}" "road show"`,
-        type: 'roadshow_exhibition',
-        confidence: 'medium',
-        description: 'Roadshow exhibition pattern'
-    },
-    {
-        query: film => `"${film.studio}" "prestige picture"`,
-        type: 'prestige_production',
-        confidence: 'low',
-        description: 'Studio prestige productions'
-    }
-]
+// In lib/search-strategy-generator.js
+myNewStrategy(film) {
+  return [{
+    query: `"${film.title}" "road show"`,
+    type: 'roadshow_exhibition',
+    confidence: 'medium',
+    description: 'Roadshow exhibition pattern'
+  }];
+}
 ```
+
+For configurable data like known stars or studio abbreviations, see `lib/utils.js`.
+
 
 ## Testing Your Profile
 
