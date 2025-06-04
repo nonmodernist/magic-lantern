@@ -173,7 +173,8 @@ function estimateTime(films, corpus) {
 document.getElementById('corpus-select').addEventListener('change', updateSearchSummary);
 document.getElementById('profile-select').addEventListener('change', updateSearchSummary);
 
-// Handle run button
+// Replace the run-search-btn click handler in renderer.js with this:
+
 document.getElementById('run-search-btn').addEventListener('click', async () => {
   const corpus = document.getElementById('corpus-select').value;
   const profile = document.getElementById('profile-select').value;
@@ -209,12 +210,27 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
     
     console.log('Search complete!', results);
     
-    // Show results (we'll implement this next)
-    alert(`Search complete! Found ${results.totalResults} results across ${results.filmsProcessed} films.`);
+    if (results.success) {
+      // Store the file paths for the results viewer
+      localStorage.setItem('comprehensiveResultsPath', results.comprehensivePath);
+      if (results.fullTextPath) {
+        localStorage.setItem('fullTextResultsPath', results.fullTextPath);
+      }
+      localStorage.setItem('searchTimestamp', results.timestamp);
+      
+      // Navigate to results page
+      window.location.href = 'comprehensive-results.html';
+    } else {
+      alert('Search completed but no results found');
+    }
     
   } catch (error) {
     console.error('Search error:', error);
     alert('Search failed: ' + error.message);
+    
+    // Reset UI
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById('config-section').style.display = 'block';
   }
 });
 

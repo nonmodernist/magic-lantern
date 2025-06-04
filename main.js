@@ -91,67 +91,144 @@ ipcMain.handle('select-file', async () => {
   
   return null;
 });
+// Replace your existing run-search handler in main.js with this:
 
-// Handle search execution
 ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
   console.log('Starting search with:', { filePath, corpus, profile });
   
+  const { spawn } = require('child_process');
+  const fs = require('fs');
+  
+  return new Promise((resolve, reject) => {
+    // Spawn the process
+    const child = spawn('node', [
+      'magic-lantern-v5.js',
+      filePath,
+      `--corpus=${corpus}`,
+      `--profile=${profile}`
+    ], {
+      cwd: __dirname
+    });
+    
+    let output = '';
+    let errorOutput = '';
+    
+    // Capture stdout for progress
+    child.stdout.on('data', (data) => {
+      const chunk = data.toString();
+      output += chunk;
+      console.log(chunk);
+      
+      // Send progress updates based on console output
+      if (chunk.includes('🔍')) {
+        mainWindow.webContents.send('search-progress', {
+          status: 'Searching...',
+          detail: chunk.trim(),
+          percent: 30
+        });
+      } else if (chunk.includes('📊 Scoring')) {
+        mainWindow.webContents.send('search-progress', {
+          status: 'Scoring results...',
+          detail: chunk.trim(),
+          percent: 60
+        });
+      } else if (chunk.includes('📚 Fetching full text')) {
+        mainWindow.webContents.send('search-progress', {
+          status: 'Fetching full text...',
+          detail: chunk.trim(),
+          percent: 80
+        });
+      } else if (chunk.includes('💾')) {
+        mainWindow.webContents.send('search-progress', {
+          status: 'Saving results...',
+          detail: chunk.trim(),
+          percent: 90
+        });
+      }
+    });
+    
+    // Capture stderr
+    child.stderr.on('data', (data) => {
+      errorOutput += data.toString();
+      console.error('Stderr:', data.toString());
+    });
+    
+    // Handle process exit
+    child.on('exit', (code) => {
+      console.log(`Search process exited with code ${code}`);
+      
+      if (code !== 0) {
+        reject(new Error(`Search failed with exit code ${code}: ${errorOutput}`));
+        return;
+      }
+      
+      // Find the results files
+      try {
+        const resultsDir = path.join(__dirname, 'results');
+        if (!fs.existsSync(resultsDir)) {
+          reject(new Error('Results directory not found'));
+          return;
+        }
+        
+        const files = fs.readdirSync(resultsDir);
+        
+        // Sort files by timestamp (newest first)
+        const sortedFiles = files
+          .filter(f => f.endsWith('.json'))
+          .sort((a, b) => {
+            const statsA = fs.statSync(path.join(resultsDir, a));
+            const statsB = fs.statSync(path.join(resultsDir, b));
+            return statsB.mtime - statsA.mtime;
+          });
+        
+        // Find the most recent comprehensive and full-text files
+        const comprehensiveFile = sortedFiles.find(f => f.includes('comprehensive-search-results'));
+        const fullTextFile = sortedFiles.find(f => f.includes('full-text-results'));
+        
+        if (!comprehensiveFile) {
+          reject(new Error('No comprehensive results file found'));
+          return;
+        }
+        
+        // Send completion with file paths
+        mainWindow.webContents.send('search-progress', {
+          status: 'Complete!',
+          percent: 100
+        });
+        
+        resolve({
+          success: true,
+          comprehensivePath: path.join(resultsDir, comprehensiveFile),
+          fullTextPath: fullTextFile ? path.join(resultsDir, fullTextFile) : null,
+          timestamp: new Date().toISOString()
+        });
+        
+      } catch (error) {
+        reject(new Error('Failed to find results: ' + error.message));
+      }
+    });
+    
+    // Handle process errors
+    child.on('error', (error) => {
+      console.error('Failed to start search process:', error);
+      reject(new Error('Failed to start search: ' + error.message));
+    });
+  });
+});
+
+// Add a new handler to read results files
+ipcMain.handle('read-results-file', async (event, filePath) => {
+  const fs = require('fs');
+  
   try {
-    // Import Magic Lantern
-    const UnifiedMagicLantern = require('./magic-lantern-v5');
+    if (!fs.existsSync(filePath)) {
+      throw new Error('File not found: ' + filePath);
+    }
     
-    // Create instance with selected options
-    const lantern = new UnifiedMagicLantern(corpus, profile);
-    
-    // Send progress update
-    mainWindow.webContents.send('search-progress', {
-      status: 'Loading Magic Lantern...',
-      percent: 10
-    });
-    
-    // For now, let's just simulate a search
-    // In the real implementation, we'd need to modify Magic Lantern to emit progress events
-    
-    mainWindow.webContents.send('search-progress', {
-      status: 'Reading CSV file...',
-      detail: `Loading films from ${path.basename(filePath)}`,
-      percent: 20
-    });
-    
-    // Simulate some progress
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    mainWindow.webContents.send('search-progress', {
-      status: 'Searching...',
-      detail: 'Generating search strategies...',
-      percent: 50
-    });
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    mainWindow.webContents.send('search-progress', {
-      status: 'Processing results...',
-      detail: 'Scoring and ranking...',
-      percent: 80
-    });
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    mainWindow.webContents.send('search-progress', {
-      status: 'Complete!',
-      percent: 100
-    });
-    
-    // Return mock results for now
-    return {
-      success: true,
-      filmsProcessed: 1,
-      totalResults: 42,
-      timestamp: new Date().toISOString()
-    };
-    
+    const content = fs.readFileSync(filePath, 'utf8');
+    return JSON.parse(content);
   } catch (error) {
-    console.error('Search error:', error);
+    console.error('Error reading results file:', error);
     throw error;
   }
 });

@@ -330,23 +330,25 @@
     
     async function loadResults() {
       try {
-        // In the real app, this would come from IPC
-        // For now, we'll simulate loading the file
         const timestamp = localStorage.getItem('searchTimestamp');
         const resultsPath = localStorage.getItem('comprehensiveResultsPath');
         
-        if (resultsPath) {
-          // In Electron, we'd use IPC to read the file
-          // For demo, using mock data
-          displayResults(getMockComprehensiveResults());
+        if (resultsPath && window.magicLantern) {
+          // Load real results using IPC
+          console.log('Loading results from:', resultsPath);
+          const results = await window.magicLantern.readResultsFile(resultsPath);
+          displayResults(results);
         } else {
-          // Use inline mock data
+          // Fallback to mock data for testing
+          console.log('No results path found, using mock data');
           displayResults(getMockComprehensiveResults());
         }
       } catch (error) {
         console.error('Error loading results:', error);
         document.getElementById('film-results-container').innerHTML = 
-          '<p class="error">Error loading results: ' + error.message + '</p>';
+          '<div class="error" style="padding: 20px; background: #f8d7da; color: #721c24; border-radius: 4px;">' +
+          'Error loading results: ' + error.message + 
+          '</div>';
       }
     }
     
