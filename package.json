@@ -1,0 +1,12 @@
+{
+  "name": "magic-lantern",
+  "version": "5.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron ."
+  },
+  "devDependencies": {
+    "electron": "^27.0.0"
+  }
+}
