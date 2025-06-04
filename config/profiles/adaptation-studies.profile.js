@@ -10,18 +10,16 @@ module.exports = {
     // Weights for scoring
     weights: {
       "variety": 1.2,
-      "motion picture world": 1.5,  // Great for early adaptations
       "moving picture world": 1.5,
       "motion picture herald": 1.3,
       "film daily": 1.2,
       "exhibitors herald": 1.3,
-      "photoplay": 1.5,  // Often discussed literary sources
+      "photoplay": 1.5,  
       "modern screen": 1.3,
       "silver screen": 1.2,
       "screenland": 1.1,
       "motography": 1.4,  // Good early coverage
       "motion picture magazine": 1.4,
-      "fan scrapbook": 0.6
     },
     
     // MUST include patterns for extractPublication to work!
@@ -46,13 +44,13 @@ module.exports = {
         'novel_film_title': 2.0,
         'author_only': 1.8,
         'source_adaptation': 1.6,
-        'author_variant': 1.5,
+        'author_variant': 1.5, // set variations of an author's name in lib/utils.js
         'lastname_title': 1.4,
         
-        // Director might mention author
+        // Director
         'director_title': 1.0,
         
-        // Title searches - RUN LAST
+        // Title searches - RUN LAST so they don't overwhelm results and keep us from finding the good stuff
         'exact_title': 0.3,
         'title_no_article': 0.2,
         'abbreviated_title': 0.2,
