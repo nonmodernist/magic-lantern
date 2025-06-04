@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
+const VERSION = '5.0.0';
+console.log(`✨ MAGIC LANTERN v${VERSION}`);
+
 // magic-lantern-v5.js - Refactored to use external configuration
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const config = require('./config');
 const SearchStrategyGenerator = require('./lib/search-strategy-generator');
-
-
 
 
 class UnifiedMagicLantern {
