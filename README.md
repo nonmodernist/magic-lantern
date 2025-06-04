@@ -297,6 +297,6 @@ MIT License - Use it for your research adventures!
 
 - 📖 [Full Documentation](./docs/)
 - 🚀 [Getting Started Guide](./docs/QUICKSTART.md)  
-- 💡 [Usage Examples](./EXAMPLES.md)
+- 💡 [Usage Examples](./EXAMPLES.md) - COMING SOON
 - 🐛 [Report Issues](https://github.com/nonmodernist/magic-lantern/issues)
 - 💬 [Discussions](https://github.com/nonmodernist/magic-lantern/discussions)
