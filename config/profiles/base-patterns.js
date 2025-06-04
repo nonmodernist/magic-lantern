@@ -36,7 +36,7 @@ module.exports = {
   'hollywood magazine': /hollywood/i,
   'the motion picture and the family': /motionpicturefam/i, // try this source for 'wholesome' movies
   'the philadelphia exhibitor': /philadelphiaexhi/i,
-  'cinemudial': /cinemudial/i,
+  'cinemundial': /cinemundial/i,
   'motion picture reviews': /motionpicturerev/i, // women's film reviews!
   'the new york clipper': /clipper/i,
   'the writers monthly': /writersmonthly/i,

@@ -97,7 +97,7 @@ International Projectionist presented the technology of cinema sound and image p
 
 ### Journal of the Society of Motion Picture Engineers
 
-The Journal of the Society of Motion Picture Engineers (SMPE)Êdocuments the technological progress of the film industry, highlighting technical developments in production and exhibition. Of special interest are articles about special effects, theater practices, lighting, and the introduction of the 16mm format. Initially titled "Transactions of the Journal of the Society of Motion Picture Engineers."
+The Journal of the Society of Motion Picture Engineers (SMPE) documents the technological progress of the film industry, highlighting technical developments in production and exhibition. Of special interest are articles about special effects, theater practices, lighting, and the introduction of the 16mm format. Initially titled "Transactions of the Journal of the Society of Motion Picture Engineers."
 
 
 ## Other titles
