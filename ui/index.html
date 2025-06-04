@@ -18,9 +18,71 @@
         <button id="test-btn">Test Connection</button>
         <div id="status"></div>
       </section>
+
+      <section class="file-section">
+  <h2>Step 1: Select Your Films</h2>
+  <button id="select-file-btn">Choose CSV File</button>
+  <div id="file-info" style="display: none;">
+    <h3>Selected File: <span id="file-name"></span></h3>
+    <p>Films found: <span id="film-count"></span></p>
+    <div id="file-preview">
+      <h4>Preview:</h4>
+      <pre id="preview-content"></pre>
+    </div>
+  </div>
+</section>
+
+<section class="config-section" id="config-section" style="display: none;">
+  <h2>Step 2: Configure Your Search</h2>
+  
+  <div class="config-grid">
+    <div class="config-item">
+      <label for="corpus-select">Corpus Size:</label>
+      <select id="corpus-select">
+        <option value="test" selected>Test (1 film, quick)</option>
+        <option value="single">Single (1 film, comprehensive)</option>
+        <option value="medium">Medium (20 films)</option>
+        <option value="full">Full (all films)</option>
+      </select>
+      <p class="config-help">Choose how many films to process</p>
+    </div>
+    
+    <div class="config-item">
+      <label for="profile-select">Research Profile:</label>
+      <select id="profile-select">
+        <option value="default" selected>Default</option>
+        <option value="adaptation-studies">Adaptation Studies</option>
+        <option value="labor-history">Labor History</option>
+        <option value="early-cinema">Early Cinema (1905-1920)</option>
+        <option value="regional-reception">Regional Reception</option>
+        <option value="studio-era-adaptations">Studio Era Adaptations</option>
+        <option value="50s-adaptations">1950s Adaptations</option>
+      </select>
+      <p class="config-help">Tailors searches to your research focus</p>
+    </div>
+  </div>
+  
+  <div class="run-section">
+    <button id="run-search-btn" class="primary-btn">Run Search</button>
+    <div id="search-summary"></div>
+  </div>
+</section>
+
+<section class="progress-section" id="progress-section" style="display: none;">
+  <h2>Search Progress</h2>
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="progress-text" id="progress-text">Initializing...</div>
+  </div>
+  <div class="progress-details" id="progress-details"></div>
+  <button id="cancel-btn" class="secondary-btn">Cancel</button>
+</section>
     </main>
   </div>
   
 <script src="../renderer.js"></script>
+
 </body>
 </html>

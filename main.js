@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -49,6 +49,110 @@ ipcMain.handle('test-connection', async () => {
   } catch (error) {
     console.error('Handler error:', error);
     throw new Error(`Failed to load Magic Lantern: ${error.message}`);
+  }
+});
+
+// Handle file selection
+ipcMain.handle('select-file', async () => {
+  console.log('select-file handler called');
+  
+  const result = await dialog.showOpenDialog(mainWindow, {
+    title: 'Select Film CSV File',
+    properties: ['openFile'],
+    filters: [
+      { name: 'CSV Files', extensions: ['csv'] },
+      { name: 'All Files', extensions: ['*'] }
+    ]
+  });
+  
+  if (!result.canceled && result.filePaths.length > 0) {
+    const filePath = result.filePaths[0];
+    console.log('File selected:', filePath);
+    
+    // Read the file to get a preview
+    const fs = require('fs');
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const lines = content.trim().split('\n');
+      const headers = lines[0];
+      const filmCount = lines.length - 1; // Subtract header row
+      
+      return {
+        path: filePath,
+        name: path.basename(filePath),
+        headers: headers,
+        filmCount: filmCount,
+        preview: lines.slice(0, 4) // First 3 films + header
+      };
+    } catch (error) {
+      throw new Error(`Failed to read file: ${error.message}`);
+    }
+  }
+  
+  return null;
+});
+
+// Handle search execution
+ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
+  console.log('Starting search with:', { filePath, corpus, profile });
+  
+  try {
+    // Import Magic Lantern
+    const UnifiedMagicLantern = require('./magic-lantern-v5');
+    
+    // Create instance with selected options
+    const lantern = new UnifiedMagicLantern(corpus, profile);
+    
+    // Send progress update
+    mainWindow.webContents.send('search-progress', {
+      status: 'Loading Magic Lantern...',
+      percent: 10
+    });
+    
+    // For now, let's just simulate a search
+    // In the real implementation, we'd need to modify Magic Lantern to emit progress events
+    
+    mainWindow.webContents.send('search-progress', {
+      status: 'Reading CSV file...',
+      detail: `Loading films from ${path.basename(filePath)}`,
+      percent: 20
+    });
+    
+    // Simulate some progress
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    mainWindow.webContents.send('search-progress', {
+      status: 'Searching...',
+      detail: 'Generating search strategies...',
+      percent: 50
+    });
+    
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    mainWindow.webContents.send('search-progress', {
+      status: 'Processing results...',
+      detail: 'Scoring and ranking...',
+      percent: 80
+    });
+    
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    mainWindow.webContents.send('search-progress', {
+      status: 'Complete!',
+      percent: 100
+    });
+    
+    // Return mock results for now
+    return {
+      success: true,
+      filmsProcessed: 1,
+      totalResults: 42,
+      timestamp: new Date().toISOString()
+    };
+    
+  } catch (error) {
+    console.error('Search error:', error);
+    throw error;
   }
 });
 
