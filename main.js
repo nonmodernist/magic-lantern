@@ -156,6 +156,99 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
   }
 });
 
+// Add this handler after your other handlers
+ipcMain.handle('test-real-search', async () => {
+  const { exec } = require('child_process');
+  const fs = require('fs');
+  
+  console.log('Starting real search test...');
+  
+  return new Promise((resolve) => {
+    // Make sure we have a test CSV file
+    const testCsvPath = path.join(__dirname, 'data', 'films.csv');
+    
+    if (!fs.existsSync(testCsvPath)) {
+      resolve({ 
+        success: false, 
+        error: 'Test CSV file not found at data/films.csv' 
+      });
+      return;
+    }
+    
+    // Run Magic Lantern with minimal settings
+    const command = `node magic-lantern-v5.js "${testCsvPath}" --corpus=test`;
+    console.log('Executing:', command);
+    
+    exec(command, { 
+      cwd: __dirname,
+      maxBuffer: 1024 * 1024 * 10 // 10MB buffer for output
+    }, (error, stdout, stderr) => {
+      if (error) {
+        console.error('Exec error:', error);
+        resolve({ 
+          success: false, 
+          error: error.message 
+        });
+        return;
+      }
+      
+      if (stderr) {
+        console.error('Stderr:', stderr);
+      }
+      
+      console.log('Search completed, checking for results...');
+      
+      try {
+        // Check if results directory exists
+        const resultsDir = path.join(__dirname, 'results');
+        if (!fs.existsSync(resultsDir)) {
+          resolve({ 
+            success: false, 
+            error: 'Results directory not created' 
+          });
+          return;
+        }
+        
+        // Find the most recent results file
+        const files = fs.readdirSync(resultsDir);
+        const searchResultFiles = files.filter(f => 
+          f.includes('comprehensive-search-results') && f.endsWith('.json')
+        );
+        
+        if (searchResultFiles.length === 0) {
+          resolve({ 
+            success: false, 
+            error: 'No results files found' 
+          });
+          return;
+        }
+        
+        // Get the most recent file
+        searchResultFiles.sort();
+        const latestFile = searchResultFiles[searchResultFiles.length - 1];
+        const resultsPath = path.join(resultsDir, latestFile);
+        
+        console.log('Reading results from:', resultsPath);
+        
+        const results = JSON.parse(fs.readFileSync(resultsPath, 'utf-8'));
+        
+        resolve({ 
+          success: true, 
+          results: results,
+          outputPath: resultsPath
+        });
+        
+      } catch (parseError) {
+        console.error('Parse error:', parseError);
+        resolve({ 
+          success: false, 
+          error: 'Failed to parse results: ' + parseError.message 
+        });
+      }
+    });
+  });
+});
+
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {

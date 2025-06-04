@@ -218,6 +218,37 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
   }
 });
 
+// Add this after your existing test button listener
+document.getElementById('test-real-search-btn').addEventListener('click', async () => {
+  const status = document.getElementById('status');
+  status.textContent = 'Running real search test... This may take a minute...';
+  status.className = '';
+  
+  try {
+    const result = await window.magicLantern.testRealSearch();
+    
+    if (result.success) {
+      status.innerHTML = `
+        <strong>✅ Real search successful!</strong><br>
+        Films processed: ${result.results.length}<br>
+        First film: ${result.results[0]?.film?.title || 'Unknown'}<br>
+        Total sources found: ${result.results[0]?.totalUniqueSources || 0}<br>
+        <details style="margin-top: 10px;">
+          <summary>View raw results (click to expand)</summary>
+          <pre style="background: #f5f5f5; padding: 10px; margin-top: 10px; max-height: 300px; overflow-y: auto; font-size: 12px;">${JSON.stringify(result.results[0], null, 2)}</pre>
+        </details>
+      `;
+      status.className = 'success';
+    } else {
+      status.innerHTML = `❌ Search failed: ${result.error}`;
+      status.className = 'error';
+    }
+  } catch (error) {
+    status.textContent = '❌ Error: ' + error.message;
+    status.className = 'error';
+  }
+});
+
 // Update progress display
 function updateProgress(data) {
   const progressFill = document.getElementById('progress-fill');

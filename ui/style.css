@@ -214,3 +214,26 @@ button:hover {
 .secondary-btn:hover {
   background: #c0392b;
 }
+
+
+#test-real-search-btn {
+  background: #27ae60;
+}
+
+#test-real-search-btn:hover {
+  background: #229954;
+}
+
+details {
+  cursor: pointer;
+}
+
+details summary {
+  font-weight: 600;
+  color: #3498db;
+}
+
+details pre {
+  font-family: 'Courier New', monospace;
+  line-height: 1.4;
+}
