@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Lantern - Search Results</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .results-header {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .results-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .summary-card {
+      text-align: center;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .summary-number {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #3498db;
+    }
+    
+    .summary-label {
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .film-results {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .film-header {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .film-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    .film-meta {
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .source-list {
+      margin-top: 20px;
+    }
+    
+    .source-item {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .source-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .source-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 15px;
+    }
+    
+    .source-info {
+      flex: 1;
+    }
+    
+    .source-publication {
+      font-weight: 600;
+      color: #2c3e50;
+      text-transform: capitalize;
+      font-size: 1.1em;
+    }
+    
+    .source-meta {
+      color: #666;
+      font-size: 0.9em;
+      margin: 5px 0;
+    }
+    
+    .source-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 12px;
+      border: 1px solid #3498db;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    
+    .source-link:hover {
+      background: #3498db;
+      color: white;
+    }
+    
+    .source-link.primary {
+      background: #3498db;
+      color: white;
+    }
+    
+    .source-link.primary:hover {
+      background: #2980b9;
+      border-color: #2980b9;
+    }
+    
+    .source-excerpt {
+      margin: 15px 0;
+      line-height: 1.6;
+      color: #444;
+      padding: 15px;
+      background: #f8f9fa;
+      border-left: 3px solid #3498db;
+      font-family: Georgia, serif;
+    }
+    
+    .source-excerpt em {
+      background: #fff2cc;
+      padding: 1px 3px;
+      font-style: normal;
+      font-weight: 600;
+    }
+    
+    .strategy-summary {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .strategy-summary h4 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    
+    .strategy-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .strategy-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .strategy-name {
+      flex: 0 0 150px;
+      font-size: 0.9em;
+      color: #666;
+    }
+    
+    .strategy-fill {
+      flex: 1;
+      height: 20px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .strategy-fill-bar {
+      height: 100%;
+      background: #3498db;
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+    
+    .strategy-count {
+      flex: 0 0 30px;
+      text-align: right;
+      font-size: 0.9em;
+      font-weight: 600;
+    }
+    
+    .actions-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-primary {
+      background: #3498db;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #2980b9;
+    }
+    
+    .btn-secondary {
+      background: #95a5a6;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #7f8c8d;
+    }
+    
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 60px;
+      color: #666;
+    }
+    
+    .loading-spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #3498db;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .found-by-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #e8f4f8;
+      color: #2980b9;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="actions-bar">
+      <button class="btn btn-secondary" onclick="window.location.href='index.html'">
+        ← Back to Search
+      </button>
+      <button class="btn btn-primary" onclick="exportResults()">
+        Export JSON
+      </button>
+    </div>
+    
+    <div class="results-header">
+      <h1>🎬 Comprehensive Search Results</h1>
+      <p id="results-timestamp"></p>
+      
+      <div class="results-summary">
+        <div class="summary-card">
+          <div class="summary-number" id="films-count">0</div>
+          <div class="summary-label">Films Processed</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-number" id="sources-count">0</div>
+          <div class="summary-label">Total Sources Found</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-number" id="unique-count">0</div>
+          <div class="summary-label">Unique Sources</div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="film-results-container">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>Loading results...</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    let comprehensiveResults = null;
+    
+    // Load results when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      loadResults();
+    });
+    
+    async function loadResults() {
+      try {
+        // In the real app, this would come from IPC
+        // For now, we'll simulate loading the file
+        const timestamp = localStorage.getItem('searchTimestamp');
+        const resultsPath = localStorage.getItem('comprehensiveResultsPath');
+        
+        if (resultsPath) {
+          // In Electron, we'd use IPC to read the file
+          // For demo, using mock data
+          displayResults(getMockComprehensiveResults());
+        } else {
+          // Use inline mock data
+          displayResults(getMockComprehensiveResults());
+        }
+      } catch (error) {
+        console.error('Error loading results:', error);
+        document.getElementById('film-results-container').innerHTML = 
+          '<p class="error">Error loading results: ' + error.message + '</p>';
+      }
+    }
+    
+    function displayResults(results) {
+      comprehensiveResults = results;
+      
+      // Update header
+      document.getElementById('results-timestamp').textContent = 
+        `Search completed: ${new Date().toLocaleString()}`;
+      
+      // Update summary
+      let totalSources = 0;
+      let uniqueSources = 0;
+      
+      results.forEach(filmResult => {
+        totalSources += filmResult.sources.length;
+        uniqueSources += filmResult.totalUniqueSources || filmResult.sources.length;
+      });
+      
+      document.getElementById('films-count').textContent = results.length;
+      document.getElementById('sources-count').textContent = totalSources;
+      document.getElementById('unique-count').textContent = uniqueSources;
+      
+      // Display film results
+      const container = document.getElementById('film-results-container');
+      container.innerHTML = results.map(filmResult => createFilmCard(filmResult)).join('');
+      
+      // Animate the strategy bars after a short delay
+      setTimeout(() => {
+        document.querySelectorAll('.strategy-fill-bar').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
+        });
+      }, 100);
+    }
+    
+    function createFilmCard(filmResult) {
+      const film = filmResult.film;
+      const maxCount = Math.max(...Object.values(filmResult.searchStrategySummary || {}));
+      
+      return `
+        <div class="film-results">
+          <div class="film-header">
+            <div class="film-title">${film.title} (${film.year})</div>
+            <div class="film-meta">
+              ${film.author ? `Author: ${film.author} | ` : ''}
+              Director: ${film.director} | 
+              Studio: ${film.studio}
+            </div>
+          </div>
+          
+          <p><strong>${filmResult.totalUniqueSources}</strong> unique sources found</p>
+          
+          ${filmResult.searchStrategySummary ? `
+            <div class="strategy-summary">
+              <h4>Search Strategy Performance</h4>
+              <div class="strategy-bars">
+                ${Object.entries(filmResult.searchStrategySummary)
+                  .sort((a, b) => b[1] - a[1])
+                  .slice(0, 5)
+                  .map(([strategy, count]) => `
+                    <div class="strategy-bar">
+                      <div class="strategy-name">${formatStrategyName(strategy)}</div>
+                      <div class="strategy-fill">
+                        <div class="strategy-fill-bar" 
+                             style="width: 0%;" 
+                             data-width="${(count / maxCount * 100)}%"></div>
+                      </div>
+                      <div class="strategy-count">${count}</div>
+                    </div>
+                  `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          
+          <div class="source-list">
+            <h3>Sources (showing first 10)</h3>
+            ${filmResult.sources.slice(0, 10).map(source => createSourceCard(source)).join('')}
+            ${filmResult.sources.length > 10 ? 
+              `<p style="text-align: center; color: #666; margin-top: 20px;">
+                Showing 10 of ${filmResult.sources.length} sources
+              </p>` : ''}
+          </div>
+        </div>
+      `;
+    }
+    
+    function createSourceCard(source) {
+      // Extract data from the nested structure
+      const excerpt = source.attributes?.body?.attributes?.value || '';
+      const date = source.attributes?.dateString?.attributes?.value || 'Date unknown';
+      const highlightUrl = extractHighlightUrl(source.attributes?.read_search_highlighting?.attributes?.value);
+      const lanternUrl = source.links?.self || '#';
+      
+      // Extract publication from ID
+      const publication = extractPublicationFromId(source.id);
+      
+      return `
+        <div class="source-item">
+          <div class="source-header">
+            <div class="source-info">
+              <div class="source-publication">${publication}</div>
+              <div class="source-meta">
+                ${date} | 
+                <span class="found-by-badge">${formatStrategyName(source.foundBy || 'unknown')}</span>
+              </div>
+              <div class="source-links">
+                <a href="${lanternUrl}" target="_blank" class="source-link primary">
+                  View on Lantern →
+                </a>
+                ${highlightUrl ? `
+                  <a href="${highlightUrl}" target="_blank" class="source-link">
+                    View on Internet Archive →
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+          
+          ${excerpt ? `
+            <div class="source-excerpt">
+              ${formatExcerpt(excerpt)}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+    
+    function extractHighlightUrl(htmlString) {
+      if (!htmlString) return null;
+      const match = htmlString.match(/href="([^"]+)"/);
+      return match ? match[1] : null;
+    }
+    
+    function extractPublicationFromId(id) {
+      // Common patterns in IDs
+      const patterns = {
+        'variety': /variety/i,
+        'filmdaily': /filmdaily/i,
+        'motionpictureher': /motionpictureher/i,
+        'motionpicturedai': /motionpicturedai/i,
+        'boxoffice': /boxoffice/i,
+        'photoplay': /photoplay/i,
+        'modernscreen': /modernscreen/i,
+        'hollywood': /hollywood/i,
+        'movingpicture': /movingpicture/i,
+        'motography': /motography/i,
+        'exhibitors': /exhibitors/i,
+        'wids': /wids/i
+      };
+      
+      for (const [name, pattern] of Object.entries(patterns)) {
+        if (pattern.test(id)) {
+          return formatPublicationName(name);
+        }
+      }
+      
+      return 'Unknown Publication';
+    }
+    
+    function formatPublicationName(name) {
+      const names = {
+        'variety': 'Variety',
+        'filmdaily': 'Film Daily',
+        'motionpictureher': 'Motion Picture Herald',
+        'motionpicturedai': 'Motion Picture Daily',
+        'boxoffice': 'Boxoffice',
+        'photoplay': 'Photoplay',
+        'modernscreen': 'Modern Screen',
+        'hollywood': 'Hollywood',
+        'movingpicture': 'Moving Picture World',
+        'motography': 'Motography',
+        'exhibitors': 'Exhibitors Herald',
+        'wids': 'Wid\'s'
+      };
+      
+      return names[name] || name.charAt(0).toUpperCase() + name.slice(1);
+    }
+    
+    function formatExcerpt(excerpt) {
+      // Limit length and preserve <em> tags
+      let formatted = excerpt.substring(0, 300);
+      if (excerpt.length > 300) {
+        formatted += '...';
+      }
+      
+      // The excerpt might already have <em> tags from Lantern
+      // Make sure they're visible
+      return formatted;
+    }
+    
+    function formatStrategyName(strategy) {
+      return strategy.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+    
+    function exportResults() {
+      if (!comprehensiveResults) return;
+      
+      const dataStr = JSON.stringify(comprehensiveResults, null, 2);
+      const dataBlob = new Blob([dataStr], {type: 'application/json'});
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `comprehensive-results-${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+    }
+    
+    // Mock data function
+    function getMockComprehensiveResults() {
+      return [
+        {
+          film: {
+            title: "The Wizard of Oz",
+            year: "1939",
+            author: "L. Frank Baum",
+            director: "Victor Fleming",
+            studio: "Metro-Goldwyn-Mayer"
+          },
+          totalUniqueSources: 62,
+          searchStrategySummary: {
+            "exact_title": 20,
+            "title_no_article": 5,
+            "author_title": 13,
+            "director_title": 6,
+            "studio_title": 18
+          },
+          sources: [
+            {
+              id: "variety137-1939-08_0054",
+              attributes: {
+                dateString: { attributes: { value: "August 1939" } },
+                body: { 
+                  attributes: { 
+                    value: "Metro's '<em>The</em> <em>Wizard</em> <em>of</em> <em>Oz</em>' is a magnificent fantasy, brilliantly conceived and executed. L. Frank Baum's beloved children's classic comes to life with Technicolor splendor..." 
+                  } 
+                },
+                read_search_highlighting: {
+                  attributes: {
+                    value: '<a target="_blank" href="http://archive.org/stream/variety137-1939-08#page/n54/mode/2up/search/&quot;The Wizard of Oz&quot;">Read in Context with First Keyword Highlighted</a>'
+                  }
+                }
+              },
+              links: { self: "https://lantern.mediahist.org/catalog/variety137-1939-08_0054" },
+              foundBy: "author_title"
+            },
+            {
+              id: "motionpictureher81unse_5_0234",
+              attributes: {
+                dateString: { attributes: { value: "1939" } },
+                body: { 
+                  attributes: { 
+                    value: "Exceptional box office results reported from initial engagements of '<em>The</em> <em>Wizard</em> <em>of</em> <em>Oz</em>'. Kansas City's Tower Theatre reports record-breaking attendance..." 
+                  } 
+                },
+                read_search_highlighting: {
+                  attributes: {
+                    value: '<a target="_blank" href="http://archive.org/stream/motionpictureher81unse_5#page/n234/mode/2up/search/&quot;The Wizard of Oz&quot;">Read in Context with First Keyword Highlighted</a>'
+                  }
+                }
+              },
+              links: { self: "https://lantern.mediahist.org/catalog/motionpictureher81unse_5_0234" },
+              foundBy: "exact_title"
+            },
+            {
+              id: "filmdaily77wids_0098",
+              attributes: {
+                dateString: { attributes: { value: "1940" } },
+                body: { 
+                  attributes: { 
+                    value: "greets \"<em>The</em> <em>Wizard</em> <em>of</em> <em>Oz</em>\"! Just a fraction of it listed below! Most of publications mentioned hereunder will be on sale during July, August or September." 
+                  } 
+                }
+              },
+              links: { self: "https://lantern.mediahist.org/catalog/filmdaily77wids_0098" },
+              foundBy: "exact_title"
+            }
+          ]
+        }
+      ];
+    }
+  </script>
+</body>
+</html>
