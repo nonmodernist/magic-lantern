@@ -12,18 +12,20 @@ module.exports = {
   'motion picture daily': /motionpicturedai/i,
   'motion picture herald': /motionpictureher/i,
   'motion picture magazine': /motionpicturemag/i,
-  'motion picture story magazine': /motionpicturesto|motionpicture(?!rev|fam|dai|her|mag|new)/i,
+  'the exhibitor': /motionpictureexh/i,
+  'motion picture story magazine': /motionpicturesto|motionpicture(?!rev|fam|dai|her|mag|new|exh)/i,
   'motion picture news': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i,
   
   'moving picture weekly': /movingpicturewee/i,
-  'moving picture world': /movingpicture|movpict|mopicwor|mowor|moviwor|moviewor|moving|movpicwor|morewor|movingpicwor|movwor/i,
+  'moving picture world': /movingpicture|movpict|mopicwor|mowor|moviwor|moviewor|moving|movpicwor|morewor|movingpicwor|movinwor|movwor/i,
 
   'the movies and the people who make them': /moviespeoplewhom/i,
   'movie classic': /movieclassic/i,
   'movieland': /movielandtv/i,
 
   'picture play': /pictureplay/i,
-  'pictures and the picturegoer': /\bpicture/i,
+  'motion picture news': /picturen/i,
+  'pictures and the picturegoer': /\bpicture(?!n)/i,
 
   'exhibitors daily review': /exhibitorsdailyr/i,
   'exhibitors herald': /exhibher|exhibitorsh/i,
@@ -60,7 +62,7 @@ module.exports = {
   'motography': /motography/i,
   'movie mirror': /moviemirror/i,
   'photoplay': /photoplay|photo|pho/i,
-  'radio tv mirror': /radiotvmirror/i,
+  'radio tv mirror': /radiotvmirror|radiotvmi/i,
   'reel life': /reellife/i,
   'the screen writer': /screenwriter/i,
   'showmens trade review': /showmen/i,
@@ -77,6 +79,9 @@ module.exports = {
   'universal weekly': /universalweekly|universal/i,
   'mgm studio news': /mgmstudionews/i,
   'whos who at metro-goldwyn-mayer': /whoswhoatmetrogo/i,
+  'mensajero paramount': /mensajeroparamou/i,
+  'paramount around the world': /paramountinterna/,
 
+  'MPPC lawsuit': /indistrictcourto/i,
 
 };
