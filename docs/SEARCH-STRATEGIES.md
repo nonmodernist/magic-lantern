@@ -136,9 +136,11 @@ Actor-focused queries, especially for star vehicles.
 
 #### Known Stars by Film
 - Pre-configured star lists for major films:
-  - The Wizard of Oz: Judy Garland, Ray Bolger, Bert Lahr
-  - Gone with the Wind: Clark Gable, Vivien Leigh
-  - The Maltese Falcon: Humphrey Bogart, Mary Astor
+  - *The Wizard of Oz*: Judy Garland, Ray Bolger, Bert Lahr
+  - *Gone with the Wind*: Clark Gable, Vivien Leigh
+  - *The Maltese Falcon*: Humphrey Bogart, Mary Astor
+
+Add your own!
 
 ### 5. Fuzzy Searches (LOW confidence)
 
@@ -188,10 +190,10 @@ Theme and adaptation-focused searches.
 Some strategies only activate with certain profiles:
 
 #### Labor History Profile
-- `"The Wizard of Oz" strike`
-- `"MGM" strike`
-- `"MGM" labor`
-- `"The Wizard of Oz" union`
+- `"The Wizard of Oz" walk out`
+- `"MGM" labor dispute`
+- `"MGM" work stoppage`
+- `"The Wizard of Oz" picketing`
 
 #### Adaptation Studies Profile
 - Prioritizes author searches
@@ -247,28 +249,29 @@ All keywords use AND operator for precise results.
 ### Film with Labor History Profile
 
 Additional searches for any film:
-1. `"[Film Title]" strike`
-2. `"[Film Title]" union`
-3. `"[Studio]" labor`
-4. `"[Studio]" strike`
+1. `"[Film Title]" picketing`
+2. `"[Film Title]" work stoppage`
+3. `"[Studio]" labor dispute`
+4. `"strike against [Studio]"`
 
 ## Customizing Strategies
 
-To add new strategies, edit `SearchStrategyGenerator` class:
+To add new strategies, edit `lib/strategy-registery.js`:
 
 ```javascript
-// In lib/search-strategy-generator.js
-myNewStrategy(film) {
-  return [{
-    query: `"${film.title}" "my search term"`,
-    type: 'my_strategy_type',
-    confidence: 'medium',
-    description: 'My new strategy'
-  }];
-}
+// In lib/strategy-registry.js
+  this.register('my_Custom_Search', {
+    generator: (film) => ({
+      keyword: `"${film.title || film.Title}"`,
+      secondKeyword: '"on location"',
+      confidence: 'high',
+      description: 'Film title + "on location"'
+    }),
+      defaultWeight: 2.5,
+      category: 'myCategory',
+      profileRequired: 'myProfile'
+  });
 ```
-
-Then include in `generateAllStrategies()`.
 
 ### Finding Configurable Data
 
@@ -285,9 +288,7 @@ Many aspects of search strategies are configurable in `lib/utils.js`:
 - **OCR error patterns**: See `generateOCRVariants()`
   - Common character substitutions in historical OCR
 
-To add new strategies, edit `SearchStrategyGenerator` class in `lib/search-strategy-generator.js`.
-
-To modify helper data (stars, studios, etc.), edit `lib/utils.js`.
+This means you can keep your input CSV simple!
 
 ## Best Practices
 

@@ -38,32 +38,25 @@ Different publications have different research value. Weights are configured in 
 ### Default Weights
 
 ```javascript
-publications: {
-  weights: {
-    // Trade papers - highest value
-    "variety": 1.0,                  // Baseline
-    "motion picture world": 1.3,     // Valuable early coverage
-    "motion picture herald": 1.0,    
-    "film daily": 1.0,
-    
-    // Fan magazines
-    "photoplay": 1.2,               // Quality content
-    "modern screen": 1.0,
-    "silver screen": 1.0,
-    "screenland": 0.9,
-    
-    // Specialized/rare
-    "motography": 1.5,              // Technical, harder to find
-    
-    // Lower priority
-    "fan scrapbook": 0.7
-  }
-}
+  publications: {
+    weights: {
+      // sample publications, all scored the same for default
+      "variety": 1.0,
+      "motion picture herald": 1.0,
+      "film daily": 1.0,
+      "exhibitors herald": 1.0,
+      "moving picture world": 1.0,
+      "photoplay": 1.0,
+      "modern screen": 1.0,
+      "silver screen": 1.0,
+      "screenland": 1.0,
+      "motography": 1.0,
+    },
 ```
 
 ### How Weights Work
 
-A result from Motography (weight: 1.5) scores 50% higher than the same position in Variety (weight: 1.0):
+A result from *Motography* weighted 1.5 scores 50% higher than the same position in Variety (weight: 1.0):
 
 - Variety at position 1: 100 × 1.0 = **100 points**
 - Motography at position 1: 100 × 1.5 = **150 points**
@@ -74,9 +67,9 @@ Different research profiles adjust these weights:
 
 **Labor History Profile:**
 ```javascript
-"variety": 1.5,              // Excellent strike coverage
-"hollywood reporter": 1.3,   // Industry perspective
-"photoplay": 0.5,           // Rarely discussed labor
+"variety": 1.5,                 // Excellent strike coverage
+"motion picture herald": 1.3,   // Somewhere in between
+"photoplay": 0.5,               // Rarely discussed labor
 ```
 
 **Regional Reception Profile:**
@@ -88,7 +81,7 @@ Different research profiles adjust these weights:
 
 ## Collection Weights
 
-MHDL organizes materials into collections. These also affect scoring:
+MHDL organizes materials into collections. These also affect scoring (but only for the top set of results):
 
 ### Default Collection Weights
 
@@ -109,7 +102,6 @@ collections: {
 
 Collection weights are applied during full-text fetching:
 - Multiple collections? The highest weight is used
-- Helps prioritize which full texts to retrieve
 
 ## Publication Identification
 
@@ -127,9 +119,9 @@ Magic Lantern identifies publications from Lantern item IDs using regex patterns
 Located in `base-patterns.js`:
 ```javascript
 'variety': /variety/,
-'motion picture world': /motionpicture?wor|mopicwor/,
-'moving picture world': /movingpicture|movpict/,
-'photoplay': /photo(?!play)/,  // Avoid false matches
+'motion picture world': /motionpicture?wor|mopicwor/i, //case-insensitive
+'moving picture world': /movingpicture|movpict/i,
+'pictures and the picturegoer': /\bpicture(?!n)/i, // Avoid false matches
 ```
 
 ## Scoring in Action
@@ -213,7 +205,7 @@ fullText: {
 ### Quality Assessment
 
 General score ranges:
-- **150+**: Exceptional (rare publication at top position)
+- **150+**: Exceptional (targeted publication at top position)
 - **100-150**: Excellent (good publication, high position)
 - **75-100**: Very good (decent publication or position)
 - **50-75**: Good (worth examining)
@@ -288,6 +280,7 @@ To see why results ranked as they did:
 
 Common issues:
 - Publication not recognized → Add pattern
+- Publication matched wrong → Check the regular expression used for matching 
 - Wrong weight applied → Check profile loading
 - Unexpected ranking → Review all three factors
 

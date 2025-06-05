@@ -26,7 +26,7 @@ test: {
     filmsToProcess: 1, //deep dive into one film
     strategiesPerFilm: 20,
     fullTextFetches: 5, // could increase this - but only after improving scoring?
-    stopEarlyThreshold: 50 // ? what does this do?
+    stopEarlyThreshold: 50 // stops searching after 50 deduplicated results
   },
   medium: {
     filmsToProcess: 20,

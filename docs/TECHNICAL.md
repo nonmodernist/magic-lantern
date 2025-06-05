@@ -6,20 +6,21 @@ Magic Lantern v5 is built with a modular architecture:
 
 ```
 magic-lantern/
-├── magic-lantern-v5.js      # Main entry point
-├── lib/                     # Core functionality
+├── magic-lantern-v5.js       # Main entry point
+├── lib/                              # Core functionality
+│   ├── strategy-registry.js          # Register new search strategies here
 │   ├── search-strategy-generator.js  # Strategy generation logic
-│   └── utils.js             # Configurable data and helpers
+│   └── utils.js                      # Configurable data and helpers
 ├── config/
-│   ├── index.js             # Configuration loader
-│   ├── scoring.config.js    # Base scoring configuration
-│   ├── search.config.js     # API and search settings
-│   └── profiles/            # Research profiles
-│       ├── index.js         # Profile loader
-│       ├── base-patterns.js # Shared publication patterns
-│       └── *.profile.js     # Individual profiles
-├── fulltext-analyzer.js     # OCR text analysis (experimental)
-└── results/                 # Output directory
+│   ├── index.js              # Configuration loader
+│   ├── scoring.config.js     # Base scoring configuration
+│   ├── search.config.js      # API and search settings
+│   └── profiles/             # Research profiles
+│       ├── index.js          # Profile loader
+│       ├── base-patterns.js  # Shared publication patterns
+│       └── *.profile.js      # Individual profiles
+├── fulltext-analyzer.js      # OCR text analysis (experimental)
+└── results/                  # Output directory
 ```
 
 ## Core Components
@@ -30,15 +31,22 @@ The main file contains the `UnifiedMagicLantern` class that orchestrates the sea
 
 ### 2. Search Strategy Generator (`lib/search-strategy-generator.js`)
 
-Generates 15-30+ search queries per film across multiple strategy types:
+Orchestrates the search strategy generation process:
+- Turns registered search strategies into sets of keywords for Lantern's API
+- Generates 15-30+ search queries per film across multiple strategy types
+
+### 3. Strategy Registry (`lib/strategy-registry.js`)
+
+Centralized place to register the searches you want to run:
 - Title variations
 - Creator searches (author/director)
 - Production searches (studio/business)
 - Star searches
 - Fuzzy searches (OCR variants)
-- Contextual searches (genre/adaptation)
+- Contextual searches (genre/adaptation/labor)
+- Your specific search strategy here
 
-### 3. Utilities (`lib/utils.js`)
+### 4. Utilities (`lib/utils.js`)
 
 Contains configurable data and helper functions:
 - **Author name variations** - Common spelling variants
@@ -74,13 +82,18 @@ Control search scope:
 
 #### Strategy Structure
 ```javascript
-{
-  query: '"The Wizard of Oz" "MGM"',
-  type: 'studio_title',
-  confidence: 'high',
-  description: 'Studio + title search',
-  profileWeight: 1.5  // Added by profile
-}
+// In lib/strategy-registry.js
+  this.register('my_Custom_Search', {
+    generator: (film) => ({
+      keyword: `"${film.title || film.Title}"`, // from input CSV
+      secondKeyword: '"your great keyword here"',
+      confidence: 'high',
+      description: 'Film title + "your great keyword"'
+    }),
+      defaultWeight: 1.5,
+      category: 'myCategory',
+      profileRequired: 'myProfile'
+  });
 ```
 
 #### Keyword Parsing
@@ -100,7 +113,7 @@ Converts strategy queries into Lantern API parameters:
 2. Apply profile weights and filtering
 3. Sort by weight and confidence
 4. Execute in order with rate limiting
-5. Stop when limits reached
+5. Stop when enough search results are reached
 
 ### 4. Scoring Algorithm
 
@@ -163,8 +176,8 @@ Each full text fetch is an additional API call to Lantern, so we limit how many 
 #### Full Text Enhancement
 For each fetched page:
 - Extract full OCR text
-- Identify content types (review, production, etc.)
-- Check for photo indicators
+- Identify content types (review, production, etc.) *(currently experimental!)*
+- Check for photo indicators *(currently experimental!)*
 - Calculate collection weight
 - Preserve all metadata
 
@@ -211,6 +224,8 @@ Every 10 films, saves interim results to prevent data loss.
 - Medium corpus (20 films): 40-100 minutes
 - Full corpus (100+ films): 3-8 hours
 
+The time it takes Magic Lantern to run will depend on how many films you are asking it to search for, how many search strategies it runs, and how many full text results it gets.
+
 ## Error Handling
 
 ### Network Errors
@@ -226,9 +241,7 @@ Every 10 films, saves interim results to prevent data loss.
 ## Extensibility Points
 
 ### Adding Search Strategies
-1. Add method to `SearchStrategyGenerator`
-2. Include in `generateAllStrategies()`
-3. Add keyword parsing logic if needed
+1. Add method to `lib/strategy-resgistry.js`
 
 ### Custom Scoring
 1. Modify `getPositionScore()` for position weights

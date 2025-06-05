@@ -15,7 +15,7 @@ Transform weeks of manual searching into hours (or minutes) of automated discove
 
 ## What Magic Lantern Does
 
-Magic Lantern is a Node.js tool that brings the joy of automation to historical film research! It works with the [Lantern](https://lantern.mediahist.org/) platform to:
+Magic Lantern is a Node.js tool that brings the speed of automation to historical film research! It works with the [Lantern](https://lantern.mediahist.org/) platform to:
 
 1. **Generate 15+ intelligent search queries** per film using configurable strategies
 2. **Execute searches gracefully** with proper API rate limiting (respecting MHDL's limits so we can all benefit from the archive)
@@ -66,7 +66,7 @@ node magic-lantern-v5.js films.csv --corpus=medium --profile=adaptation-studies
 😊 Actually READ sources instead of just finding them
 ```
 
-### What Makes Research Joyful Again
+### What Makes Research Joyful
 
 🧠 **Set it and forget it**: Start a search and walk away. Magic Lantern keeps working while you live your life.
 
@@ -225,17 +225,22 @@ module.exports = {
 ## 🛠️ Advanced Features
 
 ### Custom Search Strategies
-Add your own search patterns to `lib/search-strategy-generator.js`:
+Add your own search patterns to `lib/strategy-registry.js`:
 
 ```javascript
-myCustomStrategy(film) {
-  return [{
-    query: `"${film.studio}" "on location"`,
-    type: 'studio_location',
-    confidence: 'medium',
-    description: 'Studio + location shooting'
-  }];
-}
+        this.register('my_Custom_Search', {
+            generator: (film) => ({
+                keyword: `"${film.title || film.Title}"`,
+                secondKeyword: '"on location"',
+                confidence: 'high',
+                description: 'Film title + "on location"'
+            }),
+                defaultWeight: 2.5,
+                category: 'myCategory',
+                profileRequired: 'myProfile'
+        });
+```
+
 
 ### Publication Scoring
 Fine-tune weights in your profile:
