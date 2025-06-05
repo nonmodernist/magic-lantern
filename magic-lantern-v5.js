@@ -541,7 +541,7 @@ async comprehensiveSearch(film) {
                     enhancedData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
                 }
                 
-                fullTextResults.push(fullPageData);
+                fullTextResults.push(enhancedData);  // Push the enhanced version
             }
         }        
         // Sort by content value
