@@ -1,29 +1,31 @@
 # Magic Lantern Profile Testing Worksheet
 
 ## Profile Information
-- **Profile Name:** ________________________________
-- **Test Date:** ___________________________________
-- **Films Tested:** ________________________________
+
+- **Profile Name:**
+- **Test Date:**
+- **Films Tested:**
 - **Corpus Size:** [ ] Test (1) [ ] Small (5) [ ] Medium (10+)
 
 ## 1. Strategy Performance Matrix
 
 Track which strategies actually find results:
 
-| Strategy Type | Films with Results | Avg Results/Film | Best Performing Film | Notes |
-|--------------|-------------------|------------------|---------------------|-------|
-| exact_title | ___/___films | ___ | _____________ | |
-| author_title | ___/___films | ___ | _____________ | |
-| title_no_article | ___/___films | ___ | _____________ | |
-| studio_title | ___/___films | ___ | _____________ | |
-| director_title | ___/___films | ___ | _____________ | |
-| title_box_office | ___/___films | ___ | _____________ | |
-| title_exhibitor | ___/___films | ___ | _____________ | |
-| source_adaptation | ___/___films | ___ | _____________ | |
-| novel_film_title | ___/___films | ___ | _____________ | |
-| [custom strategy] | ___/___films | ___ | _____________ | |
+| Strategy Type     | Films with Results | Avg Results/Film | Best Performing Film | Notes |
+| ----------------- | ------------------ | ---------------- | -------------------- | ----- |
+| exact_title       | ___/___films       | ___              | _____________        |       |
+| author_title      | ___/___films       | ___              | _____________        |       |
+| title_no_article  | ___/___films       | ___              | _____________        |       |
+| studio_title      | ___/___films       | ___              | _____________        |       |
+| director_title    | ___/___films       | ___              | _____________        |       |
+| title_box_office  | ___/___films       | ___              | _____________        |       |
+| title_exhibitor   | ___/___films       | ___              | _____________        |       |
+| source_adaptation | ___/___films       | ___              | _____________        |       |
+| novel_film_title  | ___/___films       | ___              | _____________        |       |
+| [custom strategy] | ___/___films       | ___              | _____________        |       |
 
-### Red Flags:
+### Red Flags
+
 - [ ] Strategy with 0 results across all films
 - [ ] Strategy with <20% success rate
 - [ ] High-weight strategy underperforming
@@ -32,7 +34,8 @@ Track which strategies actually find results:
 
 Track what sources you're actually finding:
 
-### Top 10 Publications by Frequency:
+### Top 10 Publications by Frequency
+
 1. _________________ (___%) Weight: ___
 2. _________________ (___%) Weight: ___
 3. _________________ (___%) Weight: ___
@@ -44,12 +47,14 @@ Track what sources you're actually finding:
 9. _________________ (___%) Weight: ___
 10. _________________ (___%) Weight: ___
 
-### Publications with HIGH weight but LOW results:
+### Publications with HIGH weight but LOW results
+
 - _________________ Weight: ___ Found: ___times
 - _________________ Weight: ___ Found: ___times
 - _________________ Weight: ___ Found: ___times
 
-### Publications with LOW weight but HIGH results:
+### Publications with LOW weight but HIGH results
+
 - _________________ Weight: ___ Found: ___times
 - _________________ Weight: ___ Found: ___times
 - _________________ Weight: ___ Found: ___times
@@ -58,7 +63,8 @@ Track what sources you're actually finding:
 
 What kinds of content is this profile finding?
 
-### Content Types Found (from full text analysis):
+### Content Types Found (from full text analysis)
+
 - [ ] Reviews (___ count) - Quality: High/Med/Low
 - [ ] Production news (___ count) - Quality: High/Med/Low
 - [ ] Box office (___ count) - Quality: High/Med/Low
@@ -73,7 +79,8 @@ What kinds of content is this profile finding?
 
 ## 4. Date Range Effectiveness
 
-### Results Distribution by Year Offset:
+### Results Distribution by Year Offset
+
 - -3 years: ___% of results
 - -2 years: ___% of results  
 - -1 year:  ___% of results
@@ -89,14 +96,16 @@ What kinds of content is this profile finding?
 
 Examining the highest-value finds:
 
-### Top 5 Treasures Found:
+### Top 5 Treasures Found
+
 1. **Film:** __________ **Type:** ________ **Score:** ___ **Why valuable:** ______________
 2. **Film:** __________ **Type:** ________ **Score:** ___ **Why valuable:** ______________
 3. **Film:** __________ **Type:** ________ **Score:** ___ **Why valuable:** ______________
 4. **Film:** __________ **Type:** ________ **Score:** ___ **Why valuable:** ______________
 5. **Film:** __________ **Type:** ________ **Score:** ___ **Why valuable:** ______________
 
-### Common patterns in treasures:
+### Common patterns in treasures
+
 - **Publication:** _________________
 - **Strategy that found them:** _________________
 - **Content type:** _________________
@@ -104,16 +113,19 @@ Examining the highest-value finds:
 
 ## 6. Problem Identification
 
-### Films with disappointingly few results (<5):
+### Films with disappointingly few results (<5)
+
 - _________________ (___results) **Possible reason:** ______________
 - _________________ (___results) **Possible reason:** ______________
 - _________________ (___results) **Possible reason:** ______________
 
-### Films with overwhelming results (>100):
+### Films with overwhelming results (>100)
+
 - _________________ (___results) **Needs refinement?** Y/N
 - _________________ (___results) **Needs refinement?** Y/N
 
-### Search strategies that seem broken:
+### Search strategies that seem broken
+
 - _________________ **Problem:** ______________
 - _________________ **Problem:** ______________
 
@@ -121,25 +133,29 @@ Examining the highest-value finds:
 
 Based on this test, what changes might improve the profile?
 
-### Weight Adjustments Needed:
+### Weight Adjustments Needed
+
 - [ ] Increase ______________ from ___ to ___ (because: ___________)
 - [ ] Decrease ______________ from ___ to ___ (because: ___________)
 - [ ] Add new publication: ______________ weight: ___
 - [ ] Remove publication: ______________ (never found)
 
-### Strategy Adjustments:
+### Strategy Adjustments
+
 - [ ] Disable strategy: ______________ (0% success rate)
 - [ ] Boost strategy: ______________ to weight: ___
 - [ ] Reduce strategy: ______________ to weight: ___
 - [ ] Add custom strategy for: ______________
 
-### Date Range Adjustments:
+### Date Range Adjustments
+
 - [ ] Widen to -___ / +___ years
 - [ ] Narrow to -___ / +___ years
 - [ ] Different ranges by confidence level
 - [ ] Special handling for certain years: ______________
 
-### Missing Coverage:
+### Missing Coverage
+
 - [ ] Profile misses this type of content: ______________
 - [ ] Profile misses this publication: ______________
 - [ ] Profile misses this time period: ______________
@@ -155,14 +171,16 @@ If testing multiple profiles:
 - More relevant? [ ] Yes [ ] No
 - Faster to complete? [ ] Yes [ ] No
 
-### Key differences:
+### Key differences
+
 _____________________________________________________
 _____________________________________________________
 _____________________________________________________
 
 ## 9. Action Items
 
-### Changes to implement:
+### Changes to implement
+
 1. ________________________________________________
 2. ________________________________________________
 3. ________________________________________________
@@ -195,7 +213,8 @@ _____________________________________________________
 _____________________________________________________
 _____________________________________________________
 
-### Overall assessment: 
+### Overall assessment
+ 
 - [ ] Ready to use 
 - [ ] Needs minor adjustments 
 - [ ] Needs major revision
