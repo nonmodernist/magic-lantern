@@ -253,7 +253,6 @@ async checkLanternAvailability() {
     }
 
     parseStrategyKeywords(strategy, film) {
-        // [Keep existing implementation]
         const keywords = {};
         const quotedPhrases = strategy.query.match(/"[^"]+"/g) || [];
         const remainingText = strategy.query.replace(/"[^"]+"/g, '').trim();
@@ -299,30 +298,30 @@ async checkLanternAvailability() {
             keywords.second_keyword = quotedPhrases[1]; // Title
             break;
 
-            case 'title_strike':
-    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-    keywords.second_keyword = 'strike';
-    break;
+        case 'title_strike':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = 'picketed';
+        break;
 
-case 'title_union':
-    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-    keywords.second_keyword = 'union';
-    break;
+        case 'title_union':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = 'union';
+            break;
 
-case 'studio_strike':
-    keywords.keyword = quotedPhrases[0]; // Studio name
-    keywords.second_keyword = 'strike';
-    break;
+        case 'studio_strike':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = 'picketed';
+            break;
 
-case 'studio_labor':
-    keywords.keyword = quotedPhrases[0]; // Studio name
-    keywords.second_keyword = 'labor';
-    break;
+        case 'studio_labor':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = 'labor';
+            break;
 
-case 'studio_production':
-    keywords.keyword = quotedPhrases[0]; // Studio name  
-    keywords.second_keyword = 'production';
-    break;
+        case 'studio_production':
+            keywords.keyword = quotedPhrases[0]; // Studio name  
+            keywords.second_keyword = 'production';
+            break;
             
         default:
             // For other cases, use up to 3 keywords/phrases
