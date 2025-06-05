@@ -10,6 +10,7 @@ const https = require('https');
 const config = require('./config');
 const SearchStrategyGenerator = require('./lib/search-strategy-generator');
 const ContentTypeEnhancer = require('./lib/content-type-enhancer');
+const strategyRegistry = require('./lib/strategy-registry');
 
 
 
@@ -253,6 +254,22 @@ async checkLanternAvailability() {
     }
 
     parseStrategyKeywords(strategy, film) {
+        
+        // Use the registry to parse
+        const keywords = strategyRegistry.parseQuery(strategy.query, strategy.type);
+
+        // If registry couldn't parse, fall back to existing logic
+
+        if (Object.keys(keywords).length === 0) {
+            // Keep existing switch statement for backward compatibility
+            // This allows gradual migration
+            return this.legacyParseStrategyKeywords(strategy, film);
+        };
+        return keywords;
+    }
+    
+    // Rename existing method
+    legacyParseStrategyKeywords(strategy, film) {
         const keywords = {};
         const quotedPhrases = strategy.query.match(/"[^"]+"/g) || [];
         const remainingText = strategy.query.replace(/"[^"]+"/g, '').trim();
@@ -298,46 +315,45 @@ async checkLanternAvailability() {
             keywords.second_keyword = quotedPhrases[1]; // Title
             break;
 
-case 'title_strike':
-    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-    keywords.second_keyword = '"picketed"';
-    break;
+        case 'title_strike':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"picketed"';
+            break;
 
-case 'title_work_stoppage':
-    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-    keywords.second_keyword = '"work stoppage"';
-    break;
+        case 'title_work_stoppage':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"work stoppage"';
+            break;
 
-    case 'title_picket_line':
-        keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-        keywords.second_keyword = '"picket line"';
-        break;
+        case 'title_picket_line':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"picket line"';
+            break;
 
-    case 'title_walkout':
-        keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-        keywords.second_keyword = '"walk out"';
-        break;
+        case 'title_walkout':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"walk out"';
+            break;
 
-    case 'studio_strike':
-        // This one is special - the full phrase is the search
-        keywords.keyword = strategy.query; // This will be "strike against MGM"
-        break;
+        case 'studio_strike':
+            // This one is special - the full phrase is the search
+            keywords.keyword = strategy.query; // This will be "strike against MGM"
+            break;
 
-    case 'studio_labor':
-        keywords.keyword = quotedPhrases[0]; // Studio name
-        keywords.second_keyword = '"labor dispute"';
-        break;
+        case 'studio_labor':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = '"labor dispute"';
+            break;
 
-    case 'studio_boycott':
-        keywords.keyword = quotedPhrases[0]; // Studio name
-        keywords.second_keyword = 'boycott';
-        break;
+        case 'studio_boycott':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = 'boycott';
+            break;
 
-    case 'studio_strike_2':
-        keywords.keyword = quotedPhrases[0]; // Studio name
-        keywords.second_keyword = '"strike action"';
-        break;
-
+        case 'studio_strike_2':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = '"strike action"';
+            break;
 
         case 'studio_production':
             keywords.keyword = quotedPhrases[0]; // Studio name  
