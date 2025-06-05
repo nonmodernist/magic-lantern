@@ -9,6 +9,8 @@ const path = require('path');
 const https = require('https');
 const config = require('./config');
 const SearchStrategyGenerator = require('./lib/search-strategy-generator');
+const ContentTypeEnhancer = require('./lib/content-type-enhancer');
+
 
 
 class UnifiedMagicLantern {
@@ -31,17 +33,25 @@ class UnifiedMagicLantern {
         
         this.allResults = [];
         this.seenIds = new Set();
+
+                // Initialize content enhancer
+        this.contentEnhancer = new ContentTypeEnhancer({
+            includeEvidence: true,
+            enhanceExcerpts: true,
+            minConfidence: 'low'
+        });
+    
         
-        // Content patterns for full text analysis
-        this.contentPatterns = {
-            review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
-            production: /\b(production|producing|filming|started|completed|announced)\b/i,
-            boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
-            advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
-            photo: /\b(photograph|photo|scene from|production still)\b/i,
-            interview: /\b(interview|talks about|discusses)\b/i,
-            listing: /\b(calendar|releases for|table|list)\b/i
-        };
+        // // ! Content patterns for full text analysis - we are replacing this!!
+        // this.contentPatterns = {
+        //     review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
+        //     production: /\b(production|producing|filming|started|completed|announced)\b/i,
+        //     boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
+        //     advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
+        //     photo: /\b(photograph|photo|scene from|production still)\b/i,
+        //     interview: /\b(interview|talks about|discusses)\b/i,
+        //     listing: /\b(calendar|releases for|table|list)\b/i
+        // };
     }
 
     // Calculate position-based score
@@ -122,6 +132,36 @@ class UnifiedMagicLantern {
             console.log(`   Position: ${s.position} (${s.positionScore}) × Publication: ${s.publicationWeight}`);
         });
     }
+
+    // Add this method to check if Lantern is available before starting
+
+async checkLanternAvailability() {
+    console.log('\n🔍 Checking Lantern availability...');
+    
+    try {
+        const testUrl = `${this.baseUrl}/catalog.json?per_page=1`;
+        const timeout = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Connection timeout')), 10000)
+        );
+        
+        await Promise.race([
+            this.makeRequest(testUrl),
+            timeout
+        ]);
+        
+        console.log('✅ Lantern is available!\n');
+        return true;
+    } catch (error) {
+        console.log('❌ Lantern appears to be down or unreachable');
+        console.log(`   Error: ${error.message}`);
+        console.log('\n💡 Suggestions:');
+        console.log('   1. Check if https://lantern.mediahist.org/ loads in your browser');
+        console.log('   2. Check https://mediahistoryproject.org/ for maintenance notices');
+        console.log('   3. Try again later - the site may be temporarily down');
+        console.log('   4. Check your internet connection\n');
+        return false;
+    }
+}
 
     async makeRequest(url) {
         return new Promise((resolve, reject) => {
@@ -446,25 +486,71 @@ async comprehensiveSearch(film) {
             const fullPageData = await this.fetchFullPageText(result.id);
             
             if (fullPageData) {
-                fullPageData.contentTypes = this.identifyContentTypes(fullPageData.fullText);
-                fullPageData.hasPhoto = this.checkForPhoto(fullPageData.fullText);
-                fullPageData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
-                fullPageData.foundBy = result.foundBy;
-                fullPageData.searchQuery = result.searchQuery;
-                fullPageData.strategyConfidence = result.strategyConfidence;
-                fullPageData.finalScore = result.scoring.finalScore;
-                fullPageData.publication = result.scoring.publication;
+                // Debug logging
+                console.log(`   ✓ Fetched ${fullPageData.wordCount || 0} words`);
+                
+                // NEW CODE - Use the enhancer:
+                let enhancedData;
+                try {
+                    enhancedData = this.contentEnhancer.enhanceResult(fullPageData);
+                    console.log(`   ✓ Enhanced: ${enhancedData.contentAnalysis.primaryType} (${enhancedData.contentAnalysis.confidence})`);
+                } catch (enhanceError) {
+                    console.error(`   ❌ Enhancement failed for ${result.id}:`, enhanceError.message);
+                    // Fallback to basic data
+                    enhancedData = {
+                        ...fullPageData,
+                        contentAnalysis: {
+                            primaryType: 'unknown',
+                            confidence: 'low',
+                            allTypes: []
+                        },
+                        contentTypes: ['unknown'],
+                        contentScore: 0,
+                        isTreasure: false
+                    };
+                }
+                // Copy over the additional metadata
+                enhancedData.foundBy = result.foundBy;
+                enhancedData.searchQuery = result.searchQuery;
+                enhancedData.strategyConfidence = result.strategyConfidence;
+                enhancedData.finalScore = result.scoring.finalScore;
+                enhancedData.publication = result.scoring.publication;
+
+                // Keep the simple excerpt if no enhanced one
+                if (!enhancedData.enhancedExcerpt) {
+                    enhancedData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
+                }
                 
                 fullTextResults.push(fullPageData);
             }
-        }
+        }        
+        // Sort by content value
+        const sortedResults = this.contentEnhancer.sortByContentValue(fullTextResults);
+        
+        // Get statistics
+        const contentStats = this.contentEnhancer.getEnhancementStats(fullTextResults);
+        
+        console.log('\n📊 Content Analysis Summary:');
+        console.log(`   Treasures found: ${contentStats.treasures}`);
+        console.log(`   Average content score: ${contentStats.averageContentScore}`);
+        console.log(`   High confidence: ${contentStats.byConfidence.high}`);
+        console.log(`   Content types: ${Object.entries(contentStats.byType)
+            .map(([type, count]) => `${type} (${count})`)
+            .join(', ')}`);
         
         return {
             film: film,
             totalUniqueSources: this.allResults.length,
             allSearchResults: this.allResults,
-            fullTextAnalysis: fullTextResults
+            fullTextAnalysis: fullTextResults,
+            contentStats: contentStats
+
         };
+    }
+
+        // Optional: Add method to get just the treasures
+    getTreasures(results) {
+        return results.fullTextAnalysis.filter(r => r.isTreasure);
     }
 
     async loadFilms(filePath) {
@@ -489,10 +575,17 @@ async comprehensiveSearch(film) {
 
     async run(filePath, options = {}) {
         const profileName = options.profile || 'test';
-console.log(`✨ MAGIC LANTERN v5`);
-console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
-console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);        
-        try {
+        console.log(`✨ MAGIC LANTERN v5`);
+        console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+        console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);        
+    // Check if Lantern is available
+    const isAvailable = await this.checkLanternAvailability();
+    if (!isAvailable) {
+        console.log('⚠️  Cannot proceed without access to Lantern. Exiting.\n');
+        return;
+    }
+    
+    try {
             const films = await this.loadFilms(filePath);
             
             const outputDir = path.join(__dirname, 'results');
@@ -525,14 +618,15 @@ console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);
             // Save final results
             this.saveResults(allResults, outputDir, timestamp);
             
-console.log('\n🎉 Search complete!');
-console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
-console.log(`   Research Profile: ${this.config.profileInfo.research}`);
-console.log(`   Films processed: ${allResults.length}`);
-        } catch (error) {
-            console.error('❌ Error:', error.message);
-            console.error(error.stack);
-        }
+        console.log('\n🎉 Search complete!');
+        console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+        console.log(`   Research Profile: ${this.config.profileInfo.research}`);
+        console.log(`   Films processed: ${allResults.length}`);
+    
+    } catch (error) {
+                    console.error('❌ Error:', error.message);
+                    console.error(error.stack);
+                }
     }
 
     saveResults(results, outputDir, timestamp) {
@@ -563,6 +657,48 @@ console.log(`   Films processed: ${allResults.length}`);
         );
         
         console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
+
+                // Also save a "treasures" file with just the high-value finds
+        const treasuresData = results.map(r => ({
+            film: r.film,
+            treasures: this.getTreasures(r),
+            treasureCount: this.getTreasures(r).length,
+            contentStats: r.contentStats
+        }));
+        
+        fs.writeFileSync(
+            path.join(outputDir, `treasures_${timestamp}.json`),
+            JSON.stringify(treasuresData, null, 2)
+        );
+        
+        // Save a human-readable summary
+        const summaryLines = ['# Magic Lantern Search Summary', ''];
+        
+        results.forEach(r => {
+            summaryLines.push(`## ${r.film.title} (${r.film.year})`);
+            summaryLines.push(`- Total sources: ${r.totalUniqueSources}`);
+            summaryLines.push(`- Full text analyzed: ${r.fullTextAnalysis.length}`);
+            summaryLines.push(`- Treasures: ${r.contentStats.treasures}`);
+            
+            const treasures = this.getTreasures(r);
+            if (treasures.length > 0) {
+                summaryLines.push('\n### Notable Finds:');
+                treasures.forEach(t => {
+                    summaryLines.push(`- **${t.contentAnalysis.primaryType}** in ${t.publication} (${t.date})`);
+                    if (t.enhancedExcerpt) {
+                        summaryLines.push(`  > ${t.enhancedExcerpt.substring(0, 100)}...`);
+                    }
+                });
+            }
+            summaryLines.push('');
+        });
+        
+        fs.writeFileSync(
+            path.join(outputDir, `summary_${timestamp}.md`),
+            summaryLines.join('\n')
+        );
+        
+        console.log(`\n✨ Also saved: treasures_${timestamp}.json and summary_${timestamp}.md`);
     }
 
     summarizeStrategies(results) {
