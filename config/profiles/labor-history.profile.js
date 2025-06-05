@@ -3,7 +3,7 @@ const basePatterns = require("./base-patterns");
 // config/profiles/labor-history.profile.js
 module.exports = {
   name: "Film Industry Labor History",
-  description: "Captures the labor environment and industrial relations during film production periods",
+  description: "Captures the labor environment and industrial relations during film production & exhibition periods",
   
   publications: {
     weights: {
@@ -113,5 +113,5 @@ searchStrategies: {
   },
   
   // Custom note for researchers
-notes: "This profile captures the broader labor context during a film's production period rather than film-specific labor incidents. For researching specific strikes on individual films, consider using targeted searches directly in Lantern. Best used for understanding the industrial relations climate that shaped production conditions."
+notes: "This profile captures the broader labor context during a film's production and exhibition period rather than film-specific labor incidents. For researching specific strikes on individual films, consider using targeted searches directly in Lantern. Best used for understanding the industrial relations climate that shaped production conditions."
 }

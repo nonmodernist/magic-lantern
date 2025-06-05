@@ -1,6 +1,6 @@
 # Magic Lantern Profile Testing Worksheet
 
-> 
+> most important finding from this test: profile is better for finding patterns in labor conditions during production & exhibition periods rather than finding labor stories about specific films
 
 ## Profile Information
 
