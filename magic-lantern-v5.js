@@ -42,16 +42,16 @@ class UnifiedMagicLantern {
         });
     
         
-        // // ! Content patterns for full text analysis - we are replacing this!!
-        // this.contentPatterns = {
-        //     review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
-        //     production: /\b(production|producing|filming|started|completed|announced)\b/i,
-        //     boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
-        //     advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
-        //     photo: /\b(photograph|photo|scene from|production still)\b/i,
-        //     interview: /\b(interview|talks about|discusses)\b/i,
-        //     listing: /\b(calendar|releases for|table|list)\b/i
-        // };
+        // ! Content patterns for full text analysis - we are replacing this maybe??
+        this.contentPatterns = {
+            review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
+            production: /\b(production|producing|filming|started|completed|announced)\b/i,
+            boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
+            advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
+            photo: /\b(photograph|photo|scene from|production still)\b/i,
+            interview: /\b(interview|talks about|discusses)\b/i,
+            listing: /\b(calendar|releases for|table|list)\b/i
+        };
     }
 
     // Calculate position-based score
@@ -298,25 +298,46 @@ async checkLanternAvailability() {
             keywords.second_keyword = quotedPhrases[1]; // Title
             break;
 
-        case 'title_strike':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            keywords.second_keyword = 'picketed';
+case 'title_strike':
+    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+    keywords.second_keyword = '"picketed"';
+    break;
+
+case 'title_work_stoppage':
+    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+    keywords.second_keyword = '"work stoppage"';
+    break;
+
+    case 'title_picket_line':
+        keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+        keywords.second_keyword = '"picket line"';
         break;
 
-        case 'title_union':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            keywords.second_keyword = 'union';
-            break;
+    case 'title_walkout':
+        keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+        keywords.second_keyword = '"walk out"';
+        break;
 
-        case 'studio_strike':
-            keywords.keyword = quotedPhrases[0]; // Studio name
-            keywords.second_keyword = 'picketed';
-            break;
+    case 'studio_strike':
+        // This one is special - the full phrase is the search
+        keywords.keyword = strategy.query; // This will be "strike against MGM"
+        break;
 
-        case 'studio_labor':
-            keywords.keyword = quotedPhrases[0]; // Studio name
-            keywords.second_keyword = 'labor';
-            break;
+    case 'studio_labor':
+        keywords.keyword = quotedPhrases[0]; // Studio name
+        keywords.second_keyword = '"labor dispute"';
+        break;
+
+    case 'studio_boycott':
+        keywords.keyword = quotedPhrases[0]; // Studio name
+        keywords.second_keyword = 'boycott';
+        break;
+
+    case 'studio_strike_2':
+        keywords.keyword = quotedPhrases[0]; // Studio name
+        keywords.second_keyword = '"strike action"';
+        break;
+
 
         case 'studio_production':
             keywords.keyword = quotedPhrases[0]; // Studio name  

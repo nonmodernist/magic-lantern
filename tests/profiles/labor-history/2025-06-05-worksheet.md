@@ -1,5 +1,7 @@
 # Magic Lantern Profile Testing Worksheet
 
+> 
+
 ## Profile Information
 
 - **Profile Name:** Labor History
@@ -68,28 +70,9 @@ What kinds of content is this profile finding?
 - [ ] Labor/strikes (___ count) - Quality: High/Med/Low
 
 
-**Does this match profile intent?** [ ] Yes [ ] No [ ] Partially
+**Does this match profile intent?** [ ] Yes [ ] No [x] Partially
 
 ## 4. Date Range Effectiveness
-
-WoZ - 57 results
-1939: 25
-1938: 13
-1936-37: 6?
-1940: 1?
-
-Gulliver - 53
-1939: 18
-1938: 9
-
-Duel - 60
-1946: 16
-
-Butterfield 8 - 55
-1960 - 17
-
-The Mountain Rat - 55
-1914 - 14
 
 ### Results Distribution by Year Offset
 
@@ -169,13 +152,16 @@ NONE!
 
 ### Films with overwhelming results (>100)
 
-- _________________ (___results) **Needs refinement?** Y/N
-- _________________ (___results) **Needs refinement?** Y/N
+- Gullivers Travels (5000+ results) **Needs refinement?** N
+ - "Paramount" + labor got 5000 results
+- The Mountain Rat (2500+ results) **Needs refinement?** N
+ - Biograph + production got 2500 results 
+
+these were fallback searches that ran because initial searches had few results - that's ML working as expected
 
 ### Search strategies that seem broken
 
 - work stoppage **Problem:** only hits for 1960 - wrong language? BUT it found the most direct and best mention of a film & a strike together.
-- 
 
 ## 7. Improvement Hypotheses
 
@@ -183,53 +169,49 @@ Based on this test, what changes might improve the profile?
 
 ### Weight Adjustments Needed
 
-- [ ] Increase ______________ from ___ to ___ (because: ___________)
-- [ ] Decrease ______________ from ___ to ___ (because: ___________)
-- [ ] Add new publication: ______________ weight: ___
-- [ ] Remove publication: ______________ (never found)
+```javascript
+publications: {
+    weights: {
+        // Add these high-performing publications
+        "the exhibitor": 1.4,
+        "motion picture daily": 1.3,
+        "moving picture world": 1.2,
+        "wids": 1.2,
+        
+        // Keep existing but maybe adjust
+        "variety": 1.5,  // Consider if this is actually in the corpus
+        "motion picture herald": 1.3,  // Boost from 1.1
+    }
+}
+```
 
 ### Strategy Adjustments
 
-- [ ] Disable strategy: ______________ (0% success rate)
-- [ ] Boost strategy: ______________ to weight: ___
-- [ ] Reduce strategy: ______________ to weight: ___
-- [ ] Add custom strategy for: ______________
+- [x] Add several more custom strategies & edit existing to be more specific
 
 ### Date Range Adjustments:
-- [ ] Widen to -___ / +___ years
-- [ ] Narrow to -___ / +___ years
-- [ ] Different ranges by confidence level
-- [ ] Special handling for certain years: ______________
-
-### Missing Coverage:
-- [ ] Profile misses this type of content: ______________
-- [ ] Profile misses this publication: ______________
-- [ ] Profile misses this time period: ______________
-- [ ] Profile needs this search pattern: ______________
+leave alone for now
 
 ## 8. Comparative Analysis
 
 If testing multiple profiles:
 
-**Compared to** _____________ **profile:**
-- More results? [ ] Yes [ ] No - By how much: ___%
-- Better treasures? [ ] Yes [ ] No
-- More relevant? [ ] Yes [ ] No
-- Faster to complete? [ ] Yes [ ] No
-
-### Key differences:
-_____________________________________________________
-_____________________________________________________
-_____________________________________________________
+N/A
 
 ## 9. Action Items
 
 ### Changes to implement:
-1. ________________________________________________
-2. ________________________________________________
-3. ________________________________________________
-4. ________________________________________________
-5. ________________________________________________
+Keep studio_labor and studio_strike as top performers
+
+Consider adding variations like:
+- "wage increase"
+- "union contract"
+- "IATSE" (specific union name)
+- "labor dispute"
+
+The profile needs labor-specific content type detection patterns. Consider adding to the analyzer:
+- Patterns for "strike," "picket," "union," "wage," "labor"
+- Industry-specific union names (IATSE, SAG, etc.)
 
 ### Next test should include:
 - [ ] Different era films (years: _________)
@@ -246,12 +228,10 @@ _____________________________________________________
 _____________________________________________________
 
 ### Profile works best for:
-_____________________________________________________
-_____________________________________________________
+finding broad labor context for specific years, unions, and studios
 
 ### Profile struggles with:
-_____________________________________________________
-_____________________________________________________
+finding stories about specific labor actions on specific films
 
 ### Ideas for new profiles based on findings:
 _____________________________________________________
@@ -259,12 +239,12 @@ _____________________________________________________
 
 ### Overall assessment: 
 - [ ] Ready to use 
-- [ ] Needs minor adjustments 
+- [x] Needs minor adjustments 
 - [ ] Needs major revision
 - [ ] Fundamentally broken - start over
 
 ---
 
-**Date completed:** _______________  
-**Time spent on analysis:** _______________  
+**Date completed:** 2025-06-05  
+**Time spent on analysis:** 4-5 hours  
 **Version of Magic Lantern used:** v5 dev

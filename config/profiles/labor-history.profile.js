@@ -3,15 +3,19 @@ const basePatterns = require("./base-patterns");
 // config/profiles/labor-history.profile.js
 module.exports = {
   name: "Film Industry Labor History",
-  description: "Strikes, unions, and working conditions during film production",
+  description: "Captures the labor environment and industrial relations during film production periods",
   
   publications: {
     weights: {
       // Trade papers with good labor coverage
       "variety": 1.5,                   // Covered strikes extensively
+      "the exhibitor": 1.4,
+      "motion picture daily": 1.3,
       "hollywood reporter": 1.3,        // Industry perspective
       "the film daily": 1.2,
-      "motion picture herald": 1.1,
+      "wids": 1.2,
+      "motion picture herald": 1.3,
+      "moving picture world": 1.2,
       
       // Technical/craft publications 
       "american cinematographer": 1.8,  // Craft perspective
@@ -53,13 +57,16 @@ searchStrategies: {
     // Profile-specific weights (0 = skip, higher = run first)
     weights: {
         // Labor-specific searches - RUN FIRST
-        "title_strike": 2.5,
+        "title_strike": 2.0, // this runs "title + picketed"
         "title_work_stoppage": 2.0,
         "title_picket_line": 2.0,
+        "title_walkout": 2.0,
         "studio_strike": 1.8,
-        "studio_labor": 1.6,
+        "studio_labor": 1.7,
+        "studio_boycott": 1.5,
+        "studio_strike_2": 1.5,
         
-        // Production searches - useful for labor context
+        // Production searches - useful for labor context?
         "title_production": 1.2,
         "studio_production": 1.1,
         
@@ -106,5 +113,5 @@ searchStrategies: {
   },
   
   // Custom note for researchers
-  notes: "Searches for labor activity during production period"
+notes: "This profile captures the broader labor context during a film's production period rather than film-specific labor incidents. For researching specific strikes on individual films, consider using targeted searches directly in Lantern. Best used for understanding the industrial relations climate that shaped production conditions."
 }
