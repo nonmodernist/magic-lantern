@@ -10,7 +10,7 @@ module.exports = {
       // Trade papers with good labor coverage
       "variety": 1.5,                   // Covered strikes extensively
       "hollywood reporter": 1.3,        // Industry perspective
-      "film daily": 1.2,
+      "the film daily": 1.2,
       "motion picture herald": 1.1,
       
       // Technical/craft publications 
@@ -19,6 +19,7 @@ module.exports = {
       
       // Exhibitor papers (often pro-worker)
       "harrisons reports": 1.6,
+      "independent exhibitors film bulletin": 1.6,
       "showmens trade review": 1.4,
       "boxoffice": 1.3,
       
@@ -53,7 +54,8 @@ searchStrategies: {
     weights: {
         // Labor-specific searches - RUN FIRST
         "title_strike": 2.5,
-        "title_union": 2.0,
+        "title_work_stoppage": 2.0,
+        "title_picket_line": 2.0,
         "studio_strike": 1.8,
         "studio_labor": 1.6,
         
@@ -87,7 +89,7 @@ searchStrategies: {
     textPatterns: [
       // Labor actions
       "strike", "walkout", "picket line", "work stoppage",
-      "labor dispute", "union", "guild",
+      "labor dispute", "union", "guild", "picketing",
       
       // Organizations
       "IATSE", "Screen Actors Guild", "SAG",
@@ -104,5 +106,5 @@ searchStrategies: {
   },
   
   // Custom note for researchers
-  notes: "Searches for labor activity during production period, not literary origins"
+  notes: "Searches for labor activity during production period"
 }
