@@ -35,7 +35,20 @@ module.exports = {
   },
 
 
-
+    reports: {
+        generateMarkdown: true,      // Generate reports at all
+        createSubfolders: true,      // Put individual films in subfolder
+        includeComparative: true,    // Generate comparative analysis
+        includeSummary: true,        // Generate executive summary
+        
+        // Control what goes in reports
+        sections: {
+            treasures: true,
+            contentBreakdown: true,
+            researchNotes: true,
+            nextSteps: true          // Add from legacy version
+        }
+    }
 
 
 }

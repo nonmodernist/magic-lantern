@@ -447,7 +447,7 @@ node --version
 Try the minimal test:
 
 ```bash
-# Create test.csv with header row and known good film
+# Create test.csv with header row and known search term
 echo 'title,year\n"Variety",1940' > test.csv
 
 # Run with defaults

@@ -9,7 +9,9 @@ const path = require('path');
 const https = require('https');
 const config = require('./config');
 const SearchStrategyGenerator = require('./lib/search-strategy-generator');
-
+const ContentTypeEnhancer = require('./lib/content-type-enhancer');
+const strategyRegistry = require('./lib/strategy-registry');
+const MarkdownReportGenerator = require('./lib/markdown-report-generator');
 
 class UnifiedMagicLantern {
     constructor(configProfile = 'test', researchProfile = 'default') {
@@ -31,8 +33,16 @@ class UnifiedMagicLantern {
         
         this.allResults = [];
         this.seenIds = new Set();
+
+                // Initialize content enhancer
+        this.contentEnhancer = new ContentTypeEnhancer({
+            includeEvidence: true,
+            enhanceExcerpts: true,
+            minConfidence: 'low'
+        });
+    
         
-        // Content patterns for full text analysis
+        // Content patterns for text analysis
         this.contentPatterns = {
             review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
             production: /\b(production|producing|filming|started|completed|announced)\b/i,
@@ -42,6 +52,12 @@ class UnifiedMagicLantern {
             interview: /\b(interview|talks about|discusses)\b/i,
             listing: /\b(calendar|releases for|table|list)\b/i
         };
+
+            // Initialize report generator
+            this.reportGenerator = new MarkdownReportGenerator({
+                createSubfolders: true  // Can be configured
+            });
+        
     }
 
     // Calculate position-based score
@@ -122,6 +138,36 @@ class UnifiedMagicLantern {
             console.log(`   Position: ${s.position} (${s.positionScore}) × Publication: ${s.publicationWeight}`);
         });
     }
+
+    // Add this method to check if Lantern is available before starting
+
+    async checkLanternAvailability() {
+    console.log('\n🔍 Checking Lantern availability...');
+    
+    try {
+        const testUrl = `${this.baseUrl}/catalog.json?per_page=1`;
+        const timeout = new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Connection timeout')), 10000)
+        );
+        
+        await Promise.race([
+            this.makeRequest(testUrl),
+            timeout
+        ]);
+        
+        console.log('✅ Lantern is available!\n');
+        return true;
+    } catch (error) {
+        console.log('❌ Lantern appears to be down or unreachable');
+        console.log(`   Error: ${error.message}`);
+        console.log('\n💡 Suggestions:');
+        console.log('   1. Check if https://lantern.mediahist.org/ loads in your browser');
+        console.log('   2. Check https://mediahistoryproject.org/ for maintenance notices');
+        console.log('   3. Try again later - the site may be temporarily down');
+        console.log('   4. Check your internet connection\n');
+        return false;
+    }
+}
 
     async makeRequest(url) {
         return new Promise((resolve, reject) => {
@@ -213,7 +259,22 @@ class UnifiedMagicLantern {
     }
 
     parseStrategyKeywords(strategy, film) {
-        // [Keep existing implementation]
+        
+        // Use the registry to parse
+        const keywords = strategyRegistry.parseQuery(strategy.query, strategy.type);
+
+        // If registry couldn't parse, fall back to existing logic
+
+        if (Object.keys(keywords).length === 0) {
+            // Keep existing switch statement for backward compatibility
+            // This allows gradual migration
+            return this.legacyParseStrategyKeywords(strategy, film);
+        };
+        return keywords;
+    }
+    
+    // Rename previous method to legacy
+    legacyParseStrategyKeywords(strategy, film) {
         const keywords = {};
         const quotedPhrases = strategy.query.match(/"[^"]+"/g) || [];
         const remainingText = strategy.query.replace(/"[^"]+"/g, '').trim();
@@ -259,30 +320,50 @@ class UnifiedMagicLantern {
             keywords.second_keyword = quotedPhrases[1]; // Title
             break;
 
-            case 'title_strike':
-    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-    keywords.second_keyword = 'strike';
-    break;
+        case 'title_strike':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"picketed"';
+            break;
 
-case 'title_union':
-    keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-    keywords.second_keyword = 'union';
-    break;
+        case 'title_work_stoppage':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"work stoppage"';
+            break;
 
-case 'studio_strike':
-    keywords.keyword = quotedPhrases[0]; // Studio name
-    keywords.second_keyword = 'strike';
-    break;
+        case 'title_picket_line':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"picket line"';
+            break;
 
-case 'studio_labor':
-    keywords.keyword = quotedPhrases[0]; // Studio name
-    keywords.second_keyword = 'labor';
-    break;
+        case 'title_walkout':
+            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+            keywords.second_keyword = '"walk out"';
+            break;
 
-case 'studio_production':
-    keywords.keyword = quotedPhrases[0]; // Studio name  
-    keywords.second_keyword = 'production';
-    break;
+        case 'studio_strike':
+            // This one is special - the full phrase is the search
+            keywords.keyword = strategy.query; // This will be "strike against MGM"
+            break;
+
+        case 'studio_labor':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = '"labor dispute"';
+            break;
+
+        case 'studio_boycott':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = 'boycott';
+            break;
+
+        case 'studio_strike_2':
+            keywords.keyword = quotedPhrases[0]; // Studio name
+            keywords.second_keyword = '"strike action"';
+            break;
+
+        case 'studio_production':
+            keywords.keyword = quotedPhrases[0]; // Studio name  
+            keywords.second_keyword = 'production';
+            break;
             
         default:
             // For other cases, use up to 3 keywords/phrases
@@ -362,7 +443,7 @@ case 'studio_production':
 
 async comprehensiveSearch(film) {
     console.log(`\n${'='.repeat(70)}`);
-    console.log(`🎭 COMPREHENSIVE SEARCH: ${film.title || film.Title} (${film.year || film.Year})`);
+    console.log(`🎬 COMPREHENSIVE SEARCH: ${film.title || film.Title} (${film.year || film.Year})`);
     console.log(`${'='.repeat(70)}`);
     
     this.allResults = [];
@@ -376,7 +457,7 @@ async comprehensiveSearch(film) {
         strategies = strategies.slice(0, this.config.corpus.strategiesPerFilm);
     }
     
-    // NEW: Apply profile weights and sort by them
+    // Apply profile weights and sort by them
     if (this.strategyGenerator.strategyWeights) {
         strategies = strategies.map(s => ({
             ...s,
@@ -446,25 +527,71 @@ async comprehensiveSearch(film) {
             const fullPageData = await this.fetchFullPageText(result.id);
             
             if (fullPageData) {
-                fullPageData.contentTypes = this.identifyContentTypes(fullPageData.fullText);
-                fullPageData.hasPhoto = this.checkForPhoto(fullPageData.fullText);
-                fullPageData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
-                fullPageData.foundBy = result.foundBy;
-                fullPageData.searchQuery = result.searchQuery;
-                fullPageData.strategyConfidence = result.strategyConfidence;
-                fullPageData.finalScore = result.scoring.finalScore;
-                fullPageData.publication = result.scoring.publication;
+                // Debug logging
+                console.log(`   ✓ Fetched ${fullPageData.wordCount || 0} words`);
                 
-                fullTextResults.push(fullPageData);
+                // NEW CODE - Use the enhancer:
+                let enhancedData;
+                try {
+                    enhancedData = this.contentEnhancer.enhanceResult(fullPageData);
+                    console.log(`   ✓ Enhanced: ${enhancedData.contentAnalysis.primaryType} (${enhancedData.contentAnalysis.confidence})`);
+                } catch (enhanceError) {
+                    console.error(`   ❌ Enhancement failed for ${result.id}:`, enhanceError.message);
+                    // Fallback to basic data
+                    enhancedData = {
+                        ...fullPageData,
+                        contentAnalysis: {
+                            primaryType: 'unknown',
+                            confidence: 'low',
+                            allTypes: []
+                        },
+                        contentTypes: ['unknown'],
+                        contentScore: 0,
+                        isTreasure: false
+                    };
+                }
+                // Copy over the additional metadata
+                enhancedData.foundBy = result.foundBy;
+                enhancedData.searchQuery = result.searchQuery;
+                enhancedData.strategyConfidence = result.strategyConfidence;
+                enhancedData.finalScore = result.scoring.finalScore;
+                enhancedData.publication = result.scoring.publication;
+
+                // Keep the simple excerpt if no enhanced one
+                if (!enhancedData.enhancedExcerpt) {
+                    enhancedData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
+                }
+                
+                fullTextResults.push(enhancedData);  // Push the enhanced version
             }
-        }
+        }        
+        // Sort by content value
+        const sortedResults = this.contentEnhancer.sortByContentValue(fullTextResults);
+        
+        // Get statistics
+        const contentStats = this.contentEnhancer.getEnhancementStats(fullTextResults);
+        
+        console.log('\n📊 Content Analysis Summary:');
+        console.log(`   Treasures found: ${contentStats.treasures}`);
+        console.log(`   Average content score: ${contentStats.averageContentScore}`);
+        console.log(`   High confidence: ${contentStats.byConfidence.high}`);
+        console.log(`   Content types: ${Object.entries(contentStats.byType)
+            .map(([type, count]) => `${type} (${count})`)
+            .join(', ')}`);
         
         return {
             film: film,
             totalUniqueSources: this.allResults.length,
             allSearchResults: this.allResults,
-            fullTextAnalysis: fullTextResults
+            fullTextAnalysis: fullTextResults,
+            contentStats: contentStats
+
         };
+    }
+
+        // Optional: Add method to get just the treasures
+    getTreasures(results) {
+        return results.fullTextAnalysis.filter(r => r.isTreasure);
     }
 
     async loadFilms(filePath) {
@@ -489,10 +616,17 @@ async comprehensiveSearch(film) {
 
     async run(filePath, options = {}) {
         const profileName = options.profile || 'test';
-console.log(`✨ MAGIC LANTERN v5`);
-console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
-console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);        
-        try {
+        console.log(`✨ MAGIC LANTERN v5`);
+        console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+        console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);        
+    // Check if Lantern is available
+    const isAvailable = await this.checkLanternAvailability();
+    if (!isAvailable) {
+        console.log('⚠️  Cannot proceed without access to Lantern. Exiting.\n');
+        return;
+    }
+    
+    try {
             const films = await this.loadFilms(filePath);
             
             const outputDir = path.join(__dirname, 'results');
@@ -525,14 +659,15 @@ console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);
             // Save final results
             this.saveResults(allResults, outputDir, timestamp);
             
-console.log('\n🎉 Search complete!');
-console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
-console.log(`   Research Profile: ${this.config.profileInfo.research}`);
-console.log(`   Films processed: ${allResults.length}`);
-        } catch (error) {
-            console.error('❌ Error:', error.message);
-            console.error(error.stack);
-        }
+            console.log('\n🎉 Search complete!');
+            console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+            console.log(`   Research Profile: ${this.config.profileInfo.research}`);
+            console.log(`   Films processed: ${allResults.length}`);
+    
+    } catch (error) {
+                    console.error('❌ Error:', error.message);
+                    console.error(error.stack);
+                }
     }
 
     saveResults(results, outputDir, timestamp) {
@@ -562,8 +697,57 @@ console.log(`   Films processed: ${allResults.length}`);
             JSON.stringify(fullTextData, null, 2)
         );
         
-        console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
+                // Also save a "treasures" file with just the high-value finds
+        const treasuresData = results.map(r => ({
+            film: r.film,
+            treasures: this.getTreasures(r),
+            treasureCount: this.getTreasures(r).length,
+            contentStats: r.contentStats
+        }));
+        
+        fs.writeFileSync(
+            path.join(outputDir, `treasures_${timestamp}.json`),
+            JSON.stringify(treasuresData, null, 2)
+        );
+    
+    console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
+
+           // NEW: Generate markdown reports
+    if (this.config.reports?.generateMarkdown !== false) {
+        console.log('\n📝 Generating markdown reports...');
+        
+        try {
+            const reports = this.reportGenerator.generateReports(
+                results, 
+                this.config.profileInfo
+            );
+            
+            const savedFiles = this.reportGenerator.saveReports(
+                reports, 
+                outputDir,  // Same directory as JSON files
+                timestamp
+            );
+            
+            console.log(`✅ Generated ${savedFiles.length} markdown report files`);
+            
+            // List the main report files
+            if (reports.combined) {
+                console.log(`   📄 combined-report_${timestamp}.md`);
+            }
+            if (reports.comparative && results.length > 1) {
+                console.log(`   📄 comparative-analysis_${timestamp}.md`);
+            }
+            if (reports.summary) {
+                console.log(`   📄 executive-summary_${timestamp}.md`);
+            }
+            
+        } catch (error) {
+            console.error('❌ Error generating markdown reports:', error.message);
+            // Don't fail the whole process if reports fail
+        }
     }
+}
+    
 
     summarizeStrategies(results) {
         const summary = {};
@@ -574,26 +758,169 @@ console.log(`   Films processed: ${allResults.length}`);
     }
 }
 
+// Helper function to find most recent result files
+function findMostRecentResults(resultsDir = 'results') {
+    try {
+        const files = fs.readdirSync(resultsDir);
+        
+        // Find all comprehensive result files
+        const resultFiles = files.filter(f => 
+            f.startsWith('comprehensive-search-results_') && f.endsWith('.json')
+        );
+        
+        if (resultFiles.length === 0) {
+            console.error('❌ No result files found in results directory');
+            return null;
+        }
+        
+        // Sort by timestamp (most recent first)
+        resultFiles.sort((a, b) => b.localeCompare(a));
+        
+        // Extract timestamp from most recent
+        const mostRecent = resultFiles[0];
+        const timestamp = mostRecent.match(/_(\d{8}_\d{6})\.json$/)[1];
+        
+        return {
+            comprehensive: path.join(resultsDir, mostRecent),
+            fullText: path.join(resultsDir, `full-text-results_${timestamp}.json`),
+            timestamp: timestamp
+        };
+    } catch (error) {
+        console.error('❌ Error finding result files:', error.message);
+        return null;
+    }
+}
+
+// Function to regenerate reports from existing data
+async function regenerateReports(options = {}) {
+    console.log('📋 Regenerating reports from existing data...\n');
+    
+    const resultsDir = options.resultsDir || 'results';
+    const files = options.files || findMostRecentResults(resultsDir);
+    
+    if (!files) {
+        process.exit(1);
+    }
+    
+    console.log(`📂 Using results from: ${files.timestamp}`);
+    
+    try {
+        // Check which files actually exist
+        const hasComprehensive = fs.existsSync(files.comprehensive);
+        const hasFullText = fs.existsSync(files.fullText);
+        
+        if (!hasComprehensive) {
+            console.error('❌ Comprehensive results file not found');
+            process.exit(1);
+        }
+        // Load the comprehensive data (always required)
+        const comprehensiveData = JSON.parse(
+            fs.readFileSync(files.comprehensive, 'utf8')
+        );
+        // Load full text data if it exists
+        let fullTextData = null;
+        if (hasFullText) {
+            fullTextData = JSON.parse(
+                fs.readFileSync(files.fullText, 'utf8')
+            );
+            console.log('✅ Found full-text results');
+        } else {
+            console.log('⚠️  No full-text results found - generating basic reports only');
+        }
+        
+// Reconstruct the results format expected by report generator
+        const results = comprehensiveData.map((compResult, index) => {
+            const fullTextResult = fullTextData ? fullTextData[index] : null;
+            
+            return {
+                film: compResult.film,
+                totalUniqueSources: compResult.totalUniqueSources,
+                allSearchResults: compResult.sources,
+                fullTextAnalysis: fullTextResult?.treasures || [],
+                contentStats: fullTextResult?.contentStats || {
+                    total: 0,
+                    byType: {},
+                    byConfidence: { high: 0, medium: 0, low: 0 },
+                    treasures: 0,
+                    averageContentScore: 0
+                }
+            };
+        });
+        
+        // Load config to get profile info
+        const configProfile = options.corpus || 'test';
+        const researchProfile = options.profile || 'default';
+        const config = require('./config').load(configProfile, researchProfile);
+
+        // Import the report generator
+        const MarkdownReportGenerator = require('./lib/markdown-report-generator');
+        
+        
+        // Create report generator
+        const reportGenerator = new MarkdownReportGenerator({
+            createSubfolders: true
+        });
+        
+        // Generate reports
+        console.log('📝 Generating markdown reports...');
+        const reports = await reportGenerator.generateReports(
+            results,
+            config.profileInfo
+        );
+        
+        // Save reports with original timestamp
+        const savedFiles = await reportGenerator.saveReports(
+            reports,
+            resultsDir,
+            files.timestamp
+        );
+        
+        console.log(`\n✅ Successfully generated ${savedFiles.length} report files`);
+        console.log(`📁 Reports saved to: ${resultsDir}/`);
+
+            if (!hasFullText) {
+            console.log('\n⚠️  Note: Reports were generated without full-text analysis data.');
+            console.log('   To get complete reports, run a new search with full-text fetching enabled.');
+        }
+        
+    } catch (error) {
+        console.error('❌ Error generating reports:', error.message);
+        console.error(error.stack);
+        process.exit(1);
+    }
+}
+
+
 // Run it!
 if (require.main === module) {
     const args = process.argv.slice(2);
     
     // Parse arguments
-    const filePath = args.find(arg => !arg.startsWith('--')) || 'films.csv';
+    const filePath = args.find(arg => !arg.startsWith('--')) || 'data/films.csv';
     const corpusProfile = args.find(arg => arg.startsWith('--corpus='))?.split('=')[1] || 'test';
     const researchProfile = args.find(arg => arg.startsWith('--profile='))?.split('=')[1] || 'default';
+    
+    // Parse report options
+    const noReports = args.includes('--no-reports');
+    const reportsOnly = args.includes('--reports-only');
     
     // Check for help
     if (args.includes('--help') || args.includes('-h')) {
         console.log('\n✨ MAGIC LANTERN v5 - Research Toolkit');
-        console.log('\nUsage: node magic-lantern-v5.js [films.csv] [options]');
+        console.log('\nUsage: node magic-lantern-v5.js [data/films.csv] [options]');
         console.log('\nOptions:');
         console.log('  --corpus=PROFILE     Corpus size profile: test, single, medium, full');
         console.log('  --profile=PROFILE    Research profile name');
         console.log('  --list-profiles      List available research profiles');
+        console.log('  --no-reports         Skip markdown report generation');
+        console.log('  --reports-only       Generate reports from existing JSON results');
+        console.log('  --timestamp=TIME     Specific timestamp to use with --reports-only');
+        console.log('  --results-dir=DIR    Directory containing results (default: results)');
         console.log('\nExamples:');
         console.log('  node magic-lantern-v5.js films.csv --profile=adaptation-studies');
         console.log('  node magic-lantern-v5.js --corpus=medium --profile=early-cinema');
+        console.log('  node magic-lantern-v5.js --reports-only  # Use most recent results');
+        console.log('  node magic-lantern-v5.js --reports-only --timestamp=20241220_143022');
         process.exit(0);
     }
     
@@ -607,6 +934,45 @@ if (require.main === module) {
         });
         process.exit(0);
     }
+
+        // Handle reports-only mode
+    if (reportsOnly) {
+        // Load most recent JSON files and generate reports
+        // Implementation for regenerating reports from existing data
+
+        // Extract any additional options
+        const options = {
+            corpus: args.find(arg => arg.startsWith('--corpus='))?.split('=')[1],
+            profile: args.find(arg => arg.startsWith('--profile='))?.split('=')[1],
+            resultsDir: args.find(arg => arg.startsWith('--results-dir='))?.split('=')[1],
+            timestamp: args.find(arg => arg.startsWith('--timestamp='))?.split('=')[1]
+        };
+        
+        // If specific timestamp provided, use it
+        if (options.timestamp) {
+            options.files = {
+                comprehensive: path.join(
+                    options.resultsDir || 'results',
+                    `comprehensive-search-results_${options.timestamp}.json`
+                ),
+                fullText: path.join(
+                    options.resultsDir || 'results', 
+                    `full-text-results_${options.timestamp}.json`
+                ),
+                timestamp: options.timestamp
+            };
+        }
+        
+        regenerateReports(options).then(() => {
+            console.log('\n✨ Report generation complete!');
+        }).catch(error => {
+            console.error('Failed:', error);
+            process.exit(1);
+        });
+        
+        return; // Don't run normal search flow
+    }
+    
     
     if (!fs.existsSync(filePath)) {
         console.error(`❌ File not found: ${filePath}`);

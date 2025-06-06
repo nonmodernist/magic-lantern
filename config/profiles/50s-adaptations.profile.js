@@ -37,5 +37,22 @@ module.exports = {
     }
   },
   dateRange: { before: 2, after: 2 },
+
+
+    reports: {
+        generateMarkdown: true,      // Generate reports at all
+        createSubfolders: true,      // Put individual films in subfolder
+        includeComparative: true,    // Generate comparative analysis
+        includeSummary: true,        // Generate executive summary
+        
+        // Control what goes in reports
+        sections: {
+            treasures: true,
+            contentBreakdown: true,
+            researchNotes: true,
+            nextSteps: true          // Add from legacy version
+        }
+    },
+    
   notes: "Fewer publications but remakes common"
 }

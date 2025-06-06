@@ -1,0 +1,533 @@
+node magic-lantern-v5.js data/test-films-labor.csv --corpus=medium --profile=labor-history
+✨ MAGIC LANTERN v5.0.0
+✅ Loaded profile: 50s-adaptations
+✅ Loaded profile: adaptation-studies
+✅ Loaded profile: default
+✅ Loaded profile: early-adaptations
+✅ Loaded profile: early-cinema
+✅ Loaded profile: labor-history
+✅ Loaded profile: regional-reception
+✅ Loaded profile: studio-era-adaptations
+
+📚 Research Profile: Film Industry Labor History
+   Strikes, unions, and working conditions during film production
+📊 Corpus Profile: medium
+
+✨ MAGIC LANTERN v5
+   Corpus: medium
+   Research Profile: labor-history
+
+
+🔍 Checking Lantern availability...
+✅ Lantern is available!
+
+🎬 Loading films from: data/test-films-labor.csv
+✨ Found 5 films to research!
+
+🎬 Processing 5 films...
+
+
+📊 Progress: 1/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: The Wizard of Oz (1939)
+======================================================================
+
+🎯 Generating search strategies for: The Wizard of Oz
+✨ Generated 12 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + picketing
+   2. [2] title_work_stoppage - Film title + work stoppage
+   3. [2] title_picket_line - Film title + picket line
+   4. [1.8] studio_strike - Studio + strike
+   5. [1.6] studio_labor - Studio + labor
+   6. [1.2] title_production - Title + production + filming (3 keywords)
+   7. [1.1] studio_production - Studio production news
+   8. [1] studio_title - Studio + title (stacked keywords)
+   9. [1] studio_abbr - Studio abbreviation + title
+   10. [1] title_box_office - Title + box office (stacked)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + picketing
+   Weight: 2.5 | Type: title_strike
+   Keywords: "The Wizard of Oz" + picketed
+   ✅ Found 4 results!
+
+🔍 [HIGH] Film title + work stoppage
+   Weight: 2 | Type: title_work_stoppage
+   Keywords: "The Wizard of Oz" + "work stoppage"
+   ○ No results
+
+🔍 [MEDIUM] Film title + picket line
+   Weight: 2 | Type: title_picket_line
+   Keywords: "The Wizard of Oz" + "picket line"
+   ✅ Found 3 results!
+
+🔍 [MEDIUM] Studio + strike
+   Weight: 1.8 | Type: studio_strike
+   Keywords: "Metro-Goldwyn-Mayer" + picketed
+   ✅ Found 10 results!
+
+🔍 [MEDIUM] Studio + labor
+   Weight: 1.6 | Type: studio_labor
+   Keywords: "Metro-Goldwyn-Mayer" + labor
+   ✅ Found 367 results!
+
+🔍 [MEDIUM] Title + production + filming (3 keywords)
+   Weight: 1.2 | Type: title_production
+   Keywords: "The Wizard of Oz" + production + filming
+   ✅ Found 25 results!
+   ⚡ Reached maximum results limit (50)
+
+📊 Scoring and ranking results...
+
+🏆 Top 5 scored results:
+1. [Score: 123.5] boxoffice
+   Position: 2 (95) × Publication: 1.3
+2. [Score: 117.0] boxoffice
+   Position: 3 (90) × Publication: 1.3
+3. [Score: 104.0] independent exhibitors film bulletin
+   Position: 8 (65) × Publication: 1.6
+4. [Score: 102.0] the film daily
+   Position: 4 (85) × Publication: 1.2
+5. [Score: 100.0] motion picture daily
+   Position: 1 (100) × Publication: 1
+
+📚 Fetching full text for top 5 results...
+   📄 Fetching full text for: boxofficejulsep135unse_1212
+   ✓ Fetched 1243 words
+   ✓ Enhanced: continuation (medium)
+   📄 Fetching full text for: boxofficeoctdec13536unse_0534
+   ✓ Fetched 1371 words
+   ✓ Enhanced: advertisement (low)
+   📄 Fetching full text for: indepe34film_0145
+   ✓ Fetched 834 words
+   ✓ Enhanced: interview (low)
+   📄 Fetching full text for: filmdaily76wids_0323
+   ✓ Fetched 1365 words
+   ✓ Enhanced: continuation (medium)
+   📄 Fetching full text for: motionpicturedai46unse_0347
+   ✓ Fetched 1323 words
+   ✓ Enhanced: industry_news (low)
+Result missing contentAnalysis: boxofficejulsep135unse_1212
+Result missing contentAnalysis: boxofficeoctdec13536unse_0534
+Result missing contentAnalysis: indepe34film_0145
+Result missing contentAnalysis: filmdaily76wids_0323
+Result missing contentAnalysis: motionpicturedai46unse_0347
+
+📊 Content Analysis Summary:
+   Treasures found: 0
+   Average content score: 0
+   High confidence: 0
+   Content types: 
+
+📊 Progress: 2/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: Duel in the Sun (1946)
+======================================================================
+
+🎯 Generating search strategies for: Duel in the Sun
+✨ Generated 10 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + picketing
+   2. [2] title_work_stoppage - Film title + work stoppage
+   3. [2] title_picket_line - Film title + picket line
+   4. [1.8] studio_strike - Studio + strike
+   5. [1.6] studio_labor - Studio + labor
+   6. [1.2] title_production - Title + production + filming (3 keywords)
+   7. [1.1] studio_production - Studio production news
+   8. [1] studio_title - Studio + title (stacked keywords)
+   9. [1] title_box_office - Title + box office (stacked)
+   10. [1] title_exhibitor - Title + exhibitor (stacked)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + picketing
+   Weight: 2.5 | Type: title_strike
+   Keywords: "Duel in the Sun" + picketed
+   ✅ Found 4 results!
+
+🔍 [HIGH] Film title + work stoppage
+   Weight: 2 | Type: title_work_stoppage
+   Keywords: "Duel in the Sun" + "work stoppage"
+   ○ No results
+
+🔍 [MEDIUM] Film title + picket line
+   Weight: 2 | Type: title_picket_line
+   Keywords: "Duel in the Sun" + "picket line"
+   ✅ Found 10 results!
+
+🔍 [MEDIUM] Studio + strike
+   Weight: 1.8 | Type: studio_strike
+   Keywords: "Vanguard Films" + picketed
+   ✅ Found 6 results!
+
+🔍 [MEDIUM] Studio + labor
+   Weight: 1.6 | Type: studio_labor
+   Keywords: "Vanguard Films" + labor
+   ✅ Found 148 results!
+
+🔍 [MEDIUM] Title + production + filming (3 keywords)
+   Weight: 1.2 | Type: title_production
+   Keywords: "Duel in the Sun" + production + filming
+   ✅ Found 92 results!
+   ⚡ Reached maximum results limit (50)
+
+📊 Scoring and ranking results...
+
+🏆 Top 5 scored results:
+1. [Score: 140.0] showmens trade review
+   Position: 1 (100) × Publication: 1.4
+2. [Score: 104.5] motion picture herald
+   Position: 2 (95) × Publication: 1.1
+3. [Score: 99.0] motion picture herald
+   Position: 3 (90) × Publication: 1.1
+4. [Score: 96.0] the film daily
+   Position: 5 (80) × Publication: 1.2
+5. [Score: 93.5] motion picture herald
+   Position: 4 (85) × Publication: 1.1
+
+📚 Fetching full text for top 5 results...
+   📄 Fetching full text for: showmenstraderev4546lewi_0010
+   ✓ Fetched 1127 words
+   ✓ Enhanced: interview (low)
+   📄 Fetching full text for: motionpictureher169unse_0167
+   ✓ Fetched 1500 words
+   ✓ Enhanced: interview (low)
+   📄 Fetching full text for: motionpictureher1681unse_0498
+   ✓ Fetched 1547 words
+   ✓ Enhanced: interview (low)
+   📄 Fetching full text for: filmdaily89wids_0660
+   ✓ Fetched 1458 words
+   ✓ Enhanced: continuation (medium)
+   📄 Fetching full text for: motionpictureher171unse_0736
+   ✓ Fetched 1756 words
+   ✓ Enhanced: review (medium)
+Result missing contentAnalysis: showmenstraderev4546lewi_0010
+Result missing contentAnalysis: motionpictureher169unse_0167
+Result missing contentAnalysis: motionpictureher1681unse_0498
+Result missing contentAnalysis: filmdaily89wids_0660
+Result missing contentAnalysis: motionpictureher171unse_0736
+
+📊 Content Analysis Summary:
+   Treasures found: 0
+   Average content score: 0
+   High confidence: 0
+   Content types: 
+
+📊 Progress: 3/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: Gulliver's Travels (1939)
+======================================================================
+
+🎯 Generating search strategies for: Gulliver's Travels
+✨ Generated 11 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + picketing
+   2. [2] title_work_stoppage - Film title + work stoppage
+   3. [2] title_picket_line - Film title + picket line
+   4. [1.8] studio_strike - Studio + strike
+   5. [1.6] studio_labor - Studio + labor
+   6. [1.2] title_production - Title + production + filming (3 keywords)
+   7. [1.1] studio_production - Studio production news
+   8. [1] studio_title - Studio + title (stacked keywords)
+   9. [1] title_box_office - Title + box office (stacked)
+   10. [1] title_exhibitor - Title + exhibitor (stacked)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + picketing
+   Weight: 2.5 | Type: title_strike
+   Keywords: "Gulliver's Travels" + picketed
+   ✅ Found 1 results!
+
+🔍 [HIGH] Film title + work stoppage
+   Weight: 2 | Type: title_work_stoppage
+   Keywords: "Gulliver's Travels" + "work stoppage"
+   ○ No results
+
+🔍 [MEDIUM] Film title + picket line
+   Weight: 2 | Type: title_picket_line
+   Keywords: "Gulliver's Travels" + "picket line"
+   ○ No results
+
+🔍 [MEDIUM] Studio + strike
+   Weight: 1.8 | Type: studio_strike
+   Keywords: "Paramount" + picketed
+   ✅ Found 206 results!
+
+🔍 [MEDIUM] Studio + labor
+   Weight: 1.6 | Type: studio_labor
+   Keywords: "Paramount" + labor
+   ✅ Found 4998 results!
+
+🔍 [MEDIUM] Title + production + filming (3 keywords)
+   Weight: 1.2 | Type: title_production
+   Keywords: "Gulliver's Travels" + production + filming
+   ✅ Found 13 results!
+   ⚡ Reached maximum results limit (50)
+
+📊 Scoring and ranking results...
+
+🏆 Top 5 scored results:
+1. [Score: 152.0] harrisons reports
+   Position: 2 (95) × Publication: 1.6
+2. [Score: 110.0] motion picture herald
+   Position: 1 (100) × Publication: 1.1
+3. [Score: 99.0] motion picture herald
+   Position: 3 (90) × Publication: 1.1
+4. [Score: 96.0] the film daily
+   Position: 5 (80) × Publication: 1.2
+5. [Score: 93.5] motion picture herald
+   Position: 4 (85) × Publication: 1.1
+
+📚 Fetching full text for top 5 results...
+   📄 Fetching full text for: harrisonsreports19harr_0135
+   ✓ Fetched 936 words
+   ✓ Enhanced: mention (0)
+   📄 Fetching full text for: motionpictureher137unse_0766
+   ✓ Fetched 1419 words
+   ✓ Enhanced: review (low)
+   📄 Fetching full text for: motionpictureher141unse_0170
+   ✓ Fetched 198 words
+   ✓ Enhanced: advertisement (low)
+   📄 Fetching full text for: filmdaily76wids_0431
+   ✓ Fetched 1518 words
+   ✓ Enhanced: continuation (high)
+   📄 Fetching full text for: motionpictureher128unse_0857
+   ✓ Fetched 1256 words
+   ✓ Enhanced: industry_news (low)
+Result missing contentAnalysis: harrisonsreports19harr_0135
+Result missing contentAnalysis: motionpictureher137unse_0766
+Result missing contentAnalysis: motionpictureher141unse_0170
+Result missing contentAnalysis: filmdaily76wids_0431
+Result missing contentAnalysis: motionpictureher128unse_0857
+
+📊 Content Analysis Summary:
+   Treasures found: 0
+   Average content score: 0
+   High confidence: 0
+   Content types: 
+
+📊 Progress: 4/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: Butterfield 8 (1960)
+======================================================================
+
+🎯 Generating search strategies for: Butterfield 8
+✨ Generated 11 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + picketing
+   2. [2] title_work_stoppage - Film title + work stoppage
+   3. [2] title_picket_line - Film title + picket line
+   4. [1.8] studio_strike - Studio + strike
+   5. [1.6] studio_labor - Studio + labor
+   6. [1.2] title_production - Title + production + filming (3 keywords)
+   7. [1.1] studio_production - Studio production news
+   8. [1] studio_title - Studio + title (stacked keywords)
+   9. [1] title_box_office - Title + box office (stacked)
+   10. [1] title_exhibitor - Title + exhibitor (stacked)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + picketing
+   Weight: 2.5 | Type: title_strike
+   Keywords: "Butterfield 8" + picketed
+   ○ No results
+
+🔍 [HIGH] Film title + work stoppage
+   Weight: 2 | Type: title_work_stoppage
+   Keywords: "Butterfield 8" + "work stoppage"
+   ✅ Found 1 results!
+
+🔍 [MEDIUM] Film title + picket line
+   Weight: 2 | Type: title_picket_line
+   Keywords: "Butterfield 8" + "picket line"
+   ○ No results
+
+🔍 [MEDIUM] Studio + strike
+   Weight: 1.8 | Type: studio_strike
+   Keywords: "MGM" + picketed
+   ✅ Found 15 results!
+
+🔍 [MEDIUM] Studio + labor
+   Weight: 1.6 | Type: studio_labor
+   Keywords: "MGM" + labor
+   ✅ Found 282 results!
+
+🔍 [MEDIUM] Title + production + filming (3 keywords)
+   Weight: 1.2 | Type: title_production
+   Keywords: "Butterfield 8" + production + filming
+   ✅ Found 19 results!
+   ⚡ Reached maximum results limit (50)
+
+📊 Scoring and ranking results...
+
+🏆 Top 5 scored results:
+1. [Score: 100.0] motion picture story magazine
+   Position: 1 (100) × Publication: 1
+2. [Score: 95.0] motion picture story magazine
+   Position: 2 (95) × Publication: 1
+3. [Score: 90.0] motion picture story magazine
+   Position: 3 (90) × Publication: 1
+4. [Score: 85.0] motion picture story magazine
+   Position: 4 (85) × Publication: 1
+5. [Score: 80.0] motion picture story magazine
+   Position: 5 (80) × Publication: 1
+
+📚 Fetching full text for top 5 results...
+   📄 Fetching full text for: motionpictureexh63jaye_0_0465
+   ✓ Fetched 1408 words
+   ✓ Enhanced: industry_news (medium)
+   📄 Fetching full text for: motionpictureexh65jaye_0_0084
+   ✓ Fetched 1584 words
+   ✓ Enhanced: interview (low)
+   📄 Fetching full text for: motionpictureexh66jaye_0406
+   ✓ Fetched 1202 words
+   ✓ Enhanced: interview (low)
+   📄 Fetching full text for: motionpictureexh65jaye_0456
+   ✓ Fetched 925 words
+   ✓ Enhanced: production (low)
+   📄 Fetching full text for: motionpictureexh57jaye_0_0151
+   ✓ Fetched 850 words
+   ✓ Enhanced: listing (low)
+Result missing contentAnalysis: motionpictureexh63jaye_0_0465
+Result missing contentAnalysis: motionpictureexh65jaye_0_0084
+Result missing contentAnalysis: motionpictureexh66jaye_0406
+Result missing contentAnalysis: motionpictureexh65jaye_0456
+Result missing contentAnalysis: motionpictureexh57jaye_0_0151
+
+📊 Content Analysis Summary:
+   Treasures found: 0
+   Average content score: 0
+   High confidence: 0
+   Content types: 
+
+📊 Progress: 5/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: The Mountain Rat (1914)
+======================================================================
+
+🎯 Generating search strategies for: The Mountain Rat
+✨ Generated 10 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + picketing
+   2. [2] title_work_stoppage - Film title + work stoppage
+   3. [2] title_picket_line - Film title + picket line
+   4. [1.8] studio_strike - Studio + strike
+   5. [1.6] studio_labor - Studio + labor
+   6. [1.2] title_production - Title + production + filming (3 keywords)
+   7. [1.1] studio_production - Studio production news
+   8. [1] studio_title - Studio + title (stacked keywords)
+   9. [1] title_box_office - Title + box office (stacked)
+   10. [1] title_exhibitor - Title + exhibitor (stacked)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + picketing
+   Weight: 2.5 | Type: title_strike
+   Keywords: "The Mountain Rat" + picketed
+   ○ No results
+
+🔍 [HIGH] Film title + work stoppage
+   Weight: 2 | Type: title_work_stoppage
+   Keywords: "The Mountain Rat" + "work stoppage"
+   ○ No results
+
+🔍 [MEDIUM] Film title + picket line
+   Weight: 2 | Type: title_picket_line
+   Keywords: "The Mountain Rat" + "picket line"
+   ○ No results
+
+🔍 [MEDIUM] Studio + strike
+   Weight: 1.8 | Type: studio_strike
+   Keywords: "Biograph" + picketed
+   ✅ Found 1 results!
+
+🔍 [MEDIUM] Studio + labor
+   Weight: 1.6 | Type: studio_labor
+   Keywords: "Biograph" + labor
+   ✅ Found 359 results!
+
+🔍 [MEDIUM] Title + production + filming (3 keywords)
+   Weight: 1.2 | Type: title_production
+   Keywords: "The Mountain Rat" + production + filming
+   ✅ Found 4 results!
+
+🔍 [LOW] Studio production news
+   Weight: 1.1 | Type: studio_production
+   Keywords: "Biograph" + production
+   ✅ Found 2482 results!
+
+🔍 [HIGH] Studio + title (stacked keywords)
+   Weight: 1 | Type: studio_title
+   Keywords: "Biograph" + "The Mountain Rat"
+   ✅ Found 10 results!
+   ⚡ Reached maximum results limit (50)
+
+📊 Scoring and ranking results...
+
+🏆 Top 5 scored results:
+1. [Score: 133.0] motography
+   Position: 2 (95) × Publication: 1.4
+2. [Score: 100.0] moving picture world
+   Position: 1 (100) × Publication: 1
+3. [Score: 90.0] pictures and the picturegoer
+   Position: 3 (90) × Publication: 1
+4. [Score: 85.0] pictures and the picturegoer
+   Position: 4 (85) × Publication: 1
+5. [Score: 80.0] pictures and the picturegoer
+   Position: 5 (80) × Publication: 1
+
+📚 Fetching full text for top 5 results...
+   📄 Fetching full text for: motography10elec_0138
+   ✓ Fetched 481 words
+   ✓ Enhanced: review (low)
+   📄 Fetching full text for: moviwor29chal_0009
+   ✓ Fetched 1755 words
+   ✓ Enhanced: review (low)
+   📄 Fetching full text for: picturen09moti_0428
+   ✓ Fetched 109 words
+   ✓ Enhanced: mention (0)
+   📄 Fetching full text for: picturen09moti_0493
+   ✓ Fetched 121 words
+   ✓ Enhanced: mention (0)
+   📄 Fetching full text for: picturen09moti_0505
+   ✓ Fetched 147 words
+   ✓ Enhanced: mention (0)
+Result missing contentAnalysis: motography10elec_0138
+Result missing contentAnalysis: moviwor29chal_0009
+Result missing contentAnalysis: picturen09moti_0428
+Result missing contentAnalysis: picturen09moti_0493
+Result missing contentAnalysis: picturen09moti_0505
+
+📊 Content Analysis Summary:
+   Treasures found: 0
+   Average content score: 0
+   High confidence: 0
+   Content types: 
+
+💾 Saving intermediate results...
+
+💾 Results saved with timestamp: interim_20250605_085504
+
+✨ Also saved: treasures_interim_20250605_085504.json and summary_interim_20250605_085504.md
+
+💾 Results saved with timestamp: 20250605_085504
+
+✨ Also saved: treasures_20250605_085504.json and summary_20250605_085504.md
+
+🎉 Search complete!
+   Corpus: medium
+   Research Profile: labor-history
+   Films processed: 5
