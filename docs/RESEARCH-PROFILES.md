@@ -46,15 +46,11 @@ node magic-lantern-v5.js films.csv --profile=adaptation-studies
 
 ### Labor History Profile
 
-> **⚠️ Experimental Profile**
->
-> This research profile is experimental and may need further refinement. Contributions and feedback are welcome—see [issues](https://github.com/nonmodernist/magic-lantern/issues) to suggest improvements.
-
 Focuses on strikes, unions, and working conditions.
 
 **Best for:** Film industry labor research
 **Key features:**
-- Adds labor-specific searches (strike, union, wages)
+- Adds labor-specific searches (strike, work stoppage, labor dispute)
 - Boosts trade papers with good labor coverage (Variety: 1.5)
 - Downweights fan magazines (Photoplay: 0.5)
 - Wider date ranges to catch pre/post-production labor actions
@@ -222,7 +218,7 @@ Different profiles will find different results for the same film:
 - Discussions of adaptation choices
 
 **Labor-history profile highlights:**
-- Munchkin actor labor disputes
+- Exhibitor actions against MGM
 - Makeup artist union issues
 - Production delays from disputes
 
