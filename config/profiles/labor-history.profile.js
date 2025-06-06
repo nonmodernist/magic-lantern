@@ -111,6 +111,21 @@ searchStrategies: {
       "shut down", "suspended production"
     ]
   },
+
+    reports: {
+        generateMarkdown: true,      // Generate reports at all
+        createSubfolders: true,      // Put individual films in subfolder
+        includeComparative: true,    // Generate comparative analysis
+        includeSummary: true,        // Generate executive summary
+        
+        // Control what goes in reports
+        sections: {
+            treasures: true,
+            contentBreakdown: true,
+            researchNotes: true,
+            nextSteps: true          // Add from legacy version
+        }
+    },
   
   // Custom note for researchers
 notes: "This profile captures the broader labor context during a film's production and exhibition period rather than film-specific labor incidents. For researching specific strikes on individual films, consider using targeted searches directly in Lantern. Best used for understanding the industrial relations climate that shaped production conditions."

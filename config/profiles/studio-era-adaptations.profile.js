@@ -36,12 +36,28 @@ module.exports = {
       "studio_title": 1.3           // Prestige pictures
     }
   },
-  // ADD THIS - matches the structure the code expects
+
   dateRanges: {
     high: { before: 2, after: 1 },
     medium: { before: 2, after: 1 },
     low: { before: 3, after: 2 }  // Maybe slightly wider for low confidence
   },
+
+    reports: {
+        generateMarkdown: true,      // Generate reports at all
+        createSubfolders: true,      // Put individual films in subfolder
+        includeComparative: true,    // Generate comparative analysis
+        includeSummary: true,        // Generate executive summary
+        
+        // Control what goes in reports
+        sections: {
+            treasures: true,
+            contentBreakdown: true,
+            researchNotes: true,
+            nextSteps: true          // Add from legacy version
+        }
+    },
+
   contentPriorities: ["review", "advertisement", "production"],
   notes: "Peak of prestige adaptations - Gone with the Wind era"
 }
