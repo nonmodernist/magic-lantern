@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Lantern Review Interface</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+            display: flex;
+            height: 100vh;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: #2c3e50;
+            color: white;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        
+        .sidebar h2 {
+            padding: 20px;
+            margin: 0;
+            background: #34495e;
+            font-size: 18px;
+        }
+        
+        .film-nav {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        .film-nav li {
+            border-bottom: 1px solid #34495e;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .film-nav li:hover {
+            background: #34495e;
+        }
+        
+        .film-nav li.active {
+            background: #3498db;
+        }
+        
+        .film-nav-item {
+            padding: 15px 20px;
+            display: block;
+        }
+        
+        .film-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .film-stats {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .progress-mini {
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-mini-bar {
+            height: 100%;
+            background: #2ecc71;
+            transition: width 0.3s;
+        }
+        
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .filter-bar select, .filter-bar input {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .filter-bar label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Result Card */
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .result-info h3 {
+            margin: 0 0 5px 0;
+        }
+        
+        .result-meta {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .score {
+            background: #27ae60;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .excerpt {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        .tag-btn {
+            padding: 6px 12px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        
+        .tag-btn:hover {
+            border-color: #3498db;
+        }
+        
+        .tag-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        
+        .note-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .status-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-status {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        
+        .btn-status.reviewed {
+            background: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+        }
+        
+        .btn-status.important {
+            background: #f39c12;
+            color: white;
+            border-color: #f39c12;
+        }
+        
+        .btn-status.skipped {
+            background: #95a5a6;
+            color: white;
+            border-color: #95a5a6;
+        }
+        
+        /* Navigation */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-info {
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        /* Stats Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Films</h2>
+        <ul class="film-nav" id="filmNav"></ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h1>🔍 Magic Lantern Review Interface</h1>
+        
+        <!-- Load File Card -->
+        <div class="card" id="loadCard">
+            <h3>Load Results</h3>
+            <input type="file" id="fileInput" accept=".json">
+            <button class="btn btn-primary" onclick="loadSampleData()">Load Sample Data</button>
+        </div>
+
+        <!-- Filter Card -->
+        <div class="card" id="filterCard" style="display: none;">
+            <div class="filter-bar">
+                <select id="filterFilm">
+                    <option value="">All Films</option>
+                </select>
+                
+                <select id="filterStatus">
+                    <option value="">All Results</option>
+                    <option value="unreviewed">Unreviewed Only</option>
+                    <option value="reviewed">Reviewed Only</option>
+                    <option value="important">Important Only</option>
+                </select>
+                
+                <select id="filterPublication">
+                    <option value="">All Publications</option>
+                </select>
+                
+                <input type="text" id="searchBox" placeholder="Search text...">
+                
+                <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+                <button class="btn" onclick="resetFilters()">Reset</button>
+            </div>
+        </div>
+
+        <!-- Result Card -->
+        <div class="card" id="resultCard" style="display: none;">
+            <div class="result-header">
+                <div class="result-info">
+                    <h3 id="resultTitle">Loading...</h3>
+                    <div class="result-meta" id="resultMeta">Film • Publication • Date</div>
+                </div>
+                <div class="score" id="resultScore">0</div>
+            </div>
+            
+            <div class="excerpt" id="resultExcerpt">Loading...</div>
+            
+            <div class="actions">
+                <a id="lanternLink" class="btn btn-primary" href="#" target="_blank">
+                    👁️ View in Lantern
+                </a>
+                <a id="iaLink" class="btn btn-primary" href="#" target="_blank">
+                    📖 View in Internet Archive
+                </a>
+            </div>
+            
+            <div class="tags" id="tagButtons">
+                <button class="tag-btn" onclick="toggleTag('review')">Review</button>
+                <button class="tag-btn" onclick="toggleTag('production')">Production</button>
+                <button class="tag-btn" onclick="toggleTag('box_office')">Box Office</button>
+                <button class="tag-btn" onclick="toggleTag('advertisement')">Ad</button>
+                <button class="tag-btn" onclick="toggleTag('photo')">Has Photo</button>
+                <button class="tag-btn" onclick="toggleTag('labor')">Labor Mention</button>
+                <button class="tag-btn" onclick="toggleTag('controversy')">Controversy</button>
+            </div>
+            
+            <textarea class="note-input" id="noteInput" placeholder="Add notes about this result..."></textarea>
+            
+            <div class="status-buttons">
+                <button id="reviewedBtn" class="btn-status" onclick="toggleReviewed()">
+                    ✓ Mark Reviewed
+                </button>
+                <button id="importantBtn" class="btn-status" onclick="toggleImportant()">
+                    ⭐ Important
+                </button>
+                <button id="skipBtn" class="btn-status" onclick="toggleSkip()">
+                    🚫 Skip
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Card -->
+        <div class="card nav-controls" id="navCard" style="display: none;">
+            <button class="btn" onclick="previousResult()">← Previous</button>
+            <div class="nav-info">
+                <div id="navText">1 / 1</div>
+                <div style="font-size: 12px; font-weight: normal; margin-top: 5px;">
+                    Press Space or → for next
+                </div>
+            </div>
+            <button class="btn" onclick="nextResult()">Next →</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="card" id="actionCard" style="display: none;">
+            <button class="btn btn-primary" onclick="jumpToUnreviewed()">
+                ⏭️ Next Unreviewed
+            </button>
+            <button class="btn" onclick="showStats()">📊 Statistics</button>
+            <button class="btn" onclick="exportCitations()">📑 Export Citations</button>
+            <button class="btn" onclick="exportProgress()">💾 Export All Data</button>
+        </div>
+    </div>
+
+    <!-- Stats Modal -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeStats()">&times;</span>
+            <h2>Review Statistics</h2>
+            <div id="statsContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentData = null;
+        let filteredResults = [];
+        let currentIndex = 0;
+        let serverAvailable = false;
+
+        // Check if server is running
+        async function checkServer() {
+            try {
+                await fetch('http://localhost:3000/api/stats');
+                serverAvailable = true;
+                console.log('✅ Connected to SQLite server');
+            } catch (e) {
+                serverAvailable = false;
+                console.log('⚠️ Server not running, using localStorage');
+            }
+        }
+
+        // Initialize
+        checkServer();
+
+        // File loading
+        document.getElementById('fileInput').addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        currentData = JSON.parse(e.target.result);
+                        initializeInterface();
+                    } catch (err) {
+                        alert('Error loading JSON: ' + err.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        // Flatten results for easier navigation
+        function flattenResults() {
+            const flat = [];
+            currentData.forEach((filmData, filmIndex) => {
+                filmData.treasures.forEach((result, resultIndex) => {
+                    flat.push({
+                        filmIndex,
+                        resultIndex,
+                        film: filmData.film,
+                        result: result,
+                        totalInFilm: filmData.treasures.length,
+                        indexInFilm: resultIndex
+                    });
+                });
+            });
+            return flat;
+        }
+
+        // Initialize interface
+        async function initializeInterface() {
+            document.getElementById('loadCard').style.display = 'none';
+            document.getElementById('filterCard').style.display = 'block';
+            document.getElementById('resultCard').style.display = 'block';
+            document.getElementById('navCard').style.display = 'block';
+            document.getElementById('actionCard').style.display = 'block';
+            
+            // Build navigation sidebar
+            buildFilmNavigation();
+            
+            // Build filter options
+            buildFilterOptions();
+            
+            // Flatten and filter results
+            filteredResults = flattenResults();
+            
+            // Display first result
+            displayCurrentResult();
+        }
+
+        // Build film navigation sidebar
+        function buildFilmNavigation() {
+            const nav = document.getElementById('filmNav');
+            nav.innerHTML = '';
+            
+            currentData.forEach((filmData, index) => {
+                const li = document.createElement('li');
+                li.className = 'film-nav-item';
+                li.dataset.filmIndex = index;
+                
+                const reviewed = filmData.treasures.filter(r => 
+                    getReviewState(filmData.film, r).reviewed
+                ).length;
+                
+                const percentage = (reviewed / filmData.treasures.length) * 100;
+                
+                li.innerHTML = `
+                    <div class="film-title">${filmData.film.title} (${filmData.film.year})</div>
+                    <div class="film-stats">${reviewed}/${filmData.treasures.length} reviewed</div>
+                    <div class="progress-mini">
+                        <div class="progress-mini-bar" style="width: ${percentage}%"></div>
+                    </div>
+                `;
+                
+                li.addEventListener('click', () => jumpToFilm(index));
+                nav.appendChild(li);
+            });
+        }
+
+        // Jump to specific film
+        function jumpToFilm(filmIndex) {
+            const firstResultIndex = filteredResults.findIndex(r => r.filmIndex === filmIndex);
+            if (firstResultIndex >= 0) {
+                currentIndex = firstResultIndex;
+                displayCurrentResult();
+                updateActiveFilm();
+            }
+        }
+
+        // Update active film in sidebar
+        function updateActiveFilm() {
+            const current = filteredResults[currentIndex];
+            document.querySelectorAll('.film-nav li').forEach(li => {
+                li.classList.toggle('active', 
+                    parseInt(li.dataset.filmIndex) === current.filmIndex);
+            });
+        }
+
+        // Build filter options
+        function buildFilterOptions() {
+            // Film filter
+            const filmSelect = document.getElementById('filterFilm');
+            currentData.forEach(filmData => {
+                const option = document.createElement('option');
+                option.value = `${filmData.film.title}_${filmData.film.year}`;
+                option.textContent = `${filmData.film.title} (${filmData.film.year})`;
+                filmSelect.appendChild(option);
+            });
+            
+            // Publication filter
+            const pubs = new Set();
+            currentData.forEach(filmData => {
+                filmData.treasures.forEach(result => {
+                    if (result.publication) pubs.add(result.publication);
+                });
+            });
+            
+            const pubSelect = document.getElementById('filterPublication');
+            Array.from(pubs).sort().forEach(pub => {
+                const option = document.createElement('option');
+                option.value = pub;
+                option.textContent = pub;
+                pubSelect.appendChild(option);
+            });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const filmFilter = document.getElementById('filterFilm').value;
+            const statusFilter = document.getElementById('filterStatus').value;
+            const pubFilter = document.getElementById('filterPublication').value;
+            const searchText = document.getElementById('searchBox').value.toLowerCase();
+            
+            filteredResults = flattenResults().filter(item => {
+                // Film filter
+                if (filmFilter && `${item.film.title}_${item.film.year}` !== filmFilter) {
+                    return false;
+                }
+                
+                // Publication filter
+                if (pubFilter && item.result.publication !== pubFilter) {
+                    return false;
+                }
+                
+                // Status filter
+                const state = getReviewState(item.film, item.result);
+                if (statusFilter === 'unreviewed' && state.reviewed) return false;
+                if (statusFilter === 'reviewed' && !state.reviewed) return false;
+                if (statusFilter === 'important' && !state.important) return false;
+                
+                // Text search
+                if (searchText) {
+                    const text = (item.result.excerpt || '') + 
+                                (item.result.fullText || '');
+                    if (!text.toLowerCase().includes(searchText)) return false;
+                }
+                
+                return true;
+            });
+            
+            currentIndex = 0;
+            displayCurrentResult();
+        }
+
+        // Reset filters
+        function resetFilters() {
+            document.getElementById('filterFilm').value = '';
+            document.getElementById('filterStatus').value = '';
+            document.getElementById('filterPublication').value = '';
+            document.getElementById('searchBox').value = '';
+            applyFilters();
+        }
+
+        // Display current result
+        async function displayCurrentResult() {
+            if (filteredResults.length === 0) {
+                document.getElementById('resultCard').innerHTML = 
+                    '<div class="loading">No results match your filters</div>';
+                return;
+            }
+            
+            const current = filteredResults[currentIndex];
+            const { film, result } = current;
+            
+            // Update navigation
+            document.getElementById('navText').textContent = 
+                `${currentIndex + 1} / ${filteredResults.length} (Film ${current.indexInFilm + 1}/${current.totalInFilm})`;
+            
+            // Update film info
+            document.getElementById('resultTitle').textContent = 
+                `${result.publication || 'Unknown'} - ${result.date || 'Date unknown'}`;
+            document.getElementById('resultMeta').textContent = 
+                `${film.title} (${film.year})`;
+            document.getElementById('resultScore').textContent = 
+                result.finalScore ? result.finalScore.toFixed(1) : '0';
+            
+            // Update excerpt
+            const excerpt = result.excerpt || result.enhancedExcerpt || 
+                          (result.fullText ? result.fullText.substring(0, 300) + '...' : 'No text');
+            document.getElementById('resultExcerpt').textContent = excerpt;
+            
+            // Update links
+            const lanternUrl = `https://lantern.mediahist.org/catalog/${result.id}`;
+            document.getElementById('lanternLink').href = lanternUrl;
+            
+            if (result.readUrl) {
+                document.getElementById('iaLink').href = result.readUrl;
+                document.getElementById('iaLink').style.display = 'inline-block';
+            } else {
+                document.getElementById('iaLink').style.display = 'none';
+            }
+            
+            // Get and display state
+            const state = await getReviewState(film, result);
+            updateUIState(state);
+            
+            // Update active film in sidebar
+            updateActiveFilm();
+        }
+
+        // Get review state
+        async function getReviewState(film, result) {
+            const id = `${film.title}_${film.year}_${result.id}`;
+            
+            if (serverAvailable) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/review/${id}`);
+                    const data = await response.json();
+                    return {
+                        reviewed: data.reviewed === 1,
+                        important: data.important === 1,
+                        skipped: data.skipped === 1,
+                        note: data.note || '',
+                        tags: data.tags || []
+                    };
+                } catch (e) {
+                    console.error('Server error:', e);
+                }
+            }
+            
+            // Fallback to localStorage
+            const saved = localStorage.getItem('magicLanternReviews');
+            const reviews = saved ? JSON.parse(saved) : {};
+            return reviews[id] || {};
+        }
+
+        // Save review state
+        async function saveReviewState(film, result, state) {
+            const id = `${film.title}_${film.year}_${result.id}`;
+            
+            if (serverAvailable) {
+                try {
+                    await fetch('http://localhost:3000/api/review', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            filmTitle: film.title,
+                            filmYear: film.year,
+                            resultId: result.id,
+                            publication: result.publication,
+                            date: result.date,
+                            score: result.finalScore,
+                            state: state
+                        })
+                    });
+                    
+                    // Update sidebar
+                    buildFilmNavigation();
+                    return;
+                } catch (e) {
+                    console.error('Server error:', e);
+                }
+            }
+            
+            // Fallback to localStorage
+            const saved = localStorage.getItem('magicLanternReviews');
+            const reviews = saved ? JSON.parse(saved) : {};
+            reviews[id] = state;
+            localStorage.setItem('magicLanternReviews', JSON.stringify(reviews));
+        }
+
+        // Update UI state
+        function updateUIState(state) {
+            // Tags
+            document.querySelectorAll('.tag-btn').forEach(btn => {
+                const tag = btn.textContent.toLowerCase().replace(/ /g, '_');
+                btn.classList.toggle('active', state.tags && state.tags.includes(tag));
+            });
+            
+            // Status buttons
+            document.getElementById('reviewedBtn').classList.toggle('reviewed', state.reviewed);
+            document.getElementById('importantBtn').classList.toggle('important', state.important);
+            document.getElementById('skipBtn').classList.toggle('skipped', state.skipped);
+            
+            // Note
+            document.getElementById('noteInput').value = state.note || '';
+        }
+
+        // Toggle functions
+        async function toggleTag(tag) {
+            const current = filteredResults[currentIndex];
+            const state = await getReviewState(current.film, current.result);
+            
+            if (!state.tags) state.tags = [];
+            const index = state.tags.indexOf(tag);
+            if (index > -1) {
+                state.tags.splice(index, 1);
+            } else {
+                state.tags.push(tag);
+            }
+            
+            await saveReviewState(current.film, current.result, state);
+            updateUIState(state);
+        }
+
+        async function toggleReviewed() {
+            const current = filteredResults[currentIndex];
+            const state = await getReviewState(current.film, current.result);
+            state.reviewed = !state.reviewed;
+            await saveReviewState(current.film, current.result, state);
+            updateUIState(state);
+        }
+
+        async function toggleImportant() {
+            const current = filteredResults[currentIndex];
+            const state = await getReviewState(current.film, current.result);
+            state.important = !state.important;
+            await saveReviewState(current.film, current.result, state);
+            updateUIState(state);
+        }
+
+        async function toggleSkip() {
+            const current = filteredResults[currentIndex];
+            const state = await getReviewState(current.film, current.result);
+            state.skipped = !state.skipped;
+            state.reviewed = true; // Auto-mark as reviewed
+            await saveReviewState(current.film, current.result, state);
+            nextResult(); // Auto-advance
+        }
+
+        // Save note
+        document.getElementById('noteInput').addEventListener('blur', async function() {
+            const current = filteredResults[currentIndex];
+            const state = await getReviewState(current.film, current.result);
+            state.note = this.value;
+            await saveReviewState(current.film, current.result, state);
+        });
+
+        // Navigation
+        function nextResult() {
+            if (currentIndex < filteredResults.length - 1) {
+                currentIndex++;
+                displayCurrentResult();
+            }
+        }
+
+        function previousResult() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCurrentResult();
+            }
+        }
+
+        async function jumpToUnreviewed() {
+            for (let i = currentIndex + 1; i < filteredResults.length; i++) {
+                const item = filteredResults[i];
+                const state = await getReviewState(item.film, item.result);
+                if (!state.reviewed) {
+                    currentIndex = i;
+                    displayCurrentResult();
+                    return;
+                }
+            }
+            alert('No more unreviewed results!');
+        }
+
+        // Export citations
+        async function exportCitations() {
+            const citations = [];
+            
+            for (const item of filteredResults) {
+                const state = await getReviewState(item.film, item.result);
+                if (state.reviewed && !state.skipped) {
+                    const citation = {
+                        film: `${item.film.title} (${item.film.year})`,
+                        publication: item.result.publication,
+                        date: item.result.date,
+                        lanternUrl: `https://lantern.mediahist.org/catalog/${item.result.id}`,
+                        iaUrl: item.result.readUrl,
+                        tags: state.tags || [],
+                        note: state.note || '',
+                        important: state.important
+                    };
+                    citations.push(citation);
+                }
+            }
+            
+            // Format as simple text citations
+            const text = citations.map(c => 
+                `"${c.film}." ${c.publication}. ${c.date || 'n.d.'}. ` +
+                `${c.lanternUrl}${c.note ? '\n   Note: ' + c.note : ''}`
+            ).join('\n\n');
+            
+            // Download
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `citations-${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+        }
+
+        // Show statistics
+        async function showStats() {
+            let html = '';
+            
+            if (serverAvailable) {
+                const response = await fetch('http://localhost:3000/api/stats');
+                const stats = await response.json();
+                
+                html = `
+                    <h3>Overall Progress</h3>
+                    <p>Total Results: ${stats.overall.total || filteredResults.length}</p>
+                    <p>Reviewed: ${stats.overall.reviewed || 0}</p>
+                    <p>Important: ${stats.overall.important || 0}</p>
+                    <p>Skipped: ${stats.overall.skipped || 0}</p>
+                    
+                    <h3>By Film</h3>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="border-bottom: 2px solid #ddd;">
+                            <th style="text-align: left; padding: 8px;">Film</th>
+                            <th style="text-align: right; padding: 8px;">Progress</th>
+                        </tr>
+                `;
+                
+                if (stats.byFilm) {
+                    stats.byFilm.forEach(film => {
+                        const pct = ((film.reviewed / film.total) * 100).toFixed(1);
+                        html += `
+                            <tr style="border-bottom: 1px solid #eee;">
+                                <td style="padding: 8px;">${film.film_title} (${film.film_year})</td>
+                                <td style="text-align: right; padding: 8px;">
+                                    ${film.reviewed}/${film.total} (${pct}%)
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+                
+                html += '</table>';
+            } else {
+                // Basic stats from memory
+                const reviewed = filteredResults.filter(async (item) => {
+                    const state = await getReviewState(item.film, item.result);
+                    return state.reviewed;
+                }).length;
+                
+                html = `
+                    <p>Total Results: ${filteredResults.length}</p>
+                    <p>Current Session Progress: ${reviewed} reviewed</p>
+                    <p><em>Note: Connect to server for full statistics</em></p>
+                `;
+            }
+            
+            document.getElementById('statsContent').innerHTML = html;
+            document.getElementById('statsModal').style.display = 'block';
+        }
+
+        function closeStats() {
+            document.getElementById('statsModal').style.display = 'none';
+        }
+
+        // Export all progress
+        async function exportProgress() {
+            if (serverAvailable) {
+                const response = await fetch('http://localhost:3000/api/export');
+                const data = await response.json();
+                
+                const blob = new Blob([JSON.stringify(data, null, 2)], 
+                    { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `magic-lantern-export-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+            } else {
+                // Export from localStorage
+                const saved = localStorage.getItem('magicLanternReviews');
+                const blob = new Blob([saved || '{}'], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `magic-lantern-local-${new Date().toISOString().split('T')[0]}.json`;
+                a.click();
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextResult();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousResult();
+                    break;
+                case 'r':
+                    toggleReviewed();
+                    break;
+                case 'i':
+                    toggleImportant();
+                    break;
+                case 's':
+                    toggleSkip();
+                    break;
+                case 'u':
+                    jumpToUnreviewed();
+                    break;
+                case 'f':
+                    document.getElementById('searchBox').focus();
+                    e.preventDefault();
+                    break;
+            }
+        });
+
+        // Sample data for testing
+        function loadSampleData() {
+            currentData = [{
+                film: { title: "The Wizard of Oz", year: "1939" },
+                totalFound: 47,
+                treasures: [
+                    {
+                        id: "variety137-1940-01_0054",
+                        publication: "variety",
+                        date: "1940-01-03",
+                        finalScore: 95.5,
+                        excerpt: "THE WIZARD OF OZ (MUSICAL) Excellent fantasy...",
+                        readUrl: "http://archive.org/stream/variety137-1940-01#page/n53/"
+                    },
+                    {
+                        id: "photoplay-july1939",
+                        publication: "photoplay",
+                        date: "1939-07-15",
+                        finalScore: 82.3,
+                        excerpt: "Metro's magnificent fantasy brings the beloved book to life...",
+                        readUrl: "http://archive.org/stream/photoplay"
+                    }
+                ]
+            }];
+            initializeInterface();
+        }
+    </script>
+</body>
+</html>
