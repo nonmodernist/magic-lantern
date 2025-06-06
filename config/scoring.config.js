@@ -4,7 +4,6 @@ module.exports = {
   contentTypes: {
     scores: {
       review: 10,
-      productionPhoto: 9,
       boxOfficeData: 8,
       interview: 7,
       productionNews: 6,

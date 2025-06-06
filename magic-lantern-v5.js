@@ -48,7 +48,6 @@ class UnifiedMagicLantern {
             production: /\b(production|producing|filming|started|completed|announced)\b/i,
             boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
             advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
-            photo: /\b(photograph|photo|scene from|production still)\b/i,
             interview: /\b(interview|talks about|discusses)\b/i,
             listing: /\b(calendar|releases for|table|list)\b/i
         };
@@ -430,16 +429,6 @@ class UnifiedMagicLantern {
 
     // ! configurable
 
-    checkForPhoto(text) {
-        const photoIndicators = [
-            'scene from', 'production still', 'photograph',
-            'pictured above', 'shown here', 'exclusive photo',
-            'production cuts', 'mats'
-        ];
-        
-        const lowerText = text.toLowerCase();
-        return photoIndicators.some(indicator => lowerText.includes(indicator));
-    }
 
 async comprehensiveSearch(film) {
     console.log(`\n${'='.repeat(70)}`);
@@ -546,8 +535,7 @@ async comprehensiveSearch(film) {
                             allTypes: []
                         },
                         contentTypes: ['unknown'],
-                        contentScore: 0,
-                        isTreasure: false
+                        contentScore: 0
                     };
                 }
                 // Copy over the additional metadata
@@ -572,7 +560,6 @@ async comprehensiveSearch(film) {
         const contentStats = this.contentEnhancer.getEnhancementStats(fullTextResults);
         
         console.log('\n📊 Content Analysis Summary:');
-        console.log(`   Treasures found: ${contentStats.treasures}`);
         console.log(`   Average content score: ${contentStats.averageContentScore}`);
         console.log(`   High confidence: ${contentStats.byConfidence.high}`);
         console.log(`   Content types: ${Object.entries(contentStats.byType)
@@ -589,10 +576,6 @@ async comprehensiveSearch(film) {
         };
     }
 
-        // Optional: Add method to get just the treasures
-    getTreasures(results) {
-        return results.fullTextAnalysis.filter(r => r.isTreasure);
-    }
 
     async loadFilms(filePath) {
         console.log('🎬 Loading films from:', filePath);
@@ -697,18 +680,6 @@ async comprehensiveSearch(film) {
             JSON.stringify(fullTextData, null, 2)
         );
         
-                // Also save a "treasures" file with just the high-value finds
-        const treasuresData = results.map(r => ({
-            film: r.film,
-            treasures: this.getTreasures(r),
-            treasureCount: this.getTreasures(r).length,
-            contentStats: r.contentStats
-        }));
-        
-        fs.writeFileSync(
-            path.join(outputDir, `treasures_${timestamp}.json`),
-            JSON.stringify(treasuresData, null, 2)
-        );
     
     console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
 

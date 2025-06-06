@@ -43,7 +43,6 @@ module.exports = {
         
         // Control what goes in reports
         sections: {
-            treasures: true,
             contentBreakdown: true,
             researchNotes: true,
             nextSteps: true          // Add from legacy version

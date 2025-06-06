@@ -194,7 +194,6 @@ class ResultsReprocessor {
             byPrimaryType: {},
             byConfidence: { high: 0, medium: 0, low: 0, unknown: 0 },
             byTheme: {},
-            treasures: 0,
             averageContentScore: 0,
             scoreDistribution: { 'score_0-2': 0, 'score_2-5': 0, 'score_5-8': 0, 'score_8-10': 0 },
             entities: {
@@ -242,10 +241,6 @@ class ResultsReprocessor {
                 }
             }
             
-            // Treasures
-            if (result.isTreasure) {
-                analysis.treasures++;
-            }
             
             // Content score
             const score = result.contentScore || 0;
@@ -295,9 +290,6 @@ class ResultsReprocessor {
         console.log(`     Before: ${stats.before.averageContentScore}`);
         console.log(`     After:  ${stats.after.averageContentScore}`);
         
-        console.log(`\n   Treasures identified:`);
-        console.log(`     Before: ${stats.before.treasures}`);
-        console.log(`     After:  ${stats.after.treasures}`);
         
         // Content type distribution
         console.log('\n📚 Content Type Distribution (After):');
