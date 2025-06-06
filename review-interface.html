@@ -149,6 +149,119 @@
             line-height: 1.6;
             max-height: 200px;
             overflow-y: auto;
+            position: relative;
+        }
+        
+        .full-text-container {
+            display: none;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .full-text-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f4f8;
+            border-radius: 4px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .metadata-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        
+        .metadata-value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .expand-btn {
+            background: #e9ecef;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        
+        .expand-btn:hover {
+            background: #dee2e6;
+        }
+        
+        .scoring-details {
+            background: #e8f4e8;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+        
+        .scoring-details h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+        }
+        
+        .scoring-line {
+            margin: 4px 0;
+            font-family: monospace;
+        }
+        
+        .content-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-right: 5px;
+        }
+        
+        .content-badge.high {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .content-badge.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .content-badge.low {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .treasure-indicator {
+            background: #ffd700;
+            color: #333;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
         }
         
         .actions {
@@ -331,6 +444,7 @@
                     <option value="unreviewed">Unreviewed Only</option>
                     <option value="reviewed">Reviewed Only</option>
                     <option value="important">Important Only</option>
+                    <option value="treasures">Treasures Only</option>
                 </select>
                 
                 <select id="filterPublication">
@@ -355,6 +469,22 @@
             </div>
             
             <div class="excerpt" id="resultExcerpt">Loading...</div>
+            
+            <button class="expand-btn" onclick="toggleFullText()">
+                <span id="expandBtnText">📄 Show Full Text</span>
+            </button>
+            
+            <div class="full-text-container" id="fullTextContainer">
+                <pre id="fullTextContent"></pre>
+            </div>
+            
+            <div class="metadata-grid" id="metadataGrid">
+                <!-- Metadata will be populated here -->
+            </div>
+            
+            <div class="scoring-details" id="scoringDetails">
+                <!-- Scoring breakdown will be populated here -->
+            </div>
             
             <div class="actions">
                 <a id="lanternLink" class="btn btn-primary" href="#" target="_blank">
@@ -625,6 +755,7 @@
                 if (statusFilter === 'unreviewed' && state.reviewed) continue;
                 if (statusFilter === 'reviewed' && !state.reviewed) continue;
                 if (statusFilter === 'important' && !state.important) continue;
+                if (statusFilter === 'treasures' && !item.result.isTreasure) continue;
                 
                 // Text search
                 if (searchText) {
@@ -664,18 +795,33 @@
             document.getElementById('navText').textContent = 
                 `${currentIndex + 1} / ${filteredResults.length} (Film ${current.indexInFilm + 1}/${current.totalInFilm})`;
             
-            // Update film info
-            document.getElementById('resultTitle').textContent = 
-                `${result.publication || 'Unknown'} - ${result.date || 'Date unknown'}`;
+            // Update film info with treasure indicator
+            let titleHtml = `${result.publication || 'Unknown'} - ${result.date || 'Date unknown'}`;
+            if (result.isTreasure) {
+                titleHtml += '<span class="treasure-indicator">✨ TREASURE</span>';
+            }
+            document.getElementById('resultTitle').innerHTML = titleHtml;
+            
             document.getElementById('resultMeta').textContent = 
                 `${film.title} (${film.year})`;
             document.getElementById('resultScore').textContent = 
                 result.finalScore ? result.finalScore.toFixed(1) : '0';
             
             // Update excerpt
-            const excerpt = result.excerpt || result.enhancedExcerpt || 
+            const excerpt = result.enhancedExcerpt || result.excerpt || 
                           (result.fullText ? result.fullText.substring(0, 300) + '...' : 'No text');
             document.getElementById('resultExcerpt').textContent = excerpt;
+            
+            // Update full text (hidden by default)
+            document.getElementById('fullTextContent').textContent = result.fullText || 'No full text available';
+            document.getElementById('fullTextContainer').style.display = 'none';
+            document.getElementById('expandBtnText').textContent = '📄 Show Full Text';
+            
+            // Update metadata grid
+            updateMetadataGrid(result);
+            
+            // Update scoring details
+            updateScoringDetails(result);
             
             // Update links
             const lanternUrl = `https://lantern.mediahist.org/catalog/${result.id}`;
@@ -694,6 +840,139 @@
             
             // Update active film in sidebar
             updateActiveFilm();
+        }
+        
+        // Toggle full text display
+        function toggleFullText() {
+            const container = document.getElementById('fullTextContainer');
+            const btnText = document.getElementById('expandBtnText');
+            
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                btnText.textContent = '📄 Hide Full Text';
+            } else {
+                container.style.display = 'none';
+                btnText.textContent = '📄 Show Full Text';
+            }
+        }
+        
+        // Update metadata grid
+        function updateMetadataGrid(result) {
+            const grid = document.getElementById('metadataGrid');
+            let html = '';
+            
+            // Content Analysis
+            if (result.contentAnalysis) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Content Type</div>
+                        <div class="metadata-value">
+                            <span class="content-badge ${result.contentAnalysis.confidence}">
+                                ${result.contentAnalysis.primaryType} (${result.contentAnalysis.confidence})
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                if (result.contentAnalysis.allTypes && result.contentAnalysis.allTypes.length > 1) {
+                    html += `
+                        <div class="metadata-item">
+                            <div class="metadata-label">All Types Detected</div>
+                            <div class="metadata-value">
+                                ${result.contentAnalysis.allTypes.map(t => 
+                                    `<span class="content-badge ${t.confidence}">${t.type}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Search Strategy
+            html += `
+                <div class="metadata-item">
+                    <div class="metadata-label">Found By</div>
+                    <div class="metadata-value">${result.foundBy || 'Unknown'}</div>
+                </div>
+                
+                <div class="metadata-item">
+                    <div class="metadata-label">Search Query</div>
+                    <div class="metadata-value" style="font-family: monospace; font-size: 12px;">
+                        ${result.searchQuery || 'N/A'}
+                    </div>
+                </div>
+                
+                <div class="metadata-item">
+                    <div class="metadata-label">Strategy Confidence</div>
+                    <div class="metadata-value">${result.strategyConfidence || 'N/A'}</div>
+                </div>
+            `;
+            
+            // Word Count
+            if (result.wordCount) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Word Count</div>
+                        <div class="metadata-value">${result.wordCount.toLocaleString()}</div>
+                    </div>
+                `;
+            }
+            
+            // Collections
+            if (result.collection && result.collection.length > 0) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Collections</div>
+                        <div class="metadata-value">${result.collection.join(', ')}</div>
+                    </div>
+                `;
+            }
+            
+            // Content Score
+            if (result.contentScore !== undefined) {
+                html += `
+                    <div class="metadata-item">
+                        <div class="metadata-label">Content Score</div>
+                        <div class="metadata-value">${result.contentScore}</div>
+                    </div>
+                `;
+            }
+            
+            grid.innerHTML = html;
+        }
+        
+        // Update scoring details
+        function updateScoringDetails(result) {
+            const container = document.getElementById('scoringDetails');
+            
+            if (!result.scoring) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'block';
+            
+            let html = '<h4>📊 Scoring Breakdown</h4>';
+            
+            // Position scoring
+            html += `<div class="scoring-line">Position #${result.scoring.position} → ${result.scoring.positionScore} points</div>`;
+            
+            // Publication weight
+            html += `<div class="scoring-line">Publication: ${result.scoring.publication} × ${result.scoring.publicationWeight}</div>`;
+            
+            // Collection weight
+            if (result.scoring.collectionWeight) {
+                html += `<div class="scoring-line">Collection weight: × ${result.scoring.collectionWeight}</div>`;
+            }
+            
+            // Final calculation
+            html += `<div class="scoring-line" style="margin-top: 8px; font-weight: bold;">
+                Final Score: ${result.scoring.positionScore} × ${result.scoring.publicationWeight} 
+                ${result.scoring.collectionWeight ? '× ' + result.scoring.collectionWeight : ''} 
+                = ${result.finalScore.toFixed(1)}
+            </div>`;
+            
+            container.innerHTML = html;
         }
 
         // Get review state
@@ -1049,7 +1328,32 @@
                         date: "1940-01-03",
                         finalScore: 95.5,
                         excerpt: "THE WIZARD OF OZ (MUSICAL) Excellent fantasy...",
-                        readUrl: "http://archive.org/stream/variety137-1940-01#page/n53/"
+                        fullText: "THE WIZARD OF OZ (MUSICAL) Excellent fantasy, superbly produced in Technicolor, with outstanding performances, especially by Judy Garland. Picture is excellent box office and will do big business everywhere. Based on the L. Frank Baum story, this elaborate production features spectacular tornado effects and imaginative settings in the land of Oz. Musical numbers are expertly staged and the Technicolor photography is superb throughout. Direction by Victor Fleming maintains perfect pace and brings out the best in all performances. This is certain to be one of the year's biggest grossers and will establish new records in many situations. Running time: 101 minutes.",
+                        readUrl: "http://archive.org/stream/variety137-1940-01#page/n53/",
+                        isTreasure: true,
+                        contentAnalysis: {
+                            primaryType: "review",
+                            confidence: "high",
+                            allTypes: [
+                                { type: "review", confidence: "high", matchCount: 5 },
+                                { type: "box_office", confidence: "medium", matchCount: 2 }
+                            ]
+                        },
+                        foundBy: "exact_title",
+                        searchQuery: '"The Wizard of Oz"',
+                        strategyConfidence: "high",
+                        wordCount: 1247,
+                        collection: ["Hollywood Studio System", "Feature Films"],
+                        collectionWeight: 1.0,
+                        contentScore: 8.5,
+                        scoring: {
+                            position: 1,
+                            positionScore: 100,
+                            publication: "variety",
+                            publicationWeight: 1.0,
+                            collectionWeight: 1.0,
+                            finalScore: 100.0
+                        }
                     },
                     {
                         id: "photoplay-july1939",
@@ -1057,7 +1361,31 @@
                         date: "1939-07-15",
                         finalScore: 82.3,
                         excerpt: "Metro's magnificent fantasy brings the beloved book to life...",
-                        readUrl: "http://archive.org/stream/photoplay"
+                        fullText: "Metro's magnificent fantasy brings the beloved book to life with spectacular Technicolor production values. Young Judy Garland gives a performance that will touch your heart as Dorothy, the Kansas girl who travels over the rainbow. The tornado sequence is genuinely frightening, and the transition from sepia-toned Kansas to the vibrant Land of Oz is breathtaking. Ray Bolger, Jack Haley, and Bert Lahr are perfectly cast as Dorothy's companions. The songs by Arlen and Harburg, especially 'Over the Rainbow,' will surely become standards. While some might find the picture overlong at 101 minutes, children and adults alike will be enchanted by this magical journey. Highly recommended for the whole family.",
+                        readUrl: "http://archive.org/stream/photoplay",
+                        isTreasure: false,
+                        contentAnalysis: {
+                            primaryType: "review",
+                            confidence: "medium",
+                            allTypes: [
+                                { type: "review", confidence: "medium", matchCount: 3 }
+                            ]
+                        },
+                        foundBy: "author_title",
+                        searchQuery: '"L. Frank Baum" "The Wizard of Oz"',
+                        strategyConfidence: "high",
+                        wordCount: 892,
+                        collection: ["Fan Magazines"],
+                        collectionWeight: 0.8,
+                        contentScore: 6.2,
+                        scoring: {
+                            position: 3,
+                            positionScore: 90,
+                            publication: "photoplay",
+                            publicationWeight: 1.2,
+                            collectionWeight: 0.8,
+                            finalScore: 86.4
+                        }
                     }
                 ]
             }];
