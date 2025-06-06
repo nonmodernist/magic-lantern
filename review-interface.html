@@ -366,13 +366,13 @@
             </div>
             
             <div class="tags" id="tagButtons">
-                <button class="tag-btn" onclick="toggleTag('review')">Review</button>
-                <button class="tag-btn" onclick="toggleTag('production')">Production</button>
-                <button class="tag-btn" onclick="toggleTag('box_office')">Box Office</button>
-                <button class="tag-btn" onclick="toggleTag('advertisement')">Ad</button>
-                <button class="tag-btn" onclick="toggleTag('photo')">Has Photo</button>
-                <button class="tag-btn" onclick="toggleTag('labor')">Labor Mention</button>
-                <button class="tag-btn" onclick="toggleTag('controversy')">Controversy</button>
+                <button class="tag-btn" data-tag="review" onclick="toggleTag('review')">Review</button>
+                <button class="tag-btn" data-tag="production" onclick="toggleTag('production')">Production</button>
+                <button class="tag-btn" data-tag="box_office" onclick="toggleTag('box_office')">Box Office</button>
+                <button class="tag-btn" data-tag="advertisement" onclick="toggleTag('advertisement')">Ad</button>
+                <button class="tag-btn" data-tag="photo" onclick="toggleTag('photo')">Has Photo</button>
+                <button class="tag-btn" data-tag="labor" onclick="toggleTag('labor')">Labor Mention</button>
+                <button class="tag-btn" data-tag="controversy" onclick="toggleTag('controversy')">Controversy</button>
             </div>
             
             <textarea class="note-input" id="noteInput" placeholder="Add notes about this result..."></textarea>
@@ -428,6 +428,7 @@
         let filteredResults = [];
         let currentIndex = 0;
         let serverAvailable = false;
+        let reviewCache = {}; // Cache review states
 
         // Check if server is running
         async function checkServer() {
@@ -487,8 +488,11 @@
             document.getElementById('navCard').style.display = 'block';
             document.getElementById('actionCard').style.display = 'block';
             
+            // Load all review states into cache
+            await loadAllReviewStates();
+            
             // Build navigation sidebar
-            buildFilmNavigation();
+            await buildFilmNavigation();
             
             // Build filter options
             buildFilterOptions();
@@ -497,22 +501,41 @@
             filteredResults = flattenResults();
             
             // Display first result
-            displayCurrentResult();
+            await displayCurrentResult();
+        }
+
+        // Load all review states into cache
+        async function loadAllReviewStates() {
+            reviewCache = {};
+            
+            if (serverAvailable) {
+                // Could implement a batch endpoint for efficiency
+                // For now, we'll load as needed
+            } else {
+                // Load from localStorage
+                const saved = localStorage.getItem('magicLanternReviews');
+                if (saved) {
+                    reviewCache = JSON.parse(saved);
+                }
+            }
         }
 
         // Build film navigation sidebar
-        function buildFilmNavigation() {
+        async function buildFilmNavigation() {
             const nav = document.getElementById('filmNav');
             nav.innerHTML = '';
             
-            currentData.forEach((filmData, index) => {
+            for (const [index, filmData] of currentData.entries()) {
                 const li = document.createElement('li');
                 li.className = 'film-nav-item';
                 li.dataset.filmIndex = index;
                 
-                const reviewed = filmData.treasures.filter(r => 
-                    getReviewState(filmData.film, r).reviewed
-                ).length;
+                // Count reviewed items for this film
+                let reviewed = 0;
+                for (const result of filmData.treasures) {
+                    const state = await getReviewState(filmData.film, result);
+                    if (state.reviewed) reviewed++;
+                }
                 
                 const percentage = (reviewed / filmData.treasures.length) * 100;
                 
@@ -526,7 +549,7 @@
                 
                 li.addEventListener('click', () => jumpToFilm(index));
                 nav.appendChild(li);
-            });
+            }
         }
 
         // Jump to specific film
@@ -577,41 +600,44 @@
         }
 
         // Apply filters
-        function applyFilters() {
+        async function applyFilters() {
             const filmFilter = document.getElementById('filterFilm').value;
             const statusFilter = document.getElementById('filterStatus').value;
             const pubFilter = document.getElementById('filterPublication').value;
             const searchText = document.getElementById('searchBox').value.toLowerCase();
             
-            filteredResults = flattenResults().filter(item => {
+            const allFlat = flattenResults();
+            filteredResults = [];
+            
+            for (const item of allFlat) {
                 // Film filter
                 if (filmFilter && `${item.film.title}_${item.film.year}` !== filmFilter) {
-                    return false;
+                    continue;
                 }
                 
                 // Publication filter
                 if (pubFilter && item.result.publication !== pubFilter) {
-                    return false;
+                    continue;
                 }
                 
                 // Status filter
-                const state = getReviewState(item.film, item.result);
-                if (statusFilter === 'unreviewed' && state.reviewed) return false;
-                if (statusFilter === 'reviewed' && !state.reviewed) return false;
-                if (statusFilter === 'important' && !state.important) return false;
+                const state = await getReviewState(item.film, item.result);
+                if (statusFilter === 'unreviewed' && state.reviewed) continue;
+                if (statusFilter === 'reviewed' && !state.reviewed) continue;
+                if (statusFilter === 'important' && !state.important) continue;
                 
                 // Text search
                 if (searchText) {
                     const text = (item.result.excerpt || '') + 
                                 (item.result.fullText || '');
-                    if (!text.toLowerCase().includes(searchText)) return false;
+                    if (!text.toLowerCase().includes(searchText)) continue;
                 }
                 
-                return true;
-            });
+                filteredResults.push(item);
+            }
             
             currentIndex = 0;
-            displayCurrentResult();
+            await displayCurrentResult();
         }
 
         // Reset filters
@@ -674,17 +700,27 @@
         async function getReviewState(film, result) {
             const id = `${film.title}_${film.year}_${result.id}`;
             
+            // Check cache first
+            if (reviewCache[id]) {
+                return reviewCache[id];
+            }
+            
             if (serverAvailable) {
                 try {
                     const response = await fetch(`http://localhost:3000/api/review/${id}`);
                     const data = await response.json();
-                    return {
+                    
+                    // Convert SQLite boolean values
+                    const state = {
                         reviewed: data.reviewed === 1,
                         important: data.important === 1,
                         skipped: data.skipped === 1,
                         note: data.note || '',
-                        tags: data.tags || []
+                        tags: data.tags ? (Array.isArray(data.tags) ? data.tags : data.tags.split(',')) : []
                     };
+                    
+                    reviewCache[id] = state;
+                    return state;
                 } catch (e) {
                     console.error('Server error:', e);
                 }
@@ -693,12 +729,17 @@
             // Fallback to localStorage
             const saved = localStorage.getItem('magicLanternReviews');
             const reviews = saved ? JSON.parse(saved) : {};
-            return reviews[id] || {};
+            const state = reviews[id] || { reviewed: false, important: false, skipped: false, note: '', tags: [] };
+            reviewCache[id] = state;
+            return state;
         }
 
         // Save review state
         async function saveReviewState(film, result, state) {
             const id = `${film.title}_${film.year}_${result.id}`;
+            
+            // Update cache
+            reviewCache[id] = state;
             
             if (serverAvailable) {
                 try {
@@ -717,7 +758,7 @@
                     });
                     
                     // Update sidebar
-                    buildFilmNavigation();
+                    await buildFilmNavigation();
                     return;
                 } catch (e) {
                     console.error('Server error:', e);
@@ -729,13 +770,16 @@
             const reviews = saved ? JSON.parse(saved) : {};
             reviews[id] = state;
             localStorage.setItem('magicLanternReviews', JSON.stringify(reviews));
+            
+            // Update sidebar
+            await buildFilmNavigation();
         }
 
         // Update UI state
         function updateUIState(state) {
             // Tags
             document.querySelectorAll('.tag-btn').forEach(btn => {
-                const tag = btn.textContent.toLowerCase().replace(/ /g, '_');
+                const tag = btn.dataset.tag;
                 btn.classList.toggle('active', state.tags && state.tags.includes(tag));
             });
             
@@ -790,12 +834,18 @@
             nextResult(); // Auto-advance
         }
 
-        // Save note
-        document.getElementById('noteInput').addEventListener('blur', async function() {
+        // Save note with debouncing
+        let noteTimeout;
+        document.getElementById('noteInput').addEventListener('input', async function() {
             const current = filteredResults[currentIndex];
-            const state = await getReviewState(current.film, current.result);
-            state.note = this.value;
-            await saveReviewState(current.film, current.result, state);
+            const value = this.value;
+            
+            clearTimeout(noteTimeout);
+            noteTimeout = setTimeout(async () => {
+                const state = await getReviewState(current.film, current.result);
+                state.note = value;
+                await saveReviewState(current.film, current.result, state);
+            }, 500); // Save after 500ms of no typing
         });
 
         // Navigation
@@ -819,7 +869,7 @@
                 const state = await getReviewState(item.film, item.result);
                 if (!state.reviewed) {
                     currentIndex = i;
-                    displayCurrentResult();
+                    await displayCurrentResult();
                     return;
                 }
             }
@@ -867,49 +917,56 @@
             let html = '';
             
             if (serverAvailable) {
-                const response = await fetch('http://localhost:3000/api/stats');
-                const stats = await response.json();
-                
-                html = `
-                    <h3>Overall Progress</h3>
-                    <p>Total Results: ${stats.overall.total || filteredResults.length}</p>
-                    <p>Reviewed: ${stats.overall.reviewed || 0}</p>
-                    <p>Important: ${stats.overall.important || 0}</p>
-                    <p>Skipped: ${stats.overall.skipped || 0}</p>
+                try {
+                    const response = await fetch('http://localhost:3000/api/stats');
+                    const stats = await response.json();
                     
-                    <h3>By Film</h3>
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="border-bottom: 2px solid #ddd;">
-                            <th style="text-align: left; padding: 8px;">Film</th>
-                            <th style="text-align: right; padding: 8px;">Progress</th>
-                        </tr>
-                `;
-                
-                if (stats.byFilm) {
-                    stats.byFilm.forEach(film => {
-                        const pct = ((film.reviewed / film.total) * 100).toFixed(1);
-                        html += `
-                            <tr style="border-bottom: 1px solid #eee;">
-                                <td style="padding: 8px;">${film.film_title} (${film.film_year})</td>
-                                <td style="text-align: right; padding: 8px;">
-                                    ${film.reviewed}/${film.total} (${pct}%)
-                                </td>
+                    html = `
+                        <h3>Overall Progress</h3>
+                        <p>Total Results: ${stats.overall.total || 0}</p>
+                        <p>Reviewed: ${stats.overall.reviewed || 0}</p>
+                        <p>Important: ${stats.overall.important || 0}</p>
+                        <p>Skipped: ${stats.overall.skipped || 0}</p>
+                        
+                        <h3>By Film</h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="border-bottom: 2px solid #ddd;">
+                                <th style="text-align: left; padding: 8px;">Film</th>
+                                <th style="text-align: right; padding: 8px;">Progress</th>
                             </tr>
-                        `;
-                    });
+                    `;
+                    
+                    if (stats.byFilm && stats.byFilm.length > 0) {
+                        stats.byFilm.forEach(film => {
+                            const pct = film.total > 0 ? ((film.reviewed / film.total) * 100).toFixed(1) : 0;
+                            html += `
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 8px;">${film.film_title} (${film.film_year})</td>
+                                    <td style="text-align: right; padding: 8px;">
+                                        ${film.reviewed}/${film.total} (${pct}%)
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                    }
+                    
+                    html += '</table>';
+                } catch (error) {
+                    html = '<p>Error loading statistics. Server may be offline.</p>';
                 }
-                
-                html += '</table>';
             } else {
                 // Basic stats from memory
-                const reviewed = filteredResults.filter(async (item) => {
+                let totalReviewed = 0;
+                let totalResults = filteredResults.length;
+                
+                for (const item of filteredResults) {
                     const state = await getReviewState(item.film, item.result);
-                    return state.reviewed;
-                }).length;
+                    if (state.reviewed) totalReviewed++;
+                }
                 
                 html = `
-                    <p>Total Results: ${filteredResults.length}</p>
-                    <p>Current Session Progress: ${reviewed} reviewed</p>
+                    <p>Total Results (filtered): ${totalResults}</p>
+                    <p>Reviewed (filtered): ${totalReviewed}</p>
                     <p><em>Note: Connect to server for full statistics</em></p>
                 `;
             }

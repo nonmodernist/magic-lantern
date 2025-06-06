@@ -80,11 +80,24 @@ app.get('/api/review/:id', (req, res) => {
         GROUP BY r.id
     `).get(req.params.id);
     
-    if (review && review.tags) {
-        review.tags = review.tags.split(',');
+    if (review) {
+        // Convert tags string to array
+        if (review.tags) {
+            review.tags = review.tags.split(',');
+        } else {
+            review.tags = [];
+        }
+        res.json(review);
+    } else {
+        // Return empty state for non-existent reviews
+        res.json({
+            reviewed: 0,
+            important: 0,
+            skipped: 0,
+            note: '',
+            tags: []
+        });
     }
-    
-    res.json(review || {});
 });
 
 app.get('/api/stats', (req, res) => {
