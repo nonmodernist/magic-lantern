@@ -42,15 +42,6 @@ class UnifiedMagicLantern {
         });
     
         
-        // Content patterns for text analysis
-        this.contentPatterns = {
-            review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
-            production: /\b(production|producing|filming|started|completed|announced)\b/i,
-            boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
-            advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
-            interview: /\b(interview|talks about|discusses)\b/i,
-            listing: /\b(calendar|releases for|table|list)\b/i
-        };
 
             // Initialize report generator
             this.reportGenerator = new MarkdownReportGenerator({
@@ -415,17 +406,6 @@ class UnifiedMagicLantern {
         }
     }
 
-    identifyContentTypes(text) {
-        const types = [];
-        
-        for (const [type, pattern] of Object.entries(this.contentPatterns)) {
-            if (pattern.test(text)) {
-                types.push(type);
-            }
-        }
-        
-        return types.length > 0 ? types : ['mention'];
-    }
 
     // ! configurable
 
@@ -519,22 +499,16 @@ async comprehensiveSearch(film) {
                 // Debug logging
                 console.log(`   ✓ Fetched ${fullPageData.wordCount || 0} words`);
                 
-                // NEW CODE - Use the enhancer:
+                // Use the enhancer for themes, significance, and entities:
                 let enhancedData;
                 try {
                     enhancedData = this.contentEnhancer.enhanceResult(fullPageData);
-                    console.log(`   ✓ Enhanced: ${enhancedData.contentAnalysis.primaryType} (${enhancedData.contentAnalysis.confidence})`);
+                    console.log(`   ✓ Enhanced: themes detected, significance analyzed`);
                 } catch (enhanceError) {
                     console.error(`   ❌ Enhancement failed for ${result.id}:`, enhanceError.message);
                     // Fallback to basic data
                     enhancedData = {
                         ...fullPageData,
-                        contentAnalysis: {
-                            primaryType: 'unknown',
-                            confidence: 'low',
-                            allTypes: []
-                        },
-                        contentTypes: ['unknown'],
                         contentScore: 0
                     };
                 }
@@ -561,10 +535,7 @@ async comprehensiveSearch(film) {
         
         console.log('\n📊 Content Analysis Summary:');
         console.log(`   Average content score: ${contentStats.averageContentScore}`);
-        console.log(`   High confidence: ${contentStats.byConfidence.high}`);
-        console.log(`   Content types: ${Object.entries(contentStats.byType)
-            .map(([type, count]) => `${type} (${count})`)
-            .join(', ')}`);
+        console.log(`   High significance items: ${contentStats.byConfidence.high}`);
         
         return {
             film: film,

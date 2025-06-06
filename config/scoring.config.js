@@ -1,15 +1,27 @@
 // config/scoring.config.js
 module.exports = {
-
-  contentTypes: {
-    scores: {
-      review: 10,
-      boxOfficeData: 8,
-      interview: 7,
-      productionNews: 6,
-      advertisement: 5,
-      tradeMention: 3,
-      mention: 1
+  // Content scoring now based on themes, significance, and entities
+  // rather than content types
+  
+  themes: {
+    weights: {
+      labor_relations: 3.0,
+      censorship: 2.5,
+      cultural_controversy: 2.5,
+      technical_innovation: 2.0,
+      marketing_campaign: 1.5,
+      family_audience: 1.0
+    }
+  },
+  
+  significance: {
+    weights: {
+      exceptional_performance: 3.0,
+      cultural_controversy: 2.5,
+      technical_innovation: 2.5,
+      critical_acclaim: 2.0,
+      commercial_success: 1.5,
+      broad_distribution: 1.0
     }
   }
 };

@@ -3,16 +3,16 @@
 /**
  * Magic Lantern Results Reprocessor
  * 
- * Reprocesses existing Magic Lantern JSON results with updated Content Type Enhancer
- * without running a full search. Useful for applying new content analysis patterns
- * to previously collected data.
+ * Reprocesses existing Magic Lantern JSON results with updated Content Analysis
+ * without running a full search. Useful for applying new theme, significance, and
+ * entity analysis patterns to previously collected data.
  * 
  * Usage:
  *   node reprocess-results.js <input-file> [options]
  * 
  * Options:
  *   --output, -o     Output file path (default: adds _reprocessed suffix)
- *   --config         Content enhancer config (json string)
+ *   --config         Content analyzer config (json string)
  *   --stats-only     Only show statistics without saving
  *   --help, -h       Show help
  * 
@@ -38,7 +38,7 @@ class ResultsReprocessor {
         // Merge with user config if provided
         this.enhancerConfig = { ...defaultConfig, ...options.enhancerConfig };
         
-        // Initialize content enhancer
+        // Initialize content analyzer  
         this.enhancer = new ContentTypeEnhancer(this.enhancerConfig);
         
         this.verbose = options.verbose || false;
@@ -135,7 +135,7 @@ class ResultsReprocessor {
     }
     
     /**
-     * Reprocess results with Content Type Enhancer
+     * Reprocess results with Content Analyzer
      */
     reprocessResults(fullTextResults) {
         console.log(`🔄 Reprocessing ${fullTextResults.length} full text results...`);
@@ -191,9 +191,9 @@ class ResultsReprocessor {
         const analysis = {
             total: results.length,
             withContentAnalysis: 0,
-            byPrimaryType: {},
-            byConfidence: { high: 0, medium: 0, low: 0, unknown: 0 },
+            bySignificanceLevel: { high: 0, medium: 0, low: 0 },
             byTheme: {},
+            bySignificance: {},
             averageContentScore: 0,
             scoreDistribution: { 'score_0-2': 0, 'score_2-5': 0, 'score_5-8': 0, 'score_8-10': 0 },
             entities: {
@@ -213,22 +213,29 @@ class ResultsReprocessor {
             if (result.contentAnalysis) {
                 analysis.withContentAnalysis++;
                 
-                // Primary type
-                const primaryType = result.contentAnalysis.primaryType || 'unknown';
-                analysis.byPrimaryType[primaryType] = (analysis.byPrimaryType[primaryType] || 0) + 1;
+                // Significance level (based on presence of themes and significance indicators)
+                const hasSignificance = result.contentAnalysis.significance?.length > 0;
+                const hasThemes = result.contentAnalysis.themes?.length > 0;
                 
-                // Confidence
-                const confidence = result.contentAnalysis.confidence || 'unknown';
-                if (analysis.byConfidence.hasOwnProperty(confidence)) {
-                    analysis.byConfidence[confidence]++;
+                if (hasSignificance) {
+                    analysis.bySignificanceLevel.high++;
+                } else if (hasThemes) {
+                    analysis.bySignificanceLevel.medium++;
                 } else {
-                    analysis.byConfidence.unknown++;
+                    analysis.bySignificanceLevel.low++;
                 }
                 
                 // Themes
                 if (result.contentAnalysis.themes) {
                     result.contentAnalysis.themes.forEach(theme => {
                         analysis.byTheme[theme] = (analysis.byTheme[theme] || 0) + 1;
+                    });
+                }
+                
+                // Significance indicators
+                if (result.contentAnalysis.significance) {
+                    result.contentAnalysis.significance.forEach(sig => {
+                        analysis.bySignificance[sig] = (analysis.bySignificance[sig] || 0) + 1;
                     });
                 }
                 
@@ -291,21 +298,11 @@ class ResultsReprocessor {
         console.log(`     After:  ${stats.after.averageContentScore}`);
         
         
-        // Content type distribution
-        console.log('\n📚 Content Type Distribution (After):');
-        Object.entries(stats.after.byPrimaryType)
-            .sort(([,a], [,b]) => b - a)
-            .slice(0, 10)
-            .forEach(([type, count]) => {
-                const percentage = Math.round(count / stats.after.total * 100);
-                console.log(`   ${type}: ${count} (${percentage}%)`);
-            });
-        
-        // Confidence distribution
-        console.log('\n🎯 Confidence Distribution (After):');
-        Object.entries(stats.after.byConfidence).forEach(([confidence, count]) => {
+        // Significance level distribution
+        console.log('\n🎯 Significance Level Distribution (After):');
+        Object.entries(stats.after.bySignificanceLevel).forEach(([level, count]) => {
             const percentage = Math.round(count / stats.after.total * 100);
-            console.log(`   ${confidence}: ${count} (${percentage}%)`);
+            console.log(`   ${level}: ${count} (${percentage}%)`);
         });
         
         // Top themes
@@ -316,6 +313,17 @@ class ResultsReprocessor {
                 .slice(0, 10)
                 .forEach(([theme, count]) => {
                     console.log(`   ${theme}: ${count}`);
+                });
+        }
+        
+        // Top significance indicators
+        if (Object.keys(stats.after.bySignificance).length > 0) {
+            console.log('\n⭐ Top Significance Indicators (After):');
+            Object.entries(stats.after.bySignificance)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 10)
+                .forEach(([sig, count]) => {
+                    console.log(`   ${sig}: ${count}`);
                 });
         }
         
@@ -378,7 +386,7 @@ class ResultsReprocessor {
             metadata: {
                 reprocessedAt: new Date().toISOString(),
                 reprocessorVersion: '1.0.0',
-                enhancerConfig: this.enhancerConfig,
+                analyzerConfig: this.enhancerConfig,
                 totalResults: reprocessedResults.length,
                 errorCount: reprocessedResults.filter(r => r.reprocessingError).length
             },
@@ -408,7 +416,7 @@ class ResultsReprocessor {
                 return;
             }
             
-            // Reprocess with Content Type Enhancer
+            // Reprocess with Content Analyzer
             const reprocessedResults = this.reprocessResults(fullTextResults);
             
             // Generate statistics
@@ -463,7 +471,7 @@ function showHelp() {
     console.log(`
 Magic Lantern Results Reprocessor
 
-Reprocesses existing Magic Lantern JSON results with updated Content Type Enhancer
+Reprocesses existing Magic Lantern JSON results with updated Content Analysis
 without running a full search.
 
 Usage:
@@ -471,7 +479,7 @@ Usage:
 
 Options:
   --output, -o <file>    Output file path (default: adds _reprocessed suffix)
-  --config <json>        Content enhancer config as JSON string
+  --config <json>        Content analyzer config as JSON string
   --stats-only           Only show statistics without saving reprocessed results
   --verbose, -v          Show detailed processing information
   --help, -h             Show this help
