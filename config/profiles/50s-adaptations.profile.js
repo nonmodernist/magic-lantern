@@ -1,6 +1,5 @@
 const basePatterns = require('./base-patterns');
 
-
 module.exports = {
   name: "1950s Literary Adaptations",
   description: "Widescreen era adaptations, regional focus",
@@ -23,12 +22,8 @@ module.exports = {
       "screenland": 1.1              // Until 1952
     },
 
-
-    // ADD THIS - copy from default profile
     patterns: basePatterns
-    
-
-      },
+  },
 
   searchStrategies: {
     enabled: {

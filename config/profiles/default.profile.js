@@ -1,7 +1,6 @@
 // config/profiles/default.profile.js
 const basePatterns = require('./base-patterns');
 
-
 module.exports = {
   name: "Default",
   description: "Standard Magic Lantern configuration",

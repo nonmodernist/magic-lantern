@@ -1,7 +1,5 @@
 const basePatterns = require('./base-patterns');
 
-
-
 module.exports = {
   name: "Regional Literary Reception",
   description: "How adaptations played outside major cities",
@@ -25,18 +23,6 @@ module.exports = {
 
         patterns: basePatterns
   },
-  contentPriorities: ["box_office", "review", "advertisement"],
-  searchFeatures: {
-    // Look for these in full text
-    textPatterns: [
-      "small town", "rural", "neighborhood", 
-      "played well in", "midwest", "south"
-    ]
-  },
-
-
-
-
 
 }
 

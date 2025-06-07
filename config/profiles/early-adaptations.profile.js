@@ -1,9 +1,6 @@
 const basePatterns = require('./base-patterns');
 
-
-
 module.exports =
-
 {
   name: "Early Literary Adaptations",
   description: "Silent era adaptations with author emphasis",
@@ -17,14 +14,14 @@ module.exports =
       "motion picture magazine": 1.4,  // Early fan mag, discussed sources
       "photoplay": 1.3,               // Started 1916, literary focus
       "variety": 1.1,                 // Less film-focused early
-      
+
       // Regional voices
       "exhibitors trade review": 1.2,
       "the exhibitor": 1.2,           // Philadelphia perspective
       "reel life": 1.1                // Mutual films
     },
 
-        // MUST include patterns for extractPublication to work!
+    // MUST include patterns for extractPublication to work!
     patterns: basePatterns
   },
   searchStrategies: {

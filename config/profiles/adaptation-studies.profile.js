@@ -1,7 +1,6 @@
 // config/profiles/adaptation-studies.profile.js
 const basePatterns = require('./base-patterns');
 
-
 module.exports = {
   name: "Literary Adaptations",
   description: "Emphasizes author attribution and source materials",

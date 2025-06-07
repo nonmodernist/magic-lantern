@@ -88,30 +88,6 @@ searchStrategies: {
     after: 2 
   },
   
-  // Content priorities completely different
-  contentPriorities: ["strike", "wage_dispute", "union_activity", "production_delay"],
-  
-  // Keywords for full-text analysis
-  searchFeatures: {
-    textPatterns: [
-      // Labor actions
-      "strike", "walkout", "picket line", "work stoppage",
-      "labor dispute", "union", "guild", "picketing",
-      
-      // Organizations
-      "IATSE", "Screen Actors Guild", "SAG",
-      "Writers Guild", "Directors Guild",
-      
-      // Labor conditions
-      "wages", "overtime", "hours", "conditions",
-      "contract", "negotiation", "grievance",
-      
-      // Production impact
-      "production halted", "delayed by strike",
-      "shut down", "suspended production"
-    ]
-  },
-  
   // Custom note for researchers
 notes: "This profile captures the broader labor context during a film's production and exhibition period rather than film-specific labor incidents. For researching specific strikes on individual films, consider using targeted searches directly in Lantern. Best used for understanding the industrial relations climate that shaped production conditions."
 }

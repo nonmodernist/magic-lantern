@@ -1,8 +1,5 @@
 const basePatterns = require('./base-patterns');
 
-
-
-
 module.exports = {
   name: "Studio Era Literary Adaptations",
   description: "Prestige adaptations and regional reception",
@@ -36,12 +33,12 @@ module.exports = {
       "studio_title": 1.3           // Prestige pictures
     }
   },
-  // ADD THIS - matches the structure the code expects
+
   dateRanges: {
     high: { before: 2, after: 1 },
     medium: { before: 2, after: 1 },
     low: { before: 3, after: 2 }  // Maybe slightly wider for low confidence
   },
-  contentPriorities: ["review", "advertisement", "production"],
+
   notes: "Peak of prestige adaptations - Gone with the Wind era"
 }
