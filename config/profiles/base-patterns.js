@@ -1,11 +1,37 @@
 // config/profiles/base-patterns.js
 module.exports = {
   // Core patterns used by all profiles
+  // These patterns match against Lantern item IDs to identify publications
+  
   // regex cheatsheet
   // (?=foo)   // Positive lookahead: MUST be followed by 'foo'
   // (?!foo)   // Negative lookahead: must NOT be followed by 'foo'
   // (?<=foo)  // Positive lookbehind: MUST be preceded by 'foo'
   // (?<!foo)  // Negative lookbehind: must NOT be preceded by 'foo'
+  
+  // PATTERN COVERAGE REFERENCE:
+  // harrisonsreports43harr_* → 'harrisons reports' (/harrison/i)
+  // motionpictureexh65jaye_* → 'the exhibitor' (/\bexhibitor|motionpictureexh/i)
+  // boxofficejanmar178boxo_* → 'boxoffice' (/boxoffice(?!digest|baromet)/i)
+  // boxofficebarometer*_* → 'boxoffice barometer' (/boxofficebaromet/i)
+  // americancinemato41unse_* → 'american cinematographer' (/americancinemato|american|amento/i)
+  // artcraftpressboo*_* → 'paramount press book' (/paramountpress|artcraftpress|paramountartcraf|paramountpressbo/i)
+  // exh00newy_* → 'exhibitors trade review' (/exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|\bexhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber)/i)
+  // camera04unse_* → 'camera' (/camera/i)
+  // cinemundial19unse_* → 'cinemundial' (/cinemundial/i)
+  // clipper61-1914-01_* → 'the new york clipper' (/clipper/i)
+  // closeup1920192300clos_* → 'close up' (/closeup/i)
+  // amento04asch_* → 'american cinematographer' (/americancinemato|american|amento/i)
+  // 
+  // ADDITIONAL PATTERNS FROM JUNE 3RD RESULTS:
+  // movingpicturewee24movi_* → 'moving picture weekly' (/movingpicturewee/i)
+  // dynamo24-1950-04-01_* → '20th century fox dynamo' (/dynamo/i)
+  // exhibitorfebapr149jaye_* → 'the exhibitor' (/\bexhibitor|motionpictureexh/i)
+  // britishk2122brit_* → 'british kinematograph' (/britishk/i)
+  // britishki20brit_* → 'british kinematograph' (/britishk/i)
+  // britishkig1819brit_* → 'british kinematograph' (/britishk/i)
+  // canadianfilmweekly-yearbook-* → 'canadian film weekly' (/canadianfilmweekly/i)
+  // filmbulletin*film_* → 'independent exhibitors film bulletin' (/independentexhibitorsfilm|filmbulletin|\bindepe/i)
 
   'motion picture reviews': /motionpicturerev/i, // women's film reviews!
   'the motion picture and the family': /motionpicturefam/i, // try this source for 'wholesome' movies
@@ -32,7 +58,7 @@ module.exports = {
   'the exhibitor': /\bexhibitor|motionpictureexh/i,
   'independent exhibitors film bulletin': /independentexhibitorsfilm|filmbulletin|\bindepe/i,
   'the philadelphia exhibitor': /philadelphiaexhi/i,
-  'exhibitors trade review': /exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|\bexhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber|i)/i,
+  'exhibitors trade review': /exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|\bexhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber)/i,
 
   'the film daily': /filmdaily/i,
   'film mercury': /filmmercury/i,
@@ -51,7 +77,8 @@ module.exports = {
 
   'american cinematographer': /americancinemato|american|amento/i,
   'national box office digest': /boxofficedigest/i,
-  'boxoffice': /boxoffice(?!digest)/i,  // NOT followed by 'digest'
+  'boxoffice': /boxoffice(?!digest|baromet)/i,  // NOT followed by 'digest' or 'baromet'
+  'boxoffice barometer': /boxofficebaromet/i,
   'cinemundial': /cinemundial/i,
   'camera': /camera/i,
   'close up': /closeup/i,
@@ -83,5 +110,9 @@ module.exports = {
   'paramount around the world': /paramountinterna/,
 
   'MPPC lawsuit': /indistrictcourto/i,
+
+  // Additional publications found in June 3rd results
+  'british kinematograph': /britishk/i,
+  'canadian film weekly': /canadianfilmweekly/i,
 
 };

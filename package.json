@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "name": "magic-lantern",
+  "version": "5.0.1",
+  "description": "![Status](https://img.shields.io/badge/status-beta-yellow) ![Node](https://img.shields.io/badge/node-%3E%3D18-green) ![License](https://img.shields.io/badge/license-MIT-brightgreen)",
+  "main": "magic-lantern-v5.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
