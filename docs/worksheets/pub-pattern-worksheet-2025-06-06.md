@@ -338,13 +338,68 @@ currently no other "harrison" patterns in mhdl
 **Sample IA Items Found:**
 1. ID: `exhibitoroctober00exhi` → URL: https://archive.org/details/exhibitoroctober00exhi
 2. ID: `exhibitormayjul144jaye` → URL: https://archive.org/details/exhibitormayjul144jaye
-3. ID: `_______________________` → URL: https://archive.org/details/____________
-4. ID: `_______________________` → URL: https://archive.org/details/____________
-5. ID: `_______________________` → URL: https://archive.org/details/____________
+
+
+**Pattern Testing:**
+- [x] All IDs match current pattern
+- [ ] Some IDs match (list which ones fail): ___________________
+- [ ] No IDs match current pattern
+
+**Pattern Analysis:**
+- Common prefix: `exhibitor`
+- Common variations: n/a
+- Volume/Year format: exhibitor[month][volume][suffix]
+- City codes present? n/a
+- Underscores or hyphens? no
+
+**Issues Found:**
+- [ ] OCR variants (list): ___________________
+- [ ] Abbreviations not caught: ___________________
+- [x] False positives (catches wrong publications): motion picture exhibitor accidentally included
+- [ ] Pattern too broad/narrow: ___________________
+
+**Suggested Pattern Update:**
+```javascript
+// Current:
+'the exhibitor': /\bexhibitor|motionpictureexh/i,
+
+// Suggested:
+'the exhibitor': /\bexhibitor/i,
+
+// Reason for change:
+// remove conflation between two different pubs
+```
+
+**Notes:**
+this is the easiest of the "exhibitor" titles - i still have a mess to untangle with the rest of them. also this might be rated too high - need to figure out which "exhibitor" title(s) most valuable
+
+
+### 6. Motion Picture News (Weight: 1.4)
+- Current pattern: `/motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i`
+- Check: Complex negative lookaheads
+- Search: "motion picture news" collection:mediahistory
+
+#### Publication: Motion Picture News
+**Profile Weight:** 1.4 (highest weight found)  
+**Current Pattern:** `/motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i`
+
+**IA Search:** https://archive.org/search.php?query="motion picture news"+collection:mediahistory
+
+**Sample IA Items Found:**
+1. ID: `motionpicturenew00moti_21` → URL: https://archive.org/details/motionpicturenew00moti_21
+2. ID: `motionpicturenew152unse` → URL: https://archive.org/details/motionpicturenew152unse
+3. ID: `motionnew34moti` → URL: https://archive.org/details/motionnew34moti
+4. ID: `motionpi35moti` → URL: https://archive.org/details/motionpi35moti
+5. ID: `motion36moti` → URL: https://archive.org/details/motion36moti
+6. ID: `motionpic39moti` → URL: https://archive.org/details/motionpic39moti
+7. ID: `motionp09moti` → URL: https://archive.org/details/motionp09moti
+8. ID: `motion35moti` → URL: https://archive.org/details/motion35moti
+9. ID: `motionnews33moti` → URL: https://archive.org/details/motionnews33moti
+10. ID: `picturen09moti` → URL: https://archive.org/details/picturen09moti
 
 **Pattern Testing:**
 - [ ] All IDs match current pattern
-- [ ] Some IDs match (list which ones fail): ___________________
+- [x] Some IDs match (list which ones fail): `picturen`, `motion`
 - [ ] No IDs match current pattern
 
 **Pattern Analysis:**
@@ -363,41 +418,50 @@ currently no other "harrison" patterns in mhdl
 **Suggested Pattern Update:**
 ```javascript
 // Current:
-'publication_name': /current_pattern/,
+'Motion Picture News': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i,
 
 // Suggested:
-'publication_name': /suggested_pattern/,
+'Motion Picture News': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!icture|lay)|motion(?!picture|play)|picturen/i,
 
 // Reason for change:
+// match outliers but adjust to not match motion picture family of fan magazines
+
+// WARNING: "motionpicture" prefix is used by multiple publications:
+// - Motion Picture Story Magazine - usually `motionpicturesto`
+// - Motion Picture Classic - usually `motionpicturecla`
+// - Motion Picture - 30s-40s fan magazine - primarily `motionpicture`
+// - Motion Picture Magazine - 10s-20s fan magazine
+// - Motion Picture News - trade mag - when "new" is truncated
+// - Moving Picture Weekly - `motionpicturewee00movi`
+
+// WARNING: "motion" prefix is used by multiple publications
+// - Motion Play - `motionplay-1920-11-14-washington`
+
+// WARNING: `motion picture` patterns may generate false positives - always check Lantern for the real metadata
+
+// Order matters - most specific patterns first!
 ```
 
 **Notes:**
-_________________________________
-_________________________________
-_________________________________
+a little detective story. we settled on not worrying if a couple of volumes get false positives, but trying to keep fan mags and trade mags separate since they will be useful to different researchers for different reasons. 
 
-
-### 6. Motion Picture News (Weight: 1.4)
-- Current pattern: `/motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i`
-- Check: Complex negative lookaheads
-- Search: "motion picture news" collection:mediahistory
 
 ---
 
 ## 📊 SUMMARY TRACKING TABLE
 
-| Publication | Priority | Audited | Pattern Works | Needs Update | Notes |
-|-------------|----------|---------|---------------|--------------|-------|
-| American Cinematographer | HIGH (1.8) | ☐ | ☐ | ☐ | |
-| BoxOffice | HIGH (1.8) | ☐ | ☐ | ☐ | |
-| Moving Picture World | HIGH (1.5) | ☐ | ☐ | ☐ | |
-| Harrison's Reports | HIGH (1.6) | ☐ | ☐ | ☐ | |
-| The Exhibitor | HIGH (1.6) | ☐ | ☐ | ☐ | |
-| Reel Life | HIGH (1.8) | ☐ | ☐ | ☐ | |
-| Variety | HIGH (1.5) | ☐ | ☐ | ☐ | |
-| Photoplay | HIGH (1.5) | ☐ | ☐ | ☐ | |
-| Motion Picture Herald | MED (1.4) | ☐ | ☐ | ☐ | |
-| Modern Screen | MED (1.3) | ☐ | ☐ | ☐ | |
+| Publication              | Priority   | Audited | Pattern Works | Needs Update | Notes |
+| ------------------------ | ---------- | ------- | ------------- | ------------ | ----- |
+| American Cinematographer | HIGH (1.8) | x       | ☐             | x            |       |
+| BoxOffice                | HIGH (1.8) | x       | ☐             | x            |       |
+| Moving Picture World     | HIGH (1.5) | x       | ☐             | x            |       |
+| Harrison's Reports       | HIGH (1.6) | x       | ☐             | x            |       |
+| The Exhibitor            | HIGH (1.6) | x       | ☐             | x            | profiles using this need updates to ensure they're getting the correct pub |
+| Reel Life                | HIGH (1.8) | ☐       | ☐             | ☐            |       |
+| Variety                  | HIGH (1.5) | ☐       | ☐             | ☐            |       |
+| Photoplay                | HIGH (1.5) | ☐       | ☐             | ☐            |       |
+| Motion Picture Herald    | MED (1.4)  | ☐       | ☐             | ☐            |       |
+| Modern Screen            | MED (1.3)  | ☐       | ☐             | ☐            |       |
 
 ---
 

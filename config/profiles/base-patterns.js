@@ -9,41 +9,37 @@ module.exports = {
   // (?<=foo)  // Positive lookbehind: MUST be preceded by 'foo'
   // (?<!foo)  // Negative lookbehind: must NOT be preceded by 'foo'
   
-  // PATTERN COVERAGE REFERENCE:
-  // harrisonsreports43harr_* → 'harrisons reports' (/harrison/i)
-  // motionpictureexh65jaye_* → 'the exhibitor' (/\bexhibitor|motionpictureexh/i)
-  // boxofficejanmar178boxo_* → 'boxoffice' (/boxoffice(?!digest|baromet)/i)
-  // boxofficebarometer*_* → 'boxoffice barometer' (/boxofficebaromet/i)
-  // americancinemato41unse_* → 'american cinematographer' (/americancinemato|american|amento/i)
-  // artcraftpressboo*_* → 'paramount press book' (/paramountpress|artcraftpress|paramountartcraf|paramountpressbo/i)
-  // exh00newy_* → 'exhibitors trade review' (/exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|\bexhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber)/i)
-  // camera04unse_* → 'camera' (/camera/i)
-  // cinemundial19unse_* → 'cinemundial' (/cinemundial/i)
-  // clipper61-1914-01_* → 'the new york clipper' (/clipper/i)
-  // closeup1920192300clos_* → 'close up' (/closeup/i)
-  // amento04asch_* → 'american cinematographer' (/americancinemato|american|amento/i)
-  // 
-  // ADDITIONAL PATTERNS FROM JUNE 3RD RESULTS:
-  // movingpicturewee24movi_* → 'moving picture weekly' (/movingpicturewee/i)
-  // dynamo24-1950-04-01_* → '20th century fox dynamo' (/dynamo/i)
-  // exhibitorfebapr149jaye_* → 'the exhibitor' (/\bexhibitor|motionpictureexh/i)
-  // britishk2122brit_* → 'british kinematograph' (/britishk/i)
-  // britishki20brit_* → 'british kinematograph' (/britishk/i)
-  // britishkig1819brit_* → 'british kinematograph' (/britishk/i)
-  // canadianfilmweekly-yearbook-* → 'canadian film weekly' (/canadianfilmweekly/i)
-  // filmbulletin*film_* → 'independent exhibitors film bulletin' (/independentexhibitorsfilm|filmbulletin|\bindepe/i)
+
+  // WARNING: "motionpicture" prefix is used by multiple publications:
+  // - Motion Picture Story Magazine - usually `motionpicturesto`
+  // - Motion Picture Classic - usually `motionpicturecla`
+  // - Motion Picture - 30s-40s fan magazine - primarily `motionpicture`
+  // - Motion Picture Magazine - 10s-20s fan magazine
+  // - Motion Picture News - trade mag - when "new" is truncated
+  // - Moving Picture Weekly - `motionpicturewee00movi` - just once?
+
+  // WARNING: "motion" prefix is used by multiple publications:
+  // - Motion Play - `motionplay-1920-11-14-washington`
+  // - Motion Picture News - trade mag - when "picture" is truncated
+
+  // WARNING: `motion picture` patterns may generate false positives - always check Lantern for the real metadata
+
+  // Order matters - most specific patterns first!
+
+  'moving picture weekly': /movingpicturewee|motionpicturewee/i,
 
   'motion picture reviews': /motionpicturerev/i, // women's film reviews!
   'the motion picture and the family': /motionpicturefam/i, // try this source for 'wholesome' movies
   'motion picture daily': /motionpicturedai/i,
   'motion picture herald': /motionpictureher/i,
-  'motion picture magazine': /motionpicturemag/i,
-  'the exhibitor': /motionpictureexh/i,
-  'motion picture story magazine': /motionpicturesto|motionpicture(?!rev|fam|dai|her|mag|new|exh)/i,
-  'motion picture news': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i,
+  'motion picture exhibitor': /motionpictureexh/i,
+  'motion picture story magazine': /motionpicturesto/i, // fan mag
+  'motion picture magazine': /motionpicturemag/i, // fan mag
+  'motion picture classic': /motionpicturecla/i, // fan mag
+  'motion picture': /motionpicture/i, // fan mag
+  'motion picture news': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!icture)|motion(?!picture)|picturen/i, // trade mag with many pattern variations
   
-  'moving picture weekly': /movingpicturewee/i,
-  'moving picture world': /^(MPW\d|moving(?:picture)?wor|moving(?:\d|$)|movin(?:g)?(?:or|wor)|movie?wor|mo(?:v)?(?:pic|wor)|more?wor|move?wor|movure)/i,
+  'moving picture world': /^(MPW\d|moving(?:picture)?wor|moving(?:\d|$)|movin(?:g)?(?:or|wor)|movie?wor|mo(?:v)?(?:pic|wor)|more?wor|move?wor|movure)/i, // yes it really does need to be this complicated and specific
   'the movies and the people who make them': /moviespeoplewhom/i,
   'movie classic': /movieclassic/i,
   'movieland': /movielandtv/i,
@@ -54,7 +50,7 @@ module.exports = {
 
   'exhibitors daily review': /exhibitorsdailyr/i,
   'exhibitors herald': /exhibher|exhibitorsh/i,
-  'the exhibitor': /\bexhibitor|motionpictureexh/i,
+  'the exhibitor': /\bexhibitor/i,
   'independent exhibitors film bulletin': /independentexhibitorsfilm|filmbulletin|\bindepe/i,
   'the philadelphia exhibitor': /philadelphiaexhi/i,
   'exhibitors trade review': /exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|\bexhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber)/i,
