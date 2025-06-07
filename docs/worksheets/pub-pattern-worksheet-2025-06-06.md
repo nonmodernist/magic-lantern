@@ -452,10 +452,10 @@ a little detective story. we settled on not worrying if a couple of volumes get 
 
 | Publication              | Priority   | Audited | Pattern Works | Needs Update | Notes |
 | ------------------------ | ---------- | ------- | ------------- | ------------ | ----- |
-| American Cinematographer | HIGH (1.8) | x       | ☐             | x            |       |
-| BoxOffice                | HIGH (1.8) | x       | ☐             | x            |       |
-| Moving Picture World     | HIGH (1.5) | x       | ☐             | x            |       |
-| Harrison's Reports       | HIGH (1.6) | x       | ☐             | x            |       |
+| American Cinematographer | HIGH (1.8) | x       | ☐             | x            | updated      |
+| BoxOffice                | HIGH (1.8) | x       | ☐             | x            | updated      |
+| Moving Picture World     | HIGH (1.5) | x       | ☐             | x            | updated      |
+| Harrison's Reports       | HIGH (1.6) | x       | ☐             | x            | updated      |
 | The Exhibitor            | HIGH (1.6) | x       | ☐             | x            | profiles using this need updates to ensure they're getting the correct pub |
 | Reel Life                | HIGH (1.8) | ☐       | ☐             | ☐            |       |
 | Variety                  | HIGH (1.5) | ☐       | ☐             | ☐            |       |

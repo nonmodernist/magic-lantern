@@ -8,6 +8,8 @@ class ProfileLoader {
     this.loadAllProfiles();
   }
   
+ // debugging?
+
   loadAllProfiles() {
     const profileDir = __dirname;
     const files = fs.readdirSync(profileDir)
