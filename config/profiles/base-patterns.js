@@ -43,8 +43,7 @@ module.exports = {
   'motion picture news': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i,
   
   'moving picture weekly': /movingpicturewee/i,
-  'moving picture world': /movingpicture|movpict|mopicwor|mowor|moviwor|moviewor|moving|movpicwor|morewor|movingpicwor|movinwor|movwor/i,
-
+  'moving picture world': /^(MPW\d|moving(?:picture)?wor|moving(?:\d|$)|movin(?:g)?(?:or|wor)|movie?wor|mo(?:v)?(?:pic|wor)|more?wor|move?wor|movure)/i,
   'the movies and the people who make them': /moviespeoplewhom/i,
   'movie classic': /movieclassic/i,
   'movieland': /movielandtv/i,
@@ -75,15 +74,16 @@ module.exports = {
   'new movies the national board of review magazine': /newmoviesnation/i,
   'national board of review magazine': /nationalboardofr/i,
 
-  'american cinematographer': /americancinemato|american|amento/i,
+  'american cinematographer': /^america(?!nmotionpi)|amento|^amri/i,
   'national box office digest': /boxofficedigest/i,
-  'boxoffice': /boxoffice(?!digest|baromet)/i,  // NOT followed by 'digest' or 'baromet'
-  'boxoffice barometer': /boxofficebaromet/i,
+  'boxoffice barometer': /boxofficebaromet/i, 
+  'boxoffice': /boxoffice(?!digest|baromet|checkup)/i,  // NOT followed by 'digest' or 'baromet'
+
   'cinemundial': /cinemundial/i,
   'camera': /camera/i,
   'close up': /closeup/i,
   'the new york clipper': /clipper/i,
-  'harrisons reports': /harrison/i,
+  'harrisons reports': /harrisons/i,
   'illustrated films monthly': /illustra/i,
   'modern screen': /modernscreen/i,
   'motography': /motography/i,

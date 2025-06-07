@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magic Lantern Pattern Tester</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #34495e;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        
+        .checkbox-group label {
+            display: inline;
+            font-weight: normal;
+            margin-left: 5px;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        button.secondary {
+            background: #95a5a6;
+        }
+        
+        button.secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        .results {
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .match {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .no-match {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .match-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .match .match-badge {
+            background: #28a745;
+            color: white;
+        }
+        
+        .no-match .match-badge {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+        
+        .publication-matches {
+            margin-top: 20px;
+        }
+        
+        .pub-match {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .code-block {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        .quick-test {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .quick-test button {
+            margin: 0;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        .error {
+            color: #dc3545;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .help-text {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Magic Lantern Pattern Tester</h1>
+        <p class="subtitle">Test regex patterns against Internet Archive item IDs</p>
+        
+        <div class="section">
+            <label for="pattern">Regex Pattern:</label>
+            <input type="text" id="pattern" placeholder="/variety/i" value="/variety/i">
+            <div class="checkbox-group">
+                <input type="checkbox" id="caseInsensitive" checked>
+                <label for="caseInsensitive">Case Insensitive (i flag)</label>
+            </div>
+            <div class="error" id="patternError"></div>
+            <div class="help-text">Enter pattern without slashes, or with slashes and flags like /pattern/i</div>
+        </div>
+        
+        <div class="section">
+            <label for="testIds">Test IDs (one per line):</label>
+            <textarea id="testIds" placeholder="variety137-1940-01_0054
+motionpictureher21unse_0123
+photoplay11chic_0456">variety137-1940-01_0054
+motionpictureher21unse_0123
+photoplay11chic_0456
+variety208-1957-10_0626
+varietyradio1938-39</textarea>
+            
+            <div class="quick-test">
+                <button onclick="loadCommonPatterns()">Load Common IDs</button>
+                <button onclick="loadCurrentPattern()" class="secondary">Load Current Pattern</button>
+                <button onclick="clearAll()" class="secondary">Clear</button>
+            </div>
+        </div>
+        
+        <button onclick="testPattern()">Test Pattern</button>
+        <button onclick="testAllPublications()" class="secondary">Test Against All Publications</button>
+        
+        <div class="results" id="results"></div>
+        
+        <div class="section" style="margin-top: 30px;">
+            <label>Test a Specific Publication:</label>
+            <select id="publicationSelect" onchange="loadPublicationPattern()">
+                <option value="">Select a publication...</option>
+                <option value="variety">Variety</option>
+                <option value="motion picture herald">Motion Picture Herald</option>
+                <option value="photoplay">Photoplay</option>
+                <option value="boxoffice">BoxOffice</option>
+                <option value="american cinematographer">American Cinematographer</option>
+                <option value="harrisons reports">Harrison's Reports</option>
+                <option value="moving picture world">Moving Picture World</option>
+                <option value="the exhibitor">The Exhibitor</option>
+                <option value="motion picture news">Motion Picture News</option>
+            </select>
+        </div>
+        
+        <div class="section">
+            <label>Pattern Builder Helper:</label>
+            <div class="quick-test">
+                <button onclick="addToPattern('|')">Add OR (|)</button>
+                <button onclick="addToPattern('(?!xxx)')">Add Negative Lookahead</button>
+                <button onclick="addToPattern('\\b')">Add Word Boundary</button>
+                <button onclick="addToPattern('(?:xxx)')">Add Non-Capturing Group</button>
+                <button onclick="addToPattern('^')">Add Start Anchor</button>
+                <button onclick="addToPattern('$')">Add End Anchor</button>
+            </div>
+            <div class="code-block" id="regexHelp">
+Common patterns:
+/variety/i                    - Simple match (case insensitive)
+/^variety/i                   - Must start with variety
+/variety\d+/i                 - variety followed by numbers
+/variety(?!radio)/i           - variety NOT followed by radio
+/motion ?picture/i            - motion, optional space, picture
+/exhib(?:itor)?/i            - exhib or exhibitor
+/(variety|photoplay)/i        - variety OR photoplay
+/\b(the )?exhibitor/i        - Optional "the" before exhibitor
+</div>
+        </div>
+    </div>
+
+    <script>
+        // Base patterns from the actual file
+        const basePatterns = {
+            'variety': /variety/i,
+            'motion picture herald': /motionpictureher/i,
+            'photoplay': /photoplay|photo|pho/i,
+            'boxoffice': /boxoffice(?!digest|baromet)/i,
+            'american cinematographer': /americancinemato|american|amento/i,
+            'harrisons reports': /harrison/i,
+            'moving picture world': /movingpicture|movpict|mopicwor|mowor|moviwor|moviewor|moving|movpicwor|morewor|movingpicwor|movinwor|movwor/i,
+            'the exhibitor': /\bexhibitor|motionpictureexh/i,
+            'motion picture news': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!ic|icture)/i
+        };
+        
+        const commonTestIds = `variety137-1940-01_0054
+variety208-1957-10_0626
+varietyradio1938-39
+motionpictureher21unse_0123
+motionpictureher22unse_0456
+photoplay11chic_0456
+photoplay22newy_0789
+boxoffice25kans_0789
+boxofficedigest1949
+americancinemato41unse_0021
+amento04asch_0123
+harrisonsreports43harr_0234
+harrison1947_0345
+movingpicturewor36movi_0456
+movpict1920_0567
+exhibher1921_0678
+theexhibitor1922_0789
+motionpictureexh1923_0890
+motionpicturenew1924_0901`;
+        
+        function testPattern() {
+            const patternInput = document.getElementById('pattern').value.trim();
+            const testIds = document.getElementById('testIds').value.trim().split('\n').filter(id => id);
+            const caseInsensitive = document.getElementById('caseInsensitive').checked;
+            
+            if (!patternInput || testIds.length === 0) {
+                alert('Please enter a pattern and some test IDs');
+                return;
+            }
+            
+            let regex;
+            try {
+                // Handle pattern with or without slashes
+                if (patternInput.startsWith('/') && patternInput.lastIndexOf('/') > 0) {
+                    // Pattern includes slashes and possibly flags
+                    const lastSlash = patternInput.lastIndexOf('/');
+                    const pattern = patternInput.slice(1, lastSlash);
+                    const flags = patternInput.slice(lastSlash + 1);
+                    regex = new RegExp(pattern, flags);
+                } else {
+                    // Pattern without slashes
+                    const flags = caseInsensitive ? 'i' : '';
+                    regex = new RegExp(patternInput, flags);
+                }
+                document.getElementById('patternError').textContent = '';
+            } catch (e) {
+                document.getElementById('patternError').textContent = 'Invalid regex: ' + e.message;
+                return;
+            }
+            
+            let html = '<h3>Test Results:</h3>';
+            let matches = 0;
+            
+            testIds.forEach(id => {
+                const idLower = id.toLowerCase();
+                const isMatch = regex.test(idLower);
+                if (isMatch) matches++;
+                
+                html += `<div class="result-item ${isMatch ? 'match' : 'no-match'}">
+                    <span>${id}</span>
+                    <span class="match-badge">${isMatch ? 'MATCH' : 'NO MATCH'}</span>
+                </div>`;
+            });
+            
+            html += `<div class="stats">
+                <strong>Summary:</strong> ${matches} matches out of ${testIds.length} IDs (${Math.round(matches/testIds.length*100)}%)
+                <br><strong>Pattern used:</strong> <code>${regex}</code>
+            </div>`;
+            
+            // Suggest improvements
+            if (matches === 0) {
+                html += '<div class="error">⚠️ No matches found. Check your pattern.</div>';
+            } else if (matches === testIds.length) {
+                html += '<div class="help-text">✓ All IDs matched. Consider if the pattern might be too broad.</div>';
+            }
+            
+            document.getElementById('results').innerHTML = html;
+        }
+        
+        function testAllPublications() {
+            const testIds = document.getElementById('testIds').value.trim().split('\n').filter(id => id);
+            
+            if (testIds.length === 0) {
+                alert('Please enter some test IDs');
+                return;
+            }
+            
+            let html = '<h3>Which Publications Match These IDs:</h3>';
+            
+            testIds.forEach(id => {
+                const idLower = id.toLowerCase();
+                const matches = [];
+                
+                for (const [pub, pattern] of Object.entries(basePatterns)) {
+                    if (pattern.test(idLower)) {
+                        matches.push(pub);
+                    }
+                }
+                
+                html += `<div class="result-item ${matches.length > 0 ? 'match' : 'no-match'}">
+                    <span>${id}</span>
+                    <span>${matches.length > 0 ? matches.join(', ') : 'NO MATCHES'}</span>
+                </div>`;
+            });
+            
+            document.getElementById('results').innerHTML = html;
+        }
+        
+        function loadPublicationPattern() {
+            const select = document.getElementById('publicationSelect');
+            const pub = select.value;
+            
+            if (pub && basePatterns[pub]) {
+                const pattern = basePatterns[pub].toString();
+                document.getElementById('pattern').value = pattern;
+                
+                // Auto-detect if case insensitive
+                document.getElementById('caseInsensitive').checked = pattern.includes('/i');
+            }
+        }
+        
+        function loadCommonPatterns() {
+            document.getElementById('testIds').value = commonTestIds;
+        }
+        
+        function loadCurrentPattern() {
+            const patternInput = prompt('Enter publication name (e.g., "variety"):');
+            if (patternInput && basePatterns[patternInput]) {
+                document.getElementById('pattern').value = basePatterns[patternInput].toString();
+            }
+        }
+        
+        function clearAll() {
+            document.getElementById('pattern').value = '';
+            document.getElementById('testIds').value = '';
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        function addToPattern(text) {
+            const input = document.getElementById('pattern');
+            input.value += text;
+            input.focus();
+        }
+        
+        // Allow Enter key to test
+        document.getElementById('pattern').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                testPattern();
+            }
+        });
+    </script>
+</body>
+</html>
