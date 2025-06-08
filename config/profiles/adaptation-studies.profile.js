@@ -11,7 +11,7 @@ module.exports = {
       "variety": 1.2,
       "moving picture world": 1.5,
       "motion picture herald": 1.3,
-      "film daily": 1.2,
+      "the film daily": 1.2,
       "exhibitors herald": 1.3,
       "photoplay": 1.5,  
       "modern screen": 1.3,

@@ -46,7 +46,7 @@ module.exports = {
 
   'picture play': /pictureplay/i,
   'motion picture news': /picturen/i,
-  'pictures and the picturegoer': /^picture(?!n)/i,
+  'pictures and the picturegoer': /^picture(?!n|play)/i,
 
   // WARNING: "exhibitor" prefix and variations are used by multiple publications
 
@@ -73,6 +73,7 @@ module.exports = {
   'national board of review magazine': /nationalboardofr/i,
 
   'american cinematographer': /^america(?!nmotionpi)|amento|^amri/i,
+  
   'national box office digest': /boxofficedigest/i,
   'boxoffice barometer': /boxofficebaromet/i, 
   'boxoffice': /boxoffice(?!digest|baromet|checkup)/i,  // NOT followed by 'digest' or 'baromet'

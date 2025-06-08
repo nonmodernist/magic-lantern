@@ -10,7 +10,7 @@ module.exports = {
       // sample publications, all scored the same for default
       "variety": 1.0,
       "motion picture herald": 1.0,
-      "film daily": 1.0,
+      "the film daily": 1.0,
       "exhibitors herald": 1.0,
       "moving picture world": 1.0,
       "photoplay": 1.0,

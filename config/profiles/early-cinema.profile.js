@@ -18,7 +18,7 @@ module.exports = {
             "the film daily": 1.3,
             "motion picture news": 1.4,
             "exhibitors herald": 1.5,
-            "new york clipper": 1.3,
+            "the new york clipper": 1.3,
             "exhibitors trade review": 1.5,
             "picture play": 1.5,
             "variety": 1.2,  // existed but less film-focused early
