@@ -34,7 +34,6 @@ module.exports = {
     }
   },
 
-
   dateRanges: {
     high: { before: 2, after: 1 },
     medium: { before: 2, after: 1 },

@@ -33,21 +33,5 @@ module.exports =
     }
   },
   dateRange: { before: 3, after: 2 }, // Wider range for silent era
-
-    reports: {
-        generateMarkdown: true,      // Generate reports at all
-        createSubfolders: true,      // Put individual films in subfolder
-        includeComparative: true,    // Generate comparative analysis
-        includeSummary: true,        // Generate executive summary
-        
-        // Control what goes in reports
-        sections: {
-            contentBreakdown: true,
-            researchNotes: true,
-            nextSteps: true          // Add from legacy version
-        }
-    },
-
-
   notes: "Authors like Gene Stratton-Porter were major draws"
 }
