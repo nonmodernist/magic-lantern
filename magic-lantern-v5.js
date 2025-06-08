@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const VERSION = '5.0.0';
+const VERSION = '5.0.1';
 console.log(`✨ MAGIC LANTERN v${VERSION}`);
 
 // magic-lantern-v5.js - Refactored to use external configuration
@@ -9,7 +9,6 @@ const path = require('path');
 const https = require('https');
 const config = require('./config');
 const SearchStrategyGenerator = require('./lib/search-strategy-generator');
-const ContentTypeEnhancer = require('./lib/content-type-enhancer');
 const strategyRegistry = require('./lib/strategy-registry');
 const MarkdownReportGenerator = require('./lib/markdown-report-generator');
 
@@ -34,30 +33,6 @@ class UnifiedMagicLantern {
         this.allResults = [];
         this.seenIds = new Set();
 
-                // Initialize content enhancer
-        this.contentEnhancer = new ContentTypeEnhancer({
-            includeEvidence: true,
-            enhanceExcerpts: true,
-            minConfidence: 'low'
-        });
-    
-        
-        // Content patterns for text analysis
-        this.contentPatterns = {
-            review: /\b(review|reviewed|critique|criticism|notices?)\b/i,
-            production: /\b(production|producing|filming|started|completed|announced)\b/i,
-            boxOffice: /\b(gross|box[\s-]?office|earnings|receipts|revenue|record)\b/i,
-            advertisement: /\b(contest|cuts and mats|now showing|coming|opens|playing|at the|theatre|theater)\b/i,
-            photo: /\b(photograph|photo|scene from|production still)\b/i,
-            interview: /\b(interview|talks about|discusses)\b/i,
-            listing: /\b(calendar|releases for|table|list)\b/i
-        };
-
-            // Initialize report generator
-            this.reportGenerator = new MarkdownReportGenerator({
-                createSubfolders: true  // Can be configured
-            });
-        
     }
 
     // Calculate position-based score
@@ -68,7 +43,7 @@ class UnifiedMagicLantern {
         return Math.max(10, 30 - (position - 21));
     }
 
-    // Extract publication using config patterns
+    // Extract publication title using base-patterns.js
     extractPublication(itemId) {
         const id = itemId.toLowerCase();
         
@@ -142,32 +117,32 @@ class UnifiedMagicLantern {
     // Add this method to check if Lantern is available before starting
 
     async checkLanternAvailability() {
-    console.log('\n🔍 Checking Lantern availability...');
-    
-    try {
-        const testUrl = `${this.baseUrl}/catalog.json?per_page=1`;
-        const timeout = new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Connection timeout')), 10000)
-        );
+        console.log('\n🏮 Checking Lantern availability...');
         
-        await Promise.race([
-            this.makeRequest(testUrl),
-            timeout
-        ]);
-        
-        console.log('✅ Lantern is available!\n');
-        return true;
-    } catch (error) {
-        console.log('❌ Lantern appears to be down or unreachable');
-        console.log(`   Error: ${error.message}`);
-        console.log('\n💡 Suggestions:');
-        console.log('   1. Check if https://lantern.mediahist.org/ loads in your browser');
-        console.log('   2. Check https://mediahistoryproject.org/ for maintenance notices');
-        console.log('   3. Try again later - the site may be temporarily down');
-        console.log('   4. Check your internet connection\n');
-        return false;
+        try {
+            const testUrl = `${this.baseUrl}/catalog.json?per_page=1`;
+            const timeout = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Connection timeout')), 10000)
+            );
+            
+            await Promise.race([
+                this.makeRequest(testUrl),
+                timeout
+            ]);
+            
+            console.log('✅ Lantern is available!\n');
+            return true;
+        } catch (error) {
+            console.log('❌ Lantern appears to be down or unreachable');
+            console.log(`   Error: ${error.message}`);
+            console.log('\n💡 Suggestions:');
+            console.log('   1. Check if https://lantern.mediahist.org/ loads in your browser');
+            console.log('   2. Check https://mediahistoryproject.org/ for maintenance notices');
+            console.log('   3. Try again later - the site may be temporarily down');
+            console.log('   4. Check your internet connection\n');
+            return false;
+        }
     }
-}
 
     async makeRequest(url) {
         return new Promise((resolve, reject) => {
@@ -202,7 +177,7 @@ class UnifiedMagicLantern {
 
         params.append('f_inclusive[format][]', 'Periodicals');
         
-        // ! configurable
+        // ! configurable? are these the correct fallbacks?
         // Use collections from config
         const collections = this.config.search.api.collections || 
             ['Fan Magazines', 'Hollywood Studio System', 'Early Cinema'];
@@ -222,10 +197,10 @@ class UnifiedMagicLantern {
         
         const url = `${this.baseUrl}/catalog.json?${params}`;
         
-    console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
-    console.log(`   Weight: ${strategy.profileWeight || 1.0} | Type: ${strategy.type}`);
-    console.log(`   Keywords: ${keywords.keyword}${keywords.second_keyword ? ' + ' + keywords.second_keyword : ''}${keywords.third_keyword ? ' + ' + keywords.third_keyword : ''}`);
-    
+        console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
+        console.log(`   Weight: ${strategy.profileWeight || 1.0} | Type: ${strategy.type}`);
+        console.log(`   Keywords: ${keywords.keyword}${keywords.second_keyword ? ' + ' + keywords.second_keyword : ''}${keywords.third_keyword ? ' + ' + keywords.third_keyword : ''}`);
+        
         try {
             const results = await this.makeRequest(url);
             const count = results.meta?.pages?.total_count || 0;
@@ -416,30 +391,33 @@ class UnifiedMagicLantern {
         }
     }
 
-    identifyContentTypes(text) {
-        const types = [];
-        
-        for (const [type, pattern] of Object.entries(this.contentPatterns)) {
-            if (pattern.test(text)) {
-                types.push(type);
-            }
-        }
-        
-        return types.length > 0 ? types : ['mention'];
-    }
+    // TODO test commenting this out before removing
 
-    // ! configurable
-
-    checkForPhoto(text) {
-        const photoIndicators = [
-            'scene from', 'production still', 'photograph',
-            'pictured above', 'shown here', 'exclusive photo',
-            'production cuts', 'mats'
-        ];
+    // identifyContentTypes(text) {
+    //     const types = [];
         
-        const lowerText = text.toLowerCase();
-        return photoIndicators.some(indicator => lowerText.includes(indicator));
-    }
+    //     for (const [type, pattern] of Object.entries(this.contentPatterns)) {
+    //         if (pattern.test(text)) {
+    //             types.push(type);
+    //         }
+    //     }
+        
+    //     return types.length > 0 ? types : ['mention'];
+    // }
+
+    // // ! configurable
+
+    // checkForPhoto(text) {
+    //     const photoIndicators = [
+    //         'scene from', 'production still', 'photograph',
+    //         'pictured above', 'shown here', 'exclusive photo',
+    //         'production cuts', 'mats'
+    //     ];
+        
+    //     const lowerText = text.toLowerCase();
+    //     return photoIndicators.some(indicator => lowerText.includes(indicator));
+    // }
+
 
 async comprehensiveSearch(film) {
     console.log(`\n${'='.repeat(70)}`);
@@ -530,26 +508,11 @@ async comprehensiveSearch(film) {
                 // Debug logging
                 console.log(`   ✓ Fetched ${fullPageData.wordCount || 0} words`);
                 
-                // NEW CODE - Use the enhancer:
-                let enhancedData;
-                try {
-                    enhancedData = this.contentEnhancer.enhanceResult(fullPageData);
-                    console.log(`   ✓ Enhanced: ${enhancedData.contentAnalysis.primaryType} (${enhancedData.contentAnalysis.confidence})`);
-                } catch (enhanceError) {
-                    console.error(`   ❌ Enhancement failed for ${result.id}:`, enhanceError.message);
-                    // Fallback to basic data
-                    enhancedData = {
-                        ...fullPageData,
-                        contentAnalysis: {
-                            primaryType: 'unknown',
-                            confidence: 'low',
-                            allTypes: []
-                        },
-                        contentTypes: ['unknown'],
-                        contentScore: 0,
-                        isTreasure: false
-                    };
-                }
+                // Just use the fullPageData directly
+                let enhancedData = {
+                    ...fullPageData,
+                    excerpt: fullPageData.fullText.substring(0, 300) + '...'
+                };
                 // Copy over the additional metadata
                 enhancedData.foundBy = result.foundBy;
                 enhancedData.searchQuery = result.searchQuery;
@@ -565,33 +528,13 @@ async comprehensiveSearch(film) {
                 fullTextResults.push(enhancedData);  // Push the enhanced version
             }
         }        
-        // Sort by content value
-        const sortedResults = this.contentEnhancer.sortByContentValue(fullTextResults);
-        
-        // Get statistics
-        const contentStats = this.contentEnhancer.getEnhancementStats(fullTextResults);
-        
-        console.log('\n📊 Content Analysis Summary:');
-        console.log(`   Treasures found: ${contentStats.treasures}`);
-        console.log(`   Average content score: ${contentStats.averageContentScore}`);
-        console.log(`   High confidence: ${contentStats.byConfidence.high}`);
-        console.log(`   Content types: ${Object.entries(contentStats.byType)
-            .map(([type, count]) => `${type} (${count})`)
-            .join(', ')}`);
         
         return {
             film: film,
             totalUniqueSources: this.allResults.length,
             allSearchResults: this.allResults,
             fullTextAnalysis: fullTextResults,
-            contentStats: contentStats
-
         };
-    }
-
-        // Optional: Add method to get just the treasures
-    getTreasures(results) {
-        return results.fullTextAnalysis.filter(r => r.isTreasure);
     }
 
     async loadFilms(filePath) {
@@ -697,57 +640,9 @@ async comprehensiveSearch(film) {
             JSON.stringify(fullTextData, null, 2)
         );
         
-                // Also save a "treasures" file with just the high-value finds
-        const treasuresData = results.map(r => ({
-            film: r.film,
-            treasures: this.getTreasures(r),
-            treasureCount: this.getTreasures(r).length,
-            contentStats: r.contentStats
-        }));
+        console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
         
-        fs.writeFileSync(
-            path.join(outputDir, `treasures_${timestamp}.json`),
-            JSON.stringify(treasuresData, null, 2)
-        );
-    
-    console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
-
-           // NEW: Generate markdown reports
-    if (this.config.reports?.generateMarkdown !== false) {
-        console.log('\n📝 Generating markdown reports...');
-        
-        try {
-            const reports = this.reportGenerator.generateReports(
-                results, 
-                this.config.profileInfo
-            );
-            
-            const savedFiles = this.reportGenerator.saveReports(
-                reports, 
-                outputDir,  // Same directory as JSON files
-                timestamp
-            );
-            
-            console.log(`✅ Generated ${savedFiles.length} markdown report files`);
-            
-            // List the main report files
-            if (reports.combined) {
-                console.log(`   📄 combined-report_${timestamp}.md`);
-            }
-            if (reports.comparative && results.length > 1) {
-                console.log(`   📄 comparative-analysis_${timestamp}.md`);
-            }
-            if (reports.summary) {
-                console.log(`   📄 executive-summary_${timestamp}.md`);
-            }
-            
-        } catch (error) {
-            console.error('❌ Error generating markdown reports:', error.message);
-            // Don't fail the whole process if reports fail
-        }
     }
-}
-    
 
     summarizeStrategies(results) {
         const summary = {};
@@ -907,7 +802,7 @@ if (require.main === module) {
     // Check for help
     if (args.includes('--help') || args.includes('-h')) {
         console.log('\n✨ MAGIC LANTERN v5 - Research Toolkit');
-        console.log('\nUsage: node magic-lantern-v5.js [data/films.csv] [options]');
+        console.log('\nUsage: node magic-lantern-v5.js [path/to/file.csv] [options]');
         console.log('\nOptions:');
         console.log('  --corpus=PROFILE     Corpus size profile: test, single, medium, full');
         console.log('  --profile=PROFILE    Research profile name');
@@ -917,7 +812,7 @@ if (require.main === module) {
         console.log('  --timestamp=TIME     Specific timestamp to use with --reports-only');
         console.log('  --results-dir=DIR    Directory containing results (default: results)');
         console.log('\nExamples:');
-        console.log('  node magic-lantern-v5.js films.csv --profile=adaptation-studies');
+        console.log('  node magic-lantern-v5.js data/films.csv --profile=adaptation-studies');
         console.log('  node magic-lantern-v5.js --corpus=medium --profile=early-cinema');
         console.log('  node magic-lantern-v5.js --reports-only  # Use most recent results');
         console.log('  node magic-lantern-v5.js --reports-only --timestamp=20241220_143022');
@@ -926,7 +821,7 @@ if (require.main === module) {
     
     // List profiles
     if (args.includes('--list-profiles')) {
-        console.log('\n📚 Available Research Profiles:\n');
+        console.log('\n🔎 Available Research Profiles:\n');
         const profiles = config.profiles.list();
         profiles.forEach(p => {
             console.log(`  ${p.key}:`);

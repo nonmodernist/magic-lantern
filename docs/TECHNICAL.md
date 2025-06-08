@@ -176,8 +176,6 @@ Each full text fetch is an additional API call to Lantern, so we limit how many 
 #### Full Text Enhancement
 For each fetched page:
 - Extract full OCR text
-- Identify content types (review, production, etc.) *(currently experimental!)*
-- Check for photo indicators *(currently experimental!)*
 - Calculate collection weight
 - Preserve all metadata
 

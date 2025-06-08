@@ -18,7 +18,7 @@ module.exports = {
             "the film daily": 1.3,
             "motion picture news": 1.4,
             "exhibitors herald": 1.5,
-            "new york clipper": 1.3,
+            "the new york clipper": 1.3,
             "exhibitors trade review": 1.5,
             "picture play": 1.5,
             "variety": 1.2,  // existed but less film-focused early
@@ -39,6 +39,33 @@ module.exports = {
         enabled: {
             starSearches: true, // need to set some early film stars
             studioSearches: true, // but use early studio names
+            earlySearches: true,
+        },
+
+        weights: {
+            'exact_title': 1.5,
+            'title_no_article': 1.1,
+            'studio_production': 0.7,     // too broad
+            'studio_title': 1.4,
+            'director_title': 1,        // Less important early
+            'title_production': 1.4,      // Good for this era
+            'title_exhibitor': 1.2,       // Exhibition important
+            'title_box_office': 0.8,      // Less relevant early
+        }
+    },
+
+    // future functionality
+    reports: {
+        generateMarkdown: true,      // Generate reports at all
+        createSubfolders: true,      // Put individual films in subfolder
+        includeComparative: true,    // Generate comparative analysis
+        includeSummary: true,        // Generate executive summary
+        
+        // Control what goes in reports
+        sections: {
+            contentBreakdown: true,
+            researchNotes: true,
+            nextSteps: true          // Add from legacy version
         }
     },
 

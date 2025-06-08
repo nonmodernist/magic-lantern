@@ -1,7 +1,4 @@
-const basePatterns = require('./base-patterns');
-
-
-
+const basePatterns = require('../config/profiles/base-patterns');
 
 module.exports = {
   name: "Studio Era Literary Adaptations",
@@ -43,6 +40,7 @@ module.exports = {
     low: { before: 3, after: 2 }  // Maybe slightly wider for low confidence
   },
 
+<<<<<<< HEAD:config/profiles/studio-era-adaptations.profile.js
     reports: {
         generateMarkdown: true,      // Generate reports at all
         createSubfolders: true,      // Put individual films in subfolder
@@ -59,5 +57,7 @@ module.exports = {
     },
 
   contentPriorities: ["review", "advertisement", "production"],
+=======
+>>>>>>> main:legacy/studio-era-adaptations.profile.js
   notes: "Peak of prestige adaptations - Gone with the Wind era"
 }

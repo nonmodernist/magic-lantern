@@ -1,7 +1,6 @@
 // config/profiles/adaptation-studies.profile.js
 const basePatterns = require('./base-patterns');
 
-
 module.exports = {
   name: "Literary Adaptations",
   description: "Emphasizes author attribution and source materials",
@@ -12,7 +11,7 @@ module.exports = {
       "variety": 1.2,
       "moving picture world": 1.5,
       "motion picture herald": 1.3,
-      "film daily": 1.2,
+      "the film daily": 1.2,
       "exhibitors herald": 1.3,
       "photoplay": 1.5,  
       "modern screen": 1.3,
@@ -36,8 +35,18 @@ module.exports = {
       "Year Book": 0.7
     }
   },
-  
+
   searchStrategies: {
+    enabled: {
+        titleVariations: true,
+        reviewSearches: true,
+        adaptationSearches: true,    
+        productionSearches: true,
+        starSearches: false,
+        contextualSearches: true,
+        advertisementSearches: false,
+    },
+    
     weights: {
         // Author/adaptation searches - RUN FIRST
         'author_title': 2.5,

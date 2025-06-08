@@ -1,0 +1,1806 @@
+                "identifier": "canadian-motion-picture-exhibitor-1941-10-01",
+                "title": "The Canadian Motion Picture Exhibitor (Oct 1, 1941)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-11-15",
+                "title": "The Canadian Motion Picture Exhibitor (Nov 15, 1941)"
+--
+                "identifier": "handbookofmotion00herb",
+                "title": "The handbook of motion picture photography"
+            },
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "identifier": "motionpicturecla1920broo",
+                "title": "Motion Picture Classic (Jan-Dec 1920)"
+--
+                "identifier": "motionpictureher152unse",
+                "title": "Motion Picture Herald (Jul-Aug 1943)"
+--
+                "identifier": "motionpictureher1541unse",
+                "title": "Motion Picture Herald (Mar-Apr 1944)"
+--
+                "identifier": "motionpicturenew102unse",
+                "title": "Motion Picture News (Oct 1914-Jan 1915)"
+--
+                "identifier": "motionpicturenew141unse",
+                "title": "Motion Picture News (Jul-Aug 1916)"
+--
+                "identifier": "motionpicturenew25mayj",
+                "title": "Motion Picture News (May-Jun 1922)"
+--
+                "identifier": "motionpicturepho00carl",
+                "title": "Motion picture photography"
+--
+                "identifier": "motionpicturewee00movi",
+                "title": "The Moving Picture Weekly (1915-1920)"
+--
+                "identifier": "motionpicturedai74unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai82unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai61unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai69unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh62jaye_0",
+                "title": "Motion Picture Exhibitor (Aug-Nov 1959)"
+--
+                "identifier": "motionpictureexh68jaye",
+                "title": "Motion Picture Exhibitor (Jun-Sep 1962)"
+--
+                "identifier": "motionpictureher113unse",
+                "title": "Motion Picture Herald (Sep-Dec 1933)"
+--
+                "identifier": "motionpictureher1161unse",
+                "title": "Motion Picture Herald (Sep-Oct 1934)"
+--
+                "identifier": "motionpicturerev00wome",
+                "title": "Motion Picture Reviews (1930)"
+--
+                "identifier": "motionpicturerev00wome_9",
+                "title": "Motion Picture Reviews (1940)"
+--
+                "identifier": "motionpicturesou00acad",
+                "title": "Motion picture sound engineering"
+--
+                "creator": "National education association of the United States. Dept. of secondary teachers. Committee on motion pictures",
+                "date": "1939-01-01T00:00:00Z",
+--
+                "identifier": "motionpic33moti",
+                "title": "Motion Picture News (Jan - Feb 1926)"
+--
+                "identifier": "motionpicture44moti",
+                "title": "Motion Picture (Aug 1932-Jan 1933)"
+--
+                "identifier": "motionpicture50moti",
+                "title": "Motion Picture (Aug 1935-Jan 1936)"
+--
+                "identifier": "motionpicture53moti",
+                "title": "Motion Picture (Feb-Jul 1937)"
+--
+                "identifier": "motionpicture60fawc",
+                "title": "Motion Picture (Aug 1940-Jan 1941)"
+--
+                "identifier": "motionpictureact00jean",
+                "title": "Motion picture acting for professionals and amateurs"
+--
+                "identifier": "motionpicturedai86unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh55jaye",
+                "title": "Motion Picture Exhibitor (Nov 1955-Jan 1956)"
+--
+                "identifier": "motionpictureexh67jaye_0",
+                "title": "Motion Picture Exhibitor (Mar-Jun 1962)"
+--
+                "identifier": "motionpictureexh69jaye",
+                "title": "Motion Picture Exhibitor (Dec 1962-Mar 1963)"
+--
+                "identifier": "motionpictureher117unse",
+                "title": "Motion Picture Herald (Nov-Dec 1934)"
+--
+                "identifier": "motionpictureher118unse",
+                "title": "Motion Picture Herald (Jan-Feb 1935)"
+--
+                "identifier": "motionpictureher1321unse",
+                "title": "Motion Picture Herald (Sep-Oct 1938)"
+--
+                "identifier": "motionpictureher166unse",
+                "title": "Motion Picture Herald (Jan-Feb 1947)"
+--
+                "identifier": "motionpictureher172unse",
+                "title": "Motion Picture Herald (Jul-Aug 1948)"
+--
+                "identifier": "motionpicturemag09moti",
+                "title": "Motion Picture Magazine (Feb-Jul 1915)"
+--
+                "identifier": "motionpicturenew23moti_5",
+                "title": "Motion picture news (Dec 1920-Feb 1921)"
+--
+                "identifier": "motionpicturerev00wome_7",
+                "title": "Motion Picture Reviews (1938)"
+--
+                "identifier": "motionpicturedai46unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai46unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai49unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai51unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai54unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai63unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher1341unse",
+                "title": "Motion Picture Herald (Mar-Apr 1939)"
+--
+                "identifier": "motionpicturenew00moti",
+                "title": "Motion Picture News (Jan-Feb 1923)"
+--
+                "identifier": "motionpicturenew00moti_11",
+                "title": "Motion picture news booking guide (Apr 1922)"
+--
+                "identifier": "motionpicturestu00moti",
+                "title": "Motion picture news studio directory (Oct 21 1916)"
+--
+                "identifier": "motionpicturestu00moti_0",
+                "title": "Motion picture studio directory and trade annual : 1920"
+--
+                "identifier": "antitrustinmotio00mich",
+                "title": "Antitrust in the Motion Picture Industry"
+--
+                "identifier": "romanceofmotionp00roya",
+                "title": "The romance of motion picture production"
+            },
+--
+                "identifier": "selectedmotionpi23moti",
+                "title": "Selected Motion Pictures 16 and 35 Silent and Sound"
+--
+                "identifier": "soundmotionpictu00haro",
+                "title": "Sound motion pictures : from the laboratory to their presentation"
+            },
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-08-01",
+                "title": "The Canadian Motion Picture Exhibitor (Aug 1, 1941)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-12-01",
+                "title": "The Canadian Motion Picture Exhibitor (Dec 1, 1941)"
+--
+                "identifier": "motionpicturemag23brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1922)"
+--
+                "identifier": "motionpicturenew00moti_13",
+                "title": "Motion picture news booking guide (Apr 1923)"
+--
+                "identifier": "motionpicturerev02hwwi",
+                "title": "Motion Picture Review Digest (Jan-Dec 1937)"
+--
+                "identifier": "motionpicturestu02unse",
+                "title": "The Motion Picture Studio (Jun 1922-Feb 1923)"
+--
+                "identifier": "motionplay-1920-10-promos",
+                "title": "Motion Play (Oct and Nov 1920) Promotions"
+            },
+--
+                "identifier": "motionpicture46moti",
+                "title": "Motion Picture (Aug 1933-Jan 1934)"
+--
+                "identifier": "motionpicture56fawc",
+                "title": "Motion Picture (Aug 1938-Jan 1939)"
+--
+                "identifier": "motionpicturedai43unse",
+                "title": "Motion picture daily (Jan-March 1938)"
+--
+                "identifier": "motionpicturedai47unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai52unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai53unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai57unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher1181unse",
+                "title": "Motion Picture Herald (Mar-Apr 1935)"
+--
+                "identifier": "motionpictureher1261unse",
+                "title": "Motion Picture Herald (Mar-Apr 1937)"
+--
+                "identifier": "motionpictureher127unse",
+                "title": "Motion Picture Herald (May-Jun 1937)"
+--
+                "identifier": "motionpictureher191quig",
+                "title": "Motion Picture Herald (Apr-Jun 1953)"
+--
+                "identifier": "motionpictureher193quig",
+                "title": "Motion Picture Herald (Oct-Dec 1953)"
+--
+                "identifier": "motionpictureher132unse",
+                "title": "Motion Picture Herald (Jul-Aug 1938)"
+--
+                "identifier": "motionpictureher1581unse",
+                "title": "Motion Picture Herald (Mar\u2013Apr 1945)"
+--
+                "identifier": "motionpictureher158unse",
+                "title": "Motion Picture Herald (Jan-Feb 1945)"
+--
+                "identifier": "motionpictureher164unse",
+                "title": "Motion Picture Herald (Jul-Aug 1946)"
+--
+                "identifier": "motionpicturenew24moti_6",
+                "title": "Motion picture news (Sept-Oct 1921)"
+--
+                "identifier": "motionpicturealm00quig_0",
+                "title": "The motion picture almanac (1931)"
+            },
+--
+                "identifier": "motionpicturedai39unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh66jaye",
+                "title": "Motion Picture Exhibitor (Jun-Aug 1961)"
+--
+                "identifier": "motionpictureexh74jaye_0",
+                "title": "Motion Picture Exhibitor (Nov 1965-Feb 1966)"
+--
+                "identifier": "motionpictureher157unse",
+                "title": "Motion Picture Herald (Nov-Dec 1944)"
+--
+                "identifier": "motionpictureher161unse",
+                "title": "Motion Picture Herald (Nov-Dec 1945)"
+--
+                "identifier": "motionpictureher163unse",
+                "title": "Motion Picture Herald (May-Jun 1946)"
+--
+                "identifier": "motionpicturemag29brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1925)"
+--
+                "identifier": "motionpicturenew00moti_12",
+                "title": "Motion picture news booking guide (Oct 1922)"
+--
+                "identifier": "motionpicturenew00moti_15",
+                "title": "Motion picture news booking guide (Apr 1924)"
+--
+                "identifier": "motionpicturerev00wome_0",
+                "title": "Motion Picture Reviews (1931)"
+--
+                "identifier": "motion-picture-theatres-association-of-ontario-bulletin--1947-08-14",
+                "title": "MPTAO Bulletin (Aug 14, 1947)"
+--
+                "identifier": "motion-play-1920-11-07-minneapolis",
+                "title": "Motion Play (Nov 7, 1920) Minneapolis Journal"
+--
+                "identifier": "motionpicture33moti",
+                "title": "Motion Picture News (May - Jun 1926)"
+--
+                "identifier": "motionpicture42moti",
+                "title": "Motion Picture (Aug 1931-Jan 1932)"
+--
+                "identifier": "motionpicturedai73unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai85unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedir03dire",
+                "title": "The Motion Picture Director (Feb 1927)"
+--
+                "identifier": "motionpicturedai67unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai69unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturehan00moti",
+                "title": "Motion Picture Handbook (second edition)"
+--
+                "identifier": "motionpictureher108unse",
+                "title": "Motion Picture Herald (Jul-Sep 1932)"
+--
+                "identifier": "motionpictureher122unse",
+                "title": "Motion Picture Herald (Jan-Feb 1936)"
+--
+                "identifier": "motionpictureher1241unse",
+                "title": "Motion Picture Herald (Sep-Oct 1936)"
+--
+                "identifier": "motionpictureher126unse",
+                "title": "Motion Picture Herald (Jan-Feb 1937)"
+--
+                "identifier": "lawofmotionpictu00loui",
+                "title": "The law of motion pictures : including the law of the theatre"
+            },
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "title": "Programs, Promotional materials, People Under Communism, 1951-1956"
+            },
+--
+                "identifier": "16mmsoundmotionp00will",
+                "title": "16-mm sound motion pictures : a manual for the professional and the amateur"
+            },
+--
+                "title": "To prohibit and to prevent the trade practices known as \"compulsory block-booking\" and \"blind selling\" of motion-picture films in interstate and foreign commerce (1939)"
+            },
+--
+                "title": "Year book of motion pictures : 1963"
+            },
+--
+                "title": "The Film Daily yearbook of motion pictures (1945)"
+            },
+--
+                "identifier": "motion-play-1921-11-27-minneapolis",
+                "title": "Motion Play (Nov 27, 1921) Minneapolis Journal"
+--
+                "identifier": "motion00hals",
+                "title": "The motion picture industry as a basis for bond financing"
+            },
+--
+                "identifier": "motionpic41moti",
+                "title": "Motion Picture News (Jan - Mar 1930)"
+--
+                "identifier": "motionpicturedai80unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai81unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai49unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturemag25brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1923)"
+--
+                "identifier": "motionpicturenew131unse",
+                "title": "Motion Picture News (Jan-Feb 1916)"
+--
+                "identifier": "motionplay-1920-11-14-minneapolis",
+                "title": "Motion Play (Nov 14, 1920) Minneapolis Journal"
+--
+                "identifier": "motion35moti",
+                "title": "Motion Picture News (Apr - Jun 1927)"
+--
+                "identifier": "motionpicture191712chic",
+                "title": "Motion Picture Story Magazine (Feb 1914 - Sep 1916)"
+--
+                "identifier": "motionpicture37moti",
+                "title": "Motion Picture (Feb-Jul 1929)"
+--
+                "identifier": "motionpicturealm00quig",
+                "title": "Motion picture almanac (1932)"
+--
+                "identifier": "motionpicturecla00mppu_0",
+                "title": "Motion Picture Classic (1917-1919)"
+--
+                "identifier": "motionpictureexh55jaye_0",
+                "title": "Motion Picture Exhibitor (Feb-Apr 1956)"
+--
+                "identifier": "motionpictureexh59jaye",
+                "title": "Motion Picture Exhibitor (Oct 1957-Apr 1958) New York State Edition"
+--
+                "identifier": "motionpictureexh68jaye_0",
+                "title": "Motion Picture Exhibitor (Sep-Dec 1962)"
+--
+                "identifier": "motionpictureher128unse",
+                "title": "Motion Picture Herald (Jul-Aug 1937)"
+--
+                "identifier": "motionpictureher1661unse",
+                "title": "Motion Picture Herald (Mar-Apr 1947)"
+--
+                "identifier": "motionpicturenew18moti_6",
+                "title": "Motion picture news (Sept-Oct 1918)"
+--
+                "identifier": "motionpicturenew20moti_4",
+                "title": "Motion picture news (Nov-Dec 1919)"
+--
+                "identifier": "motionpicturerev01hwwi",
+                "title": "Motion Picture Review Digest (Jan-Dec 1936)"
+--
+                "title": "1937-38 international motion picture almanac"
+            },
+--
+                "title": "Report regarding investigation directed to be made by the President in his Executive Order of November 27, 1933, approving the Code of Fair Competition for the motion picture industry"
+            },
+--
+                "title": "Principles of cinematography : a handbook of motion picture technology"
+            },
+--
+                "identifier": "motion-play-1921-09-25-minneapolis",
+                "title": "Motion Play (Sep 25, 1921) Minneapolis Journal"
+--
+                "identifier": "motionnew38moti",
+                "title": "Motion Picture News (Jul - Sep 1928)"
+--
+                "identifier": "motionp36moti",
+                "title": "Motion Picture News (Oct-Dec 1927)"
+--
+                "identifier": "motionpic37moti",
+                "title": "Motion Picture News (Apr - Jun 1928)"
+--
+                "identifier": "motionpicturedai41unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher109unse",
+                "title": "Motion Picture Herald (Oct-Dec 1932)"
+--
+                "identifier": "motionpicturemag27brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1924)"
+--
+                "identifier": "motionpicturerev00wome_12",
+                "title": "Motion Picture Reviews (1943)"
+--
+                "identifier": "motionplay-1920-11-07-omaha",
+                "title": "Motion Play (Nov 7, 1920) Omaha World-Herald"
+--
+                "identifier": "motionplay-1920-11-14-washington",
+                "title": "Motion Play (Nov 14, 1920) Washington Herald"
+--
+                "identifier": "motionpicture45moti",
+                "title": "Motion Picture (Feb-Jul 1933)"
+--
+                "identifier": "motionpicturedai78unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai78unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai48unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai64unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh65jaye_0",
+                "title": "Motion Picture Exhibitor (Mar-May 1961)"
+--
+                "identifier": "motionpicturefam123unse",
+                "title": "The Motion picture and the family .."
+--
+                "identifier": "motionpictureher170unse",
+                "title": "Motion Picture Herald (Jan-Feb 1948)"
+--
+                "identifier": "motionpictureher197quig",
+                "title": "Motion Picture Herald (Apr-Jun 1952)"
+--
+                "identifier": "motionpictureher198quig",
+                "title": "Motion Picture Herald (Jan-Mar 1955)"
+--
+                "identifier": "motionpictureher134unse",
+                "title": "Motion Picture Herald (Jan-Feb 1939)"
+--
+                "identifier": "motionpictureher1361unse",
+                "title": "Motion Picture Herald (Sep-Oct 1939)"
+--
+                "identifier": "motionpictureher139unse",
+                "title": "Motion Picture Herald (May-Jun 1940)"
+--
+                "identifier": "motionpictureher148unse",
+                "title": "Motion Picture Herald (Jul-Aug 1942)"
+--
+                "identifier": "motionpicturenew171unse",
+                "title": "Motion Picture News (Jan-Mar 1918)"
+--
+                "identifier": "motionpicturedai82unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai86unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher110unse",
+                "title": "Motion Picture Herald (Dec 1932-Mar 1933)"
+--
+                "identifier": "motionpicturemag24brew",
+                "title": "Motion Picture Magazine (Aug 1922-Jan 1923)"
+--
+                "identifier": "motionpicturenew00moti_10",
+                "title": "Motion Picture News (Nov-Dec 1925)"
+--
+                "identifier": "motionpicturenew00moti_4",
+                "title": "Motion Picture News (Nov-Dec 1923)"
+--
+                "identifier": "motionpicturenew152unse",
+                "title": "Motion Picture News (March 1917)"
+--
+                "identifier": "motionpicturenew22moti_1",
+                "title": "Motion picture news (Nov-Dec 1920)"
+--
+                "identifier": "motionpicturenew24moti_7",
+                "title": "Motion picture news (Nov-Dec 1921)"
+--
+                "identifier": "motionpicturepro00came",
+                "title": "Motion picture projection : an elementary text book"
+--
+                "identifier": "motionpicture61fawc",
+                "title": "Motion Picture (Feb-Jul 1941)"
+--
+                "identifier": "motionpicturedai68unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh53jaye",
+                "title": "Motion Picture Exhibitor (Nov 1954-Jan 1955) General Edition"
+--
+                "identifier": "motionpictureexh62jaye",
+                "title": "Motion Picture Exhibitor (May-Aug 1959)"
+--
+                "identifier": "motionpictureher197quig_0",
+                "title": "Motion Picture Herald (Oct-Dec 1954)"
+--
+                "identifier": "motionpictureher199quig",
+                "title": "Motion Picture Herald (Apr-Jun 1955)"
+--
+                "identifier": "motionpicturemag19moti",
+                "title": "Motion Picture Magazine (Feb-Jul 1920)"
+--
+                "identifier": "motionpictureher141unse",
+                "title": "Motion Picture Herald (Nov-Dec 1940)"
+--
+                "identifier": "motionpictureher144unse",
+                "title": "Motion Picture Herald (Jul-Aug 1941)"
+--
+                "identifier": "motionpictureher1461unse",
+                "title": "Motion Picture Herald (Mar-Apr 1942)"
+--
+                "identifier": "motionpictureher1481unse",
+                "title": "Motion Picture Herald (Sep-Oct 1942)"
+--
+                "identifier": "motionpictureher156unse",
+                "title": "Motion Picture Herald (Jul-Aug 1944)"
+--
+                "identifier": "motionpictureher159unse",
+                "title": "Motion Picture Herald (May-Jun 1945)"
+--
+                "identifier": "motionpicturepro03manc",
+                "title": "The motion picture projectionist (Nov 1929-Oct 1930)"
+            },
+--
+                "identifier": "motionpicturescl00nati",
+                "title": "Motion pictures classified by National Legion of Decency"
+--
+                "identifier": "motionpicturesto03moti",
+                "title": "The Motion Picture Story Magazine (Feb-Jul 1912)"
+--
+                "title": "Screen and Radio Weekly (Apr 1934 to Aug 1937) Promotions"
+            },
+--
+                "identifier": "motionplay-1921-11-06-baltimore",
+                "title": "Motion Play (Nov 6, 1921) Baltimore American"
+--
+                "identifier": "motionpicture34moti",
+                "title": "Motion Picture News (Nov - Dec 1926)"
+--
+                "identifier": "motionpicture41moti",
+                "title": "Motion Picture (Feb-Jul 1931)"
+--
+                "identifier": "motionpicture52moti",
+                "title": "Motion Picture (Aug 1936-Jan 1937)"
+--
+                "identifier": "motionpicturedai77unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai45unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai56unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai63unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai68unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher116unse",
+                "title": "Motion Picture Herald (Jun-Sep 1934)"
+--
+                "identifier": "motionpictureher129unse",
+                "title": "Motion Picture Herald (Nov-Dec 1937)"
+--
+                "identifier": "motionpictureher137unse",
+                "title": "Motion Picture Herald (Nov-Dec 1939)"
+--
+                "identifier": "motionpictureher162unse",
+                "title": "Motion Picture Herald (Jan-Feb 1946)"
+--
+                "identifier": "motionpictureher1721unse",
+                "title": "Motion Picture Herald (Sep-Oct 1948)"
+--
+                "identifier": "motionpictureher185quig",
+                "title": "Motion Picture Herald (Oct-Dec 1951)"
+--
+                "identifier": "motionpictureher205quig",
+                "title": "Motion Picture Herald (Oct-Dec 1956)"
+--
+                "identifier": "motionpictureind00bert",
+                "title": "Evidence study no. 25 of the motion picture industry"
+            },
+--
+                "identifier": "motionpic42moti",
+                "title": "Motion Picture News (Jul - Sep 1930)"
+--
+                "identifier": "motionpicturedai39unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh52jaye",
+                "title": "Motion Picture Exhibitor (May-Jul 1954) New York State Edition"
+--
+                "identifier": "motionpictureexh54jaye",
+                "title": "Motion Picture Exhibitor (May-Jul 1955)"
+--
+                "identifier": "motionpictureexh69jaye_0",
+                "title": "Motion Picture Exhibitor (Apr-Jun 1963)"
+--
+                "identifier": "motionpictureexh70jaye",
+                "title": "Motion Picture Exhibitor (Jul-Oct 1963) New York State Edition"
+--
+                "identifier": "motionpictureexh73jaye_0",
+                "title": "Motion Picture Exhibitor (Apr-Jul 1965)"
+--
+                "identifier": "motionpictureexh76jaye_0",
+                "title": "Motion Picture Exhibitor (Nov 1966-Feb 1967)"
+--
+                "identifier": "motionpicturemag22brew",
+                "title": "Motion Picture Magazine (Aug 1921-Jan 1922)"
+--
+                "identifier": "motionpicturerev00wome_13",
+                "title": "Motion Picture Reviews (1944)"
+--
+                "identifier": "motionpicturesto06broo",
+                "title": "Motion Picture Story Magazine (Aug-Dec 1913)"
+--
+                "identifier": "motionpicturestu01unse",
+                "title": "The Motion Picture Studio (Jun 1921-May 1922)"
+--
+                "identifier": "motionpicturetimes01-1919-12-15",
+                "title": "Motion Picture Times (December 15, 1919)"
+--
+                "identifier": "hollywoodmotionp00holl",
+                "title": "Hollywood Motion Picture Review (1937-1940)"
+--
+                "identifier": "motion-play-1921-12-25-minneapolis",
+                "title": "Motion Play (Dec 25, 1921) Minneapolis Journal"
+--
+                "identifier": "motionpicturedai70unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturecen00rexf",
+                "title": "Motion picture censors' and reviewers' manual: a handbook (1934)"
+--
+                "identifier": "motionpicturedai30newy",
+                "title": "Motion Picture Daily (Jun-Aug 1931)"
+--
+                "identifier": "motionpictureher167unse",
+                "title": "Motion Picture Herald (May-Jun 1947)"
+--
+                "identifier": "motionpictureher194quig",
+                "title": "Motion Picture Herald (Jan-Mar 1954)"
+--
+                "identifier": "motionpictureher201quig",
+                "title": "Motion Picture Herald (Oct-Dec 1955)"
+--
+                "identifier": "motionpicturemag08moti",
+                "title": "Motion Picture Magazine (Aug 1914-Jan 1915)"
+--
+                "identifier": "motionpicturenew21moti_1",
+                "title": "Motion picture news (Jan-Feb 1920)"
+--
+                "identifier": "motionpicturenew38moti",
+                "title": "Motion Picture News (Oct-Dec 1928)"
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "identifier": "motion36moti",
+                "title": "Motion Picture News (Jul - Sep 1927)"
+--
+                "identifier": "motionpicturedai50unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh56jaye",
+                "title": "Motion Picture Exhibitor (May-Jul 1956)"
+--
+                "identifier": "motionpictureexh61jaye",
+                "title": "Motion Picture Exhibitor (Jan-May 1959) New York State Edition"
+--
+                "identifier": "motionpictureexh64jaye_0",
+                "title": "Motion Picture Exhibitor (Aug-Nov 1960)"
+--
+                "identifier": "motionpictureexh70jaye_0",
+                "title": "Motion Picture Exhibitor (Oct 1963-Feb 1964)"
+--
+                "identifier": "motionpictureher103unse",
+                "title": "Motion Picture Herald (Apr-Jun 1931)"
+--
+                "identifier": "motionpictureher106unse",
+                "title": "Motion Picture Herald (Jan-Mar 1932)"
+--
+                "identifier": "motionpictureher136unse",
+                "title": "Motion Picture Herald (Jul-Aug 1939)"
+--
+                "identifier": "motionpictureher142unse",
+                "title": "Motion Picture Herald (Jan-Feb 1941)"
+--
+                "identifier": "motionpictureher149unse",
+                "title": "Motion Picture Herald (Nov-Dec 1942)"
+--
+                "identifier": "motionpicturesto05moti",
+                "title": "The Motion Picture Story Magazine (Feb-Jul 1913)"
+--
+                "identifier": "motionpicturethe00haro",
+                "title": "Motion picture theater management"
+--
+                "identifier": "1929motionpictur14moti",
+                "title": "1929 motion picture news booking guide"
+            },
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-06-16",
+                "title": "The Canadian Motion Picture Exhibitor (Jun 16, 1941)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-07-02",
+                "title": "The Canadian Motion Picture Exhibitor (Jul 2, 1941)"
+--
+                "title": "Brief for appellees motion picture patents company and Edison manufacturing company"
+            },
+--
+                "title": "The command is forward : selections from addresses on the motion picture industry in war and peace"
+            },
+--
+                "title": "NAEB Programs, Promotional materials, Jeffersonian Heritage, 1952-1953"
+            },
+--
+                "identifier": "motionnew41moti",
+                "title": "Motion Picture News (Apr - Jul 1930)"
+--
+                "identifier": "motionpicturedai76unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai81unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai88unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher1381unse",
+                "title": "Motion Picture Herald (Mar-Apr 1940)"
+--
+                "identifier": "motionpictureher160unse",
+                "title": "Motion Picture Herald (Jul-Aug 1945)"
+--
+                "identifier": "motionpicturemag31brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1926)"
+--
+                "identifier": "motionpicturenew00moti_20",
+                "title": "Motion Picture News (Oct-Dec 1918)"
+--
+                "identifier": "motionpicturenew00moti_6",
+                "title": "Motion Picture News (Mar-Apr 1924)"
+--
+                "identifier": "motionpicturenew101unse",
+                "title": "Motion Picture News (Jul-Oct 1914)"
+--
+                "identifier": "motionpicturetim00asso",
+                "title": "Motion Picture Times (1931)"
+--
+                "identifier": "motionpicture48moti",
+                "title": "Motion Picture (Aug 1934-Jan 1935)"
+--
+                "identifier": "motionpicture49moti",
+                "title": "Motion Picture (Feb-Jul 1935)"
+--
+                "identifier": "motionpicture51moti",
+                "title": "Motion Picture (Feb\u2013Jul 1936)"
+--
+                "identifier": "motionpicture59fawc",
+                "title": "Motion Picture (Feb-Jul 1940)"
+--
+                "identifier": "motionpicturecla27moti",
+                "title": "Motion Picture Classic (Jul-Dec 1928)"
+--
+                "identifier": "motionpicturedai43unse_0",
+                "title": "Motion picture daily (April-June 1938)"
+--
+                "identifier": "motionpicturedai51unse_0",
+                "title": "Motion Picture Daily (Apr-Jun 1942)"
+--
+                "identifier": "motionpicturedai53unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai59unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai62unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh52jaye_0",
+                "title": "Motion Picture Exhibitor (Aug-Oct 1954) New York State Edition"
+--
+                "identifier": "motionpictureexh67jaye",
+                "title": "Motion Picture Exhibitor (Dec 1961-Mar 1962)"
+--
+                "identifier": "motionpictureexh75jaye_0",
+                "title": "Motion Picture Exhibitor (May-Aug 1966)"
+--
+                "identifier": "motionpictureher105unse",
+                "title": "Motion Picture Herald (Oct-Dec 1931)"
+--
+                "identifier": "motionpictureher121unse",
+                "title": "Motion Picture Herald (Nov-Dec 1935)"
+--
+                "identifier": "motionpictureher1301unse",
+                "title": "Motion Picture Herald (Mar-Apr 1938)"
+--
+                "identifier": "motionpictureher190quig",
+                "title": "Motion Picture Herald (Jan-Mar 1953)"
+--
+                "identifier": "motionpicturemag111moti",
+                "title": "Motion Picture Magazine (Feb-May 1916)"
+--
+                "identifier": "motionpicturemag14moti",
+                "title": "Motion Picture Magazine (Aug 1917-Feb 1918)"
+--
+                "identifier": "motionpicturenew18moti_5",
+                "title": "Motion picture news (July-Aug 1918)"
+--
+                "title": "Revised list of high-class original motion picture films"
+            },
+--
+                "identifier": "motionplay-1922-04-23-baltimore",
+                "title": "Motion Play (Apr 23, 1922) Baltimore American"
+--
+                "identifier": "motionplay-1921-12-25",
+                "title": "Motion Play (Dec 25, 1921) Indianapolis Star"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-06-01",
+                "title": "The Canadian Motion Picture Exhibitor (Jun 1, 1941)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-12-15",
+                "title": "The Canadian Motion Picture Exhibitor (Dec 15, 1941)"
+--
+                "identifier": "americanmotionpi00chic",
+                "title": "The American motion picture directory; a cyclopedic directory of the motion picture industry (1914\u20131915)"
+            },
+--
+                "creator": "National education association of the United States. Dept. of secondary teachers. Committee on motion pictures",
+                "date": "1935-01-01T00:00:00Z",
+--
+                "identifier": "motionpicturecla00mppu",
+                "title": "Motion Picture Classic (1916)"
+--
+                "identifier": "motionpicturedai36newy",
+                "title": "Motion Picture Daily (Jul-Sep 1934)"
+--
+                "identifier": "motionpicturedai37unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai59unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai60unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai66unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturemag16moti",
+                "title": "Motion Picture Magazine (Aug 1918-Jan 1919)"
+--
+                "identifier": "motionpicturenew00moti_2",
+                "title": "Motion Picture News (Jul-Aug 1923)"
+--
+                "identifier": "motionpicturenew14moti_4",
+                "title": "Motion Picture News (Nov-Dec 1916)"
+--
+                "identifier": "motionpicturenew15moti_1",
+                "title": "Motion Picture News (Jan-Mar 1917)"
+--
+                "identifier": "motionpicturenew221unse",
+                "title": "Motion Picture News (Jun-Aug 1920)"
+--
+                "identifier": "motionpicturenew23moti_7",
+                "title": "Motion picture news (May-June 1921)"
+--
+                "identifier": "motionpicturenew39moti",
+                "title": "Motion Picture News (Jan-Mar 1929)"
+--
+                "identifier": "motionpicturepro00holl_0",
+                "title": "Motion picture production encyclopedia : 1950"
+--
+                "identifier": "motionp09moti",
+                "title": "Motion Picture News (Apr - Jul 1914)"
+--
+                "identifier": "motionpicturedai73unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai74unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai77unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh64jaye",
+                "title": "Motion Picture Exhibitor (May-Aug 1960)"
+--
+                "identifier": "motionpictureher140unse",
+                "title": "Motion Picture Herald (Jul-Aug 1940)"
+--
+                "identifier": "motionpictureher1421unse",
+                "title": "Motion Picture Herald (Mar-Apr 1941)"
+--
+                "identifier": "motionpicturepro04manc",
+                "title": "The motion picture projectionist (Nov 1930-Oct 1931)"
+            },
+--
+                "identifier": "motionpicturesfo00holl",
+                "title": "Motion pictures for instruction (1926)"
+--
+                "identifier": "motionpic34moti",
+                "title": "Motion Picture News (Sep - Oct 1926)"
+--
+                "identifier": "motionpicture1923040chic",
+                "title": "Motion Picture (1925, 1930, 1931)"
+--
+                "identifier": "motionpicturedai34newy",
+                "title": "Motion Picture Daily (Oct-Dec 1933)"
+--
+                "identifier": "motionpicturedai70unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai72unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai83unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh54jaye_0",
+                "title": "Motion Picture Exhibitor (Aug-Oct 1955)"
+--
+                "identifier": "motionpictureher131unse",
+                "title": "Motion Picture Herald (May-Jun 1938)"
+--
+                "identifier": "motionpictureher1401unse",
+                "title": "Motion Picture Herald (Sep-Oct 1940)"
+--
+                "identifier": "motionpictureher1501unse",
+                "title": "Motion Picture Herald (Mar-Apr 1943)"
+--
+                "identifier": "motionpictureher1521unse",
+                "title": "Motion Picture Herald (Sep-Oct 1943)"
+--
+                "identifier": "motionpictureher1561unse",
+                "title": "Motion Picture Herald (Sep-Oct 1944)"
+--
+                "identifier": "motionpictureher195quig",
+                "title": "Motion Picture Herald (Apr-Jun 1954)"
+--
+                "identifier": "motionpicturemag12moti",
+                "title": "Motion Picture Magazine (Nov 1916-Jan 1917)"
+--
+                "identifier": "motionpicturemag152moti",
+                "title": "Motion Picture Magazine (Mar-Jul 1918)"
+--
+                "identifier": "motionpicturemag36moti",
+                "title": "Motion Picture Magazine (Aug 1928-Jan 1929)"
+--
+                "identifier": "motionpicturenew00moti_8",
+                "title": "Motion Picture News (Jul-Aug 1925)"
+--
+                "identifier": "motionpicturenew14moti_3",
+                "title": "Motion Picture News (Sept.-Oct 1916)"
+--
+                "identifier": "motionpicturenew222unse",
+                "title": "Motion Picture News (Aug-Oct 1920)"
+--
+                "identifier": "motionpicturenew25marc",
+                "title": "Motion Picture News (Mar-Apr 1922)"
+--
+                "identifier": "motionpicturenew42moti",
+                "title": "Motion Picture News (Oct-Dec 1930)"
+--
+                "identifier": "motionpicturerev00wome_4",
+                "title": "Motion Picture Reviews (1935)"
+--
+                "identifier": "motionpicturesto01moti",
+                "title": "The Motion Picture Story Magazine (Feb-Jul 1911)"
+--
+                "identifier": "motion-play-1921-12-11-minneapolis",
+                "title": "Motion Play (Dec 11, 1921) Minneapolis Journal"
+--
+                "creator": "National education association of the United States. Dept. of secondary teachers. Committee on motion pictures",
+                "date": "1940-01-01T00:00:00Z",
+--
+                "identifier": "motion1724moti",
+                "title": "Motion Picture Classic (1923, 1924, 1926)"
+--
+                "identifier": "motionpicturedai58unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher115unse",
+                "title": "Motion Picture Herald (Mar-Jun 1934)"
+--
+                "identifier": "motionpictureher119unse",
+                "title": "Motion Picture Herald (May-Jun 1935)"
+--
+                "identifier": "motionpictureher168unse",
+                "title": "Motion Picture Herald (Jul-Aug 1947)"
+--
+                "identifier": "motionpictureher171unse",
+                "title": "Motion Picture Herald (May-Jun 1948)"
+--
+                "identifier": "motionpictureind00howa",
+                "title": "The motion picture industry"
+            },
+--
+                "identifier": "motionpicturemag13moti",
+                "title": "Motion Picture Magazine (Feb-Jul 1917)"
+--
+                "identifier": "motionnew40moti",
+                "title": "Motion Picture News (Jul - Sep 1929)"
+--
+                "identifier": "motionpicturedai76unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai87unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh65jaye",
+                "title": "Motion Picture Exhibitor (Nov 1960-Feb 1961) New York State Edition"
+--
+                "identifier": "motionpictureexh72jaye",
+                "title": "Motion Picture Exhibitor (Jul-Oct 1964)"
+--
+                "identifier": "motionpictureexh74jaye",
+                "title": "Motion Picture Exhibitor (Jul-Oct 1965)"
+--
+                "identifier": "motionpicturemail02-1916-10-28",
+                "title": "Motion Picture Mail (October 28, 1916)"
+--
+                "identifier": "motionpicturenew00moti_16",
+                "title": "Motion picture news booking guide (Oct 25, 1924)"
+--
+                "identifier": "motionpicturenew11moti",
+                "title": "Motion picture news booking guide (Oct 1926)"
+--
+                "identifier": "motionpicturenew153unse",
+                "title": "Motion Picture News (Apr-Jun 1917)"
+--
+                "identifier": "motionpicturenew172unse",
+                "title": "Motion Picture News (Apr-Jun 1918)"
+--
+                "identifier": "motionpicturenew201unse",
+                "title": "Motion Picture News (Jul-Aug 1919)"
+--
+                "identifier": "motionpicturesto06moti",
+                "title": "The Motion Picture Story Magazine (Aug 1913-Jan 1914)"
+--
+                "identifier": "motionplay-1922-01-08",
+                "title": "Motion Play (Jan 8, 1922) Indianapolis Star"
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "identifier": "hollywoodmotionp2340holl",
+                "title": "Hollywood Motion Picture Review (1944-1948)"
+--
+                "identifier": "motionplay-1921-12-18",
+                "title": "Motion Play (Dec 18, 1921) Indianapolis Star"
+--
+                "identifier": "servicingmotionp00jame",
+                "title": "Servicing Motion Picture Sound Equipment"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-11-01",
+                "title": "The Canadian Motion Picture Exhibitor (Nov 1, 1941)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-09-15",
+                "title": "The Canadian Motion Picture Exhibitor (Sep 15, 1941)"
+--
+                "title": "The film daily year book of motion pictures (1943)"
+            },
+--
+                "title": "Year book of motion pictures : 1950"
+            },
+--
+                "title": "The film daily year book of motion pictures (1938)"
+            },
+--
+                "identifier": "motionpicturealm1929exhi",
+                "title": "The motion picture almanac (1929)"
+            },
+--
+                "identifier": "motionpicturecla00brew",
+                "title": "Motion Picture Classic (1921-1927)"
+--
+                "identifier": "motionpictureher111unse",
+                "title": "Motion Picture Herald (Apr-Jun 1933)"
+--
+                "identifier": "motionpictureher169unse",
+                "title": "Motion Picture Herald (Nov-Dec 1947)"
+--
+                "identifier": "motionpictureher203quig",
+                "title": "Motion Picture Herald (Apr-Jun 1956)"
+--
+                "identifier": "motionpicturemag32brew",
+                "title": "Motion Picture Magazine (Aug 1926-Jan 1927)"
+--
+                "identifier": "motionpicturenew00moti_14",
+                "title": "Motion picture news booking guide (Oct 1923)"
+--
+                "identifier": "motionpicturenew12moti_1",
+                "title": "Motion Picture News (Nov 1915-Jan 1916)"
+--
+                "identifier": "motionpicturestu03unse",
+                "title": "The Motion Picture Studio (Jul 1923-Feb 1924)"
+--
+                "identifier": "motionnew37moti",
+                "title": "Motion Picture News (Jan - Mar 1928)"
+--
+                "identifier": "motionpic39moti",
+                "title": "Motion Picture News (Apr - Jul 1929)"
+--
+                "identifier": "motionpicture43moti",
+                "title": "Motion Picture (Feb-Jul 1932)"
+--
+                "identifier": "motionpicture47moti",
+                "title": "Motion Picture (Feb-Jul 1934)"
+--
+                "identifier": "motionpicture58fawc",
+                "title": "Motion Picture (Aug 1939-Jan 1940)"
+--
+                "identifier": "motionpicturedai72unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai38unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai88unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai52unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai55unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh58jaye",
+                "title": "Motion Picture Exhibitor (May-Jul 1957)"
+--
+                "identifier": "motionpictureexh58jaye_0",
+                "title": "Motion Picture Exhibitor (Jul-Oct 1957)"
+--
+                "identifier": "motionpictureexh63jaye",
+                "title": "Motion Picture Exhibitor (Nov 1959-Feb 1960)"
+--
+                "identifier": "motionpictureher1441unse",
+                "title": "Motion Picture Herald (Sep-Oct 1941)"
+--
+                "identifier": "motionpictureart01unse",
+                "title": "Motion picture art portfolio"
+--
+                "identifier": "motionpicturedai35unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai36unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai37unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai55unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai66unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher1221unse",
+                "title": "Motion Picture Herald (Mar-Apr 1936)"
+--
+                "identifier": "motionpictureher123unse",
+                "title": "Motion Picture Herald (May-Jun 1936)"
+--
+                "identifier": "motionpictureher1281unse",
+                "title": "Motion Picture Herald (Sep-Oct 1937)"
+--
+                "identifier": "motionpicturemag28brew",
+                "title": "Motion Picture Magazine (Aug 1924-Jan 1925)"
+--
+                "identifier": "motionpicturenew00moti_3",
+                "title": "Motion Picture News (Sep-Oct 1923)"
+--
+                "identifier": "motionpicturenew00moti_7",
+                "title": "Motion Picture News (May-Jun 1925)"
+--
+                "identifier": "motionpicturenew161unse",
+                "title": "Motion Picture News (Jul-Aug 1917)"
+--
+                "identifier": "motionpicturenew16moti_1",
+                "title": "Motion Picture News (Nov-Dec 1917)"
+--
+                "identifier": "motionpicturenew19moti_3",
+                "title": "Motion picture news (Jan-Feb 1919)"
+--
+                "identifier": "motionpicturenew25janf",
+                "title": "Motion Picture News (Jan-Feb 1922)"
+--
+                "identifier": "motionpicturenew26july",
+                "title": "Motion Picture News (Jul-Aug 1922)"
+--
+                "identifier": "motionpicturesto02moti",
+                "title": "The Motion Picture Story Magazine (Aug 1911-Jan 1912)"
+--
+                "identifier": "motionpicturesto04moti",
+                "title": "The Motion Picture Story Magazine (Aug 1912-Jan 1913)"
+--
+                "identifier": "motionpicturedai71unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai80unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh63jaye_0",
+                "title": "Motion Picture Exhibitor (Feb-May 1960)"
+--
+                "identifier": "motionpictureexh66jaye_0",
+                "title": "Motion Picture Exhibitor (Sep-Dec 1961)"
+--
+                "identifier": "motionpictureexh73jaye",
+                "title": "Motion Picture Exhibitor (Jan-Apr 1965)"
+--
+                "identifier": "motionpicturemag21brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1921)"
+--
+                "identifier": "motionpictureher133unse",
+                "title": "Motion Picture Herald (Nov-Dec 1938)"
+--
+                "identifier": "motionpicturerev00wome_10",
+                "title": "Motion Picture Reviews (1941)"
+--
+                "creator": "National education association of the United States. Dept. of secondary teachers. Committee on motion pictures",
+                "date": "1938-01-01T00:00:00Z",
+--
+                "identifier": "agfamotionpictur00ckin",
+                "title": "Agfa motion picture topics (Apr 1937-June 1940)"
+            },
+--
+                "identifier": "motionpicturedai38unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai40unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai48unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai50unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai54unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai61unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai62unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh53jaye_0",
+                "title": "Motion Picture Exhibitor (Feb-Apr 1955) General Edition"
+--
+                "identifier": "motionpictureher1641unse",
+                "title": "Motion Picture Herald (Sep-Oct 1946)"
+--
+                "identifier": "motionpictureher165unse",
+                "title": "Motion Picture Herald (Nov-Dec 1946)"
+--
+                "identifier": "motionpicturerev00wome_11",
+                "title": "Motion Picture Reviews (1942)"
+--
+                "title": "Moses and Egypt : the documentation to the motion picture the ten commandments"
+            },
+--
+                "identifier": "motionpi35moti",
+                "title": "Motion Picture News (Jan - Mar 1927)"
+--
+                "identifier": "motionpicture55coun",
+                "title": "Motion Picture (Feb-Jul 1938)"
+--
+                "identifier": "motionpicturedai75unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai79unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai84unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher107unse",
+                "title": "Motion Picture Herald (Apr-Jun 1932)"
+--
+                "identifier": "motionpictureher120unse",
+                "title": "Motion Picture Herald (July-Aug 1935)"
+--
+                "identifier": "motionpicturemag33brew",
+                "title": "Motion Picture Magazine (Feb-Jul 1927)"
+--
+                "identifier": "motionpicturenew00moti_19",
+                "title": "Motion Picture News (Sep-Oct 1916)"
+--
+                "identifier": "motionpicturenew112unse",
+                "title": "Motion Picture News (Apr-Jul 1915)"
+--
+                "identifier": "motionpicturenew18moti_7",
+                "title": "Motion picture news (Nov-Dec 1918)"
+--
+                "identifier": "motionpicturenew19moti_4",
+                "title": "Motion picture news (Mar-Apr 1919)"
+--
+                "identifier": "motionnews33moti",
+                "title": "Motion Picture News (Mar - Apr 1926)"
+--
+                "identifier": "motionpicture57fawc",
+                "title": "Motion Picture (Feb-Jul 1939)"
+--
+                "identifier": "motionpictureher1681unse",
+                "title": "Motion Picture Herald (Aug-Oct 1947)"
+--
+                "identifier": "motionpictureher173unse",
+                "title": "Motion Picture Herald (Nov-Dec 1948)"
+--
+                "identifier": "motionpictureher192quig",
+                "title": "Motion Picture Herald (Jul-Sep 1953)"
+--
+                "identifier": "motionpictureher200quig",
+                "title": "Motion Picture Herald (Jul-Sep 1955)"
+--
+                "identifier": "motionpicturemag17moti",
+                "title": "Motion Picture Magazine (Feb-Jul 1919)"
+--
+                "identifier": "motionpicturenew00moti_0",
+                "title": "Motion Picture News (Mar-Apr 1923)"
+--
+                "identifier": "motionpicturenew00moti_5",
+                "title": "Motion Picture News (Jan-Feb 1924)"
+--
+                "identifier": "motionpicturenew00moti_9",
+                "title": "Motion Picture News (Sep-Oct 1925)"
+--
+                "identifier": "motionpicturenew132unse",
+                "title": "Motion Picture News (Mar-Apr 1916)"
+--
+                "identifier": "motionpicturenew133unse",
+                "title": "Motion Picture News (May-Jul 1916)"
+--
+                "identifier": "motionpicturenew1930moti",
+                "title": "Motion picture news blue book : 1930"
+--
+                "identifier": "motionpicturenew212unse",
+                "title": "Motion Picture News (Mar-Jun 1920)"
+--
+                "identifier": "motionpicturenew23moti_6",
+                "title": "Motion picture news (Feb-Apr 1921)"
+--
+                "identifier": "motionpicturecla31moti",
+                "title": "Motion Picture Classic (Jul-Dec 1930)"
+--
+                "identifier": "motionpicturedai44unse",
+                "title": "Motion Picture Daily (July\u2013Sept 1938)"
+--
+                "identifier": "motionpicturedai71unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai84unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai60unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh57jaye_0",
+                "title": "Motion Picture Exhibitor (Jan-Apr 1957)"
+--
+                "identifier": "motionpictureexh76jaye",
+                "title": "Motion Picture Exhibitor (Aug-Nov 1966)"
+--
+                "identifier": "motionpictureher135unse",
+                "title": "Motion Picture Herald (May-Jun 1939)"
+--
+                "identifier": "motionpictureher147unse",
+                "title": "Motion Picture Herald (May-Jun 1942)"
+--
+                "identifier": "motionpictureher155unse",
+                "title": "Motion Picture Herald (May-Jun 1944)"
+--
+                "identifier": "motionpictureher1601unse",
+                "title": "Motion Picture Herald (Sep-Oct 1945)"
+--
+                "identifier": "motionpicturerev00moti",
+                "title": "Motion Picture Review (Dec 1926)"
+--
+                "identifier": "motionpicturerev00wome_3",
+                "title": "Motion Picture Reviews (1934)"
+--
+                "identifier": "motionpicturerev03hwwi",
+                "title": "Motion Picture Review Digest (Jan-Dec 1938)"
+--
+                "identifier": "motionpicturerev04hwwi",
+                "title": "Motion Picture Review Digest (Jan-Dec 1939)"
+--
+                "identifier": "motionpicturecla28moti",
+                "title": "Motion Picture Classic (Jan-Jun 1929)"
+--
+                "identifier": "motionpicturecla78unse",
+                "title": "Motion Picture Classic (Jan-Aug 1919)"
+--
+                "identifier": "motionpicturedai36unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai40unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai42unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureexh57jaye",
+                "title": "Motion Picture Exhibitor (Oct 1956-Jan 1957)"
+--
+                "identifier": "motionpictureexh71jaye",
+                "title": "Motion Picture Exhibitor (Jan-Apr 1964)"
+--
+                "identifier": "motionpictureher196quig",
+                "title": "Motion Picture Herald (Jul-Sep 1954)"
+--
+                "identifier": "motionpicturemag18moti",
+                "title": "Motion Picture Magazine (Aug 1919-Jan 1920)"
+--
+                "identifier": "motionpicturemag20brew",
+                "title": "Motion Picture Magazine (Aug 1920-Jan 1921)"
+--
+                "identifier": "motionpicturenew00moti_17",
+                "title": "Motion picture news booking guide (Oct 1926)"
+--
+                "identifier": "motionpicturenew00moti_18",
+                "title": "Motion picture news booking guide and studio directory (Oct 1927)"
+--
+                "identifier": "motionpicturenew26sept",
+                "title": "Motion Picture News (Sep-Oct 1922)"
+--
+                "identifier": "motionpicturenew40moti",
+                "title": "Motion Picture News (Oct-Dec 1929)"
+--
+                "identifier": "motionpicture54moti",
+                "title": "Motion Picture (Aug 1937-Jan 1938)"
+--
+                "identifier": "motionpicturedai83unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedir02moti",
+                "title": "The Motion Picture Director (Jul-Dec 1925)"
+--
+                "identifier": "motionpicturedir4240moti",
+                "title": "The Motion Picture Director (Jan-Dec 1926)"
+--
+                "identifier": "motionpictureher138unse",
+                "title": "Motion Picture Herald (Jan-Feb 1940)"
+--
+                "identifier": "motionpictureher143unse",
+                "title": "Motion Picture Herald (May-Jun 1941)"
+--
+                "identifier": "motionpictureher146unse",
+                "title": "Motion Picture Herald (Jan-Feb 1942)"
+--
+                "identifier": "motionpictureher151unse",
+                "title": "Motion Picture Herald (May-Jun 1943)"
+--
+                "identifier": "motionpictureher154unse",
+                "title": "Motion Picture Herald (Jan-Feb 1944)"
+--
+                "identifier": "motionpicturerev00wome_8",
+                "title": "Motion Picture Reviews (1939)"
+--
+                "identifier": "motionpicturesto07moti",
+                "title": "The Motion Picture Story Magazine (Feb-Jul 1914)"
+--
+                "identifier": "motionplay-1921-11-20",
+                "title": "Motion Play (Nov 20, 1921) Indianapolis Star"
+--
+                "identifier": "handbookformotio00jenk",
+                "title": "Handbook for motion picture and stereopticon operators"
+            },
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "identifier": "motionpictureexh56jaye_0",
+                "title": "Motion Picture Exhibitor (Aug-Oct 1956)"
+--
+                "identifier": "motionpictureexh71jaye_0",
+                "title": "Motion Picture Exhibitor (Apr-Jul 1964)"
+--
+                "identifier": "motionpictureexh72jaye_0",
+                "title": "Motion Picture Exhibitor (Oct 1964-Jan 1965)"
+--
+                "identifier": "motionpictureexh75jaye",
+                "title": "Motion Picture Exhibitor (Feb-May 1966)"
+--
+                "identifier": "motionpictureher189quig",
+                "title": "Motion Picture Herald (Oct-Dec 1952)"
+--
+                "identifier": "motionpictureher202quig",
+                "title": "Motion Picture Herald (Jan-Mar 1956)"
+--
+                "identifier": "motionpictureher204quig",
+                "title": "Motion Picture Herald (Jul-Sep 1956)"
+--
+                "identifier": "motionpicturenew00moti_1",
+                "title": "Motion Picture News (May-Jun 1923)"
+--
+                "identifier": "motionpicturenew00moti_21",
+                "title": "Motion Picture News (Oct 1915)"
+--
+                "identifier": "motionpicturenew121unse",
+                "title": "Motion Picture News (Jul-Oct 1915)"
+--
+                "identifier": "motionpicturenew162unse",
+                "title": "Motion Picture News (Sep-Oct 1917)"
+--
+                "identifier": "motionpicturenew192unse_0",
+                "title": "Motion Picture News (Apr-Jun 1919)"
+--
+                "identifier": "motionpicturenew24moti_5",
+                "title": "Motion picture news (July-Aug 1921)"
+--
+                "identifier": "motionpicturenew26novd",
+                "title": "Motion Picture News (Nov-Dec 1922)"
+--
+                "identifier": "motionpicturepro00holl",
+                "title": "Motion picture production encyclopedia : 1949"
+--
+                "identifier": "motionpicturerev00wome_5",
+                "title": "Motion Picture Reviews (1936)"
+--
+                "identifier": "motionpicturestu00leio",
+                "title": "The Motion Picture Studio Insider (1935-1937)"
+--
+                "identifier": "motionpicturesup00brew",
+                "title": "Motion Picture Supplement (1915)"
+--
+                "creator": "National board of review of motion pictures, New York. [from old catalog]",
+                "date": "1926-01-01T00:00:00Z",
+--
+                "identifier": "motion-picture-1931-12",
+                "title": "Motion Picture (December 1931)"
+--
+                "identifier": "motionpicturedai79unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai85unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai87unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedir00dire",
+                "title": "The Motion Picture Director (1925-1926)"
+--
+                "identifier": "motionpicturedai44unse_0",
+                "title": "Motion Picture Daily (Oct\u2013Dec 1938)"
+--
+                "identifier": "motionpicturedai45unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai47unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai57unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai58unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai67unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher114unse",
+                "title": "Motion Picture Herald (Dec 1933\u2013Mar 1934)"
+--
+                "identifier": "motionpictureher125unse",
+                "title": "Motion Picture Herald (Nov-Dec 1936)"
+--
+                "identifier": "motionpictureher130unse",
+                "title": "Motion Picture Herald (Jan-Feb 1938)"
+--
+                "identifier": "motionpictureher145unse",
+                "title": "Motion Picture Herald (Nov-Dec 1941)"
+--
+                "title": "To prohibit and to prevent the trade practices known as \"compulsory block-booking\" and \"blind selling\" of motion-picture films in interstate and foreign commerce (1939)"
+            },
+--
+                "identifier": "16mmsoundmotionp00offe",
+                "title": "16-mm sound motion pictures : a manual for the professional and the amateur"
+            },
+--
+                "title": "Programs, Promotional materials, Jeffersonian Heritage, 1952-1953"
+            },
+--
+                "identifier": "motionnew34moti",
+                "title": "Motion Picture News (Jul - Aug 1926)"
+--
+                "identifier": "motionpicturedai35unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai41unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai42unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturefam04unse",
+                "title": "The Motion picture and the family .."
+--
+                "identifier": "motionpicturemag10moti",
+                "title": "Motion Picture Magazine (Aug 1915-Jan 1916)"
+--
+                "identifier": "motionpicturemag26brew",
+                "title": "Motion Picture Magazine (Aug 1923-Jan 1924)"
+--
+                "identifier": "motionpicturenew1929moti",
+                "title": "1929 motion picture news blue book"
+            },
+--
+                "identifier": "motionpicturenew20moti_3",
+                "title": "Motion picture news (Sept-Oct 1919)"
+--
+                "identifier": "motionpicturenew82unse",
+                "title": "Motion Picture News Oct 1913\u2013Jan 1914"
+--
+                "identifier": "motionpicturepro01craf",
+                "title": "The motion picture projectionist (Oct 1927-Sept 1928)"
+            },
+--
+                "identifier": "motionpicturepro02craf",
+                "title": "The motion picture projectionist (Oct 1928-Oct 1929)"
+            },
+--
+                "identifier": "motionpicturepro56manc",
+                "title": "The motion picture projectionist (Nov 1931-Jan 1933)"
+            },
+--
+                "identifier": "motionpicturerev00wome_1",
+                "title": "Motion Picture Reviews (1932)"
+--
+                "identifier": "motionpicturerev00wome_2",
+                "title": "Motion Picture Reviews (1933)"
+--
+                "identifier": "motionpicturerev00wome_6",
+                "title": "Motion Picture Reviews (1937)"
+--
+                "identifier": "motionpicture39moti",
+                "title": "Motion Picture (Feb-Jul 1930)"
+--
+                "identifier": "motionpicturedai75unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai56unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai64unse_0",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpicturedai65unse",
+                "title": "Motion picture daily"
+--
+                "identifier": "motionpictureher104unse",
+                "title": "Motion Picture Herald (Jul-Sep 1931)"
+--
+                "identifier": "motionpictureher112unse",
+                "title": "Motion Picture Herald (Jul-Sep 1933)"
+--
+                "identifier": "motionpictureher1201unse",
+                "title": "Motion Picture Herald (Sep-Oct 1935)"
+--
+                "identifier": "motionpictureher124unse",
+                "title": "Motion Picture Herald (Jul-Aug 1936)"
+--
+                "identifier": "motionpictureher150unse",
+                "title": "Motion Picture Herald (Jan-Feb 1943)"
+--
+                "identifier": "motionpictureher153unse",
+                "title": "Motion Picture Herald (Nov-Dec 1943)"
+--
+                "identifier": "motionpictureher1621unse",
+                "title": "Motion Picture Herald (Mar-Apr 1946)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-09-02",
+                "title": "The Canadian Motion Picture Exhibitor (Sep 2, 1941)"
+--
+                "title": "The film daily year book of motion pictures (1944)"
+            },
+--
+                "title": "Year book of motion pictures (1937)"
+            },
+--
+                "title": "The thirty-third edition of the film daily year book of motion pictures : 1951"
+            },
+--
+                "identifier": "abcofmotionpictu00wels",
+                "title": "A-B-C of motion pictures"
+            },
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-08-15",
+                "title": "The Canadian Motion Picture Exhibitor (Aug 15, 1941)"
+--
+                "title": "Year book of motion pictures (1932)"
+            },
+--
+                "title": "The film daily year book of motion pictures (1940)"
+            },
+--
+                "title": "Year book of motion pictures (1931)"
+            },
+--
+                "title": "The film daily year book of motion pictures (1948)"
+            },
+--
+                "title": "Film daily year book of motion pictures for 1942"
+            },
+--
+                "title": "Year book of motion pictures (1947)"
+            },
+--
+                "title": "Year book of motion pictures (1949)"
+            },
+--
+                "title": "Year book of motion pictures (1930)"
+            },
+--
+                "title": "Year book of motion pictures (1935)"
+            },
+--
+                "title": "Year book of motion pictures (1934)"
+            },
+--
+                    "European motion-picture industry",
+                    "United States Commerce Department"
+--
+                "identifier": "europeanmotionpi00euro_1",
+                "title": "European motion-picture industry (1932)"
+            },
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-05-15",
+                "title": "The Canadian Motion Picture Exhibitor (May 15, 1941)"
+--
+                "identifier": "designinmotion00hala",
+                "title": "Design in motion"
+            },
+--
+                "title": "The film daily year book of motion pictures (1941)"
+            },
+--
+                "title": "Year book of motion pictures (1946)"
+            },
+--
+                "title": "Year book of motion pictures (1936)"
+            },
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-07-15",
+                "title": "The Canadian Motion Picture Exhibitor (Jul 15, 1941)"
+--
+                "identifier": "canadian-motion-picture-exhibitor-1941-10-15",
+                "title": "The Canadian Motion Picture Exhibitor (Oct 15, 1941)"
+--
+                "title": "Year book of motion pictures (1933)"
+            },
