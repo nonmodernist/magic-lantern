@@ -35,8 +35,18 @@ module.exports = {
       "Year Book": 0.7
     }
   },
-  
+
   searchStrategies: {
+    enabled: {
+        titleVariations: true,
+        reviewSearches: true,
+        adaptationSearches: true,    
+        productionSearches: true,
+        starSearches: false,
+        contextualSearches: true,
+        advertisementSearches: false,
+    },
+    
     weights: {
         // Author/adaptation searches - RUN FIRST
         'author_title': 2.5,

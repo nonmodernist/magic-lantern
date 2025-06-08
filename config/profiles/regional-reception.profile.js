@@ -1,8 +1,8 @@
 const basePatterns = require('./base-patterns');
 
 module.exports = {
-  name: "Regional Literary Reception",
-  description: "How adaptations played outside major cities",
+  name: "Regional Reception",
+  description: "How films played outside major cities",
   publications: {
     weights: {
       // Explicitly regional publications
