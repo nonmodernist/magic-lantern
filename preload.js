@@ -28,7 +28,11 @@ try {
     // Listen for progress updates
     onSearchProgress: (callback) => {
       ipcRenderer.on('search-progress', (event, data) => callback(data));
-    }
+    },
+    stopSearch: () => {
+  console.log('stopSearch called from renderer');
+  return ipcRenderer.invoke('stop-search');
+}
   });
   
   console.log('Context bridge exposed successfully');

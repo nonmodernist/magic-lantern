@@ -143,8 +143,6 @@ function updateSearchSummary() {
     'labor-history': 'Labor History',
     'early-cinema': 'Early Cinema',
     'regional-reception': 'Regional Reception',
-    'studio-era-adaptations': 'Studio Era Adaptations',
-    '50s-adaptations': '1950s Adaptations'
   };
   
   summary.innerHTML = `
@@ -173,7 +171,6 @@ function estimateTime(films, corpus) {
 document.getElementById('corpus-select').addEventListener('change', updateSearchSummary);
 document.getElementById('profile-select').addEventListener('change', updateSearchSummary);
 
-// Replace the run-search-btn click handler in renderer.js with this:
 
 document.getElementById('run-search-btn').addEventListener('click', async () => {
   const corpus = document.getElementById('corpus-select').value;
@@ -209,6 +206,13 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
     );
     
     console.log('Search complete!', results);
+
+    // Add this check for cancellation
+if (results.cancelled) {
+  console.log('Search was cancelled');
+  // The UI is already reset by the cancel button handler
+  return;
+}
     
     if (results.success) {
       // Store the file paths for the results viewer
@@ -234,7 +238,6 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
   }
 });
 
-// Add this after your existing test button listener
 document.getElementById('test-real-search-btn').addEventListener('click', async () => {
   const status = document.getElementById('status');
   status.textContent = 'Running real search test... This may take a minute...';
@@ -286,3 +289,21 @@ function updateProgress(data) {
     progressDetails.scrollTop = progressDetails.scrollHeight;
   }
 }
+
+// ADD THE CANCEL BUTTON CODE HERE!
+document.getElementById('cancel-btn').addEventListener('click', async () => {
+  console.log('Cancel button clicked');
+  
+  const result = await window.magicLantern.stopSearch();
+  
+  if (result.success) {
+    // Hide progress, show config
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById('config-section').style.display = 'block';
+    
+    // Clear the progress bar
+    document.getElementById('progress-fill').style.width = '0%';
+    document.getElementById('progress-text').textContent = 'Search cancelled';
+    document.getElementById('progress-details').innerHTML += '<br><strong>Search cancelled by user</strong>';
+  }
+});
