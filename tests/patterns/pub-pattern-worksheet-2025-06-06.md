@@ -403,11 +403,11 @@ this is the easiest of the "exhibitor" titles - i still have a mess to untangle 
 - [ ] No IDs match current pattern
 
 **Pattern Analysis:**
-- Common prefix: `___________________`
-- Common variations: ___________________
-- Volume/Year format: ___________________
-- City codes present? ___________________
-- Underscores or hyphens? ___________________
+- Common prefix: `motion`
+- Common variations: motion + picture + news or 2 out of 3
+- Volume/Year format: [prefix][volume][suffix]
+- City codes present? no
+- Underscores or hyphens? no
 
 **Issues Found:**
 - [ ] OCR variants (list): ___________________
@@ -444,6 +444,54 @@ this is the easiest of the "exhibitor" titles - i still have a mess to untangle 
 
 **Notes:**
 a little detective story. we settled on not worrying if a couple of volumes get false positives, but trying to keep fan mags and trade mags separate since they will be useful to different researchers for different reasons. 
+
+### 7. Publication: 
+**Profile Weight:** _____ (highest weight found)  
+**Current Pattern:** `___________________`
+
+**IA Search:** https://archive.org/search.php?query="___________"+collection:mediahistory
+
+**Sample IA Items Found:**
+1. ID: `_______________________` → URL: https://archive.org/details/____________
+2. ID: `_______________________` → URL: https://archive.org/details/____________
+3. ID: `_______________________` → URL: https://archive.org/details/____________
+4. ID: `_______________________` → URL: https://archive.org/details/____________
+5. ID: `_______________________` → URL: https://archive.org/details/____________
+
+**Pattern Testing:**
+- [ ] All IDs match current pattern
+- [ ] Some IDs match (list which ones fail): ___________________
+- [ ] No IDs match current pattern
+
+**Pattern Analysis:**
+- Common prefix: `___________________`
+- Common variations: ___________________
+- Volume/Year format: ___________________
+- City codes present? ___________________
+- Underscores or hyphens? ___________________
+
+**Issues Found:**
+- [ ] OCR variants (list): ___________________
+- [ ] Abbreviations not caught: ___________________
+- [ ] False positives (catches wrong publications): ___________________
+- [ ] Pattern too broad/narrow: ___________________
+
+**Suggested Pattern Update:**
+```javascript
+// Current:
+'publication_name': /current_pattern/,
+
+// Suggested:
+'publication_name': /suggested_pattern/,
+
+// Reason for change:
+```
+
+**Notes:**
+_________________________________
+_________________________________
+_________________________________
+
 
 
 ---

@@ -46,14 +46,16 @@ module.exports = {
 
   'picture play': /pictureplay/i,
   'motion picture news': /picturen/i,
-  'pictures and the picturegoer': /\bpicture(?!n)/i,
+  'pictures and the picturegoer': /^picture(?!n)/i,
+
+  // WARNING: "exhibitor" prefix and variations are used by multiple publications
 
   'exhibitors daily review': /exhibitorsdailyr/i,
-  'exhibitors herald': /exhibher|exhibitorsh/i,
-  'the exhibitor': /\bexhibitor/i,
-  'independent exhibitors film bulletin': /independentexhibitorsfilm|filmbulletin|\bindepe/i,
+  'independent exhibitors film bulletin': /independentexhibitorsfilm|filmbulletin|^indepe/i,
   'the philadelphia exhibitor': /philadelphiaexhi/i,
-  'exhibitors trade review': /exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|\bexhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber)/i,
+  'exhibitors herald': /exh?ibitorsh?erald/i,
+  'exhibitors trade review': /ex.*00new/i, // using end of pattern instead of beginning because of truncation
+  'the exhibitor': /^exhibitor/i,
 
   'the film daily': /filmdaily/i,
   'film mercury': /filmmercury/i,
@@ -64,7 +66,7 @@ module.exports = {
   'hollywood filmograph': /hollywoodfilmogr/i,
   'hollywood reporter': /hollywoodreport/i,
   'hollywood spectator': /hollywoodspectat/i,
-  'hollywood': /\bhollywood(?!spectat|report|filmgr)/i,
+  'hollywood': /^hollywood(?!spectat|report|filmgr)/i,
 
   'new movie magazine': /newmoviemag/i,
   'new movies the national board of review magazine': /newmoviesnation/i,
