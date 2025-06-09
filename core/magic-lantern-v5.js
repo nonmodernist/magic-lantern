@@ -17,20 +17,20 @@ class UnifiedMagicLantern {
     constructor(configProfile = 'test', researchProfile = 'default') {
         // Load configuration with both profiles
         this.config = config.load(configProfile, researchProfile);
-        
+
         console.log(`\n📚 Research Profile: ${this.config.profileInfo.profileName}`);
         console.log(`   ${this.config.profileInfo.profileDescription}`);
         console.log(`📊 Corpus Profile: ${configProfile}\n`);
-        
+
         // Set up from merged config
         this.baseUrl = this.config.search.api.baseUrl;
         this.rateLimitDelay = this.config.search.api.rateLimitMs;
         this.maxResultsPerPage = this.config.search.api.maxResultsPerPage;
-        
+
         // Initialize strategy generator with profile awareness
         this.strategyGenerator = new SearchStrategyGenerator();
         this.configureStrategyGenerator();
-        
+
         this.allResults = [];
         this.seenIds = new Set();
 
@@ -47,32 +47,32 @@ class UnifiedMagicLantern {
     // Extract publication title using base-patterns.js
     extractPublication(itemId) {
         const id = itemId.toLowerCase();
-        
+
         for (const [pub, pattern] of Object.entries(this.config.scoring.publications.patterns)) {
             if (pattern.test(id)) {
                 return pub;
             }
         }
-        
+
         return null;
     }
 
-        // New method to configure strategy generator based on profile
+    // New method to configure strategy generator based on profile
     configureStrategyGenerator() {
         const profileStrategies = this.config.search.strategies;
-        
+
         // Apply enabled/disabled strategies
         if (profileStrategies.enabled) {
             this.strategyGenerator.enabledStrategies = profileStrategies.enabled;
         }
-        
+
         // Apply strategy weights if present
         if (profileStrategies.weights) {
             this.strategyGenerator.strategyWeights = profileStrategies.weights;
         }
-        
+
         // Apply custom author variations if present
-        if (this.config.profileInfo.research === 'adaptation-studies' && 
+        if (this.config.profileInfo.research === 'adaptation-studies' &&
             profileStrategies.customVariations) {
             this.strategyGenerator.customAuthorVariations = profileStrategies.customVariations;
         }
@@ -81,17 +81,17 @@ class UnifiedMagicLantern {
     // Score and rank results using config weights
     scoreAndRankResults() {
         console.log('\n📊 Scoring and ranking results...');
-        
+
         this.allResults = this.allResults.map((result, index) => {
             const positionScore = this.getPositionScore(index + 1);
             const collectionWeight = 1.0; // Applied after full text fetch
-            
+
             const publication = this.extractPublication(result.id);
-            const publicationWeight = publication ? 
+            const publicationWeight = publication ?
                 (this.config.scoring.publications.weights[publication] || 1.0) : 1.0;
-            
+
             const finalScore = positionScore * publicationWeight;
-            
+
             return {
                 ...result,
                 scoring: {
@@ -104,9 +104,9 @@ class UnifiedMagicLantern {
                 }
             };
         });
-        
+
         this.allResults.sort((a, b) => b.scoring.finalScore - a.scoring.finalScore);
-        
+
         console.log('\n🏆 Top 5 scored results:');
         this.allResults.slice(0, 5).forEach((result, i) => {
             const s = result.scoring;
@@ -119,18 +119,18 @@ class UnifiedMagicLantern {
 
     async checkLanternAvailability() {
         console.log('\n🏮 Checking Lantern availability...');
-        
+
         try {
             const testUrl = `${this.baseUrl}/catalog.json?per_page=1`;
-            const timeout = new Promise((_, reject) => 
+            const timeout = new Promise((_, reject) =>
                 setTimeout(() => reject(new Error('Connection timeout')), 10000)
             );
-            
+
             await Promise.race([
                 this.makeRequest(testUrl),
                 timeout
             ]);
-            
+
             console.log('✅ Lantern is available!\n');
             return true;
         } catch (error) {
@@ -163,7 +163,7 @@ class UnifiedMagicLantern {
 
     async searchWithStrategy(strategy, film) {
         const keywords = this.parseStrategyKeywords(strategy, film);
-        
+
         const params = new URLSearchParams({
             search_field: 'advanced',
             commit: 'Search',
@@ -177,10 +177,10 @@ class UnifiedMagicLantern {
         if (keywords.third_keyword) params.append('third_keyword', keywords.third_keyword);
 
         params.append('f_inclusive[format][]', 'Periodicals');
-        
+
         // ! configurable? are these the correct fallbacks?
         // Use collections from config
-        const collections = this.config.search.api.collections || 
+        const collections = this.config.search.api.collections ||
             ['Fan Magazines', 'Hollywood Studio System', 'Early Cinema'];
         collections.forEach(collection => {
             params.append('f_inclusive[collection][]', collection);
@@ -195,20 +195,20 @@ class UnifiedMagicLantern {
                 params.append('range[year][end]', year + range.after);
             }
         }
-        
+
         const url = `${this.baseUrl}/catalog.json?${params}`;
-        
+
         console.log(`\n🔍 [${strategy.confidence.toUpperCase()}] ${strategy.description}`);
         console.log(`   Weight: ${strategy.profileWeight || 1.0} | Type: ${strategy.type}`);
         console.log(`   Keywords: ${keywords.keyword}${keywords.second_keyword ? ' + ' + keywords.second_keyword : ''}${keywords.third_keyword ? ' + ' + keywords.third_keyword : ''}`);
-        
+
         try {
             const results = await this.makeRequest(url);
             const count = results.meta?.pages?.total_count || 0;
-            
+
             if (count > 0) {
                 console.log(`   ✅ Found ${count} results!`);
-                
+
                 if (results.data) {
                     results.data.forEach(item => {
                         if (!this.seenIds.has(item.id)) {
@@ -226,7 +226,7 @@ class UnifiedMagicLantern {
             } else {
                 console.log(`   ○ No results`);
             }
-            
+
             return count;
         } catch (error) {
             console.log(`   ❌ Search failed: ${error.message}`);
@@ -235,7 +235,7 @@ class UnifiedMagicLantern {
     }
 
     parseStrategyKeywords(strategy, film) {
-        
+
         // Use the registry to parse
         const keywords = strategyRegistry.parseQuery(strategy.query, strategy.type);
 
@@ -248,130 +248,137 @@ class UnifiedMagicLantern {
         };
         return keywords;
     }
-    
+
     // Rename existing method
     legacyParseStrategyKeywords(strategy, film) {
         const keywords = {};
         const quotedPhrases = strategy.query.match(/"[^"]+"/g) || [];
         const remainingText = strategy.query.replace(/"[^"]+"/g, '').trim();
         const unquotedWords = remainingText.split(/\s+/).filter(w => w.length > 0);
-        
-    switch (strategy.type) {
-        case 'exact_title':
-        case 'title_no_article':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            break;
-            
-        case 'author_title':
-        case 'director_title':
-        case 'star_title':
-        case 'studio_title':
-            keywords.keyword = quotedPhrases[0]; // First quoted phrase (creator/studio)
-            keywords.second_keyword = quotedPhrases[1]; // Second quoted phrase (title)
-            break;
-            
-        case 'title_box_office':
-            keywords.keyword = quotedPhrases[0]; // Title
-            keywords.second_keyword = '"box office"';
-            break;
-            
-        case 'title_production':
-            keywords.keyword = quotedPhrases[0]; // Title
-            keywords.second_keyword = 'production';
-            keywords.third_keyword = 'filming';
-            break;
-            
-        case 'title_exhibitor':
-            keywords.keyword = quotedPhrases[0]; // Title
-            keywords.second_keyword = 'exhibitor';
-            break;
-            
-        case 'source_adaptation':
-            keywords.keyword = quotedPhrases[0]; // Novel title
-            keywords.second_keyword = 'adaptation';
-            break;
-            
-        case 'author_variant':
-            keywords.keyword = quotedPhrases[0]; // Author variant
-            keywords.second_keyword = quotedPhrases[1]; // Title
-            break;
 
-        case 'title_strike':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            keywords.second_keyword = '"picketed"';
-            break;
+        switch (strategy.type) {
+            case 'exact_title':
+            case 'title_no_article':
+                keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+                break;
 
-        case 'title_work_stoppage':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            keywords.second_keyword = '"work stoppage"';
-            break;
+            case 'author_title':
+            case 'director_title':
+            case 'star_title':
+            case 'studio_title':
+                keywords.keyword = quotedPhrases[0]; // First quoted phrase (creator/studio)
+                keywords.second_keyword = quotedPhrases[1]; // Second quoted phrase (title)
+                break;
 
-        case 'title_picket_line':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            keywords.second_keyword = '"picket line"';
-            break;
+            case 'title_box_office':
+                keywords.keyword = quotedPhrases[0]; // Title
+                keywords.second_keyword = '"box office"';
+                break;
 
-        case 'title_walkout':
-            keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
-            keywords.second_keyword = '"walk out"';
-            break;
+            case 'title_production':
+                keywords.keyword = quotedPhrases[0]; // Title
+                keywords.second_keyword = 'production';
+                keywords.third_keyword = 'filming';
+                break;
 
-        case 'studio_strike':
-            // This one is special - the full phrase is the search
-            keywords.keyword = strategy.query; // This will be "strike against MGM"
-            break;
+            case 'title_exhibitor':
+                keywords.keyword = quotedPhrases[0]; // Title
+                keywords.second_keyword = 'exhibitor';
+                break;
 
-        case 'studio_labor':
-            keywords.keyword = quotedPhrases[0]; // Studio name
-            keywords.second_keyword = '"labor dispute"';
-            break;
+            case 'source_adaptation':
+                keywords.keyword = quotedPhrases[0]; // Novel title
+                keywords.second_keyword = 'adaptation';
+                break;
 
-        case 'studio_boycott':
-            keywords.keyword = quotedPhrases[0]; // Studio name
-            keywords.second_keyword = 'boycott';
-            break;
+            case 'author_variant':
+                keywords.keyword = quotedPhrases[0]; // Author variant
+                keywords.second_keyword = quotedPhrases[1]; // Title
+                break;
 
-        case 'studio_strike_2':
-            keywords.keyword = quotedPhrases[0]; // Studio name
-            keywords.second_keyword = '"strike action"';
-            break;
+            case 'title_strike':
+                keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+                keywords.second_keyword = '"picketed"';
+                break;
 
-        case 'studio_production':
-            keywords.keyword = quotedPhrases[0]; // Studio name  
-            keywords.second_keyword = 'production';
-            break;
-            
-        default:
-            // For other cases, use up to 3 keywords/phrases
-            if (quotedPhrases.length > 0) {
-                keywords.keyword = quotedPhrases[0];
-                if (quotedPhrases.length > 1) keywords.second_keyword = quotedPhrases[1];
-                if (quotedPhrases.length > 2) keywords.third_keyword = quotedPhrases[2];
-            } else if (unquotedWords.length > 0) {
-                keywords.keyword = unquotedWords[0];
-                if (unquotedWords.length > 1) keywords.second_keyword = unquotedWords[1];
-                if (unquotedWords.length > 2) keywords.third_keyword = unquotedWords[2];
-            }
-    }
-        
+            case 'title_work_stoppage':
+                keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+                keywords.second_keyword = '"work stoppage"';
+                break;
+
+            case 'title_picket_line':
+                keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+                keywords.second_keyword = '"picket line"';
+                break;
+
+            case 'title_walkout':
+                keywords.keyword = quotedPhrases[0] || `"${film.title || film.Title}"`;
+                keywords.second_keyword = '"walk out"';
+                break;
+
+            case 'studio_strike':
+                // This one is special - the full phrase is the search
+                keywords.keyword = strategy.query; // This will be "strike against MGM"
+                break;
+
+            case 'studio_labor':
+                keywords.keyword = quotedPhrases[0]; // Studio name
+                keywords.second_keyword = '"labor dispute"';
+                break;
+
+            case 'studio_boycott':
+                keywords.keyword = quotedPhrases[0]; // Studio name
+                keywords.second_keyword = 'boycott';
+                break;
+
+            case 'studio_strike_2':
+                keywords.keyword = quotedPhrases[0]; // Studio name
+                keywords.second_keyword = '"strike action"';
+                break;
+
+            case 'studio_production':
+                keywords.keyword = quotedPhrases[0]; // Studio name  
+                keywords.second_keyword = 'production';
+                break;
+
+            default:
+                // For other cases, use up to 3 keywords/phrases
+                if (quotedPhrases.length > 0) {
+                    keywords.keyword = quotedPhrases[0];
+                    if (quotedPhrases.length > 1) keywords.second_keyword = quotedPhrases[1];
+                    if (quotedPhrases.length > 2) keywords.third_keyword = quotedPhrases[2];
+                } else if (unquotedWords.length > 0) {
+                    keywords.keyword = unquotedWords[0];
+                    if (unquotedWords.length > 1) keywords.second_keyword = unquotedWords[1];
+                    if (unquotedWords.length > 2) keywords.third_keyword = unquotedWords[2];
+                }
+        }
+
         return keywords;
     }
+
+    /**
+     * Fetches full page text from Lantern API
+     * Currently disabled - will be reimplemented as user-initiated action
+     * @param {string} pageId - The Lantern page ID
+     * @returns {Promise<Object|null>} Full page data or null if failed
+     */
 
     async fetchFullPageText(pageId) {
         const url = `${this.baseUrl}/catalog/${pageId}/raw.json`;
         console.log(`   📄 Fetching full text for: ${pageId}`);
-        
+
         try {
             const pageData = await this.makeRequest(url);
             const collections = pageData.collection || [];
-            
+
             // Calculate collection weight from config
             let collectionWeight = 1.0;
             for (const collection of collections) {
                 const weight = this.config.scoring.collections.weights[collection] || 1.0;
                 collectionWeight = Math.max(collectionWeight, weight);
             }
-            
+
             return {
                 id: pageId,
                 fullText: pageData.body || '',
@@ -396,13 +403,13 @@ class UnifiedMagicLantern {
 
     // identifyContentTypes(text) {
     //     const types = [];
-        
+
     //     for (const [type, pattern] of Object.entries(this.contentPatterns)) {
     //         if (pattern.test(text)) {
     //             types.push(type);
     //         }
     //     }
-        
+
     //     return types.length > 0 ? types : ['mention'];
     // }
 
@@ -414,137 +421,96 @@ class UnifiedMagicLantern {
     //         'pictured above', 'shown here', 'exclusive photo',
     //         'production cuts', 'mats'
     //     ];
-        
+
     //     const lowerText = text.toLowerCase();
     //     return photoIndicators.some(indicator => lowerText.includes(indicator));
     // }
 
 
-async comprehensiveSearch(film) {
-    console.log(`\n${'='.repeat(70)}`);
-    console.log(`🎭 COMPREHENSIVE SEARCH: ${film.title || film.Title} (${film.year || film.Year})`);
-    console.log(`${'='.repeat(70)}`);
-    
-    this.allResults = [];
-    this.seenIds = new Set();
-    
-    // Generate strategies
-    let strategies = this.strategyGenerator.generateAllStrategies(film);
-    
-    // Apply corpus limits if configured
-    if (this.config.corpus && this.config.corpus.strategiesPerFilm) {
-        strategies = strategies.slice(0, this.config.corpus.strategiesPerFilm);
-    }
-    
-    // NEW: Apply profile weights and sort by them
-    if (this.strategyGenerator.strategyWeights) {
-        strategies = strategies.map(s => ({
-            ...s,
-            profileWeight: this.strategyGenerator.strategyWeights[s.type] || 1.0
-        }));
-        
-        // Filter out weight 0 strategies
-        strategies = strategies.filter(s => s.profileWeight > 0);
-        
-        // Sort by profile weight (highest first), then confidence as tiebreaker
-        strategies.sort((a, b) => {
-            const weightDiff = b.profileWeight - a.profileWeight;
-            if (weightDiff !== 0) return weightDiff;
-            
-            // Tiebreaker: confidence
-            const confOrder = { high: 0, medium: 1, low: 2 };
-            return confOrder[a.confidence] - confOrder[b.confidence];
-        });
-        
-        console.log('\n📊 Strategy execution order (by profile weight):');
-        strategies.slice(0, 10).forEach((s, i) => {
-            console.log(`   ${i + 1}. [${s.profileWeight}] ${s.type} - ${s.description}`);
-        });
-    }
-    
-    // Execute strategies in profile-weighted order
-    console.log('\n🔍 Beginning searches...');
-    
-    for (const strategy of strategies) {
-        await this.searchWithStrategy(strategy, film);
-        await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
-        
-        // Check stop conditions
-        if (this.allResults.length >= this.config.search.api.stopConditions.maxResultsPerFilm) {
-            console.log(`   ⚡ Reached maximum results limit (${this.config.search.api.stopConditions.maxResultsPerFilm})`);
-            break;
-        }
-        
-        // Optional: Different threshold for high-weight strategies
-        if (strategy.profileWeight < 1.0 && 
-            this.allResults.length >= this.config.search.api.stopConditions.highQualityThreshold) {
-            console.log(`   ✨ Found sufficient coverage for low-weight strategies`);
-            break;
-        }
-    }
-        
-        this.scoreAndRankResults();
-        
-        // Fetch full text based on config
-        const maxFetches = this.config.corpus?.fullTextFetches || 
-                        this.config.search.fullText.maxFetches;
-        
-        console.log(`\n📚 Fetching full text for top ${maxFetches} results...`);
-        
-        const fullTextResults = [];
-        const topResults = this.allResults
-            .filter(r => r.scoring.finalScore >= (this.config.search.fullText.minScoreForFetch || 0))
-            .slice(0, maxFetches);
-        
-        for (let i = 0; i < topResults.length; i++) {
-            const result = topResults[i];
-            
-            if (i > 0) {
-                await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
-            }
-            
-            const fullPageData = await this.fetchFullPageText(result.id);
-            
-            if (fullPageData) {
-                // Debug logging
-                console.log(`   ✓ Fetched ${fullPageData.wordCount || 0} words`);
-                
-                // Just use the fullPageData directly
-                let enhancedData = {
-                    ...fullPageData,
-                    excerpt: fullPageData.fullText.substring(0, 300) + '...'
-                };
-                // Copy over the additional metadata
-                enhancedData.foundBy = result.foundBy;
-                enhancedData.searchQuery = result.searchQuery;
-                enhancedData.strategyConfidence = result.strategyConfidence;
-                enhancedData.finalScore = result.scoring.finalScore;
-                enhancedData.publication = result.scoring.publication;
+    async comprehensiveSearch(film) {
+        console.log(`\n${'='.repeat(70)}`);
+        console.log(`🎭 COMPREHENSIVE SEARCH: ${film.title || film.Title} (${film.year || film.Year})`);
+        console.log(`${'='.repeat(70)}`);
 
-                // Keep the simple excerpt if no enhanced one
-                if (!enhancedData.enhancedExcerpt) {
-                    enhancedData.excerpt = fullPageData.fullText.substring(0, 300) + '...';
-                }
-                
-                fullTextResults.push(enhancedData);  // Push the enhanced version
+        this.allResults = [];
+        this.seenIds = new Set();
+
+        // Generate strategies
+        let strategies = this.strategyGenerator.generateAllStrategies(film);
+
+        // Apply corpus limits if configured
+        if (this.config.corpus && this.config.corpus.strategiesPerFilm) {
+            strategies = strategies.slice(0, this.config.corpus.strategiesPerFilm);
+        }
+
+        // NEW: Apply profile weights and sort by them
+        if (this.strategyGenerator.strategyWeights) {
+            strategies = strategies.map(s => ({
+                ...s,
+                profileWeight: this.strategyGenerator.strategyWeights[s.type] || 1.0
+            }));
+
+            // Filter out weight 0 strategies
+            strategies = strategies.filter(s => s.profileWeight > 0);
+
+            // Sort by profile weight (highest first), then confidence as tiebreaker
+            strategies.sort((a, b) => {
+                const weightDiff = b.profileWeight - a.profileWeight;
+                if (weightDiff !== 0) return weightDiff;
+
+                // Tiebreaker: confidence
+                const confOrder = { high: 0, medium: 1, low: 2 };
+                return confOrder[a.confidence] - confOrder[b.confidence];
+            });
+
+            console.log('\n📊 Strategy execution order (by profile weight):');
+            strategies.slice(0, 10).forEach((s, i) => {
+                console.log(`   ${i + 1}. [${s.profileWeight}] ${s.type} - ${s.description}`);
+            });
+        }
+
+        // Execute strategies in profile-weighted order
+        console.log('\n🔍 Beginning searches...');
+
+        for (const strategy of strategies) {
+            await this.searchWithStrategy(strategy, film);
+            await new Promise(resolve => setTimeout(resolve, this.rateLimitDelay));
+
+            // Check stop conditions
+            if (this.allResults.length >= this.config.search.api.stopConditions.maxResultsPerFilm) {
+                console.log(`   ⚡ Reached maximum results limit (${this.config.search.api.stopConditions.maxResultsPerFilm})`);
+                break;
             }
-        }        
-        
+
+            // Optional: Different threshold for high-weight strategies
+            if (strategy.profileWeight < 1.0 &&
+                this.allResults.length >= this.config.search.api.stopConditions.highQualityThreshold) {
+                console.log(`   ✨ Found sufficient coverage for low-weight strategies`);
+                break;
+            }
+        }
+
+        this.scoreAndRankResults();
+
+        // REMOVED: Full text fetching section
+        // Full text fetching will be reimplemented as a separate, user-initiated action
+
+
         return {
             film: film,
             totalUniqueSources: this.allResults.length,
             allSearchResults: this.allResults,
-            fullTextAnalysis: fullTextResults,
+            fullTextAnalysis: [],
         };
     }
 
     async loadFilms(filePath) {
         console.log('🎬 Loading films from:', filePath);
-        
+
         const content = fs.readFileSync(filePath, 'utf8');
         const lines = content.trim().split('\n');
         const headers = lines[0].toLowerCase().split(',').map(h => h.trim());
-        
+
         const films = lines.slice(1).map(line => {
             const values = line.split(',').map(v => v.trim().replace(/"/g, ''));
             const film = {};
@@ -553,7 +519,7 @@ async comprehensiveSearch(film) {
             });
             return film;
         });
-        
+
         console.log(`✨ Found ${films.length} films to research!\n`);
         return films;
     }
@@ -562,17 +528,17 @@ async comprehensiveSearch(film) {
         const profileName = options.profile || 'test';
         console.log(`✨ MAGIC LANTERN v5`);
         console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
-        console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);        
-    // Check if Lantern is available
-    const isAvailable = await this.checkLanternAvailability();
-    if (!isAvailable) {
-        console.log('⚠️  Cannot proceed without access to Lantern. Exiting.\n');
-        return;
-    }
-    
-    try {
+        console.log(`   Research Profile: ${this.config.profileInfo.research}\n`);
+        // Check if Lantern is available
+        const isAvailable = await this.checkLanternAvailability();
+        if (!isAvailable) {
+            console.log('⚠️  Cannot proceed without access to Lantern. Exiting.\n');
+            return;
+        }
+
+        try {
             const films = await this.loadFilms(filePath);
-            
+
             const outputDir = path.join(__dirname, '..', 'results');
             if (!fs.existsSync(outputDir)) {
                 fs.mkdirSync(outputDir, { recursive: true });
@@ -585,64 +551,60 @@ async comprehensiveSearch(film) {
             // Process films based on corpus limits
             const filmsToProcess = this.config.corpus?.filmsToProcess || 1;
             console.log(`🎬 Processing ${Math.min(filmsToProcess, films.length)} films...\n`);
-            
+
             const allResults = [];
-            
+
             for (let i = 0; i < Math.min(filmsToProcess, films.length); i++) {
                 console.log(`\n📊 Progress: ${i + 1}/${Math.min(filmsToProcess, films.length)}`);
                 const results = await this.comprehensiveSearch(films[i]);
                 allResults.push(results);
-                
+
                 // Save intermediate results every 5 films
                 if ((i + 1) % 5 === 0) {
                     console.log(`\n💾 Saving intermediate results...`);
                     this.saveResults(allResults, outputDir, `interim_${timestamp}`);
                 }
             }
-            
+
             // Save final results
             this.saveResults(allResults, outputDir, timestamp);
-            
-        console.log('\n🎉 Search complete!');
-        console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
-        console.log(`   Research Profile: ${this.config.profileInfo.research}`);
-        console.log(`   Films processed: ${allResults.length}`);
-    
-    } catch (error) {
-                    console.error('❌ Error:', error.message);
-                    console.error(error.stack);
-                }
+
+            console.log('\n🎉 Search complete!');
+            console.log(`   Corpus: ${this.config.profileInfo.corpus}`);
+            console.log(`   Research Profile: ${this.config.profileInfo.research}`);
+            console.log(`   Films processed: ${allResults.length}`);
+
+        } catch (error) {
+            console.error('❌ Error:', error.message);
+            console.error(error.stack);
+        }
     }
 
     saveResults(results, outputDir, timestamp) {
-        // Save comprehensive results
+        // Save comprehensive results only (no separate full text file)
         const searchResultsData = results.map(r => ({
             film: r.film,
             totalUniqueSources: r.totalUniqueSources,
             searchStrategySummary: this.summarizeStrategies(r.allSearchResults),
-            sources: r.allSearchResults
+            sources: r.allSearchResults.map(source => ({
+                ...source,
+                // Structure ready for future full text fetching
+                fullText: null,
+                fullTextFetched: false,
+                fullTextFetchedAt: null
+            }))
         }));
-        
+
+        const resultsPath = path.join(outputDir, `search-results_${timestamp}.json`);
         fs.writeFileSync(
-            path.join(outputDir, `comprehensive-search-results_${timestamp}.json`),
+            resultsPath,
             JSON.stringify(searchResultsData, null, 2)
         );
-        
-        // Save full text analysis
-        const fullTextData = results.map(r => ({
-            film: r.film,
-            totalFound: r.totalUniqueSources,
-            fullTextAnalyzed: r.fullTextAnalysis.length,
-            treasures: r.fullTextAnalysis
-        }));
-        
-        fs.writeFileSync(
-            path.join(outputDir, `full-text-results_${timestamp}.json`),
-            JSON.stringify(fullTextData, null, 2)
-        );
-        
-        console.log(`\n💾 Results saved with timestamp: ${timestamp}`);
-        
+
+        console.log(`\n💾 Results saved to: ${resultsPath}`);
+        console.log(`   Total films: ${results.length}`);
+        console.log(`   Total sources: ${searchResultsData.reduce((sum, r) => sum + r.totalUniqueSources, 0)}`);
+
     }
 
     summarizeStrategies(results) {
@@ -657,12 +619,12 @@ async comprehensiveSearch(film) {
 // Run it!
 if (require.main === module) {
     const args = process.argv.slice(2);
-    
+
     // Parse arguments
     const filePath = args.find(arg => !arg.startsWith('--')) || 'data/films.csv';
     const corpusProfile = args.find(arg => arg.startsWith('--corpus='))?.split('=')[1] || 'test';
     const researchProfile = args.find(arg => arg.startsWith('--profile='))?.split('=')[1] || 'default';
-    
+
     // Check for help
     if (args.includes('--help') || args.includes('-h')) {
         console.log('\n✨ MAGIC LANTERN v5 - Research Toolkit');
@@ -676,7 +638,7 @@ if (require.main === module) {
         console.log('  node magic-lantern-v5.js --corpus=medium --profile=early-cinema');
         process.exit(0);
     }
-    
+
     // List profiles
     if (args.includes('--list-profiles')) {
         console.log('\n🔎 Available Research Profiles:\n');
@@ -687,13 +649,13 @@ if (require.main === module) {
         });
         process.exit(0);
     }
-    
+
     if (!fs.existsSync(filePath)) {
         console.error(`❌ File not found: ${filePath}`);
         console.log('\nUse --help for usage information');
         process.exit(1);
     }
-    
+
     const lantern = new UnifiedMagicLantern(corpusProfile, researchProfile);
     lantern.run(filePath, { corpusProfile, researchProfile });
 }

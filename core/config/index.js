@@ -18,26 +18,26 @@ module.exports = {
     test: {
       filmsToProcess: 1, // temporarily reduce to really test test
       strategiesPerFilm: 10,  // Only top strategies
-      fullTextFetches: 3,
       stopEarlyThreshold: 15
+      // REMOVED: fullTextFetches
     },
     single: {
       filmsToProcess: 1, //deep dive into one film
       strategiesPerFilm: 20,
-      fullTextFetches: 5, // could increase this - but only after improving scoring?
       stopEarlyThreshold: 50 // stops searching after 50 deduplicated results
+      // REMOVED: fullTextFetches
     },
     medium: {
       filmsToProcess: 20,
       strategiesPerFilm: 15,
-      fullTextFetches: 5,
       stopEarlyThreshold: 20
+      // REMOVED: fullTextFetches
     },
     full: {
       filmsToProcess: 120,
       strategiesPerFilm: 20,
-      fullTextFetches: 7,
       stopEarlyThreshold: 25
+      // REMOVED: fullTextFetches
     }
   },
 

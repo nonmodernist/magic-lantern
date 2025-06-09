@@ -14,8 +14,6 @@ module.exports = {
         }
     },
     
-    fullText: {
-        maxFetches: 7,
-        minScoreForFetch: 50
-    }
+    // REMOVED: fullText section
+    // Full text fetching will be reimplemented as user-initiated feature
 };
