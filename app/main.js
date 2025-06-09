@@ -448,3 +448,48 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
+ipcMain.handle('find-recent-results', async () => {
+  const fs = require('fs');
+  const path = require('path');
+  
+  try {
+    const resultsDir = path.join(__dirname, '..', 'results');
+    
+    if (!fs.existsSync(resultsDir)) {
+      return null;
+    }
+    
+    const files = fs.readdirSync(resultsDir);
+    
+    // Find all search results files
+    const searchResultFiles = files.filter(f => 
+      f.includes('search-results') && f.endsWith('.json')
+    );
+    
+    if (searchResultFiles.length === 0) {
+      return null;
+    }
+    
+    // Sort by modification time to get the most recent
+    const sortedFiles = searchResultFiles
+      .map(file => ({
+        name: file,
+        path: path.join(resultsDir, file),
+        time: fs.statSync(path.join(resultsDir, file)).mtime
+      }))
+      .sort((a, b) => b.time - a.time);
+    
+    // Read and return the most recent file
+    const mostRecentPath = sortedFiles[0].path;
+    const content = fs.readFileSync(mostRecentPath, 'utf8');
+    
+    // Also save the path to help future loads
+    return JSON.parse(content);
+    
+  } catch (error) {
+    console.error('Error finding recent results:', error);
+    return null;
+  }
+});

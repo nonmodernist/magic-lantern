@@ -1,4 +1,4 @@
-// app/pages/search-results/script.js
+// app/pages/search-results/script.js - Fixed version
 
 let searchResults = null;
 
@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 async function loadResults() {
     try {
-        const timestamp = localStorage.getItem('searchTimestamp');
         const resultsPath = localStorage.getItem('searchResultsPath');
         
         if (resultsPath && window.magicLantern) {
@@ -17,11 +16,28 @@ async function loadResults() {
             console.log('Loading results from:', resultsPath);
             const results = await window.magicLantern.readResultsFile(resultsPath);
             
-            displayResults(results);
+            if (results && results.length > 0) {
+                displayResults(results);
+            } else {
+                // Try to find the most recent results file
+                const recentResults = await window.magicLantern.findRecentResults();
+                if (recentResults) {
+                    displayResults(recentResults);
+                } else {
+                    showNoResultsMessage();
+                }
+            }
         } else {
-            // Fallback to mock data for testing
-            console.log('No results path found, using mock data');
-            displayResults(getMockSearchResults());
+            // No path saved, try to find recent results
+            console.log('No results path in localStorage, checking for recent files...');
+            const recentResults = await window.magicLantern.findRecentResults();
+            if (recentResults) {
+                displayResults(recentResults);
+            } else {
+                // Fallback to mock data for testing
+                console.log('No results found, using mock data');
+                displayResults(getMockSearchResults());
+            }
         }
     } catch (error) {
         console.error('Error loading results:', error);
@@ -32,32 +48,42 @@ async function loadResults() {
     }
 }
 
+function showNoResultsMessage() {
+    document.getElementById('film-results-container').innerHTML = 
+        '<div class="notice-box">' +
+        '<p><strong>No search results found.</strong> Please run a search from the home page first.</p>' +
+        '<button class="btn btn-primary" onclick="window.location.href=\'../home/index.html\'">Go to Search</button>' +
+        '</div>';
+}
+
 function displayResults(results) {
     searchResults = results;
 
-        // Update header timestamp
-    const timestamp = new Date().toLocaleString('en-US', {
+    // Update header timestamp
+    const timestamp = localStorage.getItem('searchTimestamp') || new Date().toISOString();
+    const date = new Date(timestamp);
+    const formattedDate = date.toLocaleString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
         hour: '2-digit',
         minute: '2-digit'
     });
-    document.getElementById('results-timestamp').textContent = timestamp;
+    document.getElementById('results-timestamp').textContent = formattedDate;
 
     // Update summary statistics
     let totalSources = 0;
     let uniqueSources = 0;
-    let fullTextCount = 0;
+    let treasuresCount = 0;
 
     results.forEach(filmResult => {
         totalSources += filmResult.sources.length;
         uniqueSources += filmResult.totalUniqueSources || filmResult.sources.length;
         
-        // Count sources with full text (for future use)
+        // Count sources with high scores as "treasures" for now
         filmResult.sources.forEach(source => {
-            if (source.fullTextFetched) {
-                fullTextCount++;
+            if (source.scoring && source.scoring.finalScore >= 80) {
+                treasuresCount++;
             }
         });
     });
@@ -65,7 +91,7 @@ function displayResults(results) {
     document.getElementById('films-count').textContent = results.length;
     document.getElementById('sources-count').textContent = totalSources;
     document.getElementById('unique-count').textContent = uniqueSources;
-    document.getElementById('treasures-count').textContent = fullTextCount; // For now, 0
+    document.getElementById('treasures-count').textContent = treasuresCount;
     
     // Display film results
     const container = document.getElementById('film-results-container');
@@ -84,6 +110,103 @@ function displayResults(results) {
     }, 100);
 }
 
+function createSourceCard(source, film) {
+    const template = document.getElementById('source-item-template');
+    const card = template.content.cloneNode(true);
+    
+    // Set score
+    const score = source.scoring ? source.scoring.finalScore.toFixed(1) : '—';
+    card.querySelector('.score-badge').textContent = `SCORE: ${score}`;
+    
+    // Set publication
+    const publication = source.scoring?.publication || extractPublicationFromId(source.id);
+    card.querySelector('.publication-name').textContent = formatPublicationName(publication);
+    
+    // Set metadata
+    const date = extractDateFromSource(source);
+    const foundBy = source.foundBy || 'unknown';
+    card.querySelector('.source-meta').innerHTML = `
+        ${date} • Page ${extractPageNumber(source.id)}
+        <span class="found-by-badge">${formatStrategyName(foundBy)}</span>
+    `;
+    
+    // Set excerpt - FIXED to show the actual excerpt from search results
+    const excerptDiv = card.querySelector('.source-excerpt');
+    const excerpt = extractExcerpt(source);
+    
+    if (excerpt) {
+        // We have an excerpt from the search results
+        excerptDiv.innerHTML = formatExcerpt(excerpt);
+    } else if (source.fullText && source.fullTextFetched) {
+        // Future: when full text is fetched
+        excerptDiv.innerHTML = formatExcerpt(source.fullText.substring(0, 300));
+    } else {
+        // No excerpt available
+        excerptDiv.innerHTML = '<em>No preview available</em>';
+        excerptDiv.style.opacity = '0.6';
+    }
+    
+    // Set links
+    const lanternUrl = source.links?.self || `https://lantern.mediahist.org/catalog/${source.id}`;
+    const iaUrl = extractInternetArchiveUrl(source);
+    
+    const primaryLink = card.querySelector('.source-link.primary');
+    primaryLink.href = lanternUrl;
+    
+    const iaLink = card.querySelectorAll('.source-link')[1];
+    if (iaUrl) {
+        iaLink.href = iaUrl;
+    } else {
+        iaLink.style.display = 'none';
+    }
+
+    // Update "Fetch Full Text" button for future functionality
+    const fetchButton = card.querySelector('.fetch-full-text');
+    if (source.fullTextFetched) {
+        fetchButton.textContent = 'Full Text Available';
+        fetchButton.disabled = true;
+        fetchButton.style.opacity = '0.6';
+    } else {
+        // For now, disable since feature not implemented
+        fetchButton.textContent = 'Fetch Full Text (Coming Soon)';
+        fetchButton.disabled = true;
+        fetchButton.style.opacity = '0.6';
+        // Future: fetchButton.onclick = () => fetchFullText(source.id, film);
+    }
+    
+    return card;
+}
+
+// Updated extract excerpt function to properly get the excerpt
+function extractExcerpt(source) {
+    // Check for body text in attributes (this is where Lantern puts the excerpt)
+    if (source.attributes?.body?.attributes?.value) {
+        return source.attributes.body.attributes.value;
+    }
+    
+    // Check for body text at top level (older format)
+    if (source.body) {
+        return source.body;
+    }
+    
+    // Check for snippet or highlight
+    if (source.snippet) {
+        return source.snippet;
+    }
+    
+    // Check for highlighting in search results
+    if (source.attributes?.read_search_highlighting?.attributes?.value) {
+        // Extract any visible text from the highlighting HTML
+        const match = source.attributes.read_search_highlighting.attributes.value.match(/>([^<]+)</);
+        if (match && match[1]) {
+            return match[1];
+        }
+    }
+    
+    return null;
+}
+
+// Keep the rest of the functions as they are...
 function createFilmSection(filmResult) {
     const template = document.getElementById('film-result-template');
     const filmSection = template.content.cloneNode(true);
@@ -139,6 +262,7 @@ function createFilmSection(filmResult) {
     return filmSection;
 }
 
+// Keep all other existing functions unchanged...
 function createStrategyBar(strategy, count, maxCount) {
     const bar = document.createElement('div');
     bar.className = 'strategy-bar';
@@ -158,68 +282,6 @@ function createStrategyBar(strategy, count, maxCount) {
     return bar;
 }
 
-function createSourceCard(source, film) {
-    const template = document.getElementById('source-item-template');
-    const card = template.content.cloneNode(true);
-    
-    // Set score
-    const score = source.scoring ? source.scoring.finalScore.toFixed(1) : '—';
-    card.querySelector('.score-badge').textContent = `SCORE: ${score}`;
-    
-    // Set publication
-    const publication = source.scoring?.publication || extractPublicationFromId(source.id);
-    card.querySelector('.publication-name').textContent = formatPublicationName(publication);
-    
-    // Set metadata
-    const date = extractDateFromSource(source);
-    const foundBy = source.foundBy || 'unknown';
-    card.querySelector('.source-meta').innerHTML = `
-        ${date} • Page ${extractPageNumber(source.id)}
-        <span class="found-by-badge">${formatStrategyName(foundBy)}</span>
-    `;
-    
-    // Set excerpt (if available - for future use)
-    const excerptDiv = card.querySelector('.source-excerpt');
-    if (source.fullText && source.fullTextFetched) {
-        // Future: Show excerpt from full text
-        excerptDiv.innerHTML = formatExcerpt(source.fullText.substring(0, 300));
-    } else {
-        excerptDiv.innerHTML = '<em>Full text not yet fetched</em>';
-        excerptDiv.style.opacity = '0.6';
-    }
-    
-    // Set links
-    const lanternUrl = source.links?.self || `https://lantern.mediahist.org/catalog/${source.id}`;
-    const iaUrl = extractInternetArchiveUrl(source);
-    
-    const primaryLink = card.querySelector('.source-link.primary');
-    primaryLink.href = lanternUrl;
-    
-    const iaLink = card.querySelectorAll('.source-link')[1];
-    if (iaUrl) {
-        iaLink.href = iaUrl;
-    } else {
-        iaLink.style.display = 'none';
-    }
-
-        // Update "Fetch Full Text" button for future functionality
-    const fetchButton = card.querySelector('.fetch-full-text');
-    if (source.fullTextFetched) {
-        fetchButton.textContent = 'Full Text Available';
-        fetchButton.disabled = true;
-        fetchButton.style.opacity = '0.6';
-    } else {
-        // For now, disable since feature not implemented
-        fetchButton.textContent = 'Fetch Full Text (Coming Soon)';
-        fetchButton.disabled = true;
-        fetchButton.style.opacity = '0.6';
-        // Future: fetchButton.onclick = () => fetchFullText(source.id, film);
-    }
-    
-    return card;
-}
-
-// Helper functions
 function extractPublicationFromId(id) {
     const patterns = {
         'variety': /variety/i,
@@ -279,13 +341,6 @@ function extractPageNumber(id) {
     return match ? match[1] : '—';
 }
 
-function extractExcerpt(source) {
-    if (source.attributes?.body?.attributes?.value) {
-        return source.attributes.body.attributes.value;
-    }
-    return null;
-}
-
 function extractInternetArchiveUrl(source) {
     if (source.attributes?.read_search_highlighting?.attributes?.value) {
         const match = source.attributes.read_search_highlighting.attributes.value.match(/href="([^"]+)"/);
@@ -295,13 +350,16 @@ function extractInternetArchiveUrl(source) {
 }
 
 function formatExcerpt(excerpt) {
+    if (!excerpt) return '';
+    
     // Limit length
     let formatted = excerpt.substring(0, 300);
     if (excerpt.length > 300) {
         formatted += '...';
     }
     
-    // The excerpt might already have <em> tags from Lantern
+    // The excerpt might already have <em> tags from Lantern for highlighting
+    // Make sure they're preserved
     return formatted;
 }
 
@@ -313,9 +371,9 @@ function formatStrategyName(strategy) {
 
 // Export results function
 function exportResults() {
-    if (!comprehensiveResults) return;
+    if (!searchResults) return;
     
-    const dataStr = JSON.stringify(comprehensiveResults, null, 2);
+    const dataStr = JSON.stringify(searchResults, null, 2);
     const dataBlob = new Blob([dataStr], {type: 'application/json'});
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
@@ -357,24 +415,6 @@ async function fetchFullText(sourceId, film) {
     alert('Full text fetching will be available in a future update');
 }
 
-// Export results function
-function exportResults() {
-    if (!searchResults) return;
-    
-    const dataStr = JSON.stringify(searchResults, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `magic-lantern-results-${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-}
-
-// Generate report function (placeholder)
-function generateReport() {
-    alert('Report generation coming soon! For now, use Export JSON.');
-}
-
 // Mock data function updated for new structure
 function getMockSearchResults() {
     return [
@@ -399,6 +439,7 @@ function getMockSearchResults() {
                     id: "variety137-1939-08_0054",
                     attributes: {
                         dateString: { attributes: { value: "August 1939" } },
+                        body: { attributes: { value: "THE WIZARD OF OZ is a magnificent achievement in technicolor fantasy, bringing L. Frank Baum's beloved story to vibrant life with exceptional performances and groundbreaking special effects..." } },
                         read_search_highlighting: {
                             attributes: {
                                 value: '<a target="_blank" href="http://archive.org/stream/variety137-1939-08#page/n54/mode/2up/search/&quot;The Wizard of Oz&quot;">Read in Context</a>'

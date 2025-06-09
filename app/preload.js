@@ -20,19 +20,24 @@ try {
       console.log('testRealSearch called from renderer');
       return ipcRenderer.invoke('test-real-search');
     },
-    // Add this new method
+    // Read results file method
     readResultsFile: (filePath) => {
       console.log('readResultsFile called with:', filePath);
       return ipcRenderer.invoke('read-results-file', filePath);
+    },
+    // NEW: Find recent results method
+    findRecentResults: () => {
+      console.log('findRecentResults called from renderer');
+      return ipcRenderer.invoke('find-recent-results');
     },
     // Listen for progress updates
     onSearchProgress: (callback) => {
       ipcRenderer.on('search-progress', (event, data) => callback(data));
     },
     stopSearch: () => {
-  console.log('stopSearch called from renderer');
-  return ipcRenderer.invoke('stop-search');
-}
+      console.log('stopSearch called from renderer');
+      return ipcRenderer.invoke('stop-search');
+    }
   });
   
   console.log('Context bridge exposed successfully');
