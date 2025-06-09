@@ -11,8 +11,7 @@ window.addEventListener('DOMContentLoaded', () => {
 async function loadResults() {
     try {
         const timestamp = localStorage.getItem('searchTimestamp');
-        const resultsPath = localStorage.getItem('comprehensiveResultsPath');
-        const fullTextPath = localStorage.getItem('fullTextResultsPath');
+        const resultsPath = localStorage.getItem('searchResultsPath');
         
         if (resultsPath && window.magicLantern) {
             // Load real results using IPC

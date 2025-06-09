@@ -614,137 +614,39 @@ class UnifiedMagicLantern {
     }
 }
 
-// Helper function to find most recent result files
-function findMostRecentResults(resultsDir = 'results') {
-    try {
-        const files = fs.readdirSync(resultsDir);
+// // Helper function to find most recent result files
+// function findMostRecentResults(resultsDir = 'results') {
+//     try {
+//         const files = fs.readdirSync(resultsDir);
         
-        // Find all comprehensive result files
-        const resultFiles = files.filter(f => 
-            f.startsWith('comprehensive-search-results_') && f.endsWith('.json')
-        );
+//         // Find result files
+//         const resultFiles = files.filter(f => 
+//             f.startsWith('search-results_') && f.endsWith('.json')
+//         );
         
-        if (resultFiles.length === 0) {
-            console.error('❌ No result files found in results directory');
-            return null;
-        }
+//         if (resultFiles.length === 0) {
+//             console.error('❌ No result files found in results directory');
+//             return null;
+//         }
         
-        // Sort by timestamp (most recent first)
-        resultFiles.sort((a, b) => b.localeCompare(a));
+//         // Sort by timestamp (most recent first)
+//         resultFiles.sort((a, b) => b.localeCompare(a));
         
-        // Extract timestamp from most recent
-        const mostRecent = resultFiles[0];
-        const timestamp = mostRecent.match(/_(\d{8}_\d{6})\.json$/)[1];
+//         // Extract timestamp from most recent
+//         const mostRecent = resultFiles[0];
+//         const timestamp = mostRecent.match(/_(\d{8}_\d{6})\.json$/)[1];
         
-        return {
-            comprehensive: path.join(resultsDir, mostRecent),
-            fullText: path.join(resultsDir, `full-text-results_${timestamp}.json`),
-            timestamp: timestamp
-        };
-    } catch (error) {
-        console.error('❌ Error finding result files:', error.message);
-        return null;
-    }
-}
+//         // return {
+//         //     comprehensive: path.join(resultsDir, mostRecent),
+//         //     fullText: path.join(resultsDir, `full-text-results_${timestamp}.json`),
+//         //     timestamp: timestamp
+//         // };
+//     } catch (error) {
+//         console.error('❌ Error finding result files:', error.message);
+//         return null;
+//     }
+// }
 
-// Function to regenerate reports from existing data
-async function regenerateReports(options = {}) {
-    console.log('📋 Regenerating reports from existing data...\n');
-    
-    const resultsDir = options.resultsDir || 'results';
-    const files = options.files || findMostRecentResults(resultsDir);
-    
-    if (!files) {
-        process.exit(1);
-    }
-    
-    console.log(`📂 Using results from: ${files.timestamp}`);
-    
-    try {
-        // Check which files actually exist
-        const hasComprehensive = fs.existsSync(files.comprehensive);
-        const hasFullText = fs.existsSync(files.fullText);
-        
-        if (!hasComprehensive) {
-            console.error('❌ Comprehensive results file not found');
-            process.exit(1);
-        }
-        // Load the comprehensive data (always required)
-        const comprehensiveData = JSON.parse(
-            fs.readFileSync(files.comprehensive, 'utf8')
-        );
-        // Load full text data if it exists
-        let fullTextData = null;
-        if (hasFullText) {
-            fullTextData = JSON.parse(
-                fs.readFileSync(files.fullText, 'utf8')
-            );
-            console.log('✅ Found full-text results');
-        } else {
-            console.log('⚠️  No full-text results found - generating basic reports only');
-        }
-        
-// Reconstruct the results format expected by report generator
-        const results = comprehensiveData.map((compResult, index) => {
-            const fullTextResult = fullTextData ? fullTextData[index] : null;
-            
-            return {
-                film: compResult.film,
-                totalUniqueSources: compResult.totalUniqueSources,
-                allSearchResults: compResult.sources,
-                fullTextAnalysis: fullTextResult?.treasures || [],
-                contentStats: fullTextResult?.contentStats || {
-                    total: 0,
-                    byType: {},
-                    byConfidence: { high: 0, medium: 0, low: 0 },
-                    treasures: 0,
-                    averageContentScore: 0
-                }
-            };
-        });
-        
-        // Load config to get profile info
-        const configProfile = options.corpus || 'test';
-        const researchProfile = options.profile || 'default';
-        const config = require('./config').load(configProfile, researchProfile);
-
-        // Import the report generator
-        const MarkdownReportGenerator = require('./lib/markdown-report-generator');
-        
-        
-        // Create report generator
-        const reportGenerator = new MarkdownReportGenerator({
-            createSubfolders: true
-        });
-        
-        // Generate reports
-        console.log('📝 Generating markdown reports...');
-        const reports = await reportGenerator.generateReports(
-            results,
-            config.profileInfo
-        );
-        
-        // Save reports with original timestamp
-        const savedFiles = await reportGenerator.saveReports(
-            reports,
-            resultsDir,
-            files.timestamp
-        );
-        
-        console.log(`\n✅ Successfully generated ${savedFiles.length} report files`);
-        console.log(`📁 Reports saved to: ${resultsDir}/`);
-
-            if (!hasFullText) {
-            console.log('\n⚠️  Note: Reports were generated without full-text analysis data.');
-            console.log('   To get complete reports, run a new search with full-text fetching enabled.');
-        }
-        
-    } catch (error) {
-        console.error('❌ Error generating reports:', error.message);
-        console.error(error.stack);
-        process.exit(1);
-    }
-}
 
 
 // Run it!
@@ -763,10 +665,6 @@ if (require.main === module) {
         console.log('  --corpus=PROFILE     Corpus size profile: test, single, medium, full');
         console.log('  --profile=PROFILE    Research profile name');
         console.log('  --list-profiles      List available research profiles');
-        console.log('  --no-reports         Skip markdown report generation');
-        console.log('  --reports-only       Generate reports from existing JSON results');
-        console.log('  --timestamp=TIME     Specific timestamp to use with --reports-only');
-        console.log('  --results-dir=DIR    Directory containing results (default: results)');
         console.log('\nExamples:');
         console.log('  node magic-lantern-v5.js data/films.csv --profile=adaptation-studies');
         console.log('  node magic-lantern-v5.js --corpus=medium --profile=early-cinema');

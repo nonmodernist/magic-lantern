@@ -149,12 +149,12 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
           detail: chunk.trim(),
           percent: 60
         });
-      } else if (chunk.includes('📚 Fetching full text')) {
-        mainWindow.webContents.send('search-progress', {
-          status: 'Fetching full text...',
-          detail: chunk.trim(),
-          percent: 80
-        });
+      // } else if (chunk.includes('📚 Fetching full text')) {
+      //   mainWindow.webContents.send('search-progress', {
+      //     status: 'Fetching full text...',
+      //     detail: chunk.trim(),
+      //     percent: 80
+      //   });
       } else if (chunk.includes('💾')) {
         mainWindow.webContents.send('search-progress', {
           status: 'Saving results...',
@@ -220,13 +220,12 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
           });
 
         // Find the most recent comprehensive and full-text files
-        const comprehensiveFile = sortedFiles.find(f => f.includes('comprehensive-search-results'));
-        const fullTextFile = sortedFiles.find(f => f.includes('full-text-results'));
+    const searchResultsFile = sortedFiles.find(f => f.includes('search-results'));
 
-        if (!comprehensiveFile) {
-          reject(new Error('No comprehensive results file found'));
-          return;
-        }
+    if (!searchResultsFile) {
+        reject(new Error('No search results file found'));
+        return;
+    }
 
         // Send completion with file paths
         mainWindow.webContents.send('search-progress', {
@@ -234,12 +233,11 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
           percent: 100
         });
 
-        resolve({
-          success: true,
-          comprehensivePath: path.join(resultsDir, comprehensiveFile),
-          fullTextPath: fullTextFile ? path.join(resultsDir, fullTextFile) : null,
-          timestamp: new Date().toISOString()
-        });
+    resolve({
+        success: true,
+        searchResultsPath: path.join(resultsDir, searchResultsFile),
+        timestamp: new Date().toISOString()
+    });
 
       } catch (error) {
         reject(new Error('Failed to find results: ' + error.message));
@@ -254,7 +252,7 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
   });
 });
 
-// Add a new handler to read results files
+// handler to read results files
 ipcMain.handle('read-results-file', async (event, filePath) => {
   const fs = require('fs');
 
@@ -344,7 +342,7 @@ ipcMain.handle('test-profile', async (event, profileData) => {
   }
 });
 
-// Add this handler after your other handlers
+// handler to test a real search
 ipcMain.handle('test-real-search', async () => {
   const { exec } = require('child_process');
   const fs = require('fs');
@@ -353,12 +351,12 @@ ipcMain.handle('test-real-search', async () => {
 
   return new Promise((resolve) => {
     // Make sure we have a test CSV file
-    const testCsvPath = path.join(__dirname, '..', 'data', 'films.csv');
+    const testCsvPath = path.join(__dirname, '..', 'core', 'data', 'films.csv');
 
     if (!fs.existsSync(testCsvPath)) {
       resolve({
         success: false,
-        error: 'Test CSV file not found at data/films.csv'
+        error: 'Test CSV file not found at core/data/films.csv'
       });
       return;
     }
@@ -400,7 +398,7 @@ ipcMain.handle('test-real-search', async () => {
         // Find the most recent results file
         const files = fs.readdirSync(resultsDir);
         const searchResultFiles = files.filter(f =>
-          f.includes('comprehensive-search-results') && f.endsWith('.json')
+          f.includes('search-results') && f.endsWith('.json')
         );
 
         if (searchResultFiles.length === 0) {
