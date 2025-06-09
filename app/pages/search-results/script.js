@@ -1,7 +1,6 @@
 // app/pages/search-results/script.js
 
-let comprehensiveResults = null;
-let fullTextResults = null;
+let searchResults = null;
 
 // Load results when page loads
 window.addEventListener('DOMContentLoaded', () => {
@@ -14,24 +13,15 @@ async function loadResults() {
         const resultsPath = localStorage.getItem('searchResultsPath');
         
         if (resultsPath && window.magicLantern) {
-            // Load real results using IPC
+            // Load results using IPC
             console.log('Loading results from:', resultsPath);
             const results = await window.magicLantern.readResultsFile(resultsPath);
-            
-            // Try to load full text results if available
-            if (fullTextPath) {
-                try {
-                    fullTextResults = await window.magicLantern.readResultsFile(fullTextPath);
-                } catch (error) {
-                    console.log('No full text results available');
-                }
-            }
             
             displayResults(results);
         } else {
             // Fallback to mock data for testing
             console.log('No results path found, using mock data');
-            displayResults(getMockComprehensiveResults());
+            displayResults(getMockSearchResults());
         }
     } catch (error) {
         console.error('Error loading results:', error);
@@ -43,9 +33,9 @@ async function loadResults() {
 }
 
 function displayResults(results) {
-    comprehensiveResults = results;
-    
-    // Update header timestamp
+    searchResults = results;
+
+        // Update header timestamp
     const timestamp = new Date().toLocaleString('en-US', {
         year: 'numeric',
         month: 'long',
@@ -54,32 +44,28 @@ function displayResults(results) {
         minute: '2-digit'
     });
     document.getElementById('results-timestamp').textContent = timestamp;
-    
+
     // Update summary statistics
     let totalSources = 0;
     let uniqueSources = 0;
-    let treasures = 0;
-    
+    let fullTextCount = 0;
+
     results.forEach(filmResult => {
         totalSources += filmResult.sources.length;
         uniqueSources += filmResult.totalUniqueSources || filmResult.sources.length;
         
-        // Count treasures if we have full text data
-        if (fullTextResults) {
-            const filmFullText = fullTextResults.find(f => 
-                f.film.title === filmResult.film.title && 
-                f.film.year === filmResult.film.year
-            );
-            if (filmFullText && filmFullText.treasures) {
-                treasures += filmFullText.treasures.filter(t => t.finalScore > 80).length;
+        // Count sources with full text (for future use)
+        filmResult.sources.forEach(source => {
+            if (source.fullTextFetched) {
+                fullTextCount++;
             }
-        }
+        });
     });
     
     document.getElementById('films-count').textContent = results.length;
     document.getElementById('sources-count').textContent = totalSources;
     document.getElementById('unique-count').textContent = uniqueSources;
-    document.getElementById('treasures-count').textContent = treasures;
+    document.getElementById('treasures-count').textContent = fullTextCount; // For now, 0
     
     // Display film results
     const container = document.getElementById('film-results-container');
@@ -134,7 +120,7 @@ function createFilmSection(filmResult) {
     const sourcesToShow = filmResult.sources.slice(0, 10);
     
     sourcesToShow.forEach(source => {
-        const sourceCard = createSourceCard(source);
+        const sourceCard = createSourceCard(source, film);
         sourcesContainer.appendChild(sourceCard);
     });
     
@@ -172,7 +158,7 @@ function createStrategyBar(strategy, count, maxCount) {
     return bar;
 }
 
-function createSourceCard(source) {
+function createSourceCard(source, film) {
     const template = document.getElementById('source-item-template');
     const card = template.content.cloneNode(true);
     
@@ -181,8 +167,8 @@ function createSourceCard(source) {
     card.querySelector('.score-badge').textContent = `SCORE: ${score}`;
     
     // Set publication
-    const publication = extractPublicationFromId(source.id);
-    card.querySelector('.publication-name').textContent = publication;
+    const publication = source.scoring?.publication || extractPublicationFromId(source.id);
+    card.querySelector('.publication-name').textContent = formatPublicationName(publication);
     
     // Set metadata
     const date = extractDateFromSource(source);
@@ -192,16 +178,18 @@ function createSourceCard(source) {
         <span class="found-by-badge">${formatStrategyName(foundBy)}</span>
     `;
     
-    // Set excerpt
-    const excerpt = extractExcerpt(source);
-    if (excerpt) {
-        card.querySelector('.source-excerpt').innerHTML = formatExcerpt(excerpt);
+    // Set excerpt (if available - for future use)
+    const excerptDiv = card.querySelector('.source-excerpt');
+    if (source.fullText && source.fullTextFetched) {
+        // Future: Show excerpt from full text
+        excerptDiv.innerHTML = formatExcerpt(source.fullText.substring(0, 300));
     } else {
-        card.querySelector('.source-excerpt').style.display = 'none';
+        excerptDiv.innerHTML = '<em>Full text not yet fetched</em>';
+        excerptDiv.style.opacity = '0.6';
     }
     
     // Set links
-    const lanternUrl = source.links?.self || '#';
+    const lanternUrl = source.links?.self || `https://lantern.mediahist.org/catalog/${source.id}`;
     const iaUrl = extractInternetArchiveUrl(source);
     
     const primaryLink = card.querySelector('.source-link.primary');
@@ -212,6 +200,20 @@ function createSourceCard(source) {
         iaLink.href = iaUrl;
     } else {
         iaLink.style.display = 'none';
+    }
+
+        // Update "Fetch Full Text" button for future functionality
+    const fetchButton = card.querySelector('.fetch-full-text');
+    if (source.fullTextFetched) {
+        fetchButton.textContent = 'Full Text Available';
+        fetchButton.disabled = true;
+        fetchButton.style.opacity = '0.6';
+    } else {
+        // For now, disable since feature not implemented
+        fetchButton.textContent = 'Fetch Full Text (Coming Soon)';
+        fetchButton.disabled = true;
+        fetchButton.style.opacity = '0.6';
+        // Future: fetchButton.onclick = () => fetchFullText(source.id, film);
     }
     
     return card;
@@ -329,7 +331,7 @@ function generateReport() {
 
 // Show more sources
 function showMoreSources(button, filmTitle, filmYear) {
-    const filmResult = comprehensiveResults.find(r => 
+    const filmResult = searchResults.find(r => 
         r.film.title === filmTitle && r.film.year === filmYear
     );
     
@@ -340,7 +342,7 @@ function showMoreSources(button, filmTitle, filmYear) {
     
     // Add remaining sources
     filmResult.sources.slice(existingCards).forEach(source => {
-        const sourceCard = createSourceCard(source);
+        const sourceCard = createSourceCard(source, filmResult.film);
         container.insertBefore(sourceCard, button.parentElement);
     });
     
@@ -348,8 +350,33 @@ function showMoreSources(button, filmTitle, filmYear) {
     button.parentElement.remove();
 }
 
-// Mock data function for testing
-function getMockComprehensiveResults() {
+// Future functionality placeholder
+async function fetchFullText(sourceId, film) {
+    // This will be implemented when selective full text fetching is added
+    console.log('Full text fetching will be implemented in a future version');
+    alert('Full text fetching will be available in a future update');
+}
+
+// Export results function
+function exportResults() {
+    if (!searchResults) return;
+    
+    const dataStr = JSON.stringify(searchResults, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `magic-lantern-results-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+}
+
+// Generate report function (placeholder)
+function generateReport() {
+    alert('Report generation coming soon! For now, use Export JSON.');
+}
+
+// Mock data function updated for new structure
+function getMockSearchResults() {
     return [
         {
             film: {
@@ -372,11 +399,6 @@ function getMockComprehensiveResults() {
                     id: "variety137-1939-08_0054",
                     attributes: {
                         dateString: { attributes: { value: "August 1939" } },
-                        body: { 
-                            attributes: { 
-                                value: "Metro's '<em>The</em> <em>Wizard</em> <em>of</em> <em>Oz</em>' is a magnificent fantasy, brilliantly conceived and executed. L. Frank Baum's beloved children's classic comes to life with Technicolor splendor..." 
-                            } 
-                        },
                         read_search_highlighting: {
                             attributes: {
                                 value: '<a target="_blank" href="http://archive.org/stream/variety137-1939-08#page/n54/mode/2up/search/&quot;The Wizard of Oz&quot;">Read in Context</a>'
@@ -385,7 +407,13 @@ function getMockComprehensiveResults() {
                     },
                     links: { self: "https://lantern.mediahist.org/catalog/variety137-1939-08_0054" },
                     foundBy: "author_title",
-                    scoring: { finalScore: 95.5 }
+                    scoring: { 
+                        finalScore: 95.5,
+                        publication: "variety"
+                    },
+                    fullText: null,
+                    fullTextFetched: false,
+                    fullTextFetchedAt: null
                 }
             ]
         }

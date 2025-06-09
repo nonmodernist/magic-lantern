@@ -214,19 +214,17 @@ if (results.cancelled) {
   return;
 }
     
-    if (results.success) {
-      // Store the file paths for the results viewer
-      localStorage.setItem('comprehensiveResultsPath', results.comprehensivePath);
-      if (results.fullTextPath) {
-        localStorage.setItem('fullTextResultsPath', results.fullTextPath);
-      }
-      localStorage.setItem('searchTimestamp', results.timestamp);
-      
-      // Navigate to results page
-      window.location.href = '../search-results/index.html';
-    } else {
-      alert('Search completed but no results found');
-    }
+// In the run-search click handler, update the results storage
+if (results.success) {
+    // Store the single file path for the results viewer
+    localStorage.setItem('searchResultsPath', results.searchResultsPath);
+    localStorage.setItem('searchTimestamp', results.timestamp);
+    
+    // Navigate to results page
+    window.location.href = '../search-results/index.html';
+} else {
+    alert('Search completed but no results found');
+}
     
   } catch (error) {
     console.error('Search error:', error);
