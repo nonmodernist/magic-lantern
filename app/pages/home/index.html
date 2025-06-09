@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Lantern - Research Automation Toolkit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="../../shared/common.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
         <div class="edition-info">
-            Vol. 5. No. 0.2.<br>
+            Vol. 5.—No. 0.2.<br>
             SUMMER, 2025.
         </div>
         <h1 class="main-title">✨ MAGIC LANTERN ✨</h1>
         <p class="subtitle">A Digital Research Toolkit for the Media History Digital Library</p>
     </header>
 
-    <section>
     <div class="container">
         <div class="notice-box">
             <p><strong>Greetings, esteemed researcher!</strong> Magic Lantern transforms weeks of manual searching into hours of automated discovery across historical film trade publications. Simply provide your films of interest and watch as the apparatus generates dozens of intelligent search queries, fetches the finest results, and presents them in order of relevance.</p>
+        </div>
+
+        <!-- Navigation Tools Section -->
+        <div class="tools-section">
+            <button class="btn btn-secondary" onclick="window.location.href='../profile-editor/index.html'">
+                🔧 Profile Laboratory
+            </button>
+            <button class="btn btn-secondary" onclick="window.location.href='../search-results/index.html'">
+                📊 View Recent Results
+            </button>
+            <div class="ornament" style="margin: 20px 0;">❦</div>
         </div>
 
         <!-- Test Connection Section -->
@@ -31,8 +39,8 @@
                 <span class="section-number">✓</span>
                 TEST CONNECTION
             </div>
-            <button id="test-btn" class="file-button">Test Connection</button>
-            <button id="test-real-search-btn" class="file-button" style="margin-left: 10px;">Test Real Search</button>
+            <button id="test-btn" class="btn btn-secondary">Test Connection</button>
+            <button id="test-real-search-btn" class="btn btn-secondary" style="margin-left: 10px;">Test Real Search</button>
             <div id="status" class="status"></div>
         </div>
 
@@ -44,7 +52,7 @@
             </div>
             <div class="input-group">
                 <label class="input-label">Film Catalogue (CSV Format)</label>
-                <button id="select-file-btn" class="file-button">Choose CSV File</button>
+                <button id="select-file-btn" class="btn btn-secondary">Choose CSV File</button>
                 <div id="file-info" class="file-info">
                     <p><strong>Selected File:</strong> <span id="file-name"></span></p>
                     <p><strong>Films found:</strong> <span id="film-count"></span></p>
@@ -62,7 +70,7 @@
                 CONFIGURE YOUR SEARCH
             </div>
 
-            <div class="config-grid">
+            <div class="config-grid grid-2">
                 <div class="config-box">
                     <h3 class="config-title">Corpus Size</h3>
                     <select id="corpus-select" class="config-select">
@@ -81,8 +89,6 @@
                         <option value="labor-history">Labor History</option>
                         <option value="early-cinema">Early Cinema (1905-1920)</option>
                         <option value="regional-reception">Regional Reception</option>
-                        <option value="studio-era-adaptations">Studio Era Adaptations</option>
-                        <option value="50s-adaptations">1950s Adaptations</option>
                     </select>
                     <p class="profile-description" id="profile-description">Standard Magic Lantern configuration</p>
                 </div>
@@ -92,11 +98,11 @@
 
             <div class="ornament">❦ ❦ ❦</div>
 
-            <button id="run-search-btn" class="execute-button">Execute Search</button>
+            <button id="run-search-btn" class="btn btn-primary btn-large execute-button">Execute Search</button>
         </div>
 
         <!-- Progress Section -->
-        <div class="search-section" id="progress-section" style="display: none;">
+        <div class="search-section" id="progress-section">
             <div class="section-header">
                 <span class="section-number">3</span>
                 SEARCH PROGRESS
@@ -106,12 +112,11 @@
                     <div class="progress-fill" id="progress-fill"></div>
                 </div>
                 <p class="progress-text" id="progress-text">Initializing...</p>
-                <div id="progress-details" style="margin-top: 20px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto;"></div>
+                <div id="progress-details"></div>
             </div>
-            <button id="cancel-btn" class="file-button" style="margin-top: 20px;">Cancel</button>
+            <button id="cancel-btn" class="btn btn-secondary" style="margin-top: 20px;">Cancel</button>
         </div>
     </div>
-    </section>
 
     <script src="script.js"></script>
     <script>
@@ -121,9 +126,7 @@
             'adaptation-studies': 'Emphasizes author attribution and source materials',
             'labor-history': 'Focuses on strikes, unions, and working conditions',
             'early-cinema': 'Optimized for silent era research (1905-1920)',
-            'regional-reception': 'Studies how films played outside major cities',
-            'studio-era-adaptations': 'Prestige pictures of the 1930s-1940s',
-            '50s-adaptations': 'Widescreen era with fewer publications'
+            'regional-reception': 'Studies how films played outside major cities'
         };
 
         // Update profile description when selection changes

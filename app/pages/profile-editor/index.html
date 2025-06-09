@@ -1,309 +1,207 @@
-<!-- profile-editor.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Magic Lantern - Profile Editor</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .editor-container {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 20px;
-      height: calc(100vh - 100px);
-    }
-    
-    /* Sidebar with profile list */
-    .profile-sidebar {
-      background: #f5f5f5;
-      border-radius: 8px;
-      padding: 20px;
-      overflow-y: auto;
-    }
-    
-    .profile-item {
-      padding: 12px;
-      margin: 8px 0;
-      background: white;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .profile-item.active {
-      background: #3498db;
-      color: white;
-    }
-    
-    .profile-item:hover {
-      transform: translateX(5px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    
-    /* Main editor area */
-    .editor-main {
-      background: white;
-      border-radius: 8px;
-      padding: 30px;
-      overflow-y: auto;
-    }
-    
-    /* Weight sliders */
-    .weight-control {
-      margin: 15px 0;
-      padding: 15px;
-      background: #f8f9fa;
-      border-radius: 8px;
-    }
-    
-    .weight-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
-    
-    .weight-slider {
-      width: 100%;
-      height: 8px;
-      appearance: none;
-      -webkit-appearance: none;
-      background: #ddd;
-      border-radius: 4px;
-      outline: none;
-    }
-    
-    .weight-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      background: #3498db;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    
-    .weight-value {
-      font-weight: bold;
-      color: #3498db;
-      min-width: 40px;
-      text-align: right;
-    }
-    
-    /* Strategy priority list */
-    .strategy-list {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 20px;
-    }
-    
-    .strategy-item {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 6px;
-      cursor: move;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      transition: all 0.2s;
-    }
-    
-    .strategy-item.dragging {
-      opacity: 0.5;
-      transform: scale(0.95);
-    }
-    
-    .strategy-handle {
-      color: #999;
-      font-size: 20px;
-    }
-    
-    .strategy-toggle {
-      width: 50px;
-      height: 26px;
-      background: #ccc;
-      border-radius: 13px;
-      position: relative;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    
-    .strategy-toggle.active {
-      background: #3498db;
-    }
-    
-    .strategy-toggle::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: white;
-      border-radius: 50%;
-      top: 3px;
-      left: 3px;
-      transition: transform 0.3s;
-    }
-    
-    .strategy-toggle.active::after {
-      transform: translateX(24px);
-    }
-    
-    /* Date range visual */
-    .date-range-visual {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-      background: #f8f9fa;
-      border-radius: 8px;
-    }
-    
-    .year-input {
-      width: 80px;
-      padding: 8px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
-      text-align: center;
-      font-weight: bold;
-    }
-    
-    .range-bar {
-      flex: 1;
-      height: 40px;
-      position: relative;
-      background: #e0e0e0;
-      border-radius: 20px;
-    }
-    
-    .range-fill {
-      position: absolute;
-      height: 100%;
-      background: linear-gradient(90deg, #3498db, #2ecc71);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-    }
-    
-    /* Save/export buttons */
-    .editor-actions {
-      position: sticky;
-      bottom: 0;
-      background: white;
-      padding: 20px 0;
-      border-top: 1px solid #eee;
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-    
-    .btn-primary {
-      background: #3498db;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    .btn-secondary {
-      background: #95a5a6;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Lantern - Profile Editor</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>🎨 Profile Editor</h1>
-      <p>Customize search strategies and scoring for your research</p>
+    <header class="header">
+        <div class="edition-info">
+            Vol. 5.—No. 0.2.<br>
+            SUMMER, 2025.
+        </div>
+        <h1 class="main-title">✨ MAGIC LANTERN ✨</h1>
+        <p class="subtitle">Research Profile Configuration Laboratory</p>
     </header>
-    
-    <div class="editor-container">
-      <!-- Profile List Sidebar -->
-      <div class="profile-sidebar">
-        <h3>Profiles</h3>
-        <button class="btn-primary" style="width: 100%; margin-bottom: 20px;">
-          + New Profile
-        </button>
-        
-        <div id="profile-list">
-          <!-- Profiles loaded here -->
-        </div>
-      </div>
-      
-      <!-- Main Editor -->
-      <div class="editor-main">
-        <div id="profile-header">
-          <input type="text" id="profile-name" placeholder="Profile Name" 
-                 style="font-size: 24px; border: none; border-bottom: 2px solid #ddd; width: 100%; margin-bottom: 10px;">
-          <textarea id="profile-description" placeholder="Description" 
-                    style="width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 10px; resize: vertical;"></textarea>
-        </div>
-        
-        <!-- Publication Weights -->
-        <section class="editor-section">
-          <h3>📰 Publication Weights</h3>
-          <p>Adjust the importance of different publications for your research</p>
-          
-          <div id="publication-weights">
-            <!-- Generated dynamically -->
-          </div>
-          
-          <button class="btn-secondary" onclick="addPublication()">
-            + Add Publication
-          </button>
-        </section>
-        
-        <!-- Search Strategies -->
-        <section class="editor-section">
-          <h3>🔍 Search Strategy Priority</h3>
-          <p>Drag to reorder, toggle to enable/disable</p>
-          
-          <div class="strategy-list" id="strategy-list">
-            <!-- Draggable strategy items -->
-          </div>
-        </section>
-        
-        <!-- Date Ranges -->
-        <section class="editor-section">
-          <h3>📅 Date Range Settings</h3>
-          <p>How many years before/after release date to search</p>
-          
-          <div class="date-range-settings">
-            <h4>High Confidence</h4>
-            <div class="date-range-visual">
-              <input type="number" class="year-input" id="high-before" value="1" min="0" max="10">
-              <span>years before</span>
-              <div class="range-bar">
-                <div class="range-fill" id="high-range" style="left: 40%; width: 20%;">
-                  Film Year
-                </div>
-              </div>
-              <span>years after</span>
-              <input type="number" class="year-input" id="high-after" value="1" min="0" max="10">
+
+    <div class="container">
+        <!-- Navigation Bar -->
+        <div class="navigation-bar">
+            <button class="btn btn-secondary" onclick="window.location.href='../home/index.html'">
+                ← Back to Search
+            </button>
+            <div class="nav-actions">
+                <button class="btn btn-secondary" onclick="window.profileEditor.createNewProfile()">
+                    + New Profile
+                </button>
             </div>
-            
-            <!-- Repeat for medium and low confidence -->
-          </div>
-        </section>
-        
-        <!-- Actions -->
-        <div class="editor-actions">
-          <button class="btn-secondary" onclick="testProfile()">Test Profile</button>
-          <button class="btn-secondary" onclick="exportProfile()">Export as .js</button>
-          <button class="btn-primary" onclick="saveProfile()">Save Profile</button>
         </div>
-      </div>
+
+        <div class="notice-box">
+            <p><strong>Welcome to the Profile Laboratory!</strong> Here you may craft bespoke research profiles, adjusting the delicate mechanisms of publication weights, search strategies, and temporal parameters to suit your scholarly pursuits.</p>
+        </div>
+
+        <div class="editor-container">
+            <!-- Profile List Sidebar -->
+            <aside class="profile-sidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title">Research Profiles</h3>
+                </div>
+                <div id="profile-list" class="profile-list">
+                    <!-- Profile items will be loaded here -->
+                </div>
+            </aside>
+
+            <!-- Main Editor Area -->
+            <main class="editor-main">
+                <div class="editor-section">
+                    <div class="section-header">
+                        <span class="section-number">1</span>
+                        PROFILE IDENTITY
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Profile Name</label>
+                        <input type="text" id="profile-name" class="text-input" 
+                               placeholder="Enter profile name...">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">Description</label>
+                        <textarea id="profile-description" class="text-input textarea" 
+                                  rows="3" placeholder="Describe the research focus of this profile..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Publication Weights Section -->
+                <div class="editor-section">
+                    <div class="section-header">
+                        <span class="section-number">2</span>
+                        PUBLICATION WEIGHTS
+                    </div>
+                    
+                    <p class="section-description">
+                        Adjust the relative importance of various periodicals. Higher weights indicate greater scholarly value for your research purposes.
+                    </p>
+                    
+                    <div id="publication-weights" class="weights-container">
+                        <!-- Weight controls will be loaded here -->
+                    </div>
+                    
+                    <button class="btn btn-secondary mt-md" onclick="window.profileEditor.addPublication()">
+                        + Add Publication
+                    </button>
+                </div>
+
+                <!-- Search Strategies Section -->
+                <div class="editor-section">
+                    <div class="section-header">
+                        <span class="section-number">3</span>
+                        SEARCH STRATEGY PRIORITIES
+                    </div>
+                    
+                    <p class="section-description">
+                        Configure which search strategies to employ and their execution priority. Drag to reorder, toggle to enable or disable.
+                    </p>
+                    
+                    <div class="strategy-list" id="strategy-list">
+                        <!-- Strategy items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Date Range Settings -->
+                <div class="editor-section">
+                    <div class="section-header">
+                        <span class="section-number">4</span>
+                        TEMPORAL PARAMETERS
+                    </div>
+                    
+                    <p class="section-description">
+                        Define the chronological boundaries for your searches relative to each film's release year.
+                    </p>
+                    
+                    <div class="date-ranges-container">
+                        <div class="date-range-setting">
+                            <h4 class="range-title">High Confidence Searches</h4>
+                            <div class="date-range-visual">
+                                <div class="range-inputs">
+                                    <label>Before:</label>
+                                    <input type="number" id="high-before" class="range-input" value="1" min="0" max="10">
+                                    <span class="range-label">years</span>
+                                </div>
+                                <div class="range-bar">
+                                    <div class="range-fill" id="high-range">
+                                        <span class="range-center">FILM YEAR</span>
+                                    </div>
+                                </div>
+                                <div class="range-inputs">
+                                    <label>After:</label>
+                                    <input type="number" id="high-after" class="range-input" value="1" min="0" max="10">
+                                    <span class="range-label">years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="date-range-setting">
+                            <h4 class="range-title">Medium Confidence Searches</h4>
+                            <div class="date-range-visual">
+                                <div class="range-inputs">
+                                    <label>Before:</label>
+                                    <input type="number" id="medium-before" class="range-input" value="2" min="0" max="10">
+                                    <span class="range-label">years</span>
+                                </div>
+                                <div class="range-bar">
+                                    <div class="range-fill" id="medium-range">
+                                        <span class="range-center">FILM YEAR</span>
+                                    </div>
+                                </div>
+                                <div class="range-inputs">
+                                    <label>After:</label>
+                                    <input type="number" id="medium-after" class="range-input" value="2" min="0" max="10">
+                                    <span class="range-label">years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="date-range-setting">
+                            <h4 class="range-title">Low Confidence Searches</h4>
+                            <div class="date-range-visual">
+                                <div class="range-inputs">
+                                    <label>Before:</label>
+                                    <input type="number" id="low-before" class="range-input" value="3" min="0" max="10">
+                                    <span class="range-label">years</span>
+                                </div>
+                                <div class="range-bar">
+                                    <div class="range-fill" id="low-range">
+                                        <span class="range-center">FILM YEAR</span>
+                                    </div>
+                                </div>
+                                <div class="range-inputs">
+                                    <label>After:</label>
+                                    <input type="number" id="low-after" class="range-input" value="3" min="0" max="10">
+                                    <span class="range-label">years</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="editor-actions">
+                    <div class="ornament">❦ ❦ ❦</div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" onclick="window.profileEditor.testProfile()">
+                            Test Profile
+                        </button>
+                        <button class="btn btn-secondary" onclick="window.profileEditor.exportProfile()">
+                            Export as .js
+                        </button>
+                        <button class="btn btn-primary btn-large" onclick="window.profileEditor.saveProfile()">
+                            Save Profile
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
-  </div>
-  
-  <script src="profile-editor.js"></script>
+
+    <!-- Toast notification container -->
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>

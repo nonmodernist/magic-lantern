@@ -223,7 +223,7 @@ if (results.cancelled) {
       localStorage.setItem('searchTimestamp', results.timestamp);
       
       // Navigate to results page
-      window.location.href = 'search-results/index.html';
+      window.location.href = '../search-results/index.html';
     } else {
       alert('Search completed but no results found');
     }

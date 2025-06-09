@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Lantern - A Marvel of Modern Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #fef8f0;
+            color: #2a1810;
+            font-family: 'Crimson Text', serif;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+        
+        /* Victorian Newspaper Header */
+        .masthead {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 4px double #2a1810;
+            background: linear-gradient(to bottom, #fef8f0 0%, #fdf6ec 100%);
+        }
+        
+        .masthead h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 4rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(42, 24, 16, 0.1);
+        }
+        
+        .masthead .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .masthead .edition {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .masthead .ornament {
+            font-size: 1.5rem;
+            margin: 0 1rem;
+        }
+        
+        /* Main Layout */
+        .broadsheet {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline-block;
+            padding: 0 2rem;
+            background: #fef8f0;
+            position: relative;
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #2a1810;
+            z-index: -1;
+        }
+        
+        /* Column Layout */
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .column {
+            padding: 1.5rem;
+            border: 1px solid #2a1810;
+            background: #fffcf8;
+            position: relative;
+        }
+        
+        .column::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid #2a1810;
+            pointer-events: none;
+        }
+        
+        /* Advertisement Style Boxes */
+        .advertisement {
+            border: 3px double #2a1810;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            background: #fffcf8;
+        }
+        
+        .advertisement h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .advertisement .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        /* Profile Cards as Victorian Ads */
+        .profile-card {
+            border: 2px solid #2a1810;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: #fffcf8;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(42, 24, 16, 0.2);
+        }
+        
+        .profile-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-card .stats {
+            font-size: 1.1rem;
+            margin: 1rem 0;
+        }
+        
+        .profile-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        /* Victorian Button */
+        .victorian-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: 2px solid #2a1810;
+            background: #fef8f0;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: #2a1810;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .victorian-button:hover {
+            background: #2a1810;
+            color: #fef8f0;
+        }
+        
+        /* Testimonial Style */
+        .testimonial {
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 1.5rem;
+            border-left: 4px solid #2a1810;
+            margin: 2rem 0;
+        }
+        
+        .testimonial .attribution {
+            text-align: right;
+            font-style: normal;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: '☞';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+        
+        /* Ornamental Divider */
+        .divider {
+            text-align: center;
+            font-size: 2rem;
+            margin: 3rem 0;
+            letter-spacing: 1rem;
+        }
+        
+        /* Demo Section */
+        .demo-box {
+            border: 4px double #2a1810;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            background: radial-gradient(ellipse at center, #fffcf8 0%, #fef8f0 100%);
+        }
+        
+        .lantern-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 4px double #2a1810;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Masthead -->
+    <header class="masthead">
+        <h1>✨ MAGIC LANTERN ✨</h1>
+        <p class="tagline">A Marvel of Modern Research Automation</p>
+        <div class="edition">
+            <span>Est. 2024</span>
+            <span class="ornament">❦</span>
+            <span>Volume V</span>
+            <span class="ornament">❦</span>
+            <span>For Film Historians</span>
+        </div>
+    </header>
+
+    <div class="broadsheet">
+        <!-- Hero Advertisement -->
+        <div class="advertisement">
+            <h3>🏮 Behold the Wonder! 🏮</h3>
+            <p style="font-size: 1.3rem; margin: 1rem 0;">Transform WEEKS of Manual Searching into HOURS of Automated Discovery!</p>
+            <div class="price">FREE</div>
+            <p>No Patent Medicines! No Humbug! Just Honest Research Automation!</p>
+            <button class="victorian-button" style="margin-top: 1rem;">Witness the Demonstration</button>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="section-header">
+            <h2>The Eighth Wonder of the Academic World</h2>
+        </div>
+        
+        <div class="columns">
+            <div class="column">
+                <h3>What Manner of Sorcery?</h3>
+                <p>Dear esteemed scholars and researchers of the cinematographic arts! Have you grown weary of the endless toil through dusty archives? Do your eyes strain from countless browser tabs?</p>
+                <p>Magic Lantern employs the most advanced computational engines to search the Media History Digital Library with unprecedented thoroughness!</p>
+            </div>
+            <div class="column">
+                <h3>The Proprietor's Promise</h3>
+                <p>We guarantee that our patented search strategies shall uncover materials you would NEVER find through manual means! Our satisfied scholars report finding 10 TIMES more sources than traditional methods!</p>
+                <div class="testimonial">
+                    <p>"I discovered 147 sources for my dissertation in mere minutes! Astounding!"</p>
+                    <p class="attribution">— Prof. Eleanor Hartwell, PhD</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider">❦ ❦ ❦</div>
+
+        <!-- Research Profiles Section -->
+        <div class="section-header">
+            <h2>Select Your Research Profile</h2>
+        </div>
+        
+        <div class="advertisement" style="margin-bottom: 2rem;">
+            <p style="font-size: 1.2rem;">🎭 Each Profile Specially Crafted for Different Scholarly Pursuits! 🎭</p>
+        </div>
+
+        <div class="columns">
+            <div class="profile-card">
+                <h4>📚 Literary Adaptations</h4>
+                <p>For the study of novels transformed to celluloid!</p>
+                <div class="stats">
+                    <span class="stat-number">2,847</span>
+                    <span>Sources Discovered</span>
+                </div>
+                <ul class="feature-list" style="text-align: left; margin: 1rem 0;">
+                    <li>Author attribution searches</li>
+                    <li>Novel-to-film comparisons</li>
+                    <li>Adaptation announcements</li>
+                </ul>
+                <button class="victorian-button">Learn More</button>
+            </div>
+            
+            <div class="profile-card">
+                <h4>⚒️ Labor History</h4>
+                <p>Uncover the hidden struggles of the working class!</p>
+                <div class="stats">
+                    <span class="stat-number">1,923</span>
+                    <span>Labor Actions Found</span>
+                </div>
+                <ul class="feature-list" style="text-align: left; margin: 1rem 0;">
+                    <li>Strike coverage</li>
+                    <li>Union negotiations</li>
+                    <li>Working conditions</li>
+                </ul>
+                <button class="victorian-button">Learn More</button>
+            </div>
+            
+            <div class="profile-card">
+                <h4>🌾 Regional Reception</h4>
+                <p>How films played in the heartland!</p>
+                <div class="stats">
+                    <span class="stat-number">3,156</span>
+                    <span>Small-Town Reports</span>
+                </div>
+                <ul class="feature-list" style="text-align: left; margin: 1rem 0;">
+                    <li>Box office reports</li>
+                    <li>Exhibitor feedback</li>
+                    <li>Regional preferences</li>
+                </ul>
+                <button class="victorian-button">Learn More</button>
+            </div>
+        </div>
+
+        <div class="divider">❦ ❦ ❦</div>
+
+        <!-- How It Works -->
+        <div class="section-header">
+            <h2>The Scientific Method Revealed!</h2>
+        </div>
+        
+        <div class="demo-box">
+            <div class="lantern-icon">🏮</div>
+            <h3>Watch the Magic Unfold!</h3>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">Input: "The Wizard of Oz" (1939)</p>
+            <p style="font-size: 1.1rem;">↓ Transformed Into ↓</p>
+            <div style="margin: 2rem 0; text-align: left; display: inline-block;">
+                <ul class="feature-list">
+                    <li>"The Wizard of Oz" + "box office"</li>
+                    <li>"L. Frank Baum" + "MGM"</li>
+                    <li>"Judy Garland" + production</li>
+                    <li>And 22 more ingenious variations!</li>
+                </ul>
+            </div>
+            <p style="font-size: 1.3rem; font-weight: 700;">Result: 147 Unique Sources!</p>
+            <button class="victorian-button">See Full Demonstration</button>
+        </div>
+
+        <div class="divider">❦ ❦ ❦</div>
+
+        <!-- Testimonials -->
+        <div class="section-header">
+            <h2>Testimonials from Satisfied Scholars</h2>
+        </div>
+        
+        <div class="columns">
+            <div class="testimonial">
+                <p>"Before Magic Lantern, I spent three months searching for sources. Now I accomplish the same in an afternoon!"</p>
+                <p class="attribution">— Dr. William Ashford, Film Studies</p>
+            </div>
+            <div class="testimonial">
+                <p>"The labor history profile uncovered union disputes I never knew existed. Revolutionary!"</p>
+                <p class="attribution">— Margaret Chen, Graduate Student</p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="advertisement" style="margin-top: 4rem;">
+            <h3>🎪 Begin Your Research Adventure Today! 🎪</h3>
+            <p style="font-size: 1.2rem; margin: 1rem 0;">Available at No Cost to All Scholars!</p>
+            <p>Visit our GitHub Repository for Instructions and Installation</p>
+            <button class="victorian-button" style="margin-top: 1rem;">github.com/nonmodernist/magic-lantern</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Magic Lantern™ is a production of Alexandra Edwards</p>
+        <p>In association with the Media History Digital Library</p>
+        <p class="ornament" style="margin-top: 1rem;">❦</p>
+    </footer>
+
+    <script>
+        // Add some Victorian-era appropriate interactivity
+        document.querySelectorAll('.victorian-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.textContent === 'Witness the Demonstration') {
+                    alert('The full demonstration shall commence shortly! (Demo animation would go here)');
+                } else if (this.textContent === 'Learn More') {
+                    alert('Full profile details coming soon to this very broadsheet!');
+                }
+            });
+        });
+
+        // Add a subtle animation to the lantern icon
+        const lanternIcon = document.querySelector('.lantern-icon');
+        if (lanternIcon) {
+            setInterval(() => {
+                lanternIcon.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    lanternIcon.style.transform = 'scale(1)';
+                }, 500);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
