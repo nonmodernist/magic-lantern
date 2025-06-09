@@ -57,8 +57,10 @@ class ProfileEditor {
             return;
         }
         
-        // Load full profile data
-        this.currentProfile = await window.magicLantern.getProfile(profileKey);
+    // Load full profile data
+    console.log('Loading profile:', profileKey);
+    this.currentProfile = await window.magicLantern.getProfile(profileKey);
+    console.log('Loaded profile data:', this.currentProfile);
         
         // Update UI
         document.getElementById('profile-name').value = this.currentProfile.name;
@@ -194,19 +196,35 @@ class ProfileEditor {
     }
     
     renderDateRanges() {
+
+            console.log('renderDateRanges called');
+    console.log('currentProfile:', this.currentProfile);
+    console.log('dateRanges:', this.currentProfile.dateRanges);
+
         const ranges = this.currentProfile.dateRanges || {
             high: { before: 1, after: 1 },
             medium: { before: 2, after: 2 },
             low: { before: 3, after: 3 }
         };
+
+            console.log('ranges after fallback:', ranges);
         
-        ['high', 'medium', 'low'].forEach(confidence => {
-            const range = ranges[confidence];
-            document.getElementById(`${confidence}-before`).value = range.before;
-            document.getElementById(`${confidence}-after`).value = range.after;
-            this.updateRangeVisual(confidence);
-        });
+      ['high', 'medium', 'low'].forEach(confidence => {
+        console.log(`Processing ${confidence}:`, ranges[confidence]);
+        const range = ranges[confidence];
+        if (!range) {
+            console.error(`No range for ${confidence}!`);
+            return;
+        }
+        document.getElementById(`${confidence}-before`).value = range.before;
+        document.getElementById(`${confidence}-after`).value = range.after;
+        this.updateRangeVisual(confidence);
+    });
+
+        
+
     }
+    
     
     setupDateRangeControls() {
         ['high', 'medium', 'low'].forEach(confidence => {
