@@ -573,7 +573,7 @@ async comprehensiveSearch(film) {
     try {
             const films = await this.loadFilms(filePath);
             
-            const outputDir = path.join(__dirname, 'results');
+            const outputDir = path.join(__dirname, '..', 'results');
             if (!fs.existsSync(outputDir)) {
                 fs.mkdirSync(outputDir, { recursive: true });
             }

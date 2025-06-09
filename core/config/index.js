@@ -5,9 +5,9 @@ const profiles = require('./profiles');
 
 module.exports = {
   profiles,  // Add profile loader
-  // scoring: { // TODO test commenting this out now that content analysis is gone
-  //   contentTypes: scoring.contentTypes
-  // },
+  scoring: { // ! DO NOT remove this, it breaks everything
+    contentTypes: scoring.contentTypes
+  },
   search: {
     api: search.api,  // Keep API settings here
     fullText: search.fullText 
