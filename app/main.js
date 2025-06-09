@@ -15,7 +15,7 @@ function createWindow() {
     }
   });
 
-  mainWindow.loadFile('ui/index.html');
+  mainWindow.loadFile('app/pages/home/index.html');
 
   // Open DevTools in development
   if (process.env.NODE_ENV !== 'production') {
@@ -30,7 +30,7 @@ ipcMain.handle('test-connection', async () => {
   try {
     // Test that we can access Magic Lantern
     const path = require('path');
-    const magicLanternPath = path.join(__dirname, 'magic-lantern-v5.js');
+    const magicLanternPath = path.join(__dirname, '..', 'core', 'magic-lantern-v5.js');
 
     // Check if file exists
     const fs = require('fs');
@@ -39,7 +39,7 @@ ipcMain.handle('test-connection', async () => {
     }
 
     // Try to require it
-    const UnifiedMagicLantern = require('../magic-lantern-v5');
+    const UnifiedMagicLantern = require('../core/magic-lantern-v5');
 
     return {
       success: true,
@@ -121,7 +121,7 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
       `--corpus=${corpus}`,
       `--profile=${profile}`
     ], {
-      cwd: __dirname
+      cwd: path.join(__dirname, '..', 'core')  // Change working directory to core/    
     });
 
     // Keep track of this process so we can stop it later
@@ -171,9 +171,9 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
     });
 
     // Handle process exit
-child.on('exit', (code) => {
-  console.log(`Search process exited with code ${code}`);
-  console.log('Was currentSearchProcess null?', currentSearchProcess === null);
+    child.on('exit', (code) => {
+      console.log(`Search process exited with code ${code}`);
+      console.log('Was currentSearchProcess null?', currentSearchProcess === null);
 
       // Clear our reference since the process ended
       currentSearchProcess = null;
@@ -190,19 +190,19 @@ child.on('exit', (code) => {
         return;
       }
 
-  // If code is NOT 0, it's an error
-  if (code !== 0) {
-    reject(new Error(`Search failed with exit code ${code}: ${errorOutput}`));
-    return;
-  }
-  
-  // If we get here, code is 0, which means success!
-  console.log('Search completed successfully, finding results files...');
-  
+      // If code is NOT 0, it's an error
+      if (code !== 0) {
+        reject(new Error(`Search failed with exit code ${code}: ${errorOutput}`));
+        return;
+      }
+
+      // If we get here, code is 0, which means success!
+      console.log('Search completed successfully, finding results files...');
+
 
       // Find the results files
       try {
-        const resultsDir = path.join(__dirname, 'results');
+        const resultsDir = path.join(__dirname, '..', 'results');
         if (!fs.existsSync(resultsDir)) {
           reject(new Error('Results directory not found'));
           return;
@@ -271,38 +271,37 @@ ipcMain.handle('read-results-file', async (event, filePath) => {
   }
 });
 
-// In main.js - add these handlers
 
 ipcMain.handle('get-profiles', async () => {
-  const profileLoader = require('../config/profiles');
+  const profileLoader = require('../core/config/profiles');
   return profileLoader.list();
 });
 
 ipcMain.handle('get-profile', async (event, profileKey) => {
-  const profileLoader = require('../config/profiles');
+  const profileLoader = require('../core/config/profiles');
   return profileLoader.load(profileKey);
 });
 
 ipcMain.handle('save-profile', async (event, profileData) => {
   const fs = require('fs');
   const path = require('path');
-  
+
   try {
     // Generate filename from profile name
     const filename = profileData.name.toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^a-z0-9-]/g, '') + '.profile.js';
-    
-    const filePath = path.join(__dirname, 'config', 'profiles', filename);
-    
+
+    const filePath = path.join(__dirname, '..', 'core', 'config', 'profiles', filename);
+
     // Generate the profile code
     const code = generateProfileCode(profileData);
-    
+
     fs.writeFileSync(filePath, code);
-    
+
     // Reload profiles
-    delete require.cache[require.resolve('./config/profiles')];
-    
+    delete require.cache[require.resolve('../core/config/profiles')];
+
     return { success: true };
   } catch (error) {
     return { success: false, error: error.message };
@@ -314,7 +313,7 @@ ipcMain.handle('test-profile', async (event, profileData) => {
   try {
     // Create temporary profile
     const tempProfile = { ...profileData };
-    
+
     // Run on single test film
     const testFilm = {
       title: "The Wizard of Oz",
@@ -323,14 +322,14 @@ ipcMain.handle('test-profile', async (event, profileData) => {
       director: "Victor Fleming",
       studio: "Metro-Goldwyn-Mayer"
     };
-    
+
     // Use the strategy generator with this profile
-    const SearchStrategyGenerator = require('../lib/search-strategy-generator');
+    const SearchStrategyGenerator = require('../core/lib/search-strategy-generator');
     const generator = new SearchStrategyGenerator();
     generator.strategyWeights = profileData.searchStrategies.weights;
-    
+
     const strategies = generator.generateAllStrategies(testFilm);
-    
+
     return {
       success: true,
       strategiesGenerated: strategies.length,
@@ -354,7 +353,7 @@ ipcMain.handle('test-real-search', async () => {
 
   return new Promise((resolve) => {
     // Make sure we have a test CSV file
-    const testCsvPath = path.join(__dirname, 'data', 'films.csv');
+    const testCsvPath = path.join(__dirname, '..', 'data', 'films.csv');
 
     if (!fs.existsSync(testCsvPath)) {
       resolve({
@@ -369,7 +368,7 @@ ipcMain.handle('test-real-search', async () => {
     console.log('Executing:', command);
 
     exec(command, {
-      cwd: __dirname,
+      cwd: path.join(__dirname, '..', 'core'),
       maxBuffer: 1024 * 1024 * 10 // 10MB buffer for output
     }, (error, stdout, stderr) => {
       if (error) {
@@ -389,7 +388,7 @@ ipcMain.handle('test-real-search', async () => {
 
       try {
         // Check if results directory exists
-        const resultsDir = path.join(__dirname, 'results');
+        const resultsDir = path.join(__dirname, '..', 'results');
         if (!fs.existsSync(resultsDir)) {
           resolve({
             success: false,

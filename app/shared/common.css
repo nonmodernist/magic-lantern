@@ -1,0 +1,29 @@
+/* Old Journal Aesthetic for Magic Lantern */
+
+/* Import period-appropriate fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:wght@400;600&family=Spectral:wght@300;400;600&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+  --paper-cream: #FDFCF8;
+  --paper-shadow: #f4f1e8;
+  --ink-black: #2C2C2C;
+  --ink-brown: #3d342b;
+  --accent-gold: #8B7355;
+  --border-ornament: #4A4A4A;
+  --sepia-filter: sepia(0.2);
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Crimson Text', Georgia, serif;
+  background-color: #F4F1E8;
+  color: var(--ink-black);
+  line-height: 1.6;
+}

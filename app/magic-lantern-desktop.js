@@ -3,10 +3,10 @@
 
 // Temporarily override process.argv to prevent CLI auto-execution
 const originalArgv = process.argv
-process.argv = ['node', 'magic-lantern-desktop.js'] // Fake non-CLI args
+process.argv = ['node', 'app/magic-lantern-desktop.js'] // Fake non-CLI args
 
 // Now safely require the main module
-const MagicLantern = require('../magic-lantern-v5')
+const MagicLantern = require('../core/magic-lantern-v5')
 
 // Restore original argv
 process.argv = originalArgv
