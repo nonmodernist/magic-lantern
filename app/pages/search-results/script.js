@@ -624,6 +624,13 @@ function clearAll() {
     document.getElementById('select-all-btn').style.display = 'inline-block';
 }
 
+// Add a clear all function
+function clearAllSelections() {
+    selectedSources.clear();
+    document.querySelectorAll('.source-checkbox').forEach(cb => cb.checked = false);
+    updateSelectionUI();
+}
+
 // Update the updateSelectionUI function to handle the buttons better
 function updateSelectionUI() {
     const count = selectedSources.size;
