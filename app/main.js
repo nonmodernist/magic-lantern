@@ -39,7 +39,7 @@ ipcMain.handle('test-connection', async () => {
     }
 
     // Try to require it
-    const UnifiedMagicLantern = require('./magic-lantern-v5');
+    const UnifiedMagicLantern = require('../magic-lantern-v5');
 
     return {
       success: true,
@@ -274,12 +274,12 @@ ipcMain.handle('read-results-file', async (event, filePath) => {
 // In main.js - add these handlers
 
 ipcMain.handle('get-profiles', async () => {
-  const profileLoader = require('./config/profiles');
+  const profileLoader = require('../config/profiles');
   return profileLoader.list();
 });
 
 ipcMain.handle('get-profile', async (event, profileKey) => {
-  const profileLoader = require('./config/profiles');
+  const profileLoader = require('../config/profiles');
   return profileLoader.load(profileKey);
 });
 
@@ -325,7 +325,7 @@ ipcMain.handle('test-profile', async (event, profileData) => {
     };
     
     // Use the strategy generator with this profile
-    const SearchStrategyGenerator = require('./lib/search-strategy-generator');
+    const SearchStrategyGenerator = require('../lib/search-strategy-generator');
     const generator = new SearchStrategyGenerator();
     generator.strategyWeights = profileData.searchStrategies.weights;
     
