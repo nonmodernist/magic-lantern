@@ -121,6 +121,8 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-50%);
     font-size: 24px;
     color: var(--accent-gold);
+    pointer-events: none;  /* Add this! */
+
 }
 
 .header::before {
@@ -437,4 +439,44 @@ h1, h2, h3, h4, h5, h6 {
 
 .fade-in {
     animation: fadeIn 0.3s ease;
+}
+
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+
+   .main-navigation {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--paper-cream);
+    border-bottom: var(--border-dark);
+    margin-bottom: var(--space-lg);
+    position: relative;  /* Add this */
+    z-index: 100;       /* Add this */
+}
+
+
+.nav-item {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--ink-black);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    border-color: var(--accent-gold);
+    background: var(--bg-warm);
+}
+
+/* Optional: highlight current page */
+.nav-item.active {
+    background: var(--ink-black);
+    color: var(--paper-cream);
 }
