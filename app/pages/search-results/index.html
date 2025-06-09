@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../../shared/common.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header class="header">
         <div class="edition-info">
@@ -18,23 +20,35 @@
     </header>
 
     <!-- Add this right after your header in each page -->
-<nav class="main-navigation">
-    <a href="../home/index.html" class="nav-item">🔍 Search</a>
-    <a href="../search-results/index.html" class="nav-item">📊 Results</a>
-    <a href="../profile-editor/index.html" class="nav-item">⚙️ Profiles</a>
-    <a href="../about/index.html" class="nav-item">📖 About</a>
-</nav>
+    <nav class="main-navigation">
+        <a href="../home/index.html" class="nav-item">🔍 Search</a>
+        <a href="../search-results/index.html" class="nav-item">📊 Results</a>
+        <a href="../profile-editor/index.html" class="nav-item">⚙️ Profiles</a>
+        <a href="../about/index.html" class="nav-item">📖 About</a>
+    </nav>
 
     <div class="container">
         <!-- Navigation Bar -->
         <div class="navigation-bar">
-            <button class="btn btn-secondary" onclick="window.location.href='../home/index.html'">
+            <button class="btn btn-secondary"
+                onclick="window.location.href='../home/index.html'">
                 ← Back to Search
             </button>
             <div class="nav-actions">
+                    <button class="btn btn-secondary" onclick="selectAll()" id="select-all-btn">
+        Select All
+    </button>
+    <button class="btn btn-secondary" onclick="clearAll()" id="clear-all-btn" style="display: none;">
+        Clear All
+    </button>
+                <button class="btn btn-primary" onclick="exportSelected()"
+                    id="export-selected-btn" style="display: none;">
+                    Export Selected (<span id="selected-count">0</span>)
+                </button>
                 <button class="btn btn-secondary" onclick="exportResults()">
                     Export JSON
                 </button>
+
                 <button class="btn btn-secondary" onclick="generateReport()">
                     Generate Report
                 </button>
@@ -50,7 +64,7 @@
                 </h2>
                 <div class="results-timestamp" id="results-timestamp"></div>
             </div>
-            
+
             <div class="summary-grid">
                 <div class="summary-card">
                     <div class="summary-number" id="films-count">0</div>
@@ -92,12 +106,12 @@
                     <span class="sources-badge"></span>
                 </div>
             </div>
-            
+
             <div class="strategy-summary">
                 <h4 class="subsection-title">Search Strategy Performance</h4>
                 <div class="strategy-bars"></div>
             </div>
-            
+
             <div class="source-list">
                 <h4 class="subsection-title">Sources Found</h4>
                 <div class="sources-container"></div>
@@ -115,9 +129,12 @@
             </div>
             <div class="source-excerpt"></div>
             <div class="source-actions">
-                <a href="#" class="source-link primary" target="_blank">View on Lantern →</a>
-                <a href="#" class="source-link" target="_blank">Internet Archive →</a>
-                <button class="btn-text fetch-full-text">Fetch Full Text</button>
+                <a href="#" class="source-link primary" target="_blank">View on
+                    Lantern →</a>
+                <a href="#" class="source-link" target="_blank">Internet Archive
+                    →</a>
+                <button class="btn-text fetch-full-text">Fetch Full
+                    Text</button>
             </div>
         </div>
     </template>
@@ -126,4 +143,5 @@
     <script src="../../shared/navigation.js"></script>
 
 </body>
+
 </html>

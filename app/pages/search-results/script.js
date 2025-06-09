@@ -10,12 +10,12 @@ window.addEventListener('DOMContentLoaded', () => {
 async function loadResults() {
     try {
         const resultsPath = localStorage.getItem('searchResultsPath');
-        
+
         if (resultsPath && window.magicLantern) {
             // Load results using IPC
             console.log('Loading results from:', resultsPath);
             const results = await window.magicLantern.readResultsFile(resultsPath);
-            
+
             if (results && results.length > 0) {
                 displayResults(results);
             } else {
@@ -41,7 +41,7 @@ async function loadResults() {
         }
     } catch (error) {
         console.error('Error loading results:', error);
-        document.getElementById('film-results-container').innerHTML = 
+        document.getElementById('film-results-container').innerHTML =
             '<div class="notice-box" style="border-color: var(--error-border); background: var(--error-bg);">' +
             '<p><strong>Error loading results:</strong> ' + error.message + '</p>' +
             '</div>';
@@ -49,7 +49,7 @@ async function loadResults() {
 }
 
 function showNoResultsMessage() {
-    document.getElementById('film-results-container').innerHTML = 
+    document.getElementById('film-results-container').innerHTML =
         '<div class="notice-box">' +
         '<p><strong>No search results found.</strong> Please run a search from the home page first.</p>' +
         '<button class="btn btn-primary" onclick="window.location.href=\'../home/index.html\'">Go to Search</button>' +
@@ -79,7 +79,7 @@ function displayResults(results) {
     results.forEach(filmResult => {
         totalSources += filmResult.sources.length;
         uniqueSources += filmResult.totalUniqueSources || filmResult.sources.length;
-        
+
         // Count sources with high scores as "treasures" for now
         filmResult.sources.forEach(source => {
             if (source.scoring && source.scoring.finalScore >= 80) {
@@ -87,21 +87,21 @@ function displayResults(results) {
             }
         });
     });
-    
+
     document.getElementById('films-count').textContent = results.length;
     document.getElementById('sources-count').textContent = totalSources;
     document.getElementById('unique-count').textContent = uniqueSources;
     document.getElementById('treasures-count').textContent = treasuresCount;
-    
+
     // Display film results
     const container = document.getElementById('film-results-container');
     container.innerHTML = '';
-    
+
     results.forEach(filmResult => {
         const filmElement = createFilmSection(filmResult);
         container.appendChild(filmElement);
     });
-    
+
     // Animate the strategy bars after a short delay
     setTimeout(() => {
         document.querySelectorAll('.strategy-fill-bar').forEach(bar => {
@@ -113,15 +113,31 @@ function displayResults(results) {
 function createSourceCard(source, film) {
     const template = document.getElementById('source-item-template');
     const card = template.content.cloneNode(true);
-    
+
+    // Create a checkbox container at the top of the card
+    const checkboxContainer = document.createElement('div');
+    checkboxContainer.className = 'source-checkbox-container';
+    checkboxContainer.innerHTML = `
+        <input type="checkbox" 
+            class="source-checkbox" 
+            id="source-${source.id}"
+            data-source-id="${source.id}"
+            data-film-title="${film.title}">
+        <label for="source-${source.id}">Save</label>
+    `;
+
+    // Insert checkbox as first element in the card
+    const sourceCard = card.querySelector('.source-card');
+    sourceCard.insertBefore(checkboxContainer, sourceCard.firstChild);
+
     // Set score
     const score = source.scoring ? source.scoring.finalScore.toFixed(1) : '—';
     card.querySelector('.score-badge').textContent = `SCORE: ${score}`;
-    
+
     // Set publication
     const publication = source.scoring?.publication || extractPublicationFromId(source.id);
     card.querySelector('.publication-name').textContent = formatPublicationName(publication);
-    
+
     // Set metadata
     const date = extractDateFromSource(source);
     const foundBy = source.foundBy || 'unknown';
@@ -129,11 +145,11 @@ function createSourceCard(source, film) {
         ${date} • Page ${extractPageNumber(source.id)}
         <span class="found-by-badge">${formatStrategyName(foundBy)}</span>
     `;
-    
+
     // Set excerpt - FIXED to show the actual excerpt from search results
     const excerptDiv = card.querySelector('.source-excerpt');
     const excerpt = extractExcerpt(source);
-    
+
     if (excerpt) {
         // We have an excerpt from the search results
         excerptDiv.innerHTML = formatExcerpt(excerpt);
@@ -145,14 +161,14 @@ function createSourceCard(source, film) {
         excerptDiv.innerHTML = '<em>No preview available</em>';
         excerptDiv.style.opacity = '0.6';
     }
-    
+
     // Set links
     const lanternUrl = source.links?.self || `https://lantern.mediahist.org/catalog/${source.id}`;
     const iaUrl = extractInternetArchiveUrl(source);
-    
+
     const primaryLink = card.querySelector('.source-link.primary');
     primaryLink.href = lanternUrl;
-    
+
     const iaLink = card.querySelectorAll('.source-link')[1];
     if (iaUrl) {
         iaLink.href = iaUrl;
@@ -173,7 +189,7 @@ function createSourceCard(source, film) {
         fetchButton.style.opacity = '0.6';
         // Future: fetchButton.onclick = () => fetchFullText(source.id, film);
     }
-    
+
     return card;
 }
 
@@ -183,17 +199,17 @@ function extractExcerpt(source) {
     if (source.attributes?.body?.attributes?.value) {
         return source.attributes.body.attributes.value;
     }
-    
+
     // Check for body text at top level (older format)
     if (source.body) {
         return source.body;
     }
-    
+
     // Check for snippet or highlight
     if (source.snippet) {
         return source.snippet;
     }
-    
+
     // Check for highlighting in search results
     if (source.attributes?.read_search_highlighting?.attributes?.value) {
         // Extract any visible text from the highlighting HTML
@@ -202,7 +218,7 @@ function extractExcerpt(source) {
             return match[1];
         }
     }
-    
+
     return null;
 }
 
@@ -210,25 +226,25 @@ function extractExcerpt(source) {
 function createFilmSection(filmResult) {
     const template = document.getElementById('film-result-template');
     const filmSection = template.content.cloneNode(true);
-    
+
     const film = filmResult.film;
-    
+
     // Set film information
     filmSection.querySelector('.film-title').textContent = `${film.title} (${film.year})`;
-    
+
     const metaParts = [];
     if (film.author && film.author !== '-') metaParts.push(`Author: ${film.author}`);
     if (film.director && film.director !== '-') metaParts.push(`Director: ${film.director}`);
     if (film.studio && film.studio !== '-') metaParts.push(`Studio: ${film.studio}`);
-    
+
     filmSection.querySelector('.film-meta').textContent = metaParts.join(' | ');
     filmSection.querySelector('.sources-badge').textContent = `${filmResult.totalUniqueSources} SOURCES`;
-    
+
     // Create strategy bars
     if (filmResult.searchStrategySummary) {
         const barsContainer = filmSection.querySelector('.strategy-bars');
         const maxCount = Math.max(...Object.values(filmResult.searchStrategySummary));
-        
+
         Object.entries(filmResult.searchStrategySummary)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 5)
@@ -237,16 +253,16 @@ function createFilmSection(filmResult) {
                 barsContainer.appendChild(bar);
             });
     }
-    
+
     // Create source cards
     const sourcesContainer = filmSection.querySelector('.sources-container');
     const sourcesToShow = filmResult.sources.slice(0, 10);
-    
+
     sourcesToShow.forEach(source => {
         const sourceCard = createSourceCard(source, film);
         sourcesContainer.appendChild(sourceCard);
     });
-    
+
     // Add "show more" button if needed
     if (filmResult.sources.length > 10) {
         const showMoreDiv = document.createElement('div');
@@ -258,7 +274,7 @@ function createFilmSection(filmResult) {
         `;
         sourcesContainer.appendChild(showMoreDiv);
     }
-    
+
     return filmSection;
 }
 
@@ -266,9 +282,9 @@ function createFilmSection(filmResult) {
 function createStrategyBar(strategy, count, maxCount) {
     const bar = document.createElement('div');
     bar.className = 'strategy-bar';
-    
+
     const widthPercent = (count / maxCount * 100);
-    
+
     bar.innerHTML = `
         <div class="strategy-name">${formatStrategyName(strategy)}</div>
         <div class="strategy-fill">
@@ -278,7 +294,7 @@ function createStrategyBar(strategy, count, maxCount) {
         </div>
         <div class="strategy-count">${count}</div>
     `;
-    
+
     return bar;
 }
 
@@ -297,13 +313,13 @@ function extractPublicationFromId(id) {
         'exhibitors': /exhibitors/i,
         'wids': /wids/i
     };
-    
+
     for (const [name, pattern] of Object.entries(patterns)) {
         if (pattern.test(id)) {
             return formatPublicationName(name);
         }
     }
-    
+
     return 'Unknown Publication';
 }
 
@@ -322,7 +338,7 @@ function formatPublicationName(name) {
         'exhibitors': 'Exhibitors Herald',
         'wids': 'Wid\'s'
     };
-    
+
     return names[name] || name.charAt(0).toUpperCase() + name.slice(1);
 }
 
@@ -351,13 +367,13 @@ function extractInternetArchiveUrl(source) {
 
 function formatExcerpt(excerpt) {
     if (!excerpt) return '';
-    
+
     // Limit length
     let formatted = excerpt.substring(0, 300);
     if (excerpt.length > 300) {
         formatted += '...';
     }
-    
+
     // The excerpt might already have <em> tags from Lantern for highlighting
     // Make sure they're preserved
     return formatted;
@@ -372,9 +388,9 @@ function formatStrategyName(strategy) {
 // Export results function
 function exportResults() {
     if (!searchResults) return;
-    
+
     const dataStr = JSON.stringify(searchResults, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
@@ -389,21 +405,21 @@ function generateReport() {
 
 // Show more sources
 function showMoreSources(button, filmTitle, filmYear) {
-    const filmResult = searchResults.find(r => 
+    const filmResult = searchResults.find(r =>
         r.film.title === filmTitle && r.film.year === filmYear
     );
-    
+
     if (!filmResult) return;
-    
+
     const container = button.closest('.sources-container');
     const existingCards = container.querySelectorAll('.source-card').length;
-    
+
     // Add remaining sources
     filmResult.sources.slice(existingCards).forEach(source => {
         const sourceCard = createSourceCard(source, filmResult.film);
         container.insertBefore(sourceCard, button.parentElement);
     });
-    
+
     // Remove the show more button
     button.parentElement.remove();
 }
@@ -448,7 +464,7 @@ function getMockSearchResults() {
                     },
                     links: { self: "https://lantern.mediahist.org/catalog/variety137-1939-08_0054" },
                     foundBy: "author_title",
-                    scoring: { 
+                    scoring: {
                         finalScore: 95.5,
                         publication: "variety"
                     },
@@ -459,4 +475,129 @@ function getMockSearchResults() {
             ]
         }
     ];
+}
+
+// Track selections
+let selectedSources = new Map();
+
+// Update selection count when checkboxes change
+document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('source-checkbox')) {
+        const sourceId = e.target.dataset.sourceId;
+        const filmTitle = e.target.dataset.filmTitle;
+        
+        if (e.target.checked) {
+            // Find the source data
+            const sourceData = findSourceById(sourceId);
+            selectedSources.set(sourceId, {
+                ...sourceData,
+                filmTitle: filmTitle
+            });
+        } else {
+            selectedSources.delete(sourceId);
+        }
+        
+        updateSelectionUI();
+    }
+});
+
+function updateSelectionUI() {
+    const count = selectedSources.size;
+    document.getElementById('selected-count').textContent = count;
+    document.getElementById('export-selected-btn').style.display = count > 0 ? 'inline-block' : 'none';
+}
+
+function findSourceById(sourceId) {
+    // Search through your searchResults to find the source
+    for (const result of searchResults) {
+        const source = result.sources.find(s => s.id === sourceId);
+        if (source) return source;
+    }
+    return null;
+}
+
+function exportSelected() {
+    if (selectedSources.size === 0) return;
+    
+    // Convert Map to array for export
+    const selectedArray = Array.from(selectedSources.values());
+    
+    // Create a nice export object
+    const exportData = {
+        exportDate: new Date().toISOString(),
+        totalSelected: selectedArray.length,
+        sources: selectedArray
+    };
+    
+    // Download as JSON
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `magic-lantern-selections-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    
+    // Optional: Clear selections after export
+    if (confirm('Export complete! Clear all selections?')) {
+        selectedSources.clear();
+        document.querySelectorAll('.source-checkbox').forEach(cb => cb.checked = false);
+        updateSelectionUI();
+    }
+}
+
+function selectAll() {
+    // Get all checkboxes
+    const checkboxes = document.querySelectorAll('.source-checkbox');
+    
+    checkboxes.forEach(checkbox => {
+        if (!checkbox.checked) {
+            checkbox.checked = true;
+            // Trigger change event to update selection tracking
+            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+    
+    // Update UI
+    document.getElementById('select-all-btn').style.display = 'none';
+    document.getElementById('clear-all-btn').style.display = 'inline-block';
+}
+
+function clearAll() {
+    // Get all checkboxes
+    const checkboxes = document.querySelectorAll('.source-checkbox');
+    
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            checkbox.checked = false;
+            // Trigger change event to update selection tracking
+            checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+    
+    // Update UI
+    document.getElementById('clear-all-btn').style.display = 'none';
+    document.getElementById('select-all-btn').style.display = 'inline-block';
+}
+
+// Update the updateSelectionUI function to handle the buttons better
+function updateSelectionUI() {
+    const count = selectedSources.size;
+    const totalCheckboxes = document.querySelectorAll('.source-checkbox').length;
+    
+    document.getElementById('selected-count').textContent = count;
+    document.getElementById('export-selected-btn').style.display = count > 0 ? 'inline-block' : 'none';
+    
+    // Show/hide select all vs clear all based on current state
+    if (count === 0) {
+        document.getElementById('select-all-btn').style.display = 'inline-block';
+        document.getElementById('clear-all-btn').style.display = 'none';
+    } else if (count === totalCheckboxes) {
+        document.getElementById('select-all-btn').style.display = 'none';
+        document.getElementById('clear-all-btn').style.display = 'inline-block';
+    } else {
+        // Some selected - show both
+        document.getElementById('select-all-btn').style.display = 'inline-block';
+        document.getElementById('clear-all-btn').style.display = 'inline-block';
+    }
 }
