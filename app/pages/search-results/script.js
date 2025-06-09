@@ -1,10 +1,13 @@
 // app/pages/search-results/script.js - Fixed version
 
 let searchResults = null;
+let selectedSources = new Map();
+
 
 // Load results when page loads
 window.addEventListener('DOMContentLoaded', () => {
     loadResults();
+    setupCheckboxHandlers();
 });
 
 async function loadResults() {
@@ -478,72 +481,113 @@ function getMockSearchResults() {
 }
 
 // Track selections
-let selectedSources = new Map();
 
-// Update selection count when checkboxes change
-document.addEventListener('change', (e) => {
-    if (e.target.classList.contains('source-checkbox')) {
-        const sourceId = e.target.dataset.sourceId;
-        const filmTitle = e.target.dataset.filmTitle;
-        
-        if (e.target.checked) {
-            // Find the source data
-            const sourceData = findSourceById(sourceId);
-            selectedSources.set(sourceId, {
-                ...sourceData,
-                filmTitle: filmTitle
-            });
-        } else {
-            selectedSources.delete(sourceId);
+
+// Add this function to track checkbox changes
+function setupCheckboxHandlers() {
+    document.addEventListener('change', (e) => {
+        if (e.target.classList.contains('source-checkbox')) {
+            const sourceId = e.target.dataset.sourceId;
+            const filmTitle = e.target.dataset.filmTitle;
+            
+            if (e.target.checked) {
+                // Find the source data from our searchResults
+                const sourceData = findSourceById(sourceId);
+                if (sourceData) {
+                    selectedSources.set(sourceId, {
+                        ...sourceData.source,
+                        filmTitle: sourceData.filmTitle,
+                        filmYear: sourceData.filmYear
+                    });
+                }
+            } else {
+                selectedSources.delete(sourceId);
+            }
+            
+            updateSelectionUI();
         }
-        
-        updateSelectionUI();
-    }
-});
-
-function updateSelectionUI() {
-    const count = selectedSources.size;
-    document.getElementById('selected-count').textContent = count;
-    document.getElementById('export-selected-btn').style.display = count > 0 ? 'inline-block' : 'none';
+    });
 }
 
+// Helper function to find a source by ID
 function findSourceById(sourceId) {
-    // Search through your searchResults to find the source
     for (const result of searchResults) {
         const source = result.sources.find(s => s.id === sourceId);
-        if (source) return source;
+        if (source) {
+            return {
+                source: source,
+                filmTitle: result.film.title,
+                filmYear: result.film.year
+            };
+        }
     }
     return null;
 }
 
+// Update the UI to show selection count
+function updateSelectionUI() {
+    const count = selectedSources.size;
+    const countElement = document.getElementById('selected-count');
+    const exportBtn = document.getElementById('export-selected-btn');
+    
+    if (countElement) {
+        countElement.textContent = count;
+    }
+    
+    if (exportBtn) {
+        exportBtn.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+}
+
+// The actual export function
 function exportSelected() {
-    if (selectedSources.size === 0) return;
+    if (selectedSources.size === 0) {
+        alert('No sources selected for export');
+        return;
+    }
     
-    // Convert Map to array for export
-    const selectedArray = Array.from(selectedSources.values());
+    // Group selected sources by film
+    const groupedByFilm = {};
+    for (const [id, source] of selectedSources) {
+        const filmKey = `${source.filmTitle} (${source.filmYear})`;
+        if (!groupedByFilm[filmKey]) {
+            groupedByFilm[filmKey] = [];
+        }
+        groupedByFilm[filmKey].push(source);
+    }
     
-    // Create a nice export object
+    // Create export data
     const exportData = {
         exportDate: new Date().toISOString(),
-        totalSelected: selectedArray.length,
-        sources: selectedArray
+        exportType: 'selected_sources',
+        totalSelected: selectedSources.size,
+        filmCount: Object.keys(groupedByFilm).length,
+        sourcesByFilm: groupedByFilm
     };
     
-    // Download as JSON
+    // Download as JSON - FIXED VERSION
     const dataStr = JSON.stringify(exportData, null, 2);
     const dataBlob = new Blob([dataStr], {type: 'application/json'});
     const url = URL.createObjectURL(dataBlob);
+    
     const link = document.createElement('a');
     link.href = url;
-    link.download = `magic-lantern-selections-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `selected-sources-${new Date().toISOString().split('T')[0]}.json`;
+    
+        // Append to body, click, then remove
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
+    
+        // Clean up the blob URL
+    setTimeout(() => URL.revokeObjectURL(url), 100);
     
     // Optional: Clear selections after export
-    if (confirm('Export complete! Clear all selections?')) {
-        selectedSources.clear();
-        document.querySelectorAll('.source-checkbox').forEach(cb => cb.checked = false);
-        updateSelectionUI();
-    }
+    setTimeout(() => {
+        if (confirm(`Successfully exported ${selectedSources.size} sources! Clear all selections?`)) {
+            clearAllSelections();
+        }
+    }, 100);
 }
 
 function selectAll() {
