@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const VERSION = '5.0.1';
+const VERSION = '5.0.2';
 console.log(`✨ MAGIC LANTERN v${VERSION}`);
 
 // magic-lantern-v5.js - Refactored to use external configuration
