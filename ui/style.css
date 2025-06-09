@@ -1,3 +1,20 @@
+/* Old Journal Aesthetic for Magic Lantern - Updated */
+
+/* Import period-appropriate fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:wght@400;600&family=Spectral:wght@300;400;600&display=swap');
+
+/* CSS Variables for consistent theming */
+:root {
+  --paper-cream: #f4f1e8;
+  --paper-shadow: #e8e2d5;
+  --ink-black: #1a1611;
+  --ink-brown: #3d342b;
+  --accent-gold: #b8860b;
+  --border-ornament: #2c251f;
+  --sepia-filter: sepia(0.2);
+}
+
+/* Base styles */
 * {
   margin: 0;
   padding: 0;
@@ -5,235 +22,406 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #f5f5f5;
-  color: #333;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+  font-family: 'Crimson Text', Georgia, serif;
+  background-color: var(--paper-shadow);
+  color: var(--ink-black);
+  line-height: 1.6;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+  min-height: 100vh;
   padding: 20px;
 }
 
+/* Main container with paper effect - now with more padding */
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 60px 80px;
+  background-color: var(--paper-cream);
+  box-shadow: 
+    0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 120px rgba(139,69,19,0.05);
+  position: relative;
+  min-height: calc(100vh - 40px);
+}
+
+/* Ornamental border - now more elaborate */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 3px double var(--border-ornament);
+  pointer-events: none;
+}
+
+/* Corner ornaments for main container */
+.container::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid var(--border-ornament);
+  pointer-events: none;
+}
+
+/* Header styling with more ornamental details */
 header {
   text-align: center;
+  padding: 50px 20px 40px;
+  position: relative;
   margin-bottom: 40px;
 }
 
+/* Ornamental header decoration */
+header::before {
+  content: '❦ ❦ ❦';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2em;
+  color: var(--accent-gold);
+  letter-spacing: 2em;
+  margin-left: -1em;
+}
+
+/* Bottom border decoration for header */
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--border-ornament) 0px,
+    var(--border-ornament) 2px,
+    transparent 2px,
+    transparent 4px,
+    var(--border-ornament) 4px,
+    var(--border-ornament) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border-top: 3px double var(--border-ornament);
+  border-bottom: 3px double var(--border-ornament);
+}
+
+/* Main title - like "MAGIC LANTERN" in the journal */
 h1 {
-  font-size: 2.5em;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 4em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-shadow: 
+    2px 2px 4px rgba(0,0,0,0.1),
+    0 0 0 var(--ink-black);
+  position: relative;
+}
+
+/* Decorative elements around h1 */
+h1::before,
+h1::after {
+  content: '〜';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7em;
+  color: var(--accent-gold);
+}
+
+h1::before {
+  left: -0.8em;
+}
+
+h1::after {
+  right: -0.8em;
+}
+
+/* Subtitle styling */
+header p {
+  font-family: 'Spectral', serif;
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--ink-brown);
+  letter-spacing: 0.05em;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Additional ornamental line above subtitle */
+header p::before {
+  content: '— ❋ —';
+  display: block;
+  font-size: 1.2em;
+  color: var(--accent-gold);
   margin-bottom: 10px;
 }
 
-.setup-section {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-button {
-  background: #3498db;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background: #2980b9;
-}
-
-#status {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-.success {
-  background: #d4edda;
-  color: #155724;
-}
-
-.error {
-  background: #f8d7da;
-  color: #721c24;
-}
-
-.file-section {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 20px;
-}
-
-#file-info {
-  margin-top: 20px;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 4px;
-}
-
-#file-preview {
-  margin-top: 15px;
-}
-
-#preview-content {
-  background: white;
-  padding: 10px;
-  border-radius: 4px;
-  overflow-x: auto;
-  font-family: monospace;
-  font-size: 12px;
-}
-
-.config-section {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 20px;
-}
-
-.config-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin: 20px 0 30px 0;
-}
-
-.config-item label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.config-item select {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-  background: white;
-}
-
-.config-help {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #666;
-}
-
-.run-section {
+/* Section headers with more ornamentation */
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8em;
   text-align: center;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
+  margin: 40px 0 30px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0 40px;
 }
 
-.primary-btn {
-  background: #27ae60;
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 600;
+/* Decorative elements on either side of h2 */
+h2::before,
+h2::after {
+  content: '§';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: var(--accent-gold);
 }
 
-.primary-btn:hover {
-  background: #229954;
+h2::before {
+  left: 0;
 }
 
-#search-summary {
-  margin-top: 20px;
-  padding: 15px;
-  background: #f8f9fa;
-  border-radius: 4px;
-  font-size: 14px;
-  display: none;
+h2::after {
+  right: 0;
 }
 
+/* Styled sections with more generous padding */
+.setup-section,
+.file-section,
+.config-section,
 .progress-section {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+  border: 1px solid var(--border-ornament);
+  border-radius: 0;
+  padding: 40px 50px;
+  margin: 30px 0;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.progress-container {
-  margin: 20px 0;
-}
-
-.progress-bar {
-  width: 100%;
+/* Ornamental corners for sections - more elaborate */
+.setup-section::before,
+.setup-section::after,
+.file-section::before,
+.file-section::after,
+.config-section::before,
+.config-section::after {
+  content: '';
+  position: absolute;
+  width: 30px;
   height: 30px;
-  background: #ecf0f1;
-  border-radius: 15px;
-  overflow: hidden;
+  border: 2px solid var(--accent-gold);
 }
 
-.progress-fill {
-  height: 100%;
-  background: #3498db;
-  width: 0%;
-  transition: width 0.3s ease;
-  border-radius: 15px;
+.setup-section::before,
+.file-section::before,
+.config-section::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
 }
 
-.progress-text {
-  text-align: center;
-  margin-top: 10px;
-  font-weight: 600;
+.setup-section::after,
+.file-section::after,
+.config-section::after {
+  top: -1px;
+  right: -1px;
+  border-left: none;
+  border-bottom: none;
 }
 
-.progress-details {
-  margin-top: 20px;
-  padding: 15px;
-  background: #f8f9fa;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: 14px;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.secondary-btn {
-  background: #e74c3c;
-  color: white;
+/* Bottom corners */
+.file-section::after {
+  content: '❋';
+  width: auto;
+  height: auto;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
+  bottom: 15px;
+  right: 20px;
+  top: auto;
+  font-size: 1.5em;
+  color: var(--accent-gold);
 }
 
-.secondary-btn:hover {
-  background: #c0392b;
-}
-
-
-#test-real-search-btn {
-  background: #27ae60;
-}
-
-#test-real-search-btn:hover {
-  background: #229954;
-}
-
-details {
-  cursor: pointer;
-}
-
-details summary {
+/* Buttons with vintage style */
+button {
+  font-family: 'Spectral', serif;
   font-weight: 600;
-  color: #3498db;
+  font-size: 16px;
+  padding: 12px 30px;
+  background-color: var(--ink-black);
+  color: var(--paper-cream);
+  border: 2px solid var(--ink-black);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 3px 3px 0 var(--ink-brown);
+  margin: 5px;
 }
 
-details pre {
-  font-family: 'Courier New', monospace;
-  line-height: 1.4;
+/* Add ornamental top border to page */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--paper-cream);
+  border-bottom: 4px double var(--border-ornament);
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+body::after {
+  content: 'The Media History Digital Library Research Apparatus';
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Spectral', serif;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-brown);
+  z-index: 101;
+}
+
+/* Adjust container to account for fixed header */
+.container {
+  margin-top: 80px;
+}
+
+/* File preview with typewriter effect and more padding */
+#file-preview {
+  margin: 30px 0;
+  padding: 30px;
+  background: rgba(0,0,0,0.05);
+  border: 1px dashed var(--ink-brown);
+  position: relative;
+}
+
+#file-preview::before {
+  content: 'MANUSCRIPT PREVIEW';
+  position: absolute;
+  top: -12px;
+  left: 30px;
+  background: var(--paper-cream);
+  padding: 0 10px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-brown);
+  font-weight: 600;
+}
+
+/* Additional decorative divider class */
+.ornamental-divider {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 24px;
+  color: var(--accent-gold);
+  letter-spacing: 1em;
+}
+
+.ornamental-divider::before {
+  content: '❦ ⟐ ❦ ⟐ ❦';
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 30px;
+    margin: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    letter-spacing: 0.1em;
+  }
+  
+  body::after {
+    font-size: 10px;
+  }
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.sidebar-item:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.sidebar-item.active {
+  background: #3498db;
+  color: white;
+}
+
+.sidebar-icon {
+  font-size: 1.2em;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: #f5f5f5;
 }

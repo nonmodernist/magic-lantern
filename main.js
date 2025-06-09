@@ -271,6 +271,80 @@ ipcMain.handle('read-results-file', async (event, filePath) => {
   }
 });
 
+// In main.js - add these handlers
+
+ipcMain.handle('get-profiles', async () => {
+  const profileLoader = require('./config/profiles');
+  return profileLoader.list();
+});
+
+ipcMain.handle('get-profile', async (event, profileKey) => {
+  const profileLoader = require('./config/profiles');
+  return profileLoader.load(profileKey);
+});
+
+ipcMain.handle('save-profile', async (event, profileData) => {
+  const fs = require('fs');
+  const path = require('path');
+  
+  try {
+    // Generate filename from profile name
+    const filename = profileData.name.toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '') + '.profile.js';
+    
+    const filePath = path.join(__dirname, 'config', 'profiles', filename);
+    
+    // Generate the profile code
+    const code = generateProfileCode(profileData);
+    
+    fs.writeFileSync(filePath, code);
+    
+    // Reload profiles
+    delete require.cache[require.resolve('./config/profiles')];
+    
+    return { success: true };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+});
+
+ipcMain.handle('test-profile', async (event, profileData) => {
+  // Run a minimal test with the profile
+  try {
+    // Create temporary profile
+    const tempProfile = { ...profileData };
+    
+    // Run on single test film
+    const testFilm = {
+      title: "The Wizard of Oz",
+      year: "1939",
+      author: "L. Frank Baum",
+      director: "Victor Fleming",
+      studio: "Metro-Goldwyn-Mayer"
+    };
+    
+    // Use the strategy generator with this profile
+    const SearchStrategyGenerator = require('./lib/search-strategy-generator');
+    const generator = new SearchStrategyGenerator();
+    generator.strategyWeights = profileData.searchStrategies.weights;
+    
+    const strategies = generator.generateAllStrategies(testFilm);
+    
+    return {
+      success: true,
+      strategiesGenerated: strategies.length,
+      topStrategies: strategies.slice(0, 5).map(s => ({
+        type: s.type,
+        query: s.query,
+        weight: s.profileWeight || 1.0
+      }))
+    };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+});
+
 // Add this handler after your other handlers
 ipcMain.handle('test-real-search', async () => {
   const { exec } = require('child_process');

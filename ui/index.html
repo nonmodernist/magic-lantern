@@ -4,13 +4,56 @@
   <meta charset="UTF-8">
   <title>Magic Lantern</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <header>
-      <h1>🪄 Magic Lantern</h1>
+<header>
+
+    <div>
+      <h1>Magic Lantern</h1>
       <p>Research automation for the Media History Digital Library</p>
-    </header>
+    </div>
+  </div>
+</header>
+<!-- Wrap your entire container content with this structure -->
+<div class="app-container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>🪄 Magic Lantern</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a href="#" class="sidebar-item active" data-view="search">
+        <span class="sidebar-icon">🔍</span>
+        <span class="sidebar-label">New Search</span>
+      </a>
+      <a href="#" class="sidebar-item" data-view="profile-editor">
+        <span class="sidebar-icon">🎨</span>
+        <span class="sidebar-label">Profile Editor</span>
+      </a>
+      <a href="#" class="sidebar-item" data-view="results-browser">
+        <span class="sidebar-icon">📊</span>
+        <span class="sidebar-label">Browse Results</span>
+      </a>
+      <a href="#" class="sidebar-item" data-view="search-history">
+        <span class="sidebar-icon">📜</span>
+        <span class="sidebar-label">Search History</span>
+      </a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <a href="#" class="sidebar-item" data-view="settings">
+        <span class="sidebar-icon">⚙️</span>
+        <span class="sidebar-label">Settings</span>
+      </a>
+    </div>
+  </aside>
+  
+  <main class="main-content">
+    <!-- Your existing container content goes here -->
+  </main>
+</div>
     
     <main>
 <section class="setup-section">
@@ -59,6 +102,12 @@
         <option value="studio-era-adaptations">Studio Era Adaptations</option>
         <option value="50s-adaptations">1950s Adaptations</option>
       </select>
+          <button class="btn-link" onclick="editCurrentProfile()">
+      ✏️ Edit
+    </button>
+    <button class="btn-link" onclick="createNewProfile()">
+      + New
+    </button>
       <p class="config-help">Tailors searches to your research focus</p>
     </div>
   </div>

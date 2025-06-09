@@ -307,3 +307,92 @@ document.getElementById('cancel-btn').addEventListener('click', async () => {
     document.getElementById('progress-details').innerHTML += '<br><strong>Search cancelled by user</strong>';
   }
 });
+
+// Navigation handling
+class Navigation {
+  constructor() {
+    this.currentView = 'search';
+    this.views = {
+      'search': 'index.html',
+      'profile-editor': 'profile-editor.html',
+      'results-browser': 'results-browser.html',
+      'search-history': 'search-history.html'
+    };
+    
+    this.initializeNavigation();
+  }
+  
+  initializeNavigation() {
+    // For navigation bar approach
+    document.querySelectorAll('.nav-item, .sidebar-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const view = e.currentTarget.dataset.view;
+        this.navigateTo(view);
+      });
+    });
+  }
+  
+  navigateTo(view) {
+    if (view === this.currentView) return;
+    
+    // Update active state
+    document.querySelectorAll('.nav-item, .sidebar-item').forEach(item => {
+      item.classList.toggle('active', item.dataset.view === view);
+    });
+    
+    // Handle navigation
+    if (this.views[view]) {
+      // Option 1: Navigate to new page
+      window.location.href = this.views[view];
+      
+      // Option 2: Or use single-page app approach (better for Electron)
+      // this.loadView(view);
+    }
+  }
+  
+  // Single-page app approach (recommended for Electron)
+  async loadView(view) {
+    try {
+      const response = await fetch(`views/${view}.html`);
+      const html = await response.text();
+      
+      // Replace main content
+      document.getElementById('main-view-container').innerHTML = html;
+      
+      // Load view-specific scripts
+      this.loadViewScript(view);
+      
+      this.currentView = view;
+      
+      // Save to localStorage for persistence
+      localStorage.setItem('currentView', view);
+      
+    } catch (error) {
+      console.error('Failed to load view:', error);
+    }
+  }
+  
+  loadViewScript(view) {
+    // Remove old script if exists
+    const oldScript = document.getElementById('view-script');
+    if (oldScript) oldScript.remove();
+    
+    // Load new script
+    const script = document.createElement('script');
+    script.id = 'view-script';
+    script.src = `js/${view}.js`;
+    document.body.appendChild(script);
+  }
+}
+
+// Initialize navigation when DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+  window.navigation = new Navigation();
+  
+  // Restore last view
+  const lastView = localStorage.getItem('currentView') || 'search';
+  if (lastView !== 'search') {
+    window.navigation.navigateTo(lastView);
+  }
+});
