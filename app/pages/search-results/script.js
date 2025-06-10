@@ -76,6 +76,43 @@ async function loadResults() {
     }
 }
 
+// NEW: Load results from file
+function loadResultsFile() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    
+    input.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        try {
+            const content = await file.text();
+            const results = JSON.parse(content);
+            
+            // Validate it's a Magic Lantern results file
+            if (!Array.isArray(results) || !results[0]?.film) {
+                throw new Error('Invalid Magic Lantern results file format');
+            }
+            
+            // Display the results
+            displayResults(results);
+            
+            // Show file info
+            document.getElementById('loaded-file-info').style.display = 'block';
+            document.getElementById('loaded-filename').textContent = file.name;
+            
+            // Clear any localStorage references since we're viewing a loaded file
+            localStorage.removeItem('searchResultsPath');
+            
+        } catch (error) {
+            alert('Error loading file: ' + error.message);
+        }
+    };
+    
+    input.click();
+}
+
 function showNoResultsMessage() {
     document.getElementById('film-results-container').innerHTML =
         '<div class="notice-box">' +

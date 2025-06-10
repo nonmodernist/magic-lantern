@@ -35,12 +35,16 @@
                 ← Back to Search
             </button>
             <div class="nav-actions">
-                    <button class="btn btn-secondary" onclick="selectAll()" id="select-all-btn">
-        Select All
-    </button>
-    <button class="btn btn-secondary" onclick="clearAll()" id="clear-all-btn" style="display: none;">
-        Clear All
-    </button>
+                <!-- NEW: Load Results File Button -->
+                <button class="btn btn-secondary" onclick="loadResultsFile()" id="load-file-btn">
+                    📂 Load Results File
+                </button>
+                <button class="btn btn-secondary" onclick="selectAll()" id="select-all-btn">
+                    Select All
+                </button>
+                <button class="btn btn-secondary" onclick="clearAll()" id="clear-all-btn" style="display: none;">
+                    Clear All
+                </button>
                 <button class="btn btn-primary" onclick="exportSelected()"
                     id="export-selected-btn" style="display: none;">
                     Export Selected (<span id="selected-count">0</span>)
@@ -48,7 +52,6 @@
                 <button class="btn btn-secondary" onclick="exportResults()">
                     Export JSON
                 </button>
-
                 <button class="btn btn-secondary" onclick="generateReport()">
                     Generate Report
                 </button>
@@ -63,6 +66,11 @@
                     SEARCH SUMMARY
                 </h2>
                 <div class="results-timestamp" id="results-timestamp"></div>
+            </div>
+
+            <!-- NEW: Loaded File Info -->
+            <div id="loaded-file-info" class="file-info" style="display: none; margin-bottom: 20px;">
+                <p><strong>Loaded from file:</strong> <span id="loaded-filename"></span></p>
             </div>
 
             <div class="summary-grid">
