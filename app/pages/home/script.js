@@ -76,37 +76,6 @@ document.getElementById('select-file-btn').addEventListener('click', async () =>
   }
 });
 
-// Update file selection to show config section
-document.getElementById('select-file-btn').addEventListener('click', async () => {
-  console.log('Select file button clicked');
-  
-  try {
-    const fileData = await window.magicLantern.selectFile();
-    console.log('File data received:', fileData);
-    
-    if (fileData) {
-      // Show file info
-      document.getElementById('file-info').style.display = 'block';
-      document.getElementById('file-name').textContent = fileData.name;
-      document.getElementById('film-count').textContent = fileData.filmCount;
-      document.getElementById('preview-content').textContent = fileData.preview.join('\n');
-      
-      // Store the file path for later use
-      window.selectedFilePath = fileData.path;
-      window.totalFilms = fileData.filmCount;
-      
-      // Show config section
-      document.getElementById('config-section').style.display = 'block';
-      
-      // Update search summary
-      updateSearchSummary();
-    }
-  } catch (error) {
-    console.error('File selection error:', error);
-    alert('Error selecting file: ' + error.message);
-  }
-});
-
 // Update summary when config changes
 function updateSearchSummary() {
   const corpus = document.getElementById('corpus-select').value;

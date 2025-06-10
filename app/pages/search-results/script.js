@@ -3,6 +3,31 @@
 let searchResults = null;
 let selectedSources = new Map();
 
+// Add cleanup function - FIXED VERSION
+function cleanup() {
+    // Clear the Map
+    if (selectedSources) {
+        selectedSources.clear();
+    }
+    
+    // Clear any references
+    searchResults = null;
+}
+
+
+// Add event listener for page unload
+window.addEventListener('beforeunload', cleanup);
+window.addEventListener('pagehide', cleanup);
+
+// Also cleanup when navigating away using the navigation
+document.addEventListener('click', (e) => {
+    // Check if clicking a navigation link
+    if (e.target.classList.contains('nav-item') || 
+        e.target.closest('.nav-item')) {
+        cleanup();
+    }
+});
+
 
 // Load results when page loads
 window.addEventListener('DOMContentLoaded', () => {
