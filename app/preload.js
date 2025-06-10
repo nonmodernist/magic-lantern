@@ -39,8 +39,7 @@ try {
       return ipcRenderer.invoke('stop-search');
     },
 
-    // app/preload.js
-// Add these to the contextBridge.exposeInMainWorld('magicLantern', { ... }) object:
+
 
 getProfiles: () => {
   console.log('getProfiles called from renderer');
@@ -58,6 +57,10 @@ testProfile: (profileData) => {
   console.log('testProfile called with:', profileData);
   return ipcRenderer.invoke('test-profile', profileData);
 },
+    deleteProfile: (profileKey) => {
+        console.log('deleteProfile called with:', profileKey);
+        return ipcRenderer.invoke('delete-profile', profileKey);
+    },
   });
   
   console.log('Context bridge exposed successfully');

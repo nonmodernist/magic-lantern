@@ -523,3 +523,48 @@ ipcMain.handle('find-recent-results', async () => {
     return null;
   }
 });
+
+// In app/main.js, add this handler
+
+ipcMain.handle('delete-profile', async (event, profileKey) => {
+    const fs = require('fs');
+    const path = require('path');
+    
+    try {
+        // Prevent deleting built-in profiles
+        const builtInProfiles = ['default', 'adaptation-studies', 'labor-history', 'early-cinema', 'regional-reception'];
+        if (builtInProfiles.includes(profileKey)) {
+            return { 
+                success: false, 
+                error: 'Cannot delete built-in profiles' 
+            };
+        }
+        
+        // Construct the file path
+        const filename = `${profileKey}.profile.js`;
+        const filePath = path.join(__dirname, '..', 'core', 'config', 'profiles', filename);
+        
+        // Check if file exists
+        if (!fs.existsSync(filePath)) {
+            return { 
+                success: false, 
+                error: 'Profile file not found' 
+            };
+        }
+        
+        // Delete the file
+        fs.unlinkSync(filePath);
+        
+        // Clear the require cache
+        delete require.cache[require.resolve('../core/config/profiles')];
+        
+        return { success: true };
+        
+    } catch (error) {
+        console.error('Error deleting profile:', error);
+        return { 
+            success: false, 
+            error: error.message 
+        };
+    }
+});

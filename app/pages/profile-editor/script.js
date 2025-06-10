@@ -37,11 +37,22 @@ class ProfileEditor {
             const item = document.createElement('div');
             item.className = 'profile-item';
             item.dataset.profileKey = profile.key;
+
+            // Check if it's a built-in profile that shouldn't be deleted
+            const isBuiltIn = ['default', 'adaptation-studies', 'labor-history', 'early-cinema', 'regional-reception'].includes(profile.key);
+        
             item.innerHTML = `
+                        <div class="profile-content" onclick="window.profileEditor.loadProfile('${profile.key}')">
                 <div class="profile-name">${profile.name}</div>
                 <div class="profile-desc">${profile.description}</div>
+                            ${!isBuiltIn ? `
+                <button class="delete-profile-btn" 
+                        onclick="window.profileEditor.deleteProfile('${profile.key}')"
+                        title="Delete profile">
+                    ×
+                </button>
+            ` : ''}
             `;
-            item.onclick = () => this.loadProfile(profile.key);
             listContainer.appendChild(item);
         });
         
@@ -155,45 +166,91 @@ class ProfileEditor {
             });
     }
     
-    createStrategyItem(strategy, weight, isEnabled) {
-        const item = document.createElement('div');
-        item.className = 'strategy-item';
-        item.draggable = true;
-        item.dataset.strategy = strategy;
+// Also update the createStrategyItem method to add visual indicators
+createStrategyItem(strategy, weight, isEnabled) {
+    const item = document.createElement('div');
+    item.className = 'strategy-item';
+    item.draggable = true;
+    item.dataset.strategy = strategy;
+
+        // Add a visual indicator for the priority level
+    const priorityLevel = this.getPriorityLevel(weight);
+    const priorityColor = this.getPriorityColor(weight);
         
-        item.innerHTML = `
-            <span class="strategy-handle">☰</span>
-            <div class="strategy-toggle ${isEnabled ? 'active' : ''}" 
-                 data-strategy="${strategy}"></div>
-            <div class="strategy-info">
-                <div class="strategy-name">${this.formatStrategyName(strategy)}</div>
-                <div class="strategy-weight">Weight: ${weight.toFixed(1)}</div>
+    item.innerHTML = `
+        <span class="strategy-handle">☰</span>
+        <div class="strategy-toggle ${isEnabled ? 'active' : ''}" 
+             data-strategy="${strategy}"></div>
+        <div class="strategy-info">
+            <div class="strategy-name">${this.formatStrategyName(strategy)}</div>
+            <div class="strategy-weight">
+                <span class="priority-badge" style="background: ${priorityColor}; 
+                      color: white; padding: 2px 8px; border-radius: 4px; 
+                      font-size: 11px; margin-right: 8px;">
+                    ${priorityLevel}
+                </span>
+                Weight: ${weight.toFixed(1)}
             </div>
-            <input type="number" class="strategy-weight-input" 
-                   value="${weight}" min="0" max="5" step="0.1">
+        </div>
+        <input type="number" class="strategy-weight-input" 
+               value="${weight}" min="0" max="5" step="0.1">
+    `;
+
+        // NOW set up event handlers after the HTML is created
+    const toggle = item.querySelector('.strategy-toggle');
+    const weightInput = item.querySelector('.strategy-weight-input');
+        
+    // Toggle handler
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        const isNowEnabled = toggle.classList.contains('active');
+        this.updateStrategyEnabled(strategy, isNowEnabled);
+    });
+        
+// Update the weight input handler to refresh the priority badge
+// In createStrategyItem method, update the weight input event handler:
+    // Weight input handler
+    weightInput.addEventListener('change', (e) => {
+        const newWeight = parseFloat(e.target.value) || 0;
+        item.querySelector('.strategy-weight').innerHTML = `
+            <span class="priority-badge" style="background: ${this.getPriorityColor(newWeight)}; 
+                  color: white; padding: 2px 8px; border-radius: 4px; 
+                  font-size: 11px; margin-right: 8px;">
+                ${this.getPriorityLevel(newWeight)}
+            </span>
+            Weight: ${newWeight.toFixed(1)}
         `;
-        
-        // Toggle handler
-        const toggle = item.querySelector('.strategy-toggle');
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            const isNowEnabled = toggle.classList.contains('active');
-            this.updateStrategyEnabled(strategy, isNowEnabled);
-        });
-        
-        // Weight input handler
-        const weightInput = item.querySelector('.strategy-weight-input');
-        weightInput.addEventListener('change', (e) => {
-            const newWeight = parseFloat(e.target.value) || 0;
-            item.querySelector('.strategy-weight').textContent = `Weight: ${newWeight.toFixed(1)}`;
-            this.updateWeight('searchStrategies', strategy, newWeight);
+
+
+        this.updateWeight('searchStrategies', strategy, newWeight);
             
-            // Update toggle state
-            toggle.classList.toggle('active', newWeight > 0);
-        });
+    // Update toggle state
+    toggle.classList.toggle('active', newWeight > 0);
+});
         
         return item;
     }
+
+    // Add these helper methods
+getPriorityLevel(weight) {
+    if (weight === 0) return 'OFF';
+    if (weight < 0.5) return 'VERY LOW';
+    if (weight < 1.0) return 'LOW';
+    if (weight < 1.5) return 'NORMAL';
+    if (weight < 2.0) return 'HIGH';
+    if (weight < 2.5) return 'VERY HIGH';
+    return 'CRITICAL';
+}
+
+getPriorityColor(weight) {
+    if (weight === 0) return '#999';        // Gray
+    if (weight < 0.5) return '#d9534f';     // Red
+    if (weight < 1.0) return '#f0ad4e';     // Orange
+    if (weight < 1.5) return '#5bc0de';     // Light Blue
+    if (weight < 2.0) return '#5cb85c';     // Green
+    if (weight < 2.5) return '#428bca';     // Blue
+    return '#8B7355';                       // Gold (matching your theme)
+}
     
     renderDateRanges() {
 
@@ -321,30 +378,52 @@ class ProfileEditor {
     
     updateStrategyOrder() {
         const items = document.querySelectorAll('.strategy-item');
-        const newOrder = {};
+        const newWeights = {};
         
-        // Assign weights based on position (highest first)
-        items.forEach((item, index) => {
-            const strategy = item.dataset.strategy;
-            const currentWeight = parseFloat(item.querySelector('.strategy-weight-input').value) || 0;
+     items.forEach((item, index) => {
+        const strategy = item.dataset.strategy;
+        const weightInput = item.querySelector('.strategy-weight-input');
+        const currentWeight = parseFloat(weightInput.value) || 0;
+
+                // Only reorder items that are enabled (weight > 0)
+        if (currentWeight > 0) {
+            // Use a curve that gives nice distribution
+            // Position 0 = 3.0, Position 5 = 2.0, Position 10 = 1.0, etc.
+            const positionWeight = Math.max(0.2, 3.0 - (index * 0.2));
+
+                        // Round to nearest 0.1 for cleaner numbers
+            const roundedWeight = Math.round(positionWeight * 10) / 10;
             
-            // Only update if enabled
-            if (currentWeight > 0) {
-                const baseWeight = 3.0 - (index * 0.2);
-                newOrder[strategy] = Math.max(0, Math.min(currentWeight, baseWeight));
-                
-                // Update the displayed weight
-                item.querySelector('.strategy-weight-input').value = newOrder[strategy].toFixed(1);
-                item.querySelector('.strategy-weight').textContent = `Weight: ${newOrder[strategy].toFixed(1)}`;
+            // Update the input value
+            weightInput.value = roundedWeight.toFixed(1);
+
+            // Update the display text
+            const weightDisplay = item.querySelector('.strategy-weight');
+            if (weightDisplay) {
+                weightDisplay.textContent = `Weight: ${roundedWeight.toFixed(1)}`;
             }
-        });
+
+                        // Update the hint text
+            const hintDiv = item.querySelector('.weight-hint');
+            if (hintDiv) {
+                hintDiv.textContent = this.getWeightHint(roundedWeight);
+            }
         
-        if (!this.currentProfile.searchStrategies) {
-            this.currentProfile.searchStrategies = {};
+            // Store in the weights object
+            newWeights[strategy] = roundedWeight;
+        } else {
+            // Keep disabled items at 0
+            newWeights[strategy] = 0;
         }
-        this.currentProfile.searchStrategies.weights = newOrder;
-        this.markDirty();
+    });
+        
+    // Update the profile
+    if (!this.currentProfile.searchStrategies) {
+        this.currentProfile.searchStrategies = {};
     }
+    this.currentProfile.searchStrategies.weights = newWeights;
+    this.markDirty();
+}
     
     updateWeight(section, key, value) {
         if (!this.currentProfile[section]) {
@@ -426,6 +505,42 @@ class ProfileEditor {
         
         return true;
     }
+
+    async deleteProfile(profileKey) {
+    // Prevent deleting built-in profiles
+    const builtInProfiles = ['default', 'adaptation-studies', 'labor-history', 'early-cinema', 'regional-reception'];
+    if (builtInProfiles.includes(profileKey)) {
+        this.showNotification('Cannot delete built-in profiles', 'error');
+        return;
+    }
+    
+    // Get profile name for confirmation
+    const profiles = await window.magicLantern.getProfiles();
+    const profile = profiles.find(p => p.key === profileKey);
+    const profileName = profile ? profile.name : profileKey;
+    
+    // Confirm deletion
+    if (!confirm(`Are you sure you want to delete the profile "${profileName}"? This action cannot be undone.`)) {
+        return;
+    }
+    
+    // If we're currently viewing this profile, switch to default first
+    if (this.currentProfile && 
+        this.currentProfile.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === profileKey) {
+        await this.loadProfile('default');
+    }
+    
+    // Delete via IPC
+    const result = await window.magicLantern.deleteProfile(profileKey);
+    
+    if (result.success) {
+        this.showNotification(`Profile "${profileName}" deleted successfully`, 'success');
+        // Reload the profile list
+        await this.loadProfiles();
+    } else {
+        this.showNotification(`Failed to delete profile: ${result.error}`, 'error');
+    }
+}
     
     async testProfile() {
         if (!this.currentProfile) return;
