@@ -4,14 +4,24 @@ class ProfileSelector {
     constructor() {
         this.profiles = {};
         this.selectedProfile = null;
-        this.currentOverrides = {
-            dateRangeAdjustment: 'normal',
-            skipStrategies: []
-        };
-        
+
         this.loadProfiles();
-        this.setupEventListeners();
+        this.loadSavedSelection();
     }
+
+    // Add this new method:
+loadSavedSelection() {
+    const savedProfile = localStorage.getItem('selectedProfile');
+
+    if (savedProfile) {
+        // Wait for profiles to load, then select the saved one
+        setTimeout(() => {
+            this.showProfileDetails(savedProfile);
+        }, 100);
+    }
+    
+}
+
     
     async loadProfiles() {
         // Profile data with icons and highlights
@@ -119,9 +129,6 @@ class ProfileSelector {
         
         // Show date ranges
         this.showDateRanges(profile);
-        
-        // Setup skip checkboxes
-        this.setupSkipCheckboxes(profile);
         
         // Show details section
         document.getElementById('profile-details').style.display = 'block';
@@ -279,153 +286,13 @@ class ProfileSelector {
         });
     }
     
-    setupSkipCheckboxes(profile) {
-        const container = document.getElementById('skip-checkboxes');
-        container.innerHTML = '';
-        
-        const mainCategories = [
-            { key: 'titleVariations', label: 'Title Searches' },
-            { key: 'creatorSearches', label: 'Author/Director' },
-            { key: 'productionSearches', label: 'Production/Studio' },
-            { key: 'starSearches', label: 'Star/Actor' },
-            { key: 'contextualSearches', label: 'Contextual/Labor' }
-        ];
-        
-        mainCategories.forEach(category => {
-            const item = document.createElement('div');
-            item.className = 'skip-checkbox-item';
-            
-            const isEnabled = profile.searchStrategies?.enabled?.[category.key] !== false;
-            
-            item.innerHTML = `
-                <input type="checkbox" id="skip-${category.key}" value="${category.key}" 
-                       ${!isEnabled ? 'checked' : ''}>
-                <label for="skip-${category.key}">${category.label}</label>
-            `;
-            
-            container.appendChild(item);
-        });
-    }
-    
-    setupEventListeners() {
-        // Date range buttons
-        document.querySelectorAll('.range-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                this.currentOverrides.dateRangeAdjustment = e.target.dataset.range;
-            });
-        });
-    }
-    
-    async previewSearches() {
-        if (!this.selectedProfile || !window.selectedFilePath) {
-            alert('Please select a CSV file first (from the main search page)');
-            return;
-        }
-        
-        // Get the films
-        const fileData = await window.magicLantern.selectFile();
-        if (!fileData) return;
-        
-        // Parse CSV to get first few films
-        const lines = fileData.preview;
-        const headers = lines[0].toLowerCase().split(',').map(h => h.trim());
-        const films = lines.slice(1, 4).map(line => { // First 3 films
-            const values = line.split(',').map(v => v.trim().replace(/"/g, ''));
-            const film = {};
-            headers.forEach((header, i) => {
-                film[header] = values[i];
-            });
-            return film;
-        });
-        
-        // Generate previews
-        const modal = document.getElementById('search-preview-modal');
-        const container = document.getElementById('film-search-previews');
-        container.innerHTML = '';
-        
-        films.forEach(film => {
-            const preview = this.generateFilmPreview(film);
-            container.appendChild(preview);
-        });
-        
-        modal.style.display = 'flex';
-    }
-    
-    generateFilmPreview(film) {
-        const div = document.createElement('div');
-        div.className = 'film-preview';
-        
-        const strategies = this.getActiveStrategies(film);
-        
-        div.innerHTML = `
-            <div class="film-preview-title">
-                ${film.title} (${film.year})
-            </div>
-            <div class="search-query-list">
-                ${strategies.slice(0, 10).map((s, i) => `
-                    <div class="search-query">
-                        <strong>${i + 1}.</strong> ${s.query}
-                    </div>
-                `).join('')}
-                ${strategies.length > 10 ? `<div class="search-query">... and ${strategies.length - 10} more searches</div>` : ''}
-            </div>
-        `;
-        
-        return div;
-    }
-    
-    getActiveStrategies(film) {
-        // Simulate strategy generation based on profile
-        const strategies = [];
-        const weights = this.selectedProfile.searchStrategies?.weights || {};
-        
-        // Get skip settings
-        const skipCategories = Array.from(document.querySelectorAll('#skip-checkboxes input:checked'))
-            .map(cb => cb.value);
-        
-        // Add strategies based on weights
-        if (weights.exact_title > 0 && !skipCategories.includes('titleVariations')) {
-            strategies.push({ query: `"${film.title}"`, weight: weights.exact_title });
-        }
-        
-        if (weights.author_title > 0 && film.author && !skipCategories.includes('creatorSearches')) {
-            strategies.push({ query: `"${film.author}" "${film.title}"`, weight: weights.author_title });
-        }
-        
-        if (weights.director_title > 0 && film.director && !skipCategories.includes('creatorSearches')) {
-            strategies.push({ query: `"${film.director}" "${film.title}"`, weight: weights.director_title });
-        }
-        
-        if (weights.studio_title > 0 && film.studio && !skipCategories.includes('productionSearches')) {
-            strategies.push({ query: `"${film.studio}" "${film.title}"`, weight: weights.studio_title });
-        }
-        
-        // Sort by weight
-        strategies.sort((a, b) => b.weight - a.weight);
-        
-        return strategies;
-    }
-    
-    closeModal() {
-        document.getElementById('search-preview-modal').style.display = 'none';
-    }
     
     selectProfile() {
         if (!this.selectedProfile) return;
-        
-        // Get overrides
-        const overrides = {
-            dateRangeAdjustment: this.currentOverrides.dateRangeAdjustment,
-            skipCategories: Array.from(document.querySelectorAll('#skip-checkboxes input:checked'))
-                .map(cb => cb.value)
-        };
-        
-        // Store in localStorage
-        localStorage.setItem('selectedProfile', this.selectedProfile.key || this.selectedProfile.name);
-        localStorage.setItem('profileOverrides', JSON.stringify(overrides));
-        
+  
+    // Store in localStorage
+    localStorage.setItem('selectedProfile', this.selectedProfile.key || this.selectedProfile.name);
+    
         // Navigate back to search page
         window.location.href = '../home/index.html';
     }

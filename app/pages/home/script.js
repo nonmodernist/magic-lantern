@@ -243,7 +243,7 @@ function updateProgress(data) {
 function checkForSelectedProfile() {
     // Check if user selected a profile from the selector page
     const selectedProfile = localStorage.getItem('selectedProfile');
-    
+
     if (selectedProfile) {
         // Update the dropdown to show the selected profile
         const profileDropdown = document.getElementById('profile-select');
@@ -255,7 +255,7 @@ function checkForSelectedProfile() {
             profileDropdown.dispatchEvent(event);
         }
         
-        // Clear it so it doesn't stick around
+        // Clear after loading so they don't stick forever
         localStorage.removeItem('selectedProfile');
         
         // Optional: Show a little message

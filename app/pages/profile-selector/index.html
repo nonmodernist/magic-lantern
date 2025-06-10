@@ -79,55 +79,11 @@
                 </div>
             </div>
 
-            <!-- Simple Overrides -->
-            <div class="overrides-section">
-                <h3 class="subsection-title">⚙️ Quick Adjustments</h3>
-                
-                <div class="override-control">
-                    <label class="override-label">Expand Date Range:</label>
-                    <div class="date-range-buttons">
-                        <button class="range-btn" data-range="narrow">Narrow (-1/+1)</button>
-                        <button class="range-btn active" data-range="normal">Normal</button>
-                        <button class="range-btn" data-range="wide">Wide (+2 years)</button>
-                        <button class="range-btn" data-range="very-wide">Very Wide (+3 years)</button>
-                    </div>
-                </div>
-
-                <div class="override-control">
-                    <label class="override-label">Skip These Searches:</label>
-                    <div class="skip-checkboxes" id="skip-checkboxes">
-                        <!-- Checkboxes for skipping search types will be added here -->
-                    </div>
-                </div>
-            </div>
-
             <!-- Actions -->
             <div class="profile-actions">
-                <button class="btn btn-secondary" onclick="window.profileSelector.previewSearches()">
-                    👁️ Preview Searches for My Films
-                </button>
                 <button class="btn btn-primary btn-large" onclick="window.profileSelector.selectProfile()">
                     Use This Profile
                 </button>
-            </div>
-        </div>
-
-        <!-- Search Preview Modal -->
-        <div class="modal" id="search-preview-modal" style="display: none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Search Preview</h2>
-                    <button class="close-btn" onclick="window.profileSelector.closeModal()">×</button>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-description">These are the actual searches that will run for your films:</p>
-                    <div id="film-search-previews">
-                        <!-- Film-specific search previews will be shown here -->
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" onclick="window.profileSelector.closeModal()">Close</button>
-                </div>
             </div>
         </div>
     </div>
