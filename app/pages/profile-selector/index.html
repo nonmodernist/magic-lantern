@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Lantern - Profile Selector</title>
+    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="edition-info">
+            Vol. 5.—No. 0.2.<br>
+            SUMMER, 2025.
+        </div>
+        <h1 class="main-title">✨ MAGIC LANTERN ✨</h1>
+        <p class="subtitle">Research Profile Selection & Preview</p>
+    </header>
+    <nav class="main-navigation">
+    <a href="../home/index.html" class="nav-item">🔍 Search</a>
+    <a href="../search-results/index.html" class="nav-item">📊 Results</a>
+    <a href="../profile-selector/index.html" class="nav-item">⚙️ Profiles</a>
+    <a href="../about/index.html" class="nav-item">📖 About</a>
+</nav>
+
+    <div class="container">
+        <!-- Navigation Bar -->
+        <div class="navigation-bar">
+            <button class="btn btn-secondary" onclick="window.location.href='../home/index.html'">
+                ← Back to Search
+            </button>
+            <div class="nav-actions">
+                <button class="btn btn-secondary" onclick="window.profileSelector.importProfile()">
+                    📥 Import Profile
+                </button>
+                <button class="btn btn-secondary" onclick="window.profileSelector.editProfile()">
+                    📝 Edit Profile File
+                </button>
+            </div>
+        </div>
+
+        <div class="notice-box">
+            <p><strong>Choose Your Research Focus!</strong> Each profile emphasizes different search strategies and publications. Preview exactly what searches will run before you begin your research.</p>
+        </div>
+
+        <!-- Profile Grid -->
+        <div class="profiles-grid">
+            <!-- Profile cards will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Selected Profile Details -->
+        <div class="profile-details" id="profile-details" style="display: none;">
+            <div class="section-header">
+                <span class="section-number">📋</span>
+                PROFILE DETAILS: <span id="selected-profile-name"></span>
+            </div>
+
+            <!-- Search Preview Section -->
+            <div class="preview-section">
+                <h3 class="subsection-title">🔍 Search Strategies That Will Run</h3>
+                <div class="search-preview-list" id="search-preview-list">
+                    <!-- Search strategies will be listed here -->
+                </div>
+            </div>
+
+            <!-- Publication Priorities -->
+            <div class="preview-section">
+                <h3 class="subsection-title">📰 Prioritized Publications</h3>
+                <div class="publication-list" id="publication-list">
+                    <!-- Publications will be listed here -->
+                </div>
+            </div>
+
+            <!-- Date Range Settings -->
+            <div class="preview-section">
+                <h3 class="subsection-title">📅 Date Range Settings</h3>
+                <div class="date-range-display" id="date-range-display">
+                    <!-- Date ranges will be shown here -->
+                </div>
+            </div>
+
+            <!-- Simple Overrides -->
+            <div class="overrides-section">
+                <h3 class="subsection-title">⚙️ Quick Adjustments</h3>
+                
+                <div class="override-control">
+                    <label class="override-label">Expand Date Range:</label>
+                    <div class="date-range-buttons">
+                        <button class="range-btn" data-range="narrow">Narrow (-1/+1)</button>
+                        <button class="range-btn active" data-range="normal">Normal</button>
+                        <button class="range-btn" data-range="wide">Wide (+2 years)</button>
+                        <button class="range-btn" data-range="very-wide">Very Wide (+3 years)</button>
+                    </div>
+                </div>
+
+                <div class="override-control">
+                    <label class="override-label">Skip These Searches:</label>
+                    <div class="skip-checkboxes" id="skip-checkboxes">
+                        <!-- Checkboxes for skipping search types will be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="profile-actions">
+                <button class="btn btn-secondary" onclick="window.profileSelector.previewSearches()">
+                    👁️ Preview Searches for My Films
+                </button>
+                <button class="btn btn-primary btn-large" onclick="window.profileSelector.selectProfile()">
+                    Use This Profile
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Preview Modal -->
+        <div class="modal" id="search-preview-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Search Preview</h2>
+                    <button class="close-btn" onclick="window.profileSelector.closeModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-description">These are the actual searches that will run for your films:</p>
+                    <div id="film-search-previews">
+                        <!-- Film-specific search previews will be shown here -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="window.profileSelector.closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
