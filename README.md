@@ -4,12 +4,12 @@
 ![Node](https://img.shields.io/badge/node-%3E%3D18-green)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
-> ⚠️ **Beta Software**: This tool is under active development. 
-> Please report issues and backup your data!
-
 *Research automation toolkit for the Media History Digital Library's Lantern search platform*
 
 Transform weeks of manual searching into hours (or minutes) of automated discovery across historical film trade publications. ✨
+
+> ⚠️ **Beta Software**: This tool is under active development. 
+> Please report issues and backup your data!
 
 ---
 
@@ -21,8 +21,7 @@ Magic Lantern is a Node.js tool that brings the speed of automation to historica
 2. **Execute searches gracefully** with proper API rate limiting (respecting MHDL's limits so we can all benefit from the archive)
 3. **Deduplicate results** across multiple searches (no more struggling to remember what you've already found!)
 4. **Score results** based on publication quality and relevance 
-5. **Fetch full text** of the highest-scored results
-6. **Output structured JSON** ready for your analysis
+5. **Output structured JSON** ready for your analysis
 
 ## Why I Built It
 
@@ -36,7 +35,7 @@ If you've ever done deep research in the MHDL, you've likely faced:
 - 😴 **The 3pm slump**: Manually copying promising citaiton #237 while wondering if this is your life now
 - 🔄 **Déjà vu**: "I swear I've seen this page three times already..."
 
-Traditional Lantern research means juggling searches, results, and your sanity all at once.
+***
 
 ## Comparing Workflows
 
@@ -68,19 +67,15 @@ node magic-lantern-v5.js films.csv --corpus=medium --profile=adaptation-studies
 
 ### What Makes Research Joyful
 
-🧠 **Set it and forget it**: Start a search and walk away. Magic Lantern keeps working while you live your life.
+- 🧠 **Set it and forget it**: Start a search and walk away. Magic Lantern keeps working while you live your life.
+- 📊 **No more tab jungle**: One command replaces dozens of browser tabs. Your RAM will thank you.
+- 🎯 **Smart prioritization**: Instead of drowning in 50,000 results, see the best ones float to the top with intelligent scoring.
+- 🔄 **Perfect memory**: Magic Lantern never forgets which searches it's done or which results it's seen. Unlike us mere mortals.
+- 📁 **Everything in one place**: No more scattered notes. All results land in neat JSON files, timestamped and organized.
+- ⏸️ **Interruption-proof**: Department meeting? An actually busy day of office hours? No problem. Your research waits patiently in those JSON files.
+- 🎉 **Skip to the good part**: Spend time actually *reading* and *analyzing* sources instead of just finding them.
 
-📊 **No more tab jungle**: One command replaces dozens of browser tabs. Your RAM will thank you.
-
-🎯 **Smart prioritization**: Instead of drowning in 50,000 results, see the best ones float to the top with intelligent scoring.
-
-🔄 **Perfect memory**: Magic Lantern never forgets which searches it's done or which results it's seen. Unlike us mere mortals.
-
-📁 **Everything in one place**: No more scattered notes. All results land in neat JSON files, timestamped and organized.
-
-⏸️ **Interruption-proof**: Department meeting? An actually busy day of office hours? No problem. Your research waits patiently in those JSON files.
-
-🎉 **Skip to the good part**: Spend time actually *reading* and *analyzing* sources instead of just finding them.
+***
 
 ## ✨ Key Features
 
@@ -96,9 +91,7 @@ With the ability to easily create your own!
 ### 📊 Smart Scoring System
 Watch as Magic Lantern intelligently ranks your results:
 - Publication weights (Variety = 1.0, but that rare Motography issue? 1.5!)
-- Collection-aware scoring (Fan Magazines vs. Technical Journals)
 - Position-based ranking (top results bubble up)
-- Temporal relevance (results from the right era score higher)
 
 ### 🔍 Search Strategy Magic
 Automatically generates clever variations like:
@@ -108,6 +101,10 @@ Automatically generates clever variations like:
 - Studio + production keywords
 - Box office terminology
 - And so many more combinations!
+
+Magic Lantern automatically applies date filters based on your search strategy and preferences. 
+
+***
 
 ## 🚀 Getting Started
 
@@ -121,6 +118,8 @@ cd magic-lantern
 # No npm install needed - uses only Node.js built-ins! 🎉
 ```
 
+***
+
 ## 📝 Basic Usage
 
 1. **Create a CSV file** with your films:
@@ -133,15 +132,16 @@ title,year,author,director,studio
 2. **Run Magic Lantern** and watch the magic happen:
 ```bash
 # Test mode (1 film) - perfect for getting your feet wet!
-node magic-lantern-v5.js data/films.csv
+node core/magic-lantern-v5.js core/data/films.csv
 
 # Ready for the full experience? 
-node magic-lantern-v5.js data/films.csv --corpus=full --profile=adaptation-studies
+node core/magic-lantern-v5.js core/data/films.csv --corpus=full --profile=adaptation-studies
 ```
 
 3. **Discover your treasures** in `results/`:
-- `comprehensive-search-results_[timestamp].json` - All your search results with metadata
-- `full-text-results_[timestamp].json` - Full OCR text of the cream of the crop
+- `search-results_[timestamp].json` - All your search results with metadata
+
+***
 
 ## 🎨 Configuration Options
 
@@ -180,7 +180,7 @@ module.exports = {
 
 ## 📊 Output Format
 
-### Search Results JSON (The Motherlode)
+### Search Results JSON
 ```json
 {
   "film": {
@@ -205,22 +205,7 @@ module.exports = {
   ]
 }
 ```
-
-### Full Text Results JSON (The Gold Mine)
-```json
-{
-  "treasures": [
-    {
-      "id": "variety137-1940-01_0054",
-      "fullText": "[Complete OCR text - ready for analysis!]",
-      "contentTypes": ["review", "box_office"],
-      "publication": "variety",
-      "year": 1939,
-      "finalScore": 95.5
-    }
-  ]
-}
-```
+***
 
 ## 🛠️ Advanced Features
 
@@ -253,6 +238,7 @@ publications: {
   }
 }
 ```
+***
 
 ## 🚧 Coming Attractions
 
@@ -263,6 +249,8 @@ Currently, Magic Lantern focuses on search automation and outputs JSON. Future p
 - 🔗 Zotero integration?
 
 For now, the JSON output plays nicely with your favorite analysis tools!
+
+***
 
 ## 🔧 Troubleshooting
 
@@ -278,6 +266,8 @@ For now, the JSON output plays nicely with your favorite analysis tools!
 **Performance notes** ⏱️
 - Rate limiting adds 200ms between requests (being good citizens!)
 - Full corpus runs can take hours (but think of the time saved!)
+
+***
 
 ## 🗂️ Legacy Tools
 
@@ -309,6 +299,5 @@ MIT License - Use it for your research adventures!
 
 - 📖 [Full Documentation](./docs/)
 - 🚀 [Getting Started Guide](./docs/QUICKSTART.md)  
-- 💡 [Usage Examples](./EXAMPLES.md) - COMING SOON
 - 🐛 [Report Issues](https://github.com/nonmodernist/magic-lantern/issues)
 - 💬 [Discussions](https://github.com/nonmodernist/magic-lantern/discussions)
