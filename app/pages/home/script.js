@@ -218,6 +218,15 @@ document.getElementById('test-real-search-btn').addEventListener('click', async 
   }
 });
 
+// Track some key metrics as we parse
+let currentMetrics = {
+  currentFilm: '',
+  strategiesRun: 0,
+  resultsFound: 0,
+  searchesDone: 0
+};
+
+
 // Update progress display
 function updateProgress(data) {
   const progressFill = document.getElementById('progress-fill');
@@ -232,12 +241,89 @@ function updateProgress(data) {
     progressText.textContent = data.status;
   }
   
-  if (data.detail) {
-    // Append to details
-    const time = new Date().toLocaleTimeString();
-    progressDetails.innerHTML += `[${time}] ${data.detail}<br>`;
+  // // Update progress bar based on what we see
+  // if (data.detail) {
+  //   // Auto-detect progress from console output
+  //   const progressMatch = data.detail.match(/📊 Progress: (\d+)\/(\d+)/);
+  //   if (progressMatch) {
+  //     const current = parseInt(progressMatch[1]);
+  //     const total = parseInt(progressMatch[2]);
+  //     const percent = (current / total) * 100;
+  //     progressFill.style.width = percent + '%';
+  //     progressText.textContent = `Processing Film ${current} of ${total}`;
+  //   }
+
+        // Format and colorize the console output
+    const formattedLine = formatConsoleLine(data.detail);
+    progressDetails.innerHTML += formattedLine;
     progressDetails.scrollTop = progressDetails.scrollHeight;
+
+      if (data.detail) {
+    // Track metrics
+    if (data.detail.includes('🎭 COMPREHENSIVE SEARCH:')) {
+      currentMetrics.currentFilm = data.detail.match(/SEARCH: (.+)/)?.[1] || '';
+      currentMetrics.strategiesRun = 0;
+      currentMetrics.resultsFound = 0;
+    }
+    
+    if (data.detail.includes('🔍 [')) {
+      currentMetrics.searchesDone++;
+    }
+    
+    if (data.detail.includes('✅ Found')) {
+      const count = parseInt(data.detail.match(/Found (\d+)/)?.[1] || 0);
+      currentMetrics.resultsFound += count;
+      currentMetrics.strategiesRun++;
+    }
+    
+    // Update a simple metrics display
+    updateMetricsDisplay();
   }
+  }
+
+
+function updateMetricsDisplay() {
+  let metricsDiv = document.getElementById('search-metrics');
+  if (!metricsDiv) {
+    metricsDiv = document.createElement('div');
+    metricsDiv.id = 'search-metrics';
+    metricsDiv.style.cssText = 'text-align: center; margin: 10px 0; font-family: var(--font-mono);';
+    document.querySelector('.progress-box').insertBefore(
+      metricsDiv, 
+      document.getElementById('progress-details')
+    );
+  }
+  
+  metricsDiv.innerHTML = `
+    <strong>${currentMetrics.currentFilm}</strong><br>
+    Strategies: ${currentMetrics.strategiesRun} | 
+    Results: ${currentMetrics.resultsFound} | 
+    Total Searches: ${currentMetrics.searchesDone}
+  `;
+}
+
+function formatConsoleLine(line) {
+  // Clean up and classify the line
+  let cssClass = 'console-line';
+  
+  if (line.includes('✅ Found')) cssClass = 'console-line-success';
+  else if (line.includes('🔍')) cssClass = 'console-line-search';
+  else if (line.includes('======')) cssClass = 'console-line-header';
+  else if (line.includes('🏆')) cssClass = 'console-line-score';
+  else if (line.includes('📊 Progress:')) cssClass = 'console-line-progress';
+  
+  // Make emojis slightly transparent
+  line = line.replace(/([\u{1F300}-\u{1F9FF}])/gu, '<span class="console-line-emoji">$1</span>');
+  
+  // Add timestamp
+  const time = new Date().toLocaleTimeString('en-US', { 
+    hour12: false, 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit' 
+  });
+  
+  return `<div class="${cssClass}">[${time}] ${line}</div>`;
 }
 
 function checkForSelectedProfile() {
