@@ -28,6 +28,44 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Show the guide for first-time users
+function checkShowGuide() {
+    const hasSeenGuide = localStorage.getItem('hasSeenResultsGuide');
+    const dontShowAgain = localStorage.getItem('dontShowResultsGuide');
+    
+    if (!hasSeenGuide && !dontShowAgain && searchResults && searchResults.length > 0) {
+        document.getElementById('next-steps-guide').style.display = 'block';
+        localStorage.setItem('hasSeenResultsGuide', 'true');
+        
+        // Smooth scroll to guide
+        setTimeout(() => {
+            document.getElementById('next-steps-guide').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }, 500);
+    }
+}
+
+// Dismiss the guide
+function dismissGuide() {
+    const dontShow = document.getElementById('dont-show-guide').checked;
+    if (dontShow) {
+        localStorage.setItem('dontShowResultsGuide', 'true');
+    }
+    
+    document.getElementById('next-steps-guide').style.display = 'none';
+}
+
+// Add to your displayResults function
+function displayResults(results) {
+    searchResults = results;
+    // ... existing code ...
+    
+    // At the end, check if we should show the guide
+    checkShowGuide();
+}
+
 
 // Load results when page loads
 window.addEventListener('DOMContentLoaded', () => {

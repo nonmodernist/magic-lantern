@@ -1,3 +1,8 @@
+// ! Force show wizard on next load (temporary for testing)
+localStorage.removeItem('magicLanternUsed');
+localStorage.removeItem('wizardDismissed');
+
+
 // Check if magicLantern API is available
 console.log('magicLantern API available?', window.magicLantern);
 
@@ -12,6 +17,8 @@ let currentMetrics = {
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded');
   checkForSelectedProfile();
+    checkFirstTimeUser();
+
 
 
   const testBtn = document.getElementById('test-btn');
@@ -196,39 +203,6 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
   }
 });
 
-document.getElementById('test-real-search-btn').addEventListener('click', async () => {
-  const status = document.getElementById('status');
-  status.textContent = 'Running real search test... This may take a minute...';
-  status.className = '';
-
-  try {
-    const result = await window.magicLantern.testRealSearch();
-
-    if (result.success) {
-      status.innerHTML = `
-        <strong>✅ Real search successful!</strong><br>
-        Films processed: ${result.results.length}<br>
-        First film: ${result.results[0]?.film?.title || 'Unknown'}<br>
-        Total sources found: ${result.results[0]?.totalUniqueSources || 0}<br>
-        <details style="margin-top: 10px;">
-          <summary>View raw results (click to expand)</summary>
-          <pre style="background: #f5f5f5; padding: 10px; margin-top: 10px; max-height: 300px; overflow-y: auto; font-size: 12px;">${JSON.stringify(result.results[0], null, 2)}</pre>
-        </details>
-      `;
-      status.className = 'success';
-    } else {
-      status.innerHTML = `❌ Search failed: ${result.error}`;
-      status.className = 'error';
-    }
-  } catch (error) {
-    status.textContent = '❌ Error: ' + error.message;
-    status.className = 'error';
-  }
-});
-
-
-
-
 // Update progress display
 function updateProgress(data) {
   const progressFill = document.getElementById('progress-fill');
@@ -367,3 +341,96 @@ document.getElementById('cancel-btn').addEventListener('click', async () => {
     document.getElementById('progress-details').innerHTML += '<br><strong>Search cancelled by user</strong>';
   }
 });
+
+// Check if user is new (no previous selections)
+function checkFirstTimeUser() {
+    const hasUsedBefore = localStorage.getItem('magicLanternUsed');
+    const wizardDismissed = localStorage.getItem('wizardDismissed');
+    
+    if (!hasUsedBefore && !wizardDismissed) {
+        document.getElementById('welcome-wizard').style.display = 'block';
+        // Hide the regular notice box to reduce clutter
+        document.querySelector('.notice-box').style.display = 'none';
+    }
+}
+
+// Handle research profile selection from wizard
+function selectResearchProfile(profile) {
+    // Set the profile dropdown
+    document.getElementById('profile-select').value = profile;
+    
+    // Trigger change event to update description
+    const event = new Event('change');
+    document.getElementById('profile-select').dispatchEvent(event);
+    
+    // Hide wizard, show regular interface
+    document.getElementById('welcome-wizard').style.display = 'none';
+    document.querySelector('.notice-box').style.display = 'block';
+    
+    // Remember they've used the tool
+    localStorage.setItem('magicLanternUsed', 'true');
+    
+    // Smooth scroll to file selection
+    document.querySelector('.search-section').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+    });
+    
+    // Show a success message
+    showToast(`Great choice! "${profile}" profile selected. Now let's add your films.`);
+}
+
+// Skip the wizard
+function skipWizard() {
+    document.getElementById('welcome-wizard').style.display = 'none';
+    document.querySelector('.notice-box').style.display = 'block';
+    localStorage.setItem('wizardDismissed', 'true');
+}
+
+// Show advanced profiles (navigate to profile selector)
+function showAdvancedProfiles() {
+    localStorage.setItem('wizardDismissed', 'true');
+    window.location.href = '../profile-selector/index.html';
+}
+
+// Simple toast notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+
+function generateSampleCSV() {
+    const sampleData = `title,year,author,director,studio
+"The Wizard of Oz",1939,"L. Frank Baum","Victor Fleming","Metro-Goldwyn-Mayer"
+"Gone with the Wind",1939,"Margaret Mitchell","Victor Fleming","Selznick International Pictures"
+"Rebecca",1940,"Daphne du Maurier","Alfred Hitchcock","Selznick International Pictures"
+"Little Women",1933,"Louisa May Alcott","George Cukor","RKO Pictures"
+"The Maltese Falcon",1941,"Dashiell Hammett","John Huston","Warner Bros."
+"Pride and Prejudice",1940,"Jane Austen","Robert Z. Leonard","MGM"
+"Wuthering Heights",1939,"Emily Brontë","William Wyler","United Artists"
+"Alice in Wonderland",1933,"Lewis Carroll","Norman Z. McLeod","Paramount Pictures"`;
+    
+    const blob = new Blob([sampleData], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'magic-lantern-sample-films.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    
+    showToast('Sample CSV downloaded! Edit it with your films and re-upload.');
+}

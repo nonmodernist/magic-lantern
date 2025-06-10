@@ -29,16 +29,78 @@
             <p><strong>Greetings, esteemed researcher!</strong> Magic Lantern transforms weeks of manual searching into hours of automated discovery across historical film trade publications. Simply provide your films of interest and watch as the apparatus generates dozens of intelligent search queries, fetches the finest results, and presents them in order of relevance.</p>
         </div>
 
-        <!-- Navigation Tools Section -->
-        <div class="tools-section">
-<button class="btn btn-secondary" onclick="window.location.href='../profile-selector/index.html'">
+        <!-- Add this after the notice-box and before tools-section -->
+<div id="welcome-wizard" class="welcome-wizard" style="display: none;">
+    <div class="wizard-header">
+        <h2 class="wizard-title">✨ What brings you to the archives today?</h2>
+        <p class="wizard-subtitle">Choose a research profile to optimize your searches</p>
+    </div>
+    
+    <div class="research-options">
+        <button class="research-card" onclick="selectResearchProfile('adaptation-studies')">
+            <span class="card-icon">📚</span>
+            <h3>Literary Adaptations</h3>
+            <p class="card-description">I'm tracking how novels became films</p>
+            <ul class="feature-list">
+                <li>Author name searches</li>
+                <li>Source material mentions</li>
+                <li>"Based on" references</li>
+                <li>Publisher advertisements</li>
+            </ul>
+            <div class="card-footer">Best for: Book-to-film research</div>
+        </button>
+        
+        <button class="research-card" onclick="selectResearchProfile('labor-history')">
+            <span class="card-icon">⚒️</span>
+            <h3>Labor & Production</h3>
+            <p class="card-description">I'm studying strikes and working conditions</p>
+            <ul class="feature-list">
+                <li>Union coverage</li>
+                <li>Strike reports</li>
+                <li>Production delays</li>
+                <li>Labor disputes</li>
+            </ul>
+            <div class="card-footer">Best for: Industrial relations</div>
+        </button>
+        
+        <button class="research-card" onclick="selectResearchProfile('regional-reception')">
+            <span class="card-icon">🌎</span>
+            <h3>Exhibition & Reception</h3>
+            <p class="card-description">I'm exploring how films played nationally</p>
+            <ul class="feature-list">
+                <li>Box office reports</li>
+                <li>Regional publications</li>
+                <li>Small-town coverage</li>
+                <li>Exhibition patterns</li>
+            </ul>
+            <div class="card-footer">Best for: Reception studies</div>
+        </button>
+    </div>
+    
+    <div class="wizard-options">
+        <button class="btn-text" onclick="showAdvancedProfiles()">
+            View all profiles →
+        </button>
+        <span class="separator">•</span>
+        <button class="btn-text" onclick="skipWizard()">
+            I know what I'm doing →
+        </button>
+    </div>
+</div>
+
+        <!-- Navigation Tools Section - replicated by navigation -->
+
+<div class="tools-section">
+
+    
+<!-- <button class="btn btn-secondary" onclick="window.location.href='../profile-selector/index.html'">
     🎯 Choose Profile
 </button>
             <button class="btn btn-secondary" onclick="window.location.href='../search-results/index.html'">
                 📊 View Recent Results
             </button>
             <div class="ornament" style="margin: 20px 0;">❦</div>
-        </div>
+        </div>  -->
 
         <!-- Test Connection Section - uncomment to debug -->
         <!-- <div class="search-section">
@@ -57,9 +119,17 @@
                 <span class="section-number">1</span>
                 SELECT YOUR FILMS
             </div>
+
             <div class="input-group">
                 <label class="input-label">Film Catalogue (CSV Format)</label>
+
                 <button id="select-file-btn" class="btn btn-secondary">Choose CSV File</button>
+                        <button onclick="generateSampleCSV()" class="btn btn-secondary">
+            📄 Download Sample CSV
+        </button>
+                                    <div class="help-text" style="margin-top: 10px; font-size: 14px; color: #666;">
+    📝 CSV should have columns: title, year, author, director, studio
+</div>
                 <div id="file-info" class="file-info">
                     <p><strong>Selected File:</strong> <span id="file-name"></span></p>
                     <p><strong>Films found:</strong> <span id="film-count"></span></p>
@@ -67,6 +137,7 @@
                         <pre id="preview-content"></pre>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -75,22 +146,30 @@
             <div class="section-header">
                 <span class="section-number">2</span>
                 CONFIGURE YOUR SEARCH
+                <span class="help-indicator" data-tooltip="These settings control how Magic Lantern searches. Hover over each option to learn more.">?</span>
             </div>
 
             <div class="config-grid grid-2">
                 <div class="config-box">
-                    <h3 class="config-title">Corpus Size</h3>
-                    <select id="corpus-select" class="config-select">
+                    <h3 class="config-title">Corpus Size<span class="help-indicator" data-tooltip="How many films to process and how deeply to search each one">?</span></h3>
+<select id="corpus-select" class="config-select tooltip-wide" 
+                    data-tooltip="Start with 'Test' to try one film quickly. Use 'Medium' for real research.">
                         <option value="test" selected>Test (1 film, quick demonstration)</option>
                         <option value="single">Single (1 film, comprehensive)</option>
                         <option value="medium">Medium (20 films, balanced)</option>
                         <option value="full">Full (all films, exhaustive)</option>
+                        
                     </select>
+                                <p class="config-help">💡 New users: Start with "Test" mode</p>
+
                 </div>
 
                 <div class="config-box">
-                    <h3 class="config-title">Research Profile</h3>
-                    <select id="profile-select" class="config-select">
+                    <h3 class="config-title">Research Profile<span class="help-indicator" data-tooltip="Profiles customize which searches run and how results are scored">?</span>
+       </h3>
+                    <select id="profile-select" class="config-select tooltip-wide"
+                    data-tooltip="Each profile is optimized for different research questions">
+
                         <option value="default">Default</option>
                         <option value="adaptation-studies">Adaptation Studies</option>
                         <option value="labor-history">Labor History</option>
@@ -105,7 +184,8 @@
 
             <div class="ornament">❦ ❦ ❦</div>
 
-            <button id="run-search-btn" class="btn btn-primary btn-large execute-button">Execute Search</button>
+                <button id="run-search-btn" class="btn btn-primary btn-large execute-button"
+            data-tooltip="Start the automated search process">Execute Search</button>
         </div>
 
         <!-- Progress Section -->
@@ -114,6 +194,10 @@
                 <span class="section-number">3</span>
                 SEARCH PROGRESS
             </div>
+            <div class="progress-tips" style="margin-top: 20px; padding: 15px; background: var(--bg-warm); border-radius: 8px;">
+    <strong>🕐 While you wait:</strong> Magic Lantern is running dozens of searches per film. 
+    A coffee break is encouraged! Results are automatically saved.
+</div>
             <div class="progress-box">
                 <div class="progress-bar">
                     <div class="progress-fill" id="progress-fill"></div>

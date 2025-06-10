@@ -480,3 +480,136 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--ink-black);
     color: var(--paper-cream);
 }
+
+
+/* ===========================
+   TOAST NOTIFICATIONS
+   =========================== */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--ink-black);
+    color: var(--paper-cream);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-family: var(--font-body);
+}
+
+.toast-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* ===========================
+   TOOLTIPS
+   =========================== */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]::before,
+[data-tooltip]::after {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+/* Tooltip arrow */
+[data-tooltip]::before {
+    content: '';
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--ink-black);
+    margin-bottom: -6px;
+}
+
+/* Tooltip content */
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink-black);
+    color: var(--paper-cream);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    max-width: 300px;
+    font-family: var(--font-body);
+    line-height: 1.4;
+}
+
+/* Show on hover */
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+    opacity: 1;
+}
+
+/* Wider tooltips for selects */
+select[data-tooltip]::after,
+.tooltip-wide::after {
+    white-space: normal;
+    text-align: center;
+}
+
+/* Tooltip positioning variants */
+[data-tooltip-position="right"]::before {
+    bottom: 50%;
+    left: 100%;
+    transform: translateY(50%);
+    margin-left: -6px;
+    margin-bottom: 0;
+    border-color: transparent var(--ink-black) transparent transparent;
+}
+
+[data-tooltip-position="right"]::after {
+    bottom: 50%;
+    left: calc(100% + 6px);
+    transform: translateY(50%);
+}
+
+/* Add question mark indicators */
+.help-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: var(--accent-gold);
+    color: var(--paper-cream);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: help;
+    margin-left: 8px;
+}
+
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--border-dark);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.btn-text:hover {
+    color: var(--accent-gold);
+}

@@ -154,3 +154,148 @@
   background: #464647;
   border-radius: 4px;
 }
+
+
+/* ===========================
+   WELCOME WIZARD
+   =========================== */
+.welcome-wizard {
+    background: var(--paper-cream);
+    border: var(--border-ornamental);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.wizard-header {
+    margin-bottom: var(--space-xl);
+}
+
+.wizard-title {
+    font-family: var(--font-display);
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
+}
+
+.wizard-subtitle {
+    color: #666;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+.research-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+}
+
+.research-card {
+    background: white;
+    border: 2px solid var(--border-light);
+    padding: var(--space-lg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.research-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.research-card:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.research-card:hover::before {
+    transform: scaleX(1);
+}
+
+.card-icon {
+    font-size: 3em;
+    display: block;
+    margin-bottom: var(--space-md);
+}
+
+.research-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3em;
+    margin-bottom: var(--space-sm);
+    color: var(--ink-black);
+}
+
+.card-description {
+    color: #666;
+    font-style: italic;
+    margin-bottom: var(--space-md);
+}
+
+.feature-list {
+    list-style: none;
+    margin: var(--space-md) 0;
+    padding: 0;
+}
+
+.feature-list li {
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+}
+
+.feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+}
+
+.card-footer {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px dashed var(--border-light);
+    font-size: 0.9em;
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.wizard-options {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.separator {
+    color: var(--border-light);
+}
+
+
+.button-group {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.config-help {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
