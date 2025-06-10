@@ -110,13 +110,18 @@ loadSavedSelection() {
     
     async showProfileDetails(profileKey) {
         // Update selected state
-        document.querySelectorAll('.profile-card').forEach(card => {
-            card.classList.toggle('selected', card.dataset.profileKey === profileKey);
-        });
+    document.querySelectorAll('.profile-card').forEach(card => {
+        card.classList.toggle('selected', card.dataset.profileKey === profileKey);
+    });
         
         // Load full profile data
-        const profile = await window.magicLantern.getProfile(profileKey);
-        this.selectedProfile = profile;
+    const profile = await window.magicLantern.getProfile(profileKey);
+
+    // Store BOTH the key and the full profile
+    this.selectedProfile = {
+        ...profile,
+        key: profileKey  // Make sure we have the key!
+    };
         
         // Update profile name
         document.getElementById('selected-profile-name').textContent = profile.name;
@@ -290,8 +295,8 @@ loadSavedSelection() {
     selectProfile() {
         if (!this.selectedProfile) return;
   
-    // Store in localStorage
-    localStorage.setItem('selectedProfile', this.selectedProfile.key || this.selectedProfile.name);
+    // Store the KEY in localStorage, not the name
+    localStorage.setItem('selectedProfile', this.selectedProfile.key);
     
         // Navigate back to search page
         window.location.href = '../home/index.html';
