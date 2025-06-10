@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const VERSION = '5.0.2';
+const VERSION = '5.0.3';
 console.log(`✨ MAGIC LANTERN v${VERSION}`);
 
 // magic-lantern-v5.js - Refactored to use external configuration
@@ -10,6 +10,8 @@ const https = require('https');
 const config = require('./config');
 const SearchStrategyGenerator = require('./lib/search-strategy-generator');
 const strategyRegistry = require('./lib/strategy-registry');
+const ContextAwareScoring = require('./lib/context-aware-scoring');
+
 
 
 
@@ -79,7 +81,7 @@ class UnifiedMagicLantern {
     }
 
     // Score and rank results using config weights
-    scoreAndRankResults() {
+    originalScoreAndRankResults() {
         console.log('\n📊 Scoring and ranking results...');
 
         this.allResults = this.allResults.map((result, index) => {
@@ -115,7 +117,21 @@ class UnifiedMagicLantern {
         });
     }
 
-    // Add this method to check if Lantern is available before starting
+scoreAndRankResults() {
+    const useContextAware = this.config.scoring.useContextAwareScoring ?? false;
+    
+    if (useContextAware) {
+        console.log('\n🔬 Using context-aware scoring algorithm...');
+        const scorer = new ContextAwareScoring(this.config.scoring.contextAwareWeights);
+        this.allResults = scorer.scoreAndRankResults(this.allResults, this.config);
+    } else {
+        this.originalScoreAndRankResults();
+    }
+}
+
+
+
+    // check if Lantern is available before starting
 
     async checkLanternAvailability() {
         console.log('\n🏮 Checking Lantern availability...');
@@ -624,6 +640,8 @@ if (require.main === module) {
     const filePath = args.find(arg => !arg.startsWith('--')) || 'data/films.csv';
     const corpusProfile = args.find(arg => arg.startsWith('--corpus='))?.split('=')[1] || 'test';
     const researchProfile = args.find(arg => arg.startsWith('--profile='))?.split('=')[1] || 'default';
+    const useContextAware = args.includes('--context-aware');
+
 
     // Check for help
     if (args.includes('--help') || args.includes('-h')) {
@@ -633,6 +651,8 @@ if (require.main === module) {
         console.log('  --corpus=PROFILE     Corpus size profile: test, single, medium, full');
         console.log('  --profile=PROFILE    Research profile name');
         console.log('  --list-profiles      List available research profiles');
+        console.log('  --context-aware      Use context-aware scoring algorithm'); // NEW
+
         console.log('\nExamples:');
         console.log('  node magic-lantern-v5.js data/films.csv --profile=adaptation-studies');
         console.log('  node magic-lantern-v5.js --corpus=medium --profile=early-cinema');
@@ -657,6 +677,9 @@ if (require.main === module) {
     }
 
     const lantern = new UnifiedMagicLantern(corpusProfile, researchProfile);
+        if (useContextAware) {
+        lantern.config.scoring.useContextAwareScoring = true;
+    }
     lantern.run(filePath, { corpusProfile, researchProfile });
 }
 

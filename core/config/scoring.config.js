@@ -1,16 +1,8 @@
-// config/scoring.config.js
-module.exports = {
-
-  contentTypes: {
-    scores: {
-      review: 10,
-      productionPhoto: 9,
-      boxOfficeData: 8,
-      interview: 7,
-      productionNews: 6,
-      advertisement: 5,
-      tradeMention: 3,
-      mention: 1
-    }
-  }
+// Context-aware scoring configuration
+module.exports.useContextAwareScoring = true; 
+module.exports.contextAwareWeights = {
+    sourceCredibility: 0.35,
+    searchPrecision: 0.25,
+    diversity: 0.25,
+    lanternRelevance: 0.15
 };
