@@ -4,86 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Lantern - Profile Selector</title>
-    <link rel="stylesheet" href="../../shared/common.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../shared/classless.css">
 </head>
 <body>
-    <header class="header">
-        <div class="edition-info">
+    <header>
+        <aside>
             Vol. 5.—No. 0.2.<br>
             SUMMER, 2025.
-        </div>
-        <h1 class="main-title">MAGIC LANTERN</h1>
-        <p class="subtitle">Research Profile Selection & Preview</p>
+        </aside>
+        <h1>MAGIC LANTERN</h1>
+        <p>Research Profile Selection & Preview</p>
     </header>
-    <nav class="main-navigation">
-    <a href="../home/index.html" class="nav-item">🔍 Search</a>
-    <a href="../search-results/index.html" class="nav-item">📊 Results</a>
-    <a href="../profile-selector/index.html" class="nav-item">⚙️ Profiles</a>
-    <a href="../about/index.html" class="nav-item">📖 About</a>
-</nav>
 
-    <div class="container">
-        <!-- Navigation Bar -->
-        <div class="navigation-bar">
-            <div class="nav-actions">
-                <button class="btn btn-secondary" onclick="window.profileSelector.importProfile()">
-                    📥 Import Profile
-                </button>
-                <button class="btn btn-secondary" onclick="window.profileSelector.editProfile()">
-                    📝 Edit Profile File
-                </button>
-            </div>
-        </div>
+    <nav>
+        <a href="../home/index.html">🔍 Search</a>
+        <a href="../search-results/index.html">📊 Results</a>
+        <a href="../profile-selector/index.html" aria-current="page">⚙️ Profiles</a>
+        <a href="../about/index.html">📖 About</a>
+    </nav>
 
-        <div class="notice-box">
-            <p><strong>Choose Your Research Focus!</strong> Each profile emphasizes different search strategies and publications. Preview exactly what searches will run before you begin your research.</p>
-        </div>
+    <main>
+        <!-- Toolbar for actions -->
+        <menu type="toolbar">
+            <button onclick="window.profileSelector.importProfile()">
+                📥 Import Profile
+            </button>
+            <button onclick="window.profileSelector.editProfile()">
+                📝 Edit Profile File
+            </button>
+        </menu>
+
+        <aside role="note">
+            <strong>Choose Your Research Focus!</strong> Each profile emphasizes different search strategies and publications. Preview exactly what searches will run before you begin your research.
+        </aside>
 
         <!-- Profile Grid -->
-        <div class="profiles-grid">
+        <section id="profiles-grid" data-grid="cards">
             <!-- Profile cards will be inserted here by JavaScript -->
-        </div>
+        </section>
 
         <!-- Selected Profile Details -->
-        <div class="profile-details" id="profile-details" style="display: none;">
-            <div class="section-header">
-                <span class="section-number">📋</span>
-                PROFILE DETAILS: <span id="selected-profile-name"></span>
-            </div>
+        <article id="profile-details" hidden>
+            <h2>
+                <span aria-hidden="true">📋</span>
+                Profile Details: <span id="selected-profile-name"></span>
+            </h2>
 
             <!-- Search Preview Section -->
-            <div class="preview-section">
-                <h3 class="subsection-title">🔍 Search Strategies That Will Run</h3>
-                <div class="search-preview-list" id="search-preview-list">
+            <section>
+                <h3>🔍 Search Strategies That Will Run</h3>
+                <div id="search-preview-list" data-list="strategies">
                     <!-- Search strategies will be listed here -->
                 </div>
-            </div>
+            </section>
 
             <!-- Publication Priorities -->
-            <div class="preview-section">
-                <h3 class="subsection-title">📰 Prioritized Publications</h3>
-                <div class="publication-list" id="publication-list">
+            <section>
+                <h3>📰 Prioritized Publications</h3>
+                <div id="publication-list" data-list="publications">
                     <!-- Publications will be listed here -->
                 </div>
-            </div>
+            </section>
 
             <!-- Date Range Settings -->
-            <div class="preview-section">
-                <h3 class="subsection-title">📅 Date Range Settings</h3>
-                <div class="date-range-display" id="date-range-display">
+            <section>
+                <h3>📅 Date Range Settings</h3>
+                <div id="date-range-display" data-list="ranges">
                     <!-- Date ranges will be shown here -->
                 </div>
-            </div>
+            </section>
 
             <!-- Actions -->
-            <div class="profile-actions">
-                <button class="btn btn-primary btn-large" onclick="window.profileSelector.selectProfile()">
+            <footer>
+                <button data-variant="primary" onclick="window.profileSelector.selectProfile()">
                     Use This Profile
                 </button>
-            </div>
-        </div>
-    </div>
+            </footer>
+        </article>
+    </main>
 
     <script src="script.js"></script>
 </body>

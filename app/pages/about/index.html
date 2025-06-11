@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Magic Lantern</title>
-    <link rel="stylesheet" href="../../shared/common.css">
+    <link rel="stylesheet" href="../../shared/classless.css">
 </head>
 <body>
-    <header class="header">
-        <div class="edition-info">
+    <header>
+        <aside>
             Vol. 5.—No. 0.2.<br>
             SUMMER, 2025.
-        </div>
-        <h1 class="main-title">MAGIC LANTERN</h1>
-        <p class="subtitle">About This Research Tool</p>
+        </aside>
+        <h1>MAGIC LANTERN</h1>
+        <p>About This Research Tool</p>
     </header>
 
-    <nav class="main-navigation">
-        <a href="../home/index.html" class="nav-item">🔍 Search</a>
-        <a href="../search-results/index.html" class="nav-item">📊 Results</a>
-        <a href="../profile-selector/index.html" class="nav-item">⚙️ Profiles</a>
-        <a href="../about/index.html" class="nav-item active">📖 About</a>
+    <nav>
+        <a href="../home/index.html">🔍 Search</a>
+        <a href="../search-results/index.html">📊 Results</a>
+        <a href="../profile-selector/index.html">⚙️ Profiles</a>
+        <a href="../about/index.html" aria-current="page">📖 About</a>
     </nav>
 
-    <div class="container">
-        <div class="content-section">
-            <h2 class="section-header">
-                <span class="section-number">📖</span>
-                ABOUT MAGIC LANTERN
+    <main>
+        <article>
+            <h2>
+                <span aria-hidden="true">📖</span>
+                About Magic Lantern
             </h2>
             
             <p>Magic Lantern transforms weeks of manual searching into hours of automated discovery across the Media History Digital Library's Lantern search platform.</p>
@@ -56,15 +56,14 @@
             <p>Created by Alexandra Edwards to enhance film history research.</p>
             <p>Built with love on top of the Media History Digital Library's Lantern platform.</p>
             
-            <div class="ornament">❦ ❦ ❦</div>
+            <hr>
             
-            <p style="text-align: center; margin-top: 30px;">
-                <a href="https://github.com/nonmodernist/magic-lantern" class="btn btn-secondary">
+            <footer>
+                <a href="https://github.com/nonmodernist/magic-lantern" role="button">
                     View on GitHub
                 </a>
-            </p>
-        </div>
-    </div>
-    <script src="../../shared/navigation.js"></script>
+            </footer>
+        </article>
+    </main>
 </body>
 </html>

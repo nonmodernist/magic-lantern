@@ -1,8 +1,3 @@
-// ! Force show wizard on next load (temporary for testing)
-localStorage.removeItem('magicLanternUsed');
-localStorage.removeItem('wizardDismissed');
-
-
 // Check if magicLantern API is available
 console.log('magicLantern API available?', window.magicLantern);
 
@@ -16,43 +11,82 @@ let currentMetrics = {
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded');
-  checkForSelectedProfile();
-    checkFirstTimeUser();
-
-
-
-  const testBtn = document.getElementById('test-btn');
-  console.log('Test button found?', testBtn);
-
-  if (testBtn) {
-    testBtn.addEventListener('click', async () => {
-      console.log('Button clicked!');
-
-      const status = document.getElementById('status');
-      status.textContent = 'Testing connection...';
-      status.className = '';
-
-      try {
-        const result = await window.magicLantern.testConnection();
-        console.log('Test result:', result);
-
-        status.innerHTML = `
-          <strong>✅ Connection successful!</strong><br>
-          Version: ${result.version}<br>
-          Available profiles: ${result.profiles.join(', ')}
-        `;
-        status.className = 'success';
-      } catch (error) {
-        console.error('Test failed:', error);
-        status.textContent = '❌ Connection failed: ' + error.message;
-        status.className = 'error';
-      }
-    });
+  
+  // Check if user has used the tool before
+  const hasUsedBefore = localStorage.getItem('hasUsedMagicLantern');
+  if (!hasUsedBefore) {
+    // Show welcome wizard for first-time users
+    document.getElementById('welcome-wizard').removeAttribute('hidden');
   }
+  
+  checkForSelectedProfile();
+  setupEventListeners();
 });
 
+function setupEventListeners() {
+  // File selection
+  const selectFileBtn = document.getElementById('select-file-btn');
+  if (selectFileBtn) {
+    selectFileBtn.addEventListener('click', selectFile);
+  }
+
+  // Config changes
+  const corpusSelect = document.getElementById('corpus-select');
+  const profileSelect = document.getElementById('profile-select');
+  
+  if (corpusSelect) {
+    corpusSelect.addEventListener('change', updateSearchSummary);
+  }
+  
+  if (profileSelect) {
+    profileSelect.addEventListener('change', updateSearchSummary);
+  }
+
+  // Run search button
+  const runSearchBtn = document.getElementById('run-search-btn');
+  if (runSearchBtn) {
+    runSearchBtn.addEventListener('click', runSearch);
+  }
+
+  // Cancel button
+  const cancelBtn = document.getElementById('cancel-btn');
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', cancelSearch);
+  }
+}
+
+// Wizard functions
+function selectResearchProfile(profile) {
+  // Set the profile in the dropdown
+  const profileSelect = document.getElementById('profile-select');
+  if (profileSelect) {
+    profileSelect.value = profile;
+    // Trigger change event to update description
+    profileSelect.dispatchEvent(new Event('change'));
+  }
+  
+  // Hide wizard
+  document.getElementById('welcome-wizard').setAttribute('hidden', '');
+  
+  // Store that user has used the tool
+  localStorage.setItem('hasUsedMagicLantern', 'true');
+  localStorage.setItem('selectedProfile', profile);
+}
+
+function showAdvancedProfiles() {
+  // Hide wizard and navigate to profile selector
+  document.getElementById('welcome-wizard').setAttribute('hidden', '');
+  localStorage.setItem('hasUsedMagicLantern', 'true');
+  window.location.href = '../profile-selector/index.html';
+}
+
+function skipWizard() {
+  document.getElementById('welcome-wizard').setAttribute('hidden', '');
+  localStorage.setItem('hasUsedMagicLantern', 'true');
+}
+
 // File selection
-document.getElementById('select-file-btn').addEventListener('click', async () => {
+async function selectFile() {
   console.log('Select file button clicked');
 
   try {
@@ -61,7 +95,9 @@ document.getElementById('select-file-btn').addEventListener('click', async () =>
 
     if (fileData) {
       // Show file info
-      document.getElementById('file-info').style.display = 'block';
+      const fileInfo = document.getElementById('file-info');
+      fileInfo.removeAttribute('hidden');
+      
       document.getElementById('file-name').textContent = fileData.name;
       document.getElementById('film-count').textContent = fileData.filmCount;
       document.getElementById('preview-content').textContent = fileData.preview.join('\n');
@@ -71,15 +107,10 @@ document.getElementById('select-file-btn').addEventListener('click', async () =>
       window.totalFilms = fileData.filmCount;
 
       // Show config section
-      console.log('Trying to show config section...');
       const configSection = document.getElementById('config-section');
-      console.log('Config section element:', configSection);
-
       if (configSection) {
-        configSection.style.display = 'block';
-        console.log('Config section display set to block');
-      } else {
-        console.error('Config section not found!');
+        configSection.removeAttribute('hidden');
+        console.log('Config section shown');
       }
 
       // Update search summary
@@ -89,7 +120,7 @@ document.getElementById('select-file-btn').addEventListener('click', async () =>
     console.error('File selection error:', error);
     alert('Error selecting file: ' + error.message);
   }
-});
+}
 
 // Update summary when config changes
 function updateSearchSummary() {
@@ -118,7 +149,7 @@ function updateSearchSummary() {
     🔍 Profile: ${profileNames[profile]}<br>
     ⏱️ Estimated time: ${estimateTime(filmsToProcess, corpus)}
   `;
-  summary.style.display = 'block';
+  summary.removeAttribute('hidden');
 }
 
 function estimateTime(films, corpus) {
@@ -134,12 +165,7 @@ function estimateTime(films, corpus) {
   }
 }
 
-// Update summary when dropdowns change
-document.getElementById('corpus-select').addEventListener('change', updateSearchSummary);
-document.getElementById('profile-select').addEventListener('change', updateSearchSummary);
-
-
-document.getElementById('run-search-btn').addEventListener('click', async () => {
+async function runSearch() {
   const corpus = document.getElementById('corpus-select').value;
   const profile = document.getElementById('profile-select').value;
 
@@ -155,8 +181,8 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
   });
 
   // Hide config, show progress
-  document.getElementById('config-section').style.display = 'none';
-  document.getElementById('progress-section').style.display = 'block';
+  document.getElementById('config-section').setAttribute('hidden', '');
+  document.getElementById('progress-section').removeAttribute('hidden');
 
   try {
     // Set up progress listener
@@ -174,20 +200,14 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
 
     console.log('Search complete!', results);
 
-    // Add this check for cancellation
     if (results.cancelled) {
       console.log('Search was cancelled');
-      // The UI is already reset by the cancel button handler
       return;
     }
 
-    // In the run-search click handler, update the results storage
     if (results.success) {
-      // Store the single file path for the results viewer
       localStorage.setItem('searchResultsPath', results.searchResultsPath);
       localStorage.setItem('searchTimestamp', results.timestamp);
-
-      // Navigate to results page
       window.location.href = '../search-results/index.html';
     } else {
       alert('Search completed but no results found');
@@ -198,228 +218,98 @@ document.getElementById('run-search-btn').addEventListener('click', async () => 
     alert('Search failed: ' + error.message);
 
     // Reset UI
-    document.getElementById('progress-section').style.display = 'none';
-    document.getElementById('config-section').style.display = 'block';
+    document.getElementById('progress-section').setAttribute('hidden', '');
+    document.getElementById('config-section').removeAttribute('hidden');
   }
-});
+}
 
 // Update progress display
 function updateProgress(data) {
-  const progressFill = document.getElementById('progress-fill');
+  const progressBar = document.getElementById('progress-fill');
   const progressText = document.getElementById('progress-text');
   const progressDetails = document.getElementById('progress-details');
 
   if (data.percent) {
-    progressFill.style.width = data.percent + '%';
+    progressBar.value = data.percent;
   }
 
   if (data.status) {
     progressText.textContent = data.status;
   }
 
-  // Format and colorize the console output
-  const formattedLine = formatConsoleLine(data.detail);
-  progressDetails.innerHTML += formattedLine;
-  progressDetails.scrollTop = progressDetails.scrollHeight;
-
   if (data.detail) {
+    // Add to console output
+    progressDetails.textContent += data.detail + '\n';
+    progressDetails.scrollTop = progressDetails.scrollHeight;
+
     // Track metrics
     if (data.detail.includes('🎭 COMPREHENSIVE SEARCH:')) {
-            // Extract film title more accurately
       const match = data.detail.match(/🎭 COMPREHENSIVE SEARCH: (.+?) \(/);
       currentMetrics.currentFilm = match ? match[1] : '';
       currentMetrics.strategiesRun = 0;
+      currentMetrics.resultsFound = 0;
     }
 
-    // Count each search strategy that runs
     if (data.detail.includes('🔍 [') && data.detail.includes(']')) {
       currentMetrics.searchesDone++;
       currentMetrics.strategiesRun++;
     }
 
-    // Update a simple metrics display
-    updateMetricsDisplay();
+    if (data.detail.includes('✅ Found')) {
+      const match = data.detail.match(/Found (\d+) results/);
+      if (match) {
+        const count = parseInt(match[1]);
+        currentMetrics.resultsFound += count;
+      }
+    }
   }
-}
-
-
-function updateMetricsDisplay() {
-  let metricsDiv = document.getElementById('search-metrics');
-  if (!metricsDiv) {
-    metricsDiv = document.createElement('div');
-    metricsDiv.id = 'search-metrics';
-    metricsDiv.style.cssText = 'text-align: center; margin: 10px 0; font-family: var(--font-mono);';
-    document.querySelector('.progress-box').insertBefore(
-      metricsDiv,
-      document.getElementById('progress-details')
-    );
-  }
-
-  metricsDiv.innerHTML = `
-    <strong>${currentMetrics.currentFilm}</strong><br>
-    Strategies: ${currentMetrics.strategiesRun} | 
-    Total Searches: ${currentMetrics.searchesDone}
-  `;
-}
-
-function formatConsoleLine(line) {
-  // Escape HTML first to prevent injection
-  line = line.replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-  // Clean up and classify the line
-  let cssClass = 'console-line';
-
-  if (line.includes('✅ Found')) cssClass = 'console-line-success';
-  else if (line.includes('🔍')) cssClass = 'console-line-search';
-  else if (line.includes('======')) cssClass = 'console-line-header';
-  else if (line.includes('🏆')) cssClass = 'console-line-score';
-  else if (line.includes('📊 Progress:')) cssClass = 'console-line-progress';
-
-  // Make emojis slightly transparent
-  line = line.replace(/([\u{1F300}-\u{1F9FF}])/gu, '<span class="console-line-emoji">$1</span>');
-
-  // Add timestamp
-  const time = new Date().toLocaleTimeString('en-US', {
-    hour12: false,
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  });
-
-  return `<div class="${cssClass}">[${time}] ${line}</div>`;
 }
 
 function checkForSelectedProfile() {
-  // Check if user selected a profile from the selector page
   const selectedProfile = localStorage.getItem('selectedProfile');
 
   if (selectedProfile) {
-    // Update the dropdown to show the selected profile
     const profileDropdown = document.getElementById('profile-select');
     if (profileDropdown) {
       profileDropdown.value = selectedProfile;
-
-      // Update the description text
       const event = new Event('change');
       profileDropdown.dispatchEvent(event);
     }
 
-    // Clear after loading so they don't stick forever
     localStorage.removeItem('selectedProfile');
-
-    // Optional: Show a little message
     console.log(`Profile "${selectedProfile}" selected from Profile Selector`);
   }
 }
 
-// ADD THE CANCEL BUTTON CODE HERE!
-document.getElementById('cancel-btn').addEventListener('click', async () => {
+async function cancelSearch() {
   console.log('Cancel button clicked');
 
   const result = await window.magicLantern.stopSearch();
 
   if (result.success) {
     // Hide progress, show config
-    document.getElementById('progress-section').style.display = 'none';
-    document.getElementById('config-section').style.display = 'block';
+    document.getElementById('progress-section').setAttribute('hidden', '');
+    document.getElementById('config-section').removeAttribute('hidden');
 
-    // Clear the progress bar
-    document.getElementById('progress-fill').style.width = '0%';
+    // Reset progress bar
+    document.getElementById('progress-fill').value = 0;
     document.getElementById('progress-text').textContent = 'Search cancelled';
-    document.getElementById('progress-details').innerHTML += '<br><strong>Search cancelled by user</strong>';
+    document.getElementById('progress-details').textContent += '\n\nSearch cancelled by user';
   }
-});
-
-// Check if user is new (no previous selections)
-function checkFirstTimeUser() {
-    const hasUsedBefore = localStorage.getItem('magicLanternUsed');
-    const wizardDismissed = localStorage.getItem('wizardDismissed');
-    
-    if (!hasUsedBefore && !wizardDismissed) {
-        document.getElementById('welcome-wizard').style.display = 'block';
-        // Hide the regular notice box to reduce clutter
-        document.querySelector('.notice-box').style.display = 'block';
-    }
 }
 
-// Handle research profile selection from wizard
-function selectResearchProfile(profile) {
-    // Set the profile dropdown
-    document.getElementById('profile-select').value = profile;
-    
-    // Trigger change event to update description
-    const event = new Event('change');
-    document.getElementById('profile-select').dispatchEvent(event);
-    
-    // Hide wizard, show regular interface
-    document.getElementById('welcome-wizard').style.display = 'none';
-    document.querySelector('.notice-box').style.display = 'block';
-    
-    // Remember they've used the tool
-    localStorage.setItem('magicLanternUsed', 'true');
-    
-    // Smooth scroll to file selection
-    document.querySelector('.search-section').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
-    });
-    
-    // Show a success message
-    showToast(`Great choice! "${profile}" profile selected. Now let's add your films.`);
-}
-
-// Skip the wizard
-function skipWizard() {
-    document.getElementById('welcome-wizard').style.display = 'none';
-    document.querySelector('.notice-box').style.display = 'block';
-    localStorage.setItem('wizardDismissed', 'true');
-}
-
-// Show advanced profiles (navigate to profile selector)
-function showAdvancedProfiles() {
-    localStorage.setItem('wizardDismissed', 'true');
-    window.location.href = '../profile-selector/index.html';
-}
-
-// Simple toast notification
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 100);
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
-}
-
-
+// Generate sample CSV
 function generateSampleCSV() {
-    const sampleData = `title,year,author,director,studio
+  const csv = `title,year,author,director,studio
 "The Wizard of Oz",1939,"L. Frank Baum","Victor Fleming","Metro-Goldwyn-Mayer"
-"Gone with the Wind",1939,"Margaret Mitchell","Victor Fleming","Selznick International Pictures"
-"Rebecca",1940,"Daphne du Maurier","Alfred Hitchcock","Selznick International Pictures"
 "Little Women",1933,"Louisa May Alcott","George Cukor","RKO Pictures"
-"The Maltese Falcon",1941,"Dashiell Hammett","John Huston","Warner Bros."
-"Pride and Prejudice",1940,"Jane Austen","Robert Z. Leonard","MGM"
-"Wuthering Heights",1939,"Emily Brontë","William Wyler","United Artists"
-"Alice in Wonderland",1933,"Lewis Carroll","Norman Z. McLeod","Paramount Pictures"`;
-    
-    const blob = new Blob([sampleData], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'magic-lantern-sample-films.csv';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    
-    showToast('Sample CSV downloaded! Edit it with your films and re-upload.');
+"Gone with the Wind",1939,"Margaret Mitchell","Victor Fleming","Selznick International Pictures"`;
+
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'sample-films.csv';
+  a.click();
+  URL.revokeObjectURL(url);
 }

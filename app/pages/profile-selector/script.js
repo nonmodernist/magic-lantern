@@ -1,30 +1,24 @@
-// app/pages/profile-selector/script.js
+// app/pages/profile-selector/script.js - Refactored for classless HTML
 
 class ProfileSelector {
     constructor() {
         this.profiles = {};
         this.selectedProfile = null;
-
         this.loadProfiles();
         this.loadSavedSelection();
     }
 
-    // Add this new method:
-loadSavedSelection() {
-    const savedProfile = localStorage.getItem('selectedProfile');
-
-    if (savedProfile) {
-        // Wait for profiles to load, then select the saved one
-        setTimeout(() => {
-            this.showProfileDetails(savedProfile);
-        }, 100);
+    loadSavedSelection() {
+        const savedProfile = localStorage.getItem('selectedProfile');
+        if (savedProfile) {
+            setTimeout(() => {
+                this.showProfileDetails(savedProfile);
+            }, 100);
+        }
     }
     
-}
-
-    
     async loadProfiles() {
-        // Profile data with icons and highlights
+        // Profile data remains the same
         const profileData = {
             'default': {
                 icon: '📚',
@@ -68,75 +62,73 @@ loadSavedSelection() {
             }
         };
         
-        // Get profiles from backend
         const profiles = await window.magicLantern.getProfiles();
         
-        const container = document.querySelector('.profiles-grid');
+        // Now using data attribute selector
+        const container = document.querySelector('[data-grid="cards"]');
         container.innerHTML = '';
         
         profiles.forEach(profile => {
             const data = profileData[profile.key] || { icon: '📁', highlights: [] };
             const card = this.createProfileCard(profile, data);
             container.appendChild(card);
-            
-            // Store profile data
             this.profiles[profile.key] = profile;
         });
     }
     
     createProfileCard(profile, data) {
         const card = document.createElement('div');
-        card.className = 'profile-card';
-        card.dataset.profileKey = profile.key;
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('data-profile-key', profile.key);
         
+        // Create structure without classes
         card.innerHTML = `
-            <span class="profile-icon">${data.icon}</span>
-            <h3 class="profile-name">${profile.name}</h3>
-            <p class="profile-description">${profile.description}</p>
-            <div class="profile-highlights">
+            <figure>${data.icon}</figure>
+            <h3>${profile.name}</h3>
+            <p>${profile.description}</p>
+            <ul>
                 ${data.highlights.map(h => `
-                    <div class="highlight-item">
-                        <span class="highlight-icon">✓</span>
-                        <span>${h}</span>
-                    </div>
+                    <li>${h}</li>
                 `).join('')}
-            </div>
+            </ul>
         `;
         
+        // Add both click and keyboard support
         card.addEventListener('click', () => this.showProfileDetails(profile.key));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.showProfileDetails(profile.key);
+            }
+        });
         
         return card;
     }
     
     async showProfileDetails(profileKey) {
-        // Update selected state
-    document.querySelectorAll('.profile-card').forEach(card => {
-        card.classList.toggle('selected', card.dataset.profileKey === profileKey);
-    });
+        // Update selected state using aria-selected
+        document.querySelectorAll('[data-grid="cards"] > div').forEach(card => {
+            const isSelected = card.getAttribute('data-profile-key') === profileKey;
+            card.setAttribute('aria-selected', isSelected);
+        });
         
-        // Load full profile data
-    const profile = await window.magicLantern.getProfile(profileKey);
-
-    // Store BOTH the key and the full profile
-    this.selectedProfile = {
-        ...profile,
-        key: profileKey  // Make sure we have the key!
-    };
+        const profile = await window.magicLantern.getProfile(profileKey);
+        this.selectedProfile = {
+            ...profile,
+            key: profileKey
+        };
         
         // Update profile name
         document.getElementById('selected-profile-name').textContent = profile.name;
         
-        // Show search strategies
+        // Show sections
         this.showSearchStrategies(profile);
-        
-        // Show prioritized publications
         this.showPublications(profile);
-        
-        // Show date ranges
         this.showDateRanges(profile);
         
-        // Show details section
-        document.getElementById('profile-details').style.display = 'block';
+        // Show details using hidden attribute
+        document.getElementById('profile-details').hidden = false;
         
         // Scroll to details
         document.getElementById('profile-details').scrollIntoView({ 
@@ -149,11 +141,10 @@ loadSavedSelection() {
         const container = document.getElementById('search-preview-list');
         container.innerHTML = '';
         
-        // Get search strategies from profile
         const strategies = profile.searchStrategies?.weights || {};
         const enabled = profile.searchStrategies?.enabled || {};
         
-        // Define all possible strategies with examples
+        // Strategy examples remain the same
         const strategyExamples = {
             'exact_title': {
                 name: 'Exact Title Match',
@@ -201,11 +192,9 @@ loadSavedSelection() {
             }
         };
         
-        // Sort strategies by weight
         const sortedStrategies = Object.entries(strategies)
             .sort((a, b) => (b[1] || 0) - (a[1] || 0));
         
-        // Add default strategies if not in profile
         Object.keys(strategyExamples).forEach(key => {
             if (!strategies.hasOwnProperty(key)) {
                 sortedStrategies.push([key, enabled[key] === false ? 0 : 1]);
@@ -220,15 +209,16 @@ loadSavedSelection() {
             
             const isDisabled = weight === 0;
             
+            // Create structured item without classes
             const item = document.createElement('div');
-            item.className = `search-strategy-item ${isDisabled ? 'strategy-disabled' : ''}`;
+            item.setAttribute('data-disabled', isDisabled);
             
             item.innerHTML = `
-                <div class="strategy-info">
-                    <div class="strategy-name">${info.name}</div>
-                    <span class="strategy-example">${info.example}</span>
+                <div>
+                    <strong>${info.name}</strong>
+                    <code>${info.example}</code>
                 </div>
-                <span class="strategy-weight">${isDisabled ? 'SKIP' : weight.toFixed(1) + 'x'}</span>
+                <data value="${weight}">${isDisabled ? 'SKIP' : weight.toFixed(1) + 'x'}</data>
             `;
             
             container.appendChild(item);
@@ -241,17 +231,15 @@ loadSavedSelection() {
         
         const weights = profile.publications?.weights || {};
         
-        // Sort by weight (highest first)
         Object.entries(weights)
             .sort((a, b) => b[1] - a[1])
-            .slice(0, 12) // Show top 12
+            .slice(0, 12)
             .forEach(([pub, weight]) => {
                 const item = document.createElement('div');
-                item.className = 'publication-item';
                 
                 item.innerHTML = `
-                    <span class="pub-name">${this.formatPublicationName(pub)}</span>
-                    <span class="pub-weight">${weight.toFixed(1)}x</span>
+                    <span>${this.formatPublicationName(pub)}</span>
+                    <data value="${weight}">${weight.toFixed(1)}x</data>
                 `;
                 
                 container.appendChild(item);
@@ -270,8 +258,9 @@ loadSavedSelection() {
         
         ['high', 'medium', 'low'].forEach(confidence => {
             const range = ranges[confidence];
+            
             const item = document.createElement('div');
-            item.className = 'date-range-item';
+            item.setAttribute('data-confidence', confidence);
             
             const totalYears = 10;
             const centerPercent = 50;
@@ -279,31 +268,31 @@ loadSavedSelection() {
             const afterPercent = (range.after / totalYears) * 50;
             
             item.innerHTML = `
-                <span class="confidence-label">${confidence.charAt(0).toUpperCase() + confidence.slice(1)}:</span>
-                <div class="range-visual">
-                    <div class="range-bar" style="left: ${centerPercent - beforePercent}%; width: ${beforePercent + afterPercent}%;">
-                        -${range.before}/+${range.after} years
-                    </div>
-                </div>
+                <strong>${confidence.charAt(0).toUpperCase() + confidence.slice(1)}:</strong>
+                <meter 
+                    min="0" 
+                    max="100" 
+                    value="${beforePercent + afterPercent}"
+                    data-before="${range.before}"
+                    data-after="${range.after}"
+                >
+                    -${range.before}/+${range.after} years
+                </meter>
+                <span>-${range.before}/+${range.after} years</span>
             `;
             
             container.appendChild(item);
         });
     }
     
-    
     selectProfile() {
         if (!this.selectedProfile) return;
-  
-    // Store the KEY in localStorage, not the name
-    localStorage.setItem('selectedProfile', this.selectedProfile.key);
-    
-        // Navigate back to search page
+        
+        localStorage.setItem('selectedProfile', this.selectedProfile.key);
         window.location.href = '../home/index.html';
     }
     
     async importProfile() {
-        // Show file picker
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.js,.profile.js';
@@ -315,19 +304,13 @@ loadSavedSelection() {
             try {
                 const content = await file.text();
                 
-                // Basic validation
                 if (!content.includes('module.exports')) {
                     alert('Invalid profile file format');
                     return;
                 }
                 
-                // Save the profile
                 const filename = file.name.replace(/\.js$/, '');
-                
                 alert(`Profile import feature coming soon!\nFor now, manually copy ${file.name} to:\ncore/config/profiles/`);
-                
-                // Future: Actually save the profile via IPC
-                // const result = await window.magicLantern.importProfile(content, filename);
                 
             } catch (error) {
                 alert('Error importing profile: ' + error.message);

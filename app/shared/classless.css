@@ -1,0 +1,751 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:wght@400;600&family=Courier+Prime&display=swap');
+
+/* Minimal reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+/* Custom properties for theming */
+:root {
+    --cream: #FDFCF8;
+    --shadow: #F4F1E8;
+    --ink: #2C2C2C;
+    --gold: #8B7355;
+    --muted: #666;
+    
+    --serif: 'Playfair Display', serif;
+    --body: 'Crimson Text', Georgia, serif;
+    --mono: 'Courier Prime', monospace;
+}
+
+/* Base styles */
+body {
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--shadow);
+}
+
+/* Header styling */
+header {
+    background: var(--cream);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 4px double var(--ink);
+    position: relative;
+}
+
+header aside {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: right;
+}
+
+header h1 {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 0;
+}
+
+header p {
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 0.5rem;
+}
+
+/* Navigation */
+nav {
+    background: var(--cream);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 2rem;
+}
+
+nav a {
+    padding: 0.5rem 1.25rem;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--serif);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    border-color: var(--gold);
+    background: rgba(139, 115, 85, 0.1);
+}
+
+nav a[aria-current="page"] {
+    background: var(--ink);
+    color: var(--cream);
+}
+
+/* Main content */
+main {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+article {
+    background: var(--cream);
+    padding: 3rem;
+    border: 3px solid var(--ink);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+h2, h3 {
+    font-family: var(--serif);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px double var(--ink);
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+p, ul, ol {
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Horizontal rule as ornament */
+hr {
+    border: none;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+hr::before {
+    content: "❦ ❦ ❦";
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+/* Footer within article */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Links styled as buttons */
+a[role="button"] {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+}
+
+a[role="button"]:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header aside {
+        position: static;
+        margin-bottom: 1rem;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+    }
+    
+    article {
+        padding: 1.5rem;
+    }
+}
+
+/* Menu/toolbar styling */
+menu[type="toolbar"] {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+/* Aside as notice/alert */
+aside[role="note"] {
+    background: var(--cream);
+    border: 2px solid var(--ink);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+aside[role="note"]::before {
+    content: "NOTICE";
+    position: absolute;
+    top: -0.75rem;
+    left: 1.5rem;
+    background: var(--shadow);
+    padding: 0 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+/* Grid layouts with data attributes */
+[data-grid="cards"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Card styling (when JS creates them) */
+[data-grid="cards"] > div {
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+[data-grid="cards"] > div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+[data-grid="cards"] > div[aria-selected="true"] {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold);
+}
+
+/* Hidden attribute support */
+[hidden] {
+    display: none !important;
+}
+
+/* Article as details panel */
+main > article {
+    background: var(--cream);
+    border: 3px solid var(--ink);
+    padding: 3rem;
+    margin-top: 2rem;
+}
+
+article > h2 {
+    font-size: 1.5rem;
+    border-bottom: 3px double var(--ink);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+article section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(248, 246, 240, 0.5);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+}
+
+article section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* List containers with data attributes */
+[data-list="strategies"],
+[data-list="publications"],
+[data-list="ranges"] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Button variants */
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: #4A4A4A;
+    color: var(--cream);
+    font-family: inherit;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: var(--ink);
+    transform: translateY(-1px);
+}
+
+button[data-variant="primary"] {
+    background: var(--ink);
+    font-size: 1.125rem;
+    padding: 1rem 2.5rem;
+}
+
+button[data-variant="primary"]:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* Footer within article */
+article > footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 3px double var(--ink);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    menu[type="toolbar"] {
+        flex-direction: column;
+    }
+    
+    [data-grid="cards"] {
+        grid-template-columns: 1fr;
+    }
+    
+    article {
+        padding: 1.5rem;
+    }
+}
+
+/* Profile cards in grid */
+[data-grid="cards"] > div figure {
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+[data-grid="cards"] > div h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+[data-grid="cards"] > div p {
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+[data-grid="cards"] > div ul {
+    list-style: none;
+    padding: 0;
+}
+
+[data-grid="cards"] > div li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+[data-grid="cards"] > div li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+}
+
+/* Strategy list items */
+[data-list="strategies"] > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+[data-list="strategies"] > div[data-disabled="true"] {
+    opacity: 0.5;
+}
+
+[data-list="strategies"] code {
+    display: block;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    background: #f5f5f5;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+}
+
+[data-list="strategies"] data {
+    background: var(--gold);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+/* Publication list */
+[data-list="publications"] > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+[data-list="publications"] data {
+    color: var(--gold);
+    font-weight: bold;
+    font-family: var(--mono);
+}
+
+/* Date ranges with meter */
+[data-list="ranges"] > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+[data-list="ranges"] strong {
+    width: 100px;
+}
+
+[data-list="ranges"] meter {
+    flex: 1;
+    height: 30px;
+}
+
+/* Style meter element */
+meter {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 30px;
+    background: #e0e0e0;
+    border-radius: 15px;
+}
+
+meter::-webkit-meter-bar {
+    background: #e0e0e0;
+    border-radius: 15px;
+}
+
+meter::-webkit-meter-optimum-value {
+    background: var(--gold);
+    border-radius: 15px;
+}
+
+/* Add to classless.css - Home page specific needs */
+
+/* Number badges in headers */
+h2 data {
+    background: var(--ink);
+    color: var(--cream);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* Progress bar styling */
+progress {
+    width: 100%;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(to right, var(--gold), #A08060);
+    border-radius: 10px;
+}
+
+/* Console output display */
+pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Select elements */
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gold);
+    background: #FFFEF9;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Abbreviation tooltips */
+abbr {
+    text-decoration: none;
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+/* Card footer styling (for wizard) */
+[data-grid="cards"] > div footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+/* Add to classless.css - Search Results specific */
+
+/* Sticky toolbar */
+menu[data-sticky="true"] {
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 100;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 2rem;
+}
+
+/* Stats grid */
+[data-grid="stats"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+[data-grid="stats"] > div {
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, white, #fafaf8);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+[data-grid="stats"] data {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--gold);
+    font-family: var(--serif);
+}
+
+[data-grid="stats"] label {
+    display: block;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+}
+
+/* Tips grid */
+[data-grid="tips"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+[data-grid="tips"] aside {
+    background: #f8f6f0;
+    padding: 1rem;
+    border-left: 3px solid var(--gold);
+}
+
+/* Loading state */
+[data-loading="true"] {
+    text-align: center;
+    padding: 4rem;
+    color: var(--muted);
+}
+
+[aria-busy="true"]::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 3px solid #e0e0e0;
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Film articles */
+article[data-film="true"] {
+    margin-bottom: 2rem;
+}
+
+article[data-film="true"] header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border-bottom: 3px double var(--ink);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+article[data-film="true"] header data {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.5rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.875rem;
+}
+
+/* Source items */
+[data-source="true"] {
+    position: relative;
+    border: 1px solid #e0e0e0;
+    padding: 1.5rem;
+    padding-left: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(to bottom, white, #fafaf8);
+    transition: all 0.2s ease;
+}
+
+[data-source="true"]:hover {
+    border-color: var(--gold);
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+}
+
+[data-source="true"] input[type="checkbox"] {
+    position: absolute;
+    left: 1rem;
+    top: 1.5rem;
+}
+
+[data-source="true"] data[data-score] {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: var(--gold);
+    color: var(--cream);
+    padding: 0.375rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+[data-source="true"] h5 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem 0;
+}
+
+[data-source="true"] blockquote {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--gold);
+    font-style: normal;
+}
+
+[data-source="true"] blockquote em {
+    background: #fff2cc;
+    padding: 2px 4px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Strategy bars */
+[data-list="strategies"] > div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+[data-list="strategies"] label {
+    flex: 0 0 180px;
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+[data-list="strategies"] meter {
+    flex: 1;
+}
+
+[data-list="strategies"] data {
+    flex: 0 0 40px;
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Show more button */
+[data-show-more] {
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #e0e0e0;
+}
+
+/* Selected source highlight */
+[data-source="true"]:has(input:checked) {
+    border-color: var(--gold);
+    background: #f0f8f0;
+}
+
+/* Header time element */
+article header time {
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+/* Step numbers in guide */
+[data-grid="cards"] data[value] {
+    background: var(--ink);
+    color: var(--cream);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    float: left;
+    margin-right: 1rem;
+}
