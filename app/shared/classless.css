@@ -11,7 +11,7 @@
     --shadow: #F4F1E8;
     --ink: #2C2C2C;
     --gold: #8B7355;
-    --muted: #666;
+    --muted: #554a3e;
     
     --serif: 'Playfair Display', serif;
     --body: 'Crimson Text', Georgia, serif;
@@ -79,7 +79,7 @@ nav a {
     font-family: var(--serif);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 1px solid transparent;
+    border: 1px solid var(--gold);
     transition: all 0.2s ease;
 }
 
@@ -89,8 +89,8 @@ nav a:hover {
 }
 
 nav a[aria-current="page"] {
-    background: var(--ink);
-    color: var(--cream);
+    background: rgba(139, 115, 85, 0.1);
+    color: var(--ink);
 }
 
 /* Main content */
@@ -103,7 +103,7 @@ main {
 article {
     background: var(--cream);
     padding: 3rem;
-    border: 3px solid var(--ink);
+    border: 2px solid var(--ink);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -112,14 +112,14 @@ h2, h3 {
     font-family: var(--serif);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
 
 h2 {
     font-size: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 3px double var(--ink);
+    border-bottom: 2px double var(--muted);
 }
 
 h3 {
@@ -157,7 +157,7 @@ footer {
 a[role="button"] {
     display: inline-block;
     padding: 0.75rem 2rem;
-    background: var(--ink);
+    background: var(--gold);
     color: var(--cream);
     text-decoration: none;
     text-transform: uppercase;
@@ -166,7 +166,7 @@ a[role="button"] {
 }
 
 a[role="button"]:hover {
-    background: var(--gold);
+    background: var(--muted);
     transform: translateY(-2px);
 }
 
@@ -199,7 +199,7 @@ menu[type="toolbar"] {
 /* Aside as notice/alert */
 aside[role="note"] {
     background: var(--cream);
-    border: 2px solid var(--ink);
+    border: 2px solid var(--muted);
     padding: 1.5rem;
     margin-bottom: 2rem;
     position: relative;
@@ -228,7 +228,7 @@ aside[role="note"]::before {
 /* Card styling (when JS creates them) */
 [data-grid="cards"] > div {
     background: var(--cream);
-    border: 3px solid var(--ink);
+    border: 2px solid var(--ink);
     padding: 2rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -252,14 +252,14 @@ aside[role="note"]::before {
 /* Article as details panel */
 main > article {
     background: var(--cream);
-    border: 3px solid var(--ink);
-    padding: 3rem;
+    border: 2.5px solid var(--ink);
+    padding: 2rem 3rem;
     margin-top: 2rem;
 }
 
 article > h2 {
     font-size: 1.5rem;
-    border-bottom: 3px double var(--ink);
+    border-bottom: 1.5px solid var(--ink);
     padding-bottom: 1rem;
     margin-bottom: 2rem;
 }
@@ -269,7 +269,7 @@ article section {
     padding: 1.5rem;
     background: rgba(248, 246, 240, 0.5);
     border: 1px solid var(--gold);
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 article section h3 {
@@ -289,9 +289,9 @@ article section h3 {
 /* Button variants */
 button {
     padding: 0.75rem 1.5rem;
-    border: none;
-    background: #4A4A4A;
+    background: var(--gold);
     color: var(--cream);
+    border: 1px solid transparent;
     font-family: inherit;
     font-size: 1rem;
     text-transform: uppercase;
@@ -301,18 +301,21 @@ button {
 }
 
 button:hover {
-    background: var(--ink);
+    background: var(--cream);
+    color: var(--ink);
+    border: 1px solid var(--gold);
     transform: translateY(-1px);
 }
 
 button[data-variant="primary"] {
-    background: var(--ink);
+    background: var(--gold);
+    color: var(--cream);
     font-size: 1.125rem;
     padding: 1rem 2.5rem;
 }
 
 button[data-variant="primary"]:hover {
-    background: var(--gold);
+    background: var(--ink);
     transform: translateY(-2px);
 }
 
@@ -535,102 +538,9 @@ abbr {
 
 /* Add to classless.css - Search Results specific */
 
-/* Sticky toolbar */
-menu[data-sticky="true"] {
-    position: sticky;
-    top: 0;
-    background: var(--cream);
-    z-index: 100;
-    padding: 1rem 0;
-    border-bottom: 2px solid var(--ink);
-    margin-bottom: 2rem;
-}
 
-/* Stats grid */
-[data-grid="stats"] {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-    text-align: center;
-}
 
-[data-grid="stats"] > div {
-    padding: 1.5rem;
-    background: linear-gradient(to bottom, white, #fafaf8);
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-}
 
-[data-grid="stats"] data {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--gold);
-    font-family: var(--serif);
-}
-
-[data-grid="stats"] label {
-    display: block;
-    margin-top: 0.5rem;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-}
-
-/* Tips grid */
-[data-grid="tips"] {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-[data-grid="tips"] aside {
-    background: #f8f6f0;
-    padding: 1rem;
-    border-left: 3px solid var(--gold);
-}
-
-/* Loading state */
-[data-loading="true"] {
-    text-align: center;
-    padding: 4rem;
-    color: var(--muted);
-}
-
-[aria-busy="true"]::before {
-    content: "";
-    display: block;
-    width: 40px;
-    height: 40px;
-    margin: 0 auto 1rem;
-    border: 3px solid #e0e0e0;
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-/* Film articles */
-article[data-film="true"] {
-    margin-bottom: 2rem;
-}
-
-article[data-film="true"] header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    border-bottom: 3px double var(--ink);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-article[data-film="true"] header data {
-    background: var(--ink);
-    color: var(--cream);
-    padding: 0.5rem 1rem;
-    font-family: var(--mono);
-    font-size: 0.875rem;
-}
 
 /* Source items */
 [data-source="true"] {
