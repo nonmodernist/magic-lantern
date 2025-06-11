@@ -57,14 +57,6 @@ function dismissGuide() {
     document.getElementById('next-steps-guide').style.display = 'none';
 }
 
-// Add to your displayResults function
-function displayResults(results) {
-    searchResults = results;
-    // ... existing code ...
-    
-    // At the end, check if we should show the guide
-    checkShowGuide();
-}
 
 
 // Load results when page loads
@@ -160,6 +152,9 @@ function showNoResultsMessage() {
 }
 
 function displayResults(results) {
+
+        checkShowGuide();
+
     searchResults = results;
 
     // Update header timestamp
@@ -226,7 +221,7 @@ function createSourceCard(source, film) {
             id="source-${source.id}"
             data-source-id="${source.id}"
             data-film-title="${film.title}">
-        <label for="source-${source.id}">Save</label>
+        <label for="source-${source.id}"></label>
     `;
 
     // Insert checkbox as first element in the card
@@ -381,7 +376,7 @@ function createFilmSection(filmResult) {
     return filmSection;
 }
 
-// Keep all other existing functions unchanged...
+
 function createStrategyBar(strategy, count, maxCount) {
     const bar = document.createElement('div');
     bar.className = 'strategy-bar';

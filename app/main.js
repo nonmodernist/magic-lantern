@@ -23,36 +23,6 @@ function createWindow() {
   }
 }
 
-// Handle test connection
-ipcMain.handle('test-connection', async () => {
-  console.log('test-connection handler called');
-
-  try {
-    // Test that we can access Magic Lantern
-    const path = require('path');
-    const magicLanternPath = path.join(__dirname, '..', 'core', 'magic-lantern-v5.js');
-
-    // Check if file exists
-    const fs = require('fs');
-    if (!fs.existsSync(magicLanternPath)) {
-      throw new Error('Magic Lantern core not found at: ' + magicLanternPath);
-    }
-
-    // Try to require it
-    const UnifiedMagicLantern = require('../core/magic-lantern-v5');
-
-    return {
-      success: true,
-      message: 'Magic Lantern core loaded successfully!',
-      version: 'v5',
-      profiles: ['default', 'adaptation-studies', 'labor-history', 'early-cinema', 'regional-reception']
-    };
-  } catch (error) {
-    console.error('Handler error:', error);
-    throw new Error(`Failed to load Magic Lantern: ${error.message}`);
-  }
-});
-
 // Handle file selection
 ipcMain.handle('select-file', async () => {
   console.log('select-file handler called');
@@ -147,7 +117,7 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
         mainWindow.webContents.send('search-progress', {
           status: 'Scoring results...',
           detail: chunk.trim(),
-          percent: 60
+          percent: 75
         });
       // } else if (chunk.includes('📚 Fetching full text')) {
       //   mainWindow.webContents.send('search-progress', {
@@ -219,7 +189,7 @@ ipcMain.handle('run-search', async (event, filePath, corpus, profile) => {
             return statsB.mtime - statsA.mtime;
           });
 
-        // Find the most recent comprehensive and full-text files
+        // Find the most recent results files
     const searchResultsFile = sortedFiles.find(f => f.includes('search-results'));
 
     if (!searchResultsFile) {
@@ -522,49 +492,4 @@ ipcMain.handle('find-recent-results', async () => {
     console.error('Error finding recent results:', error);
     return null;
   }
-});
-
-// In app/main.js, add this handler
-
-ipcMain.handle('delete-profile', async (event, profileKey) => {
-    const fs = require('fs');
-    const path = require('path');
-    
-    try {
-        // Prevent deleting built-in profiles
-        const builtInProfiles = ['default', 'adaptation-studies', 'labor-history', 'early-cinema', 'regional-reception'];
-        if (builtInProfiles.includes(profileKey)) {
-            return { 
-                success: false, 
-                error: 'Cannot delete built-in profiles' 
-            };
-        }
-        
-        // Construct the file path
-        const filename = `${profileKey}.profile.js`;
-        const filePath = path.join(__dirname, '..', 'core', 'config', 'profiles', filename);
-        
-        // Check if file exists
-        if (!fs.existsSync(filePath)) {
-            return { 
-                success: false, 
-                error: 'Profile file not found' 
-            };
-        }
-        
-        // Delete the file
-        fs.unlinkSync(filePath);
-        
-        // Clear the require cache
-        delete require.cache[require.resolve('../core/config/profiles')];
-        
-        return { success: true };
-        
-    } catch (error) {
-        console.error('Error deleting profile:', error);
-        return { 
-            success: false, 
-            error: error.message 
-        };
-    }
 });

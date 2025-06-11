@@ -229,22 +229,12 @@ function updateProgress(data) {
       const match = data.detail.match(/🎭 COMPREHENSIVE SEARCH: (.+?) \(/);
       currentMetrics.currentFilm = match ? match[1] : '';
       currentMetrics.strategiesRun = 0;
-      currentMetrics.resultsFound = 0;
     }
 
     // Count each search strategy that runs
     if (data.detail.includes('🔍 [') && data.detail.includes(']')) {
       currentMetrics.searchesDone++;
       currentMetrics.strategiesRun++;
-    }
-
-     // Count results found
-    if (data.detail.includes('✅ Found')) {
-      const match = data.detail.match(/Found (\d+) results/);
-      if (match) {
-        const count = parseInt(match[1]);
-        currentMetrics.resultsFound += count;
-      }
     }
 
     // Update a simple metrics display
@@ -268,7 +258,6 @@ function updateMetricsDisplay() {
   metricsDiv.innerHTML = `
     <strong>${currentMetrics.currentFilm}</strong><br>
     Strategies: ${currentMetrics.strategiesRun} | 
-    Results: ${currentMetrics.resultsFound} | 
     Total Searches: ${currentMetrics.searchesDone}
   `;
 }

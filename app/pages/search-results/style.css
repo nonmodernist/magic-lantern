@@ -223,7 +223,7 @@
 }
 
 .source-card {
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--accent-gold);
     padding: var(--space-md);
     background: linear-gradient(to bottom, #FFFFFF, #FAFAF8);
     position: relative;
