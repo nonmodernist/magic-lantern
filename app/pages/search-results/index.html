@@ -18,7 +18,6 @@
         <p>Comprehensive Search Results</p>
     </header>
 
-
     <nav>
         <a href="../home/index.html">🔍 Search</a>
         <a href="../search-results/index.html" aria-current="page">📊 Results</a>
@@ -28,40 +27,6 @@
 
     <div id="results-layout">
         <aside id="results-tools">
-            <!-- Current Session Info -->
-            <section id="session-info">
-                <h3>Current Results</h3>
-                <div id="results-meta">
-                    <time id="results-timestamp"></time>
-                    <small id="profile-used">Profile:
-                        <output>Default</output></small>
-                </div>
-                <button onclick="loadResultsFile()">📂 Load Different
-                    Results</button>
-                <div id="loaded-file-info" hidden>
-                    <small>File: <output id="loaded-filename"></output></small>
-                </div>
-            </section>
-
-            <!-- Quick Stats -->
-            <section id="quick-stats">
-                <h3>Quick Stats</h3>
-                <dl>
-                    <div>
-                        <dt>Films</dt>
-                        <dd id="films-count">0</dd>
-                    </div>
-                    <div>
-                        <dt>Sources</dt>
-                        <dd id="sources-count">0</dd>
-                    </div>
-                    <div>
-                        <dt>Selected</dt>
-                        <dd id="selected-count">0</dd>
-                    </div>
-                </dl>
-            </section>
-
             <!-- Selection Tools -->
             <section id="selection-tools">
                 <h3>Selection</h3>
@@ -71,80 +36,79 @@
                 <button onclick="clearAll()" id="clear-all-btn" hidden>
                     <span>☐</span> Clear All
                 </button>
-                <button onclick="selectHighScores()">
-                    <span>⭐</span> Select High Scores (80+)
+                <!-- <button onclick="selectHighScores()">
+                    <span>⭐</span> High Scores (80+)
                 </button>
                 <button onclick="selectByPublication()">
-                    <span>📰</span> Select by Publication...
-                </button>
+                    <span>📰</span> By Publication...
+                </button> -->
             </section>
 
             <!-- Export Tools -->
             <section id="export-tools">
                 <h3>Export</h3>
-                <button onclick="exportSelected()" id="export-selected-btn"
-                    disabled>
-                    <span>↓</span> Export Selected (<output>0</output>)
+                <button onclick="exportSelected()" id="export-selected-btn" disabled>
+                    <span>↓</span> Selected (<output>0</output>)
                 </button>
                 <button onclick="exportAll()">
-                    <span>💾</span> Export All Results
+                    <span>💾</span> All Results
                 </button>
-                <button onclick="exportFilmSummary()">
-                    <span>📋</span> Export Film Summary
+                <!-- TODO add back in once these work
+                    <button onclick="exportFilmSummary()">
+                    <span>📋</span> Film Summary
                 </button>
-                <hr>
                 <button onclick="copyAsCSV()">
                     <span>📊</span> Copy as CSV
                 </button>
                 <button onclick="generateBibliography()">
-                    <span>📚</span> Generate Bibliography
-                </button>
-            </section>
-
-            <!-- View Controls -->
-            <section id="view-controls">
-                <h3>Display Options</h3>
-                <label>
-                    <input type="checkbox" checked
-                        onchange="toggleExcerpts(this)">
-                    Show excerpts
-                </label>
-                <label>
-                    <input type="checkbox" onchange="toggleStrategies(this)">
-                    Show search strategies
-                </label>
-                <label>
-                    <input type="checkbox" onchange="toggleLowScores(this)">
-                    Hide low scores (&lt;50)
-                </label>
-                <div>
-                    <label for="sources-limit">Sources per film:</label>
-                    <input type="range" id="sources-limit" min="5" max="50"
-                        value="10" step="5" oninput="updateSourcesLimit(this)">
-                    <output>10</output>
-                </div>
+                    <span>📚</span> Bibliography
+                </button> -->
             </section>
 
             <!-- Film Jump List -->
             <section id="jump-list">
-                <h3>Jump to Film</h3>
-                <select size="5" onchange="jumpToFilm(this.value)">
+                <h3>Films</h3>
+                <select size="8" onchange="jumpToFilm(this.value)">
                     <!-- Populated by JS -->
                 </select>
             </section>
-
-            <!-- Back to Top -->
-            <a href="#top" id="back-to-top">
-                <span>↑</span> Back to Top
-            </a>
         </aside>
 
-        <main>
-            <!-- Summary Cards -->
-            <section id="summary">
-                <h2>Search Summary</h2>
-                <div id="summary-cards">
-                    <!-- More detailed cards here -->
+        <main id="results-main">
+            <!-- Enhanced Summary Section -->
+            <section id="summary" class="card">
+                <header>
+                    <h2>Search Summary</h2>
+                    <div id="session-actions">
+                        <button onclick="loadResultsFile()">📂 Load Different Results</button>
+                    </div>
+                </header>
+                
+                <!-- Session Info (moved from sidebar) -->
+                <div id="session-info">
+                    <p>
+                        <time id="results-timestamp"></time>
+                        <span id="profile-used">Profile: <output>Default</output></span>
+                        <span id="loaded-file-info" hidden>File: <output id="loaded-filename"></output></span>
+                    </p>
+                </div>
+
+                <!-- Quick Stats (moved from sidebar) -->
+                <div id="quick-stats">
+                    <dl>
+                        <div>
+                            <dt>Films Processed</dt>
+                            <dd id="films-count">0</dd>
+                        </div>
+                        <div>
+                            <dt>Total Sources</dt>
+                            <dd id="sources-count">0</dd>
+                        </div>
+                        <div>
+                            <dt>Selected</dt>
+                            <dd id="selected-count">0</dd>
+                        </div>
+                    </dl>
                 </div>
             </section>
 
@@ -154,6 +118,47 @@
             </div>
         </main>
     </div>
+
+    <!-- Back to Top (moved to bottom right) -->
+    <a href="#top" id="back-to-top" aria-label="Back to top">
+        <span>↑</span>
+    </a>
+
+    <!-- Film Result Template -->
+    <template id="film-result-template">
+        <article class="film-result">
+            <header>
+                <h3></h3>
+                <aside></aside>
+            </header>
+            <div class="strategies" hidden>
+                <!-- Strategy breakdown -->
+            </div>
+            <div class="sources">
+                <!-- Source cards -->
+            </div>
+        </article>
+    </template>
+
+    <!-- Source Card Template -->
+    <template id="source-template">
+        <article class="source">
+            <div class="source-select">
+                <input type="checkbox" id="">
+                <label for="">Select</label>
+            </div>
+            <header>
+                <h4></h4>
+                <aside class="score"></aside>
+            </header>
+            <blockquote></blockquote>
+            <footer>
+                <a role="button" href="" target="_blank">Lantern</a>
+                <a role="button" href="" target="_blank">Archive</a>
+                <button>Fetch Full Text</button>
+            </footer>
+        </article>
+    </template>
 
     <script src="script.js"></script>
 </body>

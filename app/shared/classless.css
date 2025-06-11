@@ -12,6 +12,8 @@
     --ink: #2C2C2C;
     --gold: #8B7355;
     --muted: #554a3e;
+    --accent: #556d8b;
+    --cream-warm: #f8f5eb;
     
     --serif: 'Playfair Display', serif;
     --body: 'Crimson Text', Georgia, serif;
@@ -32,7 +34,7 @@ header {
     background: var(--cream);
     padding: 2rem;
     text-align: center;
-    border-bottom: 4px double var(--ink);
+    border-bottom: 1px dashed var(--ink);
     position: relative;
 }
 
@@ -68,7 +70,7 @@ nav {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    border-bottom: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
     margin-bottom: 2rem;
 }
 
@@ -85,11 +87,11 @@ nav a {
 
 nav a:hover {
     border-color: var(--gold);
-    background: rgba(139, 115, 85, 0.1);
+    background: var(--shadow);
 }
 
 nav a[aria-current="page"] {
-    background: rgba(139, 115, 85, 0.1);
+    background: var(--shadow);
     color: var(--ink);
 }
 
@@ -103,7 +105,7 @@ main {
 article {
     background: var(--cream);
     padding: 3rem;
-    border: 2px solid var(--ink);
+    border: 1px solid var(--ink);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -119,7 +121,7 @@ h2, h3 {
 h2 {
     font-size: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px double var(--muted);
+    border-bottom: 1px solid var(--gold);
 }
 
 h3 {
@@ -132,6 +134,19 @@ p, ul, ol {
 
 li {
     margin-bottom: 0.5rem;
+}
+
+blockquote {
+      margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 3px solid var(--accent);
+
+}
+
+em {
+    background-color: #ffeaa5b7;
 }
 
 /* Horizontal rule as ornament */
@@ -156,7 +171,7 @@ footer {
 /* Links styled as buttons */
 a[role="button"] {
     display: inline-block;
-    padding: 0.75rem 2rem;
+    padding: 0.75rem 1rem;
     background: var(--gold);
     color: var(--cream);
     text-decoration: none;
@@ -166,8 +181,7 @@ a[role="button"] {
 }
 
 a[role="button"]:hover {
-    background: var(--muted);
-    transform: translateY(-2px);
+    background: var(--accent);
 }
 
 /* Responsive */
@@ -199,7 +213,7 @@ menu[type="toolbar"] {
 /* Aside as notice/alert */
 aside[role="note"] {
     background: var(--cream);
-    border: 2px solid var(--muted);
+    border: 1px dashed var(--muted);
     padding: 1.5rem;
     margin-bottom: 2rem;
     position: relative;
@@ -210,7 +224,7 @@ aside[role="note"]::before {
     position: absolute;
     top: -0.75rem;
     left: 1.5rem;
-    background: var(--shadow);
+    background: var(--cream);
     padding: 0 0.5rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -228,14 +242,13 @@ aside[role="note"]::before {
 /* Card styling (when JS creates them) */
 [data-grid="cards"] > div {
     background: var(--cream);
-    border: 2px solid var(--ink);
+    border: 1px solid var(--ink);
     padding: 2rem;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 [data-grid="cards"] > div:hover {
-    transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
@@ -252,22 +265,22 @@ aside[role="note"]::before {
 /* Article as details panel */
 main > article {
     background: var(--cream);
-    border: 2.5px solid var(--ink);
+    border: 1.5px solid var(--ink);
     padding: 2rem 3rem;
     margin-top: 2rem;
 }
 
 article > h2 {
     font-size: 1.5rem;
-    border-bottom: 1.5px solid var(--ink);
+    border-bottom: 1px dashed var(--ink);
     padding-bottom: 1rem;
     margin-bottom: 2rem;
 }
 
 article section {
+    background-color: var(--cream-warm);
     margin: 2rem 0;
     padding: 1.5rem;
-    background: rgba(248, 246, 240, 0.5);
     border: 1px solid var(--gold);
     border-radius: 4px;
 }
@@ -301,22 +314,10 @@ button {
 }
 
 button:hover {
-    background: var(--cream);
-    color: var(--ink);
-    border: 1px solid var(--gold);
-    transform: translateY(-1px);
-}
-
-button[data-variant="primary"] {
-    background: var(--gold);
+    background: var(--accent);
     color: var(--cream);
-    font-size: 1.125rem;
-    padding: 1rem 2.5rem;
-}
-
-button[data-variant="primary"]:hover {
-    background: var(--ink);
-    transform: translateY(-2px);
+    border: 1px solid transparent;
+    transform: translateY(-1px);
 }
 
 /* Footer within article */
@@ -324,7 +325,7 @@ article > footer {
     text-align: center;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 3px double var(--ink);
+    border-top: 1px dashed var(--ink);
 }
 
 /* Responsive */
@@ -384,9 +385,9 @@ article > footer {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
+    background: var(--cream);
+    border: 1px dashed var(--muted);
+    border-radius: 4px;
 }
 
 [data-list="strategies"] > div[data-disabled="true"] {
@@ -397,14 +398,14 @@ article > footer {
     display: block;
     font-size: 0.875rem;
     margin-top: 0.25rem;
-    background: #f5f5f5;
+    background: var(--shadow);
     padding: 0.25rem 0.5rem;
     border-radius: 3px;
 }
 
 [data-list="strategies"] data {
-    background: var(--gold);
-    color: white;
+    background: var(--accent);
+    color: var(--cream);
     padding: 0.375rem 0.75rem;
     border-radius: 20px;
     font-weight: bold;
@@ -416,13 +417,13 @@ article > footer {
     display: flex;
     justify-content: space-between;
     padding: 0.75rem;
-    background: white;
-    border: 1px solid #e0e0e0;
+    background: var(--cream);
+    /* border: 1px dashed var(--shadow); */
     border-radius: 6px;
 }
 
 [data-list="publications"] data {
-    color: var(--gold);
+    color: var(--accent);
     font-weight: bold;
     font-family: var(--mono);
 }
@@ -450,12 +451,12 @@ meter {
     appearance: none;
     width: 100%;
     height: 30px;
-    background: #e0e0e0;
+    background: var(--cream);
     border-radius: 15px;
 }
 
 meter::-webkit-meter-bar {
-    background: #e0e0e0;
+    background: var(--cream);
     border-radius: 15px;
 }
 
@@ -464,7 +465,7 @@ meter::-webkit-meter-optimum-value {
     border-radius: 15px;
 }
 
-/* Add to classless.css - Home page specific needs */
+/* Home page specific needs */
 
 /* Number badges in headers */
 h2 data {
@@ -500,8 +501,8 @@ progress::-webkit-progress-value {
 
 /* Console output display */
 pre {
-    background: #1e1e1e;
-    color: #d4d4d4;
+    background: var(--ink);
+    color: var(--cream-warm);
     padding: 1rem;
     border-radius: 8px;
     max-height: 400px;
@@ -536,126 +537,10 @@ abbr {
     color: var(--muted);
 }
 
-/* Add to classless.css - Search Results specific */
-
-
-
-
-
-/* Source items */
-[data-source="true"] {
-    position: relative;
-    border: 1px solid #e0e0e0;
-    padding: 1.5rem;
-    padding-left: 3rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(to bottom, white, #fafaf8);
-    transition: all 0.2s ease;
-}
-
-[data-source="true"]:hover {
-    border-color: var(--gold);
-    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-}
-
-[data-source="true"] input[type="checkbox"] {
-    position: absolute;
-    left: 1rem;
-    top: 1.5rem;
-}
-
-[data-source="true"] data[data-score] {
-    position: absolute;
-    top: -1px;
-    right: -1px;
-    background: var(--gold);
-    color: var(--cream);
-    padding: 0.375rem 1rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    font-weight: bold;
-}
-
-[data-source="true"] h5 {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0 0 0.5rem 0;
-}
-
-[data-source="true"] blockquote {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-    border-left: 3px solid var(--gold);
-    font-style: normal;
-}
-
-[data-source="true"] blockquote em {
-    background: #fff2cc;
-    padding: 2px 4px;
-    font-style: normal;
-    font-weight: 600;
-}
-
-/* Strategy bars */
-[data-list="strategies"] > div {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-[data-list="strategies"] label {
-    flex: 0 0 180px;
-    font-size: 0.875rem;
-    color: var(--muted);
-}
-
-[data-list="strategies"] meter {
-    flex: 1;
-}
-
-[data-list="strategies"] data {
-    flex: 0 0 40px;
-    text-align: right;
-    font-family: var(--mono);
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-/* Show more button */
-[data-show-more] {
+#search-summary {
     text-align: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px dashed #e0e0e0;
 }
 
-/* Selected source highlight */
-[data-source="true"]:has(input:checked) {
-    border-color: var(--gold);
-    background: #f0f8f0;
-}
-
-/* Header time element */
-article header time {
-    font-family: var(--mono);
-    font-size: 0.875rem;
-    color: var(--muted);
-}
-
-/* Step numbers in guide */
-[data-grid="cards"] data[value] {
-    background: var(--ink);
-    color: var(--cream);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    float: left;
-    margin-right: 1rem;
+#config-section p {
+    font-style: italic;
 }

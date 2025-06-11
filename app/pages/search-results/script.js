@@ -238,10 +238,10 @@ function createSourceElement(source, film) {
             ${formatExcerpt(extractExcerpt(source))}
         </blockquote>
         <footer>
-            <a href="${source.links?.self || `https://lantern.mediahist.org/catalog/${source.id}`}" 
+            <a role="source-button" href="${source.links?.self || `https://lantern.mediahist.org/catalog/${source.id}`}" 
                target="_blank">View on Lantern →</a>
             ${extractInternetArchiveUrl(source) ? 
-                `<a href="${extractInternetArchiveUrl(source)}" target="_blank">Internet Archive →</a>` : ''}
+                `<a role="source-button" href="${extractInternetArchiveUrl(source)}" target="_blank">Internet Archive →</a>` : ''}
         </footer>
     `;
     
