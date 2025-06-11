@@ -350,7 +350,7 @@ function checkFirstTimeUser() {
     if (!hasUsedBefore && !wizardDismissed) {
         document.getElementById('welcome-wizard').style.display = 'block';
         // Hide the regular notice box to reduce clutter
-        document.querySelector('.notice-box').style.display = 'none';
+        document.querySelector('.notice-box').style.display = 'block';
     }
 }
 
