@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Lantern - Search Results</title>
     <link rel="stylesheet" href="../../shared/classless.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <aside>
             Vol. 5.—No. 0.2.<br>
-            SUMMER, 2025.
-        </aside>
-        <h1>✨ MAGIC LANTERN ✨</h1>
-        <p>Search Results</p>
+            SUMMER, 2025.</aside>
+        <h1>MAGIC LANTERN</h1>
+        <p>Comprehensive Search Results</p>
     </header>
+
 
     <nav>
         <a href="../home/index.html">🔍 Search</a>
@@ -23,163 +26,136 @@
         <a href="../about/index.html">📖 About</a>
     </nav>
 
-    <main>
-        <!-- Action Toolbar -->
-        <menu type="toolbar" data-sticky="true">
-            <button onclick="loadResultsFile()">📂 Load Results File</button>
-            <button onclick="selectAll()" id="select-all-btn">Select All</button>
-            <button onclick="clearAll()" id="clear-all-btn" hidden>Clear All</button>
-            <button onclick="exportSelected()" id="export-selected-btn" hidden>
-                Export Selected (<data id="selected-count">0</data>)
-            </button>
-            <button onclick="exportResults()">Export JSON</button>
-        </menu>
-
-        <!-- Results Summary -->
-        <article>
-            <header>
-                <h2>📊 SEARCH SUMMARY</h2>
-                <time id="results-timestamp"></time>
-            </header>
-
-            <aside id="loaded-file-info" hidden>
-                <p><strong>Loaded from file:</strong> <span id="loaded-filename"></span></p>
-            </aside>
-
-            <div data-grid="stats">
-                <div>
-                    <data id="films-count">0</data>
-                    <label>Films Processed</label>
+    <div id="results-layout">
+        <aside id="results-tools">
+            <!-- Current Session Info -->
+            <section id="session-info">
+                <h3>Current Results</h3>
+                <div id="results-meta">
+                    <time id="results-timestamp"></time>
+                    <small id="profile-used">Profile:
+                        <output>Default</output></small>
                 </div>
-                <div>
-                    <data id="sources-count">0</data>
-                    <label>Total Sources Found</label>
-                </div>
-            </div>
-        </article>
-
-        <!-- Next Steps Guide -->
-        <article id="next-steps-guide" hidden>
-            <h2>💡 WHAT TO DO NEXT</h2>
-            
-            <div data-grid="cards">
-                <div>
-                    <data value="1">1</data>
-                    <h3>Review & Select</h3>
-                    <p>Scan through your results and check the boxes next to promising sources. Look for:</p>
-                    <ul>
-                        <li>High scores (80+)</li>
-                        <li>Relevant excerpts</li>
-                        <li>Variety of publications</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <data value="2">2</data>
-                    <h3>Export Your Finds</h3>
-                    <p>Click "Export Selected" to save your chosen sources, or "Export JSON" for everything.</p>
-                    <ul>
-                        <li>Selected sources → focused dataset</li>
-                        <li>Full export → complete archive</li>
-                        <li>Both save as JSON files</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <data value="3">3</data>
-                    <h3>Deep Dive</h3>
-                    <p>Visit sources on Lantern to read full articles in context. The "View on Lantern" links take you directly there.</p>
-                    <ul>
-                        <li>Read surrounding pages</li>
-                        <li>Check publication dates</li>
-                        <li>Note article placement</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <section>
-                <h3>🎯 Pro Tips</h3>
-                <div data-grid="tips">
-                    <aside>
-                        <strong>Score Guide:</strong> 
-                        Sources scoring 80+ often contain substantial content. 
-                        60-79 = good mentions. 
-                        Below 60 = brief references.
-                    </aside>
-                    <aside>
-                        <strong>Publication Patterns:</strong> 
-                        Notice which publications cover your films most. 
-                        This reveals editorial interests and audience demographics.
-                    </aside>
-                    <aside>
-                        <strong>Date Clusters:</strong> 
-                        Sources often cluster around release dates, 
-                        but pre-release publicity and later retrospectives can be goldmines.
-                    </aside>
-                    <aside>
-                        <strong>Strategy Success:</strong> 
-                        The strategy bars show which searches worked best. 
-                        Use this to refine future searches.
-                    </aside>
+                <button onclick="loadResultsFile()">📂 Load Different
+                    Results</button>
+                <div id="loaded-file-info" hidden>
+                    <small>File: <output id="loaded-filename"></output></small>
                 </div>
             </section>
-            
-            <footer>
-                <button onclick="dismissGuide()">Got it, thanks!</button>
+
+            <!-- Quick Stats -->
+            <section id="quick-stats">
+                <h3>Quick Stats</h3>
+                <dl>
+                    <div>
+                        <dt>Films</dt>
+                        <dd id="films-count">0</dd>
+                    </div>
+                    <div>
+                        <dt>Sources</dt>
+                        <dd id="sources-count">0</dd>
+                    </div>
+                    <div>
+                        <dt>Selected</dt>
+                        <dd id="selected-count">0</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <!-- Selection Tools -->
+            <section id="selection-tools">
+                <h3>Selection</h3>
+                <button onclick="selectAll()" id="select-all-btn">
+                    <span>☑</span> Select All
+                </button>
+                <button onclick="clearAll()" id="clear-all-btn" hidden>
+                    <span>☐</span> Clear All
+                </button>
+                <button onclick="selectHighScores()">
+                    <span>⭐</span> Select High Scores (80+)
+                </button>
+                <button onclick="selectByPublication()">
+                    <span>📰</span> Select by Publication...
+                </button>
+            </section>
+
+            <!-- Export Tools -->
+            <section id="export-tools">
+                <h3>Export</h3>
+                <button onclick="exportSelected()" id="export-selected-btn"
+                    disabled>
+                    <span>↓</span> Export Selected (<output>0</output>)
+                </button>
+                <button onclick="exportAll()">
+                    <span>💾</span> Export All Results
+                </button>
+                <button onclick="exportFilmSummary()">
+                    <span>📋</span> Export Film Summary
+                </button>
+                <hr>
+                <button onclick="copyAsCSV()">
+                    <span>📊</span> Copy as CSV
+                </button>
+                <button onclick="generateBibliography()">
+                    <span>📚</span> Generate Bibliography
+                </button>
+            </section>
+
+            <!-- View Controls -->
+            <section id="view-controls">
+                <h3>Display Options</h3>
                 <label>
-                    <input type="checkbox" id="dont-show-guide"> 
-                    Don't show this again
+                    <input type="checkbox" checked
+                        onchange="toggleExcerpts(this)">
+                    Show excerpts
                 </label>
-            </footer>
-        </article>
+                <label>
+                    <input type="checkbox" onchange="toggleStrategies(this)">
+                    Show search strategies
+                </label>
+                <label>
+                    <input type="checkbox" onchange="toggleLowScores(this)">
+                    Hide low scores (&lt;50)
+                </label>
+                <div>
+                    <label for="sources-limit">Sources per film:</label>
+                    <input type="range" id="sources-limit" min="5" max="50"
+                        value="10" step="5" oninput="updateSourcesLimit(this)">
+                    <output>10</output>
+                </div>
+            </section>
 
-        <!-- Film Results Container -->
-        <div id="film-results-container" data-loading="true">
-            <div aria-busy="true">
-                <p>Retrieving your research findings...</p>
+            <!-- Film Jump List -->
+            <section id="jump-list">
+                <h3>Jump to Film</h3>
+                <select size="5" onchange="jumpToFilm(this.value)">
+                    <!-- Populated by JS -->
+                </select>
+            </section>
+
+            <!-- Back to Top -->
+            <a href="#top" id="back-to-top">
+                <span>↑</span> Back to Top
+            </a>
+        </aside>
+
+        <main>
+            <!-- Summary Cards -->
+            <section id="summary">
+                <h2>Search Summary</h2>
+                <div id="summary-cards">
+                    <!-- More detailed cards here -->
+                </div>
+            </section>
+
+            <!-- Film Results -->
+            <div id="film-results-container">
+                <!-- Results here -->
             </div>
-        </div>
-    </main>
-
-    <!-- Film Result Template -->
-    <template id="film-result-template">
-        <article data-film="true">
-            <header>
-                <h3 data-film-title></h3>
-                <p data-film-meta></p>
-                <data data-sources-count></data>
-            </header>
-
-            <section data-strategies="true">
-                <h4>Search Strategy Performance</h4>
-                <div data-list="strategies"></div>
-            </section>
-
-            <section data-sources="true">
-                <h4>Sources Found</h4>
-                <div data-list="sources"></div>
-            </section>
-        </article>
-    </template>
-
-    <!-- Source Item Template -->
-    <template id="source-item-template">
-        <div data-source="true">
-            <input type="checkbox" data-source-select>
-            <data data-score></data>
-            <header>
-                <h5 data-publication></h5>
-                <small data-meta></small>
-            </header>
-            <blockquote data-excerpt></blockquote>
-            <menu type="toolbar">
-                <a href="#" data-link="lantern" role="button">View on Lantern →</a>
-                <a href="#" data-link="archive">Internet Archive →</a>
-                <button data-fetch="true" disabled>Fetch Full Text</button>
-            </menu>
-        </div>
-    </template>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
