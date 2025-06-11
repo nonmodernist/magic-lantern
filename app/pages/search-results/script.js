@@ -180,8 +180,6 @@ function displayResults(results) {
 
     document.getElementById('films-count').textContent = results.length;
     document.getElementById('sources-count').textContent = totalSources;
-    document.getElementById('unique-count').textContent = uniqueSources;
-    document.getElementById('treasures-count').textContent = treasuresCount;
 
     // Display film results
     const container = document.getElementById('film-results-container');
