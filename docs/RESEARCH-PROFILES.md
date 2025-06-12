@@ -58,21 +58,6 @@ Focused on finding labor disputes, strikes, and working conditions.
 node core/magic-lantern-v5.js films.csv --profile=labor-history
 ```
 
-### 🎨 Production History
-Deep dive into the making of films.
-
-**Best for:** Behind-the-scenes research, production details
-**Emphasis:** Technical details, crew, production challenges
-**Special strategies:**
-- Cinematography searches
-- Production designer queries
-- "making of" terminology
-**Higher weights:** Technical publications, American Cinematographer
-
-```bash
-node core/magic-lantern-v5.js films.csv --profile=production-history
-```
-
 ### 📰 Reviews and Reception
 Focused on critical and audience response.
 
@@ -103,22 +88,7 @@ Optimized for pre-1930 film research.
 node core/magic-lantern-v5.js films.csv --profile=early-cinema
 ```
 
-### 🏭 Studio System
-Research focused on the business of Hollywood's Golden Age.
-
-**Best for:** Studio operations, contracts, business deals
-**Emphasis:** Studio searches, executive names, financial data
-**Special strategies:**
-- Studio abbreviations (MGM, RKO)
-- Contract terminology
-- Distribution searches
-**Higher weights:** Trade publications
-
-```bash
-node core/magic-lantern-v5.js films.csv --profile=studio-system
-```
-
-### 📻 Interviews and Publicity
+### 📻 Interviews and Publicity - COMING SOON
 Find period interviews and publicity materials.
 
 **Best for:** Star studies, publicity campaigns
@@ -133,7 +103,7 @@ Find period interviews and publicity materials.
 node core/magic-lantern-v5.js films.csv --profile=interviews-and-publicity
 ```
 
-### 📺 Advertisement Focused
+### 📺 Advertisement Focused - COMING SOON
 Locate historical film advertisements and marketing.
 
 **Best for:** Marketing history, exhibition studies
