@@ -1,9 +1,8 @@
 .DS_Store
 test-results.json
 results
-my-training-data.json
-my-training-data.csv
 debug/
 *.log
 .env
 node_modules/
+research
