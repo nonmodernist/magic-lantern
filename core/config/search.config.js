@@ -15,5 +15,5 @@ module.exports = {
     },
     
     // REMOVED: fullText section
-    // Full text fetching will be reimplemented as user-initiated feature
+    // Full text fetching is now a user-initiated feature - see `tools/fetch-full-text.js' and related documentation
 };

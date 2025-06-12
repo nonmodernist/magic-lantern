@@ -50,7 +50,7 @@ module.exports = {
     weights: {
         // Author/adaptation searches - RUN FIRST
         'author_title': 2.5,
-        'novel_film_title': 2.0,
+        'source_film_title': 2.0,
         'author_only': 1.8,
         'source_adaptation': 1.6,
         'author_variant': 1.5, // set variations of an author's name in lib/utils.js
@@ -63,9 +63,10 @@ module.exports = {
         'exact_title': 0.3,
         'title_no_article': 0.2,
         'abbreviated_title': 0.2,
+        'title_studio': 0.2,
         
         // Skip these for adaptations
-        'title_box_office': 0,
+        'title_boxoffice': 0,
         'title_exhibitor': 0
     }
 }
