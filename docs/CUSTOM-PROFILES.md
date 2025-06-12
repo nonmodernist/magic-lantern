@@ -1,547 +1,601 @@
 # Creating Custom Profiles
 
-This guide walks you through creating research profiles tailored to your specific needs.
+This guide walks you through creating your own research profiles for Magic Lantern, including how to use the new strategy registry system.
 
-## Profile Anatomy
+## Quick Start
 
-A research profile consists of:
+1. Copy an existing profile as a template
+2. Modify the configuration to your needs
+3. Save in `config/profiles/`
+4. Use with `--profile=your-profile-name`
+
+## Profile Structure
+
+A complete profile includes:
 
 ```javascript
 module.exports = {
-    name: "Profile Name",
-    description: "What this profile does",
+    // Basic Information
+    name: "Your Profile Name",
+    description: "What this profile is designed for",
     
-    // 1. Publication scoring adjustments
-    publications: {
-        weights: { /* ... */ },
-        patterns: require('./base-patterns')
-    },
-    
-    // 2. Collection preferences
-    collections: {
-        weights: { /* ... */ }
-    },
-    
-    // 3. Search strategy configuration
+    // Search Strategy Configuration
     searchStrategies: {
-        enabled: { /* ... */ },
-        weights: { /* ... */ }
+        // Enable/disable strategy categories
+        enabled: {
+            titleVariations: true,
+            creatorSearches: true,
+            productionSearches: false,
+            yourCustomCategory: true  // Custom categories supported
+        },
+        
+        // Control execution order and inclusion
+        weights: {
+            'exact_title': 2.0,          // Higher = runs earlier
+            'author_title': 1.5,         
+            'your_custom_strategy': 2.5, // Registry strategies
+            'unwanted_strategy': 0       // 0 = skip entirely
+        }
     },
     
-    // 4. Date range settings
-    dateRanges: { /* ... */ },
+    // Publication Scoring Weights
+    publications: {
+        weights: {
+            "variety": 1.5,              // Boost scoring
+            "motion picture herald": 1.0,
+            "your_important_source": 2.0,
+            "less_relevant_source": 0.5  // Reduce scoring
+        }
+    },
     
-    // 5. Optional notes
-    notes: "Usage tips"
-}
+    // Search Behavior Modifications
+    searchBehavior: {
+        maxResultsPerSearch: 200,        // Default: 100
+        stopOnHighQuality: false,        // Default: true
+        dateRange: {                     // Per-confidence date ranges
+            high: 2,                     // Default: 1
+            medium: 4,                   // Default: 2
+            low: 6                       // Default: 3
+        }
+    },
+    
+    // Context-Aware Scoring Adjustments (if using --context-aware)
+    contextAwareAdjustments: {
+        strategyTrustOverrides: {
+            'your_custom_strategy': 0.9, // Override trust level
+            'broad_search': 0.3          // Lower trust for broad searches
+        }
+    }
+};
 ```
 
 ## Step-by-Step Guide
 
-### Step 1: Identify Your Research Focus
+### Step 1: Identify Your Research Needs
 
 Ask yourself:
-- What kinds of sources are most valuable?
-- What search patterns will find them?
-- What time period am I studying?
-- What's unique about my research question?
+- What types of sources do I need?
+- Which publications are most valuable?
+- What search terms are specific to my research?
+- Do I need exhaustive or focused results?
 
-### Step 2: Create the Profile File
+### Step 2: Create Profile File
 
 Create a new file in `config/profiles/`:
+
 ```bash
-touch config/profiles/my-research.profile.js
+touch config/profiles/my-research.js
 ```
 
-### Step 3: Set Up Basic Structure
+### Step 3: Define Basic Structure
+
+Start with the essentials:
 
 ```javascript
-const basePatterns = require('./base-patterns');
-
 module.exports = {
     name: "My Research Focus",
-    description: "Brief description of the research approach",
+    description: "Focused on [your specific area]",
+    
+    searchStrategies: {
+        enabled: {
+            titleVariations: true,
+            creatorSearches: true
+        }
+    },
     
     publications: {
-        weights: {},
-        patterns: basePatterns  // Always include this
+        weights: {}
     }
 };
 ```
 
-### Step 4: Configure Publication Weights
+### Step 4: Add Custom Strategies (Optional)
 
-Identify which publications matter most:
+#### Method 1: Registry-Based (Recommended)
+
+Add custom strategies to `lib/strategy-registry.js`:
+
+```javascript
+// In strategy-registry.js
+this.register('my_special_search', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"my special term"',
+        confidence: 'high',
+        description: 'Searches for my specific terminology'
+    }),
+    defaultWeight: 1.5,
+    category: 'myCustomCategory',
+    profileRequired: 'my-research',  // Only runs with your profile
+    condition: (film) => film.year >= 1940  // Optional condition
+});
+```
+
+Then reference in your profile:
+
+```javascript
+searchStrategies: {
+    enabled: {
+        myCustomCategory: true  // Enable your category
+    },
+    weights: {
+        'my_special_search': 2.5  // High priority
+    }
+}
+```
+
+#### Method 2: Configure Existing Strategies
+
+Just adjust weights for existing strategies:
+
+```javascript
+searchStrategies: {
+    weights: {
+        'exact_title': 0.5,       // Lower priority
+        'author_title': 3.0,      // Much higher priority
+        'title_box_office': 0     // Skip entirely
+    }
+}
+```
+
+### Step 5: Set Publication Weights
+
+Identify valuable publications for your research:
 
 ```javascript
 publications: {
     weights: {
-        // Boost valuable sources
-        "key_publication": 2.0,      // Double value
-        "important_trade": 1.5,      // 50% boost
-        "useful_source": 1.2,        // 20% boost
+        // Boost specialized publications
+        "cinematography monthly": 2.5,
+        "american cinematographer": 2.0,
         
-        // Standard sources
-        "variety": 1.0,              // Baseline
+        // Standard weights for general sources
+        "variety": 1.0,
+        "motion picture herald": 1.0,
         
-        // Downweight less relevant
-        "fan_magazine": 0.5,         // Half value
-        "irrelevant_source": 0.1     // Nearly ignore
-    },
-    patterns: basePatterns
-}
-```
-
-### Step 5: Set Collection Weights
-
-```javascript
-collections: {
-    weights: {
-        "Most Relevant Collection": 1.5,
-        "Secondary Collection": 1.0,
-        "Less Relevant Collection": 0.7
+        // Reduce weight for less relevant sources
+        "fan magazine": 0.3,
+        "gossip column": 0.2
     }
 }
 ```
 
-### Step 6: Configure Search Strategies
+### Step 6: Adjust Search Behavior
 
-Control which searches run and their priority:
+Fine-tune how searches execute:
 
 ```javascript
-searchStrategies: {
-    // Enable/disable entire categories
-    enabled: {
-        titleVariations: true,
-        creatorSearches: true,
-        productionSearches: false,    // Skip these
-        starSearches: false,          // Skip these
-        contextualSearches: true
-    },
+searchBehavior: {
+    // Get more results per search (default: 100)
+    maxResultsPerSearch: 300,
     
-    // Fine-tune individual strategies
-    weights: {
-        // High priority (run first)
-        'my_key_strategy': 3.0,
-        'important_search': 2.0,
-        
-        // Standard priority
-        'exact_title': 1.0,
-        
-        // Low priority (run last)
-        'broad_search': 0.5,
-        
-        // Skip entirely
-        'irrelevant_strategy': 0
+    // Don't stop early, be exhaustive (default: true)
+    stopOnHighQuality: false,
+    
+    // Expand date ranges for historical uncertainty
+    dateRange: {
+        high: 3,    // ±3 years for high confidence
+        medium: 5,  // ±5 years for medium
+        low: 10     // ±10 years for low confidence
     }
 }
 ```
 
-### Step 7: Set Date Ranges
+### Step 7: Test Your Profile
 
-```javascript
-// Option 1: Same range for all confidence levels
-dateRange: { before: 2, after: 2 },
+Always test with a small corpus first:
 
-// Option 2: Different ranges by confidence
-dateRanges: {
-    high: { before: 1, after: 1 },    // Tight for confident matches
-    medium: { before: 3, after: 2 },  // Wider for medium
-    low: { before: 5, after: 3 }      // Broadest for experiments
-}
+```bash
+# Test with single film
+node core/magic-lantern-v5.js test-film.csv --corpus=test --profile=my-research
+
+# Check strategy execution
+# Look for: "📊 Strategy execution order"
+
+# Verify publication weights in results
+# Check the scoring.publicationWeight field
 ```
 
 ## Complete Examples
 
-### Example 1: Regional Theater Exhibition
-
-Research focus: How films played in small-town theaters
+### Example 1: Technical Innovation Research
 
 ```javascript
-const basePatterns = require('./base-patterns');
-
+// config/profiles/technical-innovation.js
 module.exports = {
-    name: "Regional Theater Exhibition",
-    description: "Small-town and neighborhood theater coverage",
-    
-    publications: {
-        weights: {
-            // Regional focus
-            "boxoffice": 2.0,              // Kansas City, regional focus
-            "motion picture herald": 1.5,   // Good regional sections
-            "exhibitors herald": 1.5,       // Exhibitor perspective
-            
-            // Downweight coastal bias
-            "variety": 0.7,                // NYC-centric
-            "hollywood reporter": 0.5,      // LA-centric
-            
-            // Exhibitor reports valuable
-            "harrisons reports": 1.8,       // Independent exhibitor focus
-            "motion picture daily": 1.0
-        },
-        patterns: basePatterns
-    },
-    
-    collections: {
-        weights: {
-            "Hollywood Studio System": 1.0,
-            "Early Cinema": 0.8,
-            "Fan Magazines": 0.5           // Less relevant
-        }
-    },
+    name: "Technical Innovation",
+    description: "Research focused on cinematography and film technology",
     
     searchStrategies: {
         enabled: {
             titleVariations: true,
-            creatorSearches: false,         // Not relevant
-            productionSearches: true,       // For release patterns
-            starSearches: false
+            technicalSearches: true,  // Custom category
+            creatorSearches: false    // Not needed
         },
         
         weights: {
-            // Prioritize exhibition searches
-            'title_exhibitor': 2.5,
-            'title_box_office': 2.0,
-            'studio_title': 1.5,
+            // Prioritize technical searches
+            'title_cinematography': 3.0,
+            'title_technicolor': 2.5,
+            'cinematographer_name': 2.0,
+            'title_camera': 2.0,
             
-            // Standard title searches
+            // Still want basic title matches
             'exact_title': 1.0,
             
-            // Skip literary searches
+            // Skip irrelevant strategies
             'author_title': 0,
-            'novel_film_title': 0
+            'title_box_office': 0
         }
     },
-    
-    dateRanges: {
-        high: { before: 1, after: 2 },     // Often delayed release
-        medium: { before: 2, after: 3 },
-        low: { before: 3, after: 4 }
-    },
-    
-    notes: "Focuses on exhibition patterns outside major cities"
-};
-```
-
-### Example 2: Genre Studies - Musicals
-
-Research focus: Musical films and their marketing
-
-```javascript
-const basePatterns = require('./base-patterns');
-
-module.exports = {
-    name: "Musical Genre Studies",
-    description: "Musical films, songs, and performance coverage",
     
     publications: {
         weights: {
-            // Music/entertainment focus
-            "variety": 1.5,                // Strong music coverage
-            "motion picture herald": 1.0,
-            
-            // Fan magazines covered musicals well
-            "photoplay": 1.5,
-            "modern screen": 1.3,
-            "screenland": 1.2,
-            
-            // Technical interest in sound
-            "american cinematographer": 1.3,
-            
-            // General trade papers
-            "film daily": 1.0
-        },
-        patterns: basePatterns
-    },
-    
-    searchStrategies: {
-        weights: {
-            // Music-specific searches
-            'title_musical': 3.0,          // Custom strategy
-            'title_songs': 2.5,            // Custom strategy
-            
-            // Star searches important for musicals
-            'star_title': 2.0,
-            'known_star': 1.8,
-            
-            // Standard searches
-            'exact_title': 1.0,
-            
-            // Less relevant
-            'author_title': 0              // Few musical adaptations
+            "american cinematographer": 3.0,
+            "international photographer": 2.5,
+            "variety": 1.0,  // Still useful
+            "motion picture herald": 0.8,
+            "photoplay": 0.3  // Less technical
         }
     },
     
-    // Add custom search terms
-    searchFeatures: {
-        additionalKeywords: [
-            "musical", "songs", "singing", "dancing",
-            "soundtrack", "score", "orchestra"
-        ]
+    searchBehavior: {
+        maxResultsPerSearch: 150,
+        stopOnHighQuality: false  // Want comprehensive results
     }
 };
 ```
 
-### Example 3: Comparative Studies
-
-Research focus: Comparing multiple versions/remakes
+With custom registry strategies:
 
 ```javascript
-const basePatterns = require('./base-patterns');
+// In lib/strategy-registry.js
+this.register('title_cinematography', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: 'cinematography',
+        confidence: 'medium',
+        description: 'Film title + cinematography'
+    }),
+    defaultWeight: 1.5,
+    category: 'technicalSearches',
+    profileRequired: 'technical-innovation'
+});
 
-module.exports = {
-    name: "Remake and Version Studies",
-    description: "Comparing multiple adaptations of same source",
-    
-    publications: {
-        weights: {
-            // Long-running publications for comparison
-            "variety": 1.2,
-            "motion picture world": 1.3,   // Early versions
-            "motion picture herald": 1.2,  // Later versions
-            
-            // Reviews important for comparison
-            "harrisons reports": 1.5,
-            "film daily": 1.3
-        },
-        patterns: basePatterns
+this.register('cinematographer_name', {
+    generator: (film) => {
+        const cinematographer = film.cinematographer || film.dp;
+        if (!cinematographer) return null;
+        
+        return {
+            keyword: `"${cinematographer}"`,
+            secondKeyword: `"${film.title || film.Title}"`,
+            confidence: 'high',
+            description: 'Cinematographer + film title'
+        };
     },
+    defaultWeight: 2.0,
+    category: 'technicalSearches',
+    condition: (film) => !!(film.cinematographer || film.dp)
+});
+```
+
+### Example 2: Regional Exhibition Research
+
+```javascript
+// config/profiles/regional-exhibition.js
+module.exports = {
+    name: "Regional Exhibition",
+    description: "Theater and exhibition patterns in specific regions",
     
     searchStrategies: {
         enabled: {
             titleVariations: true,
-            creatorSearches: true,         // Source material important
-            contextualSearches: true       // Includes remake searches
+            exhibitionSearches: true,
+            regionalSearches: true
         },
         
         weights: {
-            // Prioritize comparative searches
-            'source_adaptation': 2.0,
-            'novel_film_title': 2.0,
-            'remake_search': 1.8,          // If detected as remake
-            
-            // Different years crucial
-            'exact_title': 1.5,            // Will search each version's year
-            
-            // Author searches help link versions
-            'author_title': 1.5,
-            'author_only': 1.2
+            'title_playdate': 3.0,
+            'title_theater_chain': 2.5,
+            'title_booking': 2.0,
+            'title_region': 2.0,
+            'exact_title': 0.5  // Lower priority
         }
     },
     
-    // Wider date ranges for finding all versions
-    dateRanges: {
-        high: { before: 2, after: 2 },
-        medium: { before: 5, after: 3 },
-        low: { before: 10, after: 5 }      // Very wide for remakes
+    publications: {
+        weights: {
+            "motion picture herald": 2.0,  // Exhibition focus
+            "boxoffice": 2.5,
+            "variety": 1.0,
+            "local_newspaper": 1.5  // If in your corpus
+        }
     },
     
-    notes: "Use with films that have multiple versions across decades"
+    searchBehavior: {
+        maxResultsPerSearch: 250,  // Need many theater listings
+        dateRange: {
+            high: 1,    // Playdates are precise
+            medium: 2,
+            low: 3
+        }
+    },
+    
+    // Custom context-aware scoring adjustments
+    contextAwareAdjustments: {
+        strategyTrustOverrides: {
+            'title_playdate': 0.95,    // Very precise
+            'title_booking': 0.85,     // Pretty good
+            'title_region': 0.60       // Broader, less precise
+        }
+    }
 };
 ```
 
-## Advanced Techniques
-
-### Dynamic Weight Functions
-
-For complex logic, use functions instead of static weights:
+### Example 3: Star System Research
 
 ```javascript
-publications: {
-    weights: film => {
-        const year = parseInt(film.year);
-        
-        // Different weights by era
-        if (year < 1920) {
-            return {
-                "moving picture world": 2.0,
-                "motion picture news": 1.8,
-                "variety": 0.8  // Less film coverage early
-            };
-        } else if (year >= 1950) {
-            return {
-                "variety": 1.5,
-                "hollywood reporter": 1.3,
-                "boxoffice": 1.8  // Stronger in 1950s
-            };
-        }
-        
-        // Default weights for 1920-1949
-        return {
-            "variety": 1.2,
-            "motion picture herald": 1.3,
-            "photoplay": 1.4
-        };
-    }
-}
-```
-
-### Conditional Strategy Enabling
-
-```javascript
-searchStrategies: {
-    enabled: film => {
-        // Enable different strategies based on film
-        const hasAuthor = film.author && film.author !== '-';
-        const isMusical = film.genre === 'musical';
-        
-        return {
+// config/profiles/star-system.js
+module.exports = {
+    name: "Star System",
+    description: "Research on star personas and publicity",
+    
+    searchStrategies: {
+        enabled: {
             titleVariations: true,
-            creatorSearches: hasAuthor,
-            musicalSearches: isMusical,
-            starSearches: true
-        };
+            starSearches: true,
+            publicitySearches: true,
+            creatorSearches: false  // Not needed
+        },
+        
+        weights: {
+            'star_personality': 3.0,
+            'star_tells': 2.5,
+            'star_interview': 2.5,
+            'star_film': 2.0,
+            'exact_title': 0.8,
+            'author_title': 0  // Skip
+        }
+    },
+    
+    publications: {
+        weights: {
+            "photoplay": 2.5,          // Star focus
+            "motion picture magazine": 2.5,
+            "screenland": 2.0,
+            "variety": 1.0,            // Still useful
+            "motion picture herald": 0.7  // Less star content
+        }
+    },
+    
+    searchBehavior: {
+        maxResultsPerSearch: 200,
+        // Wider date ranges for publicity
+        dateRange: {
+            high: 2,
+            medium: 4,
+            low: 6
+        }
     }
-}
+};
 ```
 
-### Custom Strategy Injection
+## Advanced Configuration
 
-Add new strategies for your profile by modifying `lib/search-strategy-generator.js`:
+### Dynamic Strategy Generation
+
+Create strategies based on film data:
 
 ```javascript
-// In lib/search-strategy-generator.js
-myNewStrategy(film) {
-  return [{
-    query: `"${film.title}" "road show"`,
-    type: 'roadshow_exhibition',
-    confidence: 'medium',
-    description: 'Roadshow exhibition pattern'
-  }];
-}
+// In strategy-registry.js
+this.register('all_stars_search', {
+    generator: (film) => {
+        // Get stars from film data or known stars list
+        const stars = getStarsForFilm(film.title);
+        if (!stars || stars.length === 0) return null;
+        
+        // Search for any star name
+        return {
+            keyword: stars.map(s => `"${s}"`).join(' OR '),
+            confidence: 'low',
+            description: `Any star from ${film.title}`
+        };
+    },
+    defaultWeight: 1.0,
+    category: 'starSearches'
+});
 ```
 
-For configurable data like known stars or studio abbreviations, see `lib/utils.js`.
+### Conditional Strategies
 
+Run strategies only under certain conditions:
 
-## Testing Your Profile
+```javascript
+this.register('remake_comparison', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"remake"',
+        thirdKeyword: `"${film.originalYear || ''}"`,
+        confidence: 'medium',
+        description: 'Remake comparisons'
+    }),
+    defaultWeight: 2.0,
+    category: 'adaptationSearches',
+    condition: (film) => film.isRemake === true
+});
+```
 
-### 1. Start Small
+### Profile Inheritance
+
+Base one profile on another:
+
+```javascript
+// config/profiles/labor-extended.js
+const baseLabor = require('./labor-history');
+
+module.exports = {
+    ...baseLabor,  // Inherit all settings
+    
+    name: "Extended Labor History",
+    description: "Labor history with additional union focus",
+    
+    searchStrategies: {
+        ...baseLabor.searchStrategies,
+        weights: {
+            ...baseLabor.searchStrategies.weights,
+            'union_specific_search': 3.0,  // Add new
+            'exact_title': 0.2  // Override base
+        }
+    }
+};
+```
+
+## Testing and Debugging
+
+### 1. Verify Profile Loading
 
 ```bash
-# Test with single film
-node magic-lantern-v5.js test-film.csv --corpus=test --profile=my-research
+node core/magic-lantern-v5.js films.csv --profile=my-research
 ```
 
-### 2. Verify Weights Applied
-
-Check the console output:
+Look for:
 ```
-📊 Strategy execution order (by profile weight):
-   1. [3.0] my_key_strategy - Description
-   2. [2.0] important_search - Description
+📚 Research Profile: My Research Focus
+   Focused on [your specific area]
 ```
 
-### 3. Analyze Results
+### 2. Check Strategy Execution
 
-Look at the JSON output:
-- Which strategies found results?
-- Are publications weighted correctly?
-- Is the date range appropriate?
+Add temporary logging:
 
-### 4. Iterate and Refine
+```javascript
+// In your profile
+searchStrategies: {
+    weights: {
+        'my_strategy': 2.5
+    },
+    // Add debug flag
+    debug: true
+}
+```
 
-Common adjustments:
-- Weights too extreme? (2.0 vs 0.1 might be too much)
-- Missing key publications?
-- Need wider date ranges?
-- Some strategies finding nothing?
+### 3. Validate Publication Weights
+
+Check results JSON:
+```json
+"scoring": {
+    "publication": "american cinematographer",
+    "publicationWeight": 3.0,  // Your custom weight
+    "finalScore": 300
+}
+```
+
+### 4. Test with Small Corpus
+
+```bash
+# Create test file with 1-2 films
+echo "title,year,author" > test.csv
+echo '"Test Film",1940,"Test Author"' >> test.csv
+
+# Run with your profile
+node core/magic-lantern-v5.js test.csv --profile=my-research --corpus=test
+```
 
 ## Best Practices
 
-### 1. Document Your Choices
+1. **Start Simple**: Begin with weight adjustments before adding custom strategies
+2. **Document Purpose**: Clear description helps others (and future you)
+3. **Test Incrementally**: Add features one at a time
+4. **Use Registry**: New strategies should use the registry system
+5. **Version Control**: Track profile changes in git
+6. **Share Profiles**: Consider contributing useful profiles back
+
+## Common Patterns
+
+### Pattern 1: Boost Specific Publications
 
 ```javascript
-notes: "Weights based on preliminary research showing Variety had best labor coverage. " +
-       "Photoplay downweighted due to avoiding controversy. " +
-       "Date ranges wide because strikes often preceded release dates."
-```
-
-### 2. Start from Existing Profiles
-
-Don't start from scratch:
-```bash
-cp config/profiles/adaptation-studies.profile.js config/profiles/my-adaptation-variant.profile.js
-# Then modify
-```
-
-### 3. Balance Specificity and Coverage
-
-- Too focused = miss relevant materials
-- Too broad = noise in results
-- Aim for targeted but comprehensive
-
-### 4. Consider Publication Survival
-
-Some publications have better archival coverage:
-- Variety: Excellent across decades
-- Regional papers: Spotty coverage
-- Fan magazines: Varies by title
-
-### 5. Test Across Your Corpus
-
-A profile that works for 1930s films might not work for 1950s:
-```bash
-# Test different eras
-node magic-lantern-v5.js 1930s-films.csv --profile=my-research
-node magic-lantern-v5.js 1950s-films.csv --profile=my-research
-```
-
-## Sharing Your Profile
-
-Help other researchers by sharing well-tested profiles:
-
-1. Clean up and document thoroughly
-2. Add examples of what it finds
-3. Include sample use cases
-4. Submit as pull request or share in discussions
-
-## Common Pitfalls
-
-### Over-weighting
-
-```javascript
-// Too extreme
-"my_favorite": 10.0,  // Drowns out everything else
-"everything_else": 0.1
-
-// Better
-"my_favorite": 1.8,   // Strong preference
-"everything_else": 0.7 // Still considered
-```
-
-### Forgetting Base Patterns
-
-```javascript
-// Wrong - breaks publication identification
 publications: {
-    weights: { /* ... */ }
-    // Missing: patterns: basePatterns
-}
-
-// Correct
-publications: {
-    weights: { /* ... */ },
-    patterns: basePatterns  // Always include!
+    weights: {
+        "target_publication": 3.0,
+        "*": 1.0  // All others (not yet implemented)
+    }
 }
 ```
 
-### Conflicting Settings
+### Pattern 2: Time Period Specific
 
 ```javascript
-// Contradiction
-enabled: {
-    creatorSearches: false  // Disabled
+searchBehavior: {
+    dateRange: {
+        high: 5,    // Historical uncertainty
+        medium: 8,
+        low: 12
+    }
 },
-weights: {
-    'author_title': 2.0     // But weighted high?
+// In strategy registry
+condition: (film) => parseInt(film.year) < 1920
+```
+
+### Pattern 3: Exhaustive Research
+
+```javascript
+searchBehavior: {
+    maxResultsPerSearch: 500,
+    stopOnHighQuality: false,
+    includeAllStrategies: true  // Even low-weight ones
 }
 ```
+
+## Troubleshooting
+
+**Profile not loading?**
+- Check file name matches `--profile=` argument
+- Verify `module.exports` syntax
+- Look for JavaScript errors
+
+**Strategies not running?**
+- Check weight is > 0
+- Verify category is enabled
+- Check `profileRequired` matches
+
+**Wrong publication weights?**
+- Publication name must match exactly
+- Check for typos or variants
+- Look at scoring object in results
+
+## Future Features
+
+Planned enhancements:
+- Profile composition (combine multiple)
+- GUI profile builder
+- Profile validation tool
+- Performance analytics per profile
 
 ## Next Steps
 
-- Test your profile with [Quick Start](./QUICKSTART.md)
-- Understand [Scoring](./SCORING.md) to refine weights
-- Review [Search Strategies](./SEARCH-STRATEGIES.md) to customize searches
-- Check [Troubleshooting](./TROUBLESHOOTING.md) if issues arise
-- Share your profile to help others!
+- Test your profile with [small corpus](./QUICKSTART.md)
+- Understand [strategy registry](./SEARCH-STRATEGIES.md) for custom searches
+- Learn about [scoring](./SCORING.md) and weight effects
+- See [example profiles](../core/config/profiles/) for inspiration
