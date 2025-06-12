@@ -33,52 +33,62 @@ module.exports = {
   'motion picture daily': /motionpicturedai/i,
   'motion picture herald': /motionpictureher/i,
   'motion picture exhibitor': /motionpictureexh/i,
+  'motion picture projectionist': /motionpicturepro/i,
+  'motion picture studio': /motionpicturestu/i,
   'motion picture story magazine': /motionpicturesto/i, // fan mag
   'motion picture magazine': /motionpicturemag/i, // fan mag
   'motion picture classic': /motionpicturecla/i, // fan mag
-  'motion picture': /motionpicture/i, // fan mag
-  'motion picture news': /motionpicturenew|motionnew|motionpic(?!ture)|motionp(?!icture)|motion(?!picture)|picturen/i, // trade mag with many pattern variations
-  
-  'moving picture world': /^(MPW\d|moving(?:picture)?wor|moving(?:\d|$)|movin(?:g)?(?:or|wor)|movie?wor|mo(?:v)?(?:pic|wor)|more?wor|move?wor|movure)/i, // yes it really does need to be this complicated and specific
+  'motion picture': /motionpicture(?!pro)/i, // fan mag
+  'motion play': /motion-play|motionplay/i,
+  'motion picture news': /motionpicturenew|motionnew|^motionpic(?!ture)|^motionp(?!icture|lay)|^motion(?!picture|-play)|^picturen/i, // trade mag with many pattern variations
+
   'the movies and the people who make them': /moviespeoplewhom/i,
   'movie classic': /movieclassic/i,
   'movieland': /movielandtv/i,
+  'movietone': /movietone/i, // projectionist mag and chinese fan mag both use this
+  'moving picture age': /movingpictureage/i,
+  'moving picture world': /^(MPW\d|moving(?:picture)?wor|moving(?:\d|$)|movin(?:g)?(?:or|wor)|movie?wor|mo(?:v)?(?:pic|wor)|more?wor|move?wor|movure)/i, // yes it really does need to be this complicated and specific
 
-  'picture play': /pictureplay/i,
+  'picture play': /pictureplay|picturep/i,
   'motion picture news': /picturen/i,
-  'pictures and the picturegoer': /^picture(?!n|play)/i,
-
-  // WARNING: "exhibitor" prefix and variations are used by multiple publications
+  'pictures and the picturegoer': /^picture(?!n)/i,
 
   'exhibitors daily review': /exhibitorsdailyr/i,
+  'exhibitors herald': /exhibher|exhibitorsh/i,
+  'the exhibitor': /^exhibitor/i,
   'independent exhibitors film bulletin': /independentexhibitorsfilm|filmbulletin|^indepe/i,
   'the philadelphia exhibitor': /philadelphiaexhi/i,
-  'exhibitors herald': /exh?ibitorsh?erald/i,
-  'exhibitors trade review': /ex.*00new/i, // using end of pattern instead of beginning because of truncation
-  'the exhibitor': /^exhibitor/i,
+  'exhibitors trade review': /exhibitorstrade|exhibitorstra|exhibitorst(?!rade)|^exhibitors(?!daily|herald)|\bexhi(?!bitor|bher)|\bexh(?!ibitor|iber)/i,
 
-  'the film daily': /filmdaily/i,
+  'the film daily': /filmdai/i,
   'film mercury': /filmmercury/i,
   'film fun': /filmfun/i,
 
   'glamour of hollywood': /glamourofhollywo/i,
 
+  'hollywood studio magazine': /hollywood-studio-magazine/i,
   'hollywood filmograph': /hollywoodfilmogr/i,
   'hollywood reporter': /hollywoodreport/i,
   'hollywood spectator': /hollywoodspectat/i,
-  'hollywood': /^hollywood(?!spectat|report|filmgr)/i,
+  'hollywood': /^hollywood(?!spectat|report|filmogr|lowdown|motionp)/i,
 
   'new movie magazine': /newmoviemag/i,
   'new movies the national board of review magazine': /newmoviesnation/i,
+  'national ballyhoo': /national-ballyhoo/i, // canadian
+  'national box office digest': /nationalboxoffic/i,
   'national board of review magazine': /nationalboardofr/i,
 
   'american cinematographer': /^america(?!nmotionpi)|amento|^amri/i,
-  
   'national box office digest': /boxofficedigest/i,
   'boxoffice barometer': /boxofficebaromet/i, 
   'boxoffice': /boxoffice(?!digest|baromet|checkup)/i,  // NOT followed by 'digest' or 'baromet'
 
+  'billboard': /billboard/i,
+  'cine-journal': /cinejournal|^cine(?!mundial)/i,
+  'cinelandia': /cinelandia/i,
   'cinemundial': /cinemundial/i,
+  'cinema illustrazione': /cinema-illustrazione/i,
+  'courrier cinematographique': /courrier/i,
   'camera': /camera/i,
   'close up': /closeup/i,
   'the new york clipper': /clipper/i,
@@ -87,13 +97,17 @@ module.exports = {
   'modern screen': /modernscreen/i,
   'motography': /motography/i,
   'movie mirror': /moviemirror/i,
-  'photoplay': /photoplay|photo|pho/i,
-  'radio tv mirror': /radiotvmirror|radiotvmi/i,
+  'photoplay': /photoplay|^photo|^pho/i,
+  'publix opinion': /publix/i,
+  'radio tv mirror': /radiotvmirror|radiotvmi|radiotv/i,
   'reel life': /reellife/i,
   'the screen writer': /screenwriter/i,
+  'shadowland': /shadowland/i,
   'showmens trade review': /showmen/i,
   'silver screen': /silverscreen/i,
+  'screen and radio weekly': /screen-and-radio/i,
   'screenland': /screenland/i,
+  'sponsor': /sponsor/i,
   'talking screen': /talkingscreen/i,
   'technicolor news and views': /technewsviews/i,
   'variety': /variety/i,
@@ -107,11 +121,16 @@ module.exports = {
   'whos who at metro-goldwyn-mayer': /whoswhoatmetrogo/i,
   'mensajero paramount': /mensajeroparamou/i,
   'paramount around the world': /paramountinterna/,
+  'fox folks': /foxfolks/i,
+
+  'pressbooks': /pressbook/i, // will match any pressbook, useful for boosting or downranking all at once
 
   'MPPC lawsuit': /indistrictcourto/i,
 
   // Additional publications found in June 3rd results
   'british kinematograph': /britishk/i,
   'canadian film weekly': /canadianfilmweekly/i,
-
+  'der kinematograph': /kinematograph/i,
+  'whats new': /whats-new/i,
+  'neue filmwelt': /neue-filmwelt/i,
 };
