@@ -1,3 +1,12 @@
+## [5.1.0] - 2025-06-11
+
+### Changed
+- Added user-initiated full-text fetching
+- Added CLI annotation helper
+- Added experimental context-aware scoring
+- Updated docs to reflect changes
+
+
 ## [5.0.2] - 2025-06-09
 
 ### Changed

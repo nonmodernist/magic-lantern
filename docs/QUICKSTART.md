@@ -72,7 +72,7 @@ node tools/fetch-full-text.js results/search-results_[timestamp].json --interact
 Here's what you'll see in the console:
 
 ```
-✨ MAGIC LANTERN v5.0.3
+✨ MAGIC LANTERN v5.1.0
 
 📚 Research Profile: Default
    Standard Magic Lantern configuration

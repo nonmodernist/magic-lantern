@@ -358,7 +358,7 @@ Future plans:
 The console shows which profile is loaded:
 
 ```
-✨ MAGIC LANTERN v5.0.3
+✨ MAGIC LANTERN v5.1.0
 
 📚 Research Profile: Labor History
    Focused on film industry labor and working conditions

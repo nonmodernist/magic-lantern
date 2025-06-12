@@ -1,6 +1,6 @@
 {
   "name": "magic-lantern",
-  "version": "5.0.3",
+  "version": "5.1.0",
   "description": "Research automation toolkit for the Media History Digital Library",
   "main": "core/magic-lantern-v5.js",
   "scripts": {
