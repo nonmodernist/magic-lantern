@@ -1,0 +1,19 @@
+{
+  "name": "magic-lantern",
+  "version": "5.0.3",
+  "description": "Research automation toolkit for the Media History Digital Library",
+  "main": "core/magic-lantern-v5.js",
+  "scripts": {
+    "start": "node core/magic-lantern-v5.js",
+    "annotate": "node tools/annotation-helper.js",
+    "filter": "node tools/filter-films.js",
+    "fetch": "node tools/fetch-full-text.js"
+  },
+  "bin": {
+    "magic-lantern": "./core/magic-lantern-v5.js",
+    "ml-filter": "./tools/filter-films.js"
+  },
+  "keywords": ["film-history", "research", "automation", "mhdl"],
+  "author": "Alexandra Edwards",
+  "license": "MIT"
+}
