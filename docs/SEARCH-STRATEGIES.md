@@ -13,6 +13,45 @@ For each film, Magic Lantern can generate 15-30+ different search queries across
 5. **Fuzzy Searches** - Handle OCR errors and variations
 6. **Contextual Searches** - Theme, genre, and adaptation queries
 
+## 🆕 Strategy Registry System
+
+Magic Lantern is transitioning to a centralized strategy registry system. This allows for easier customization and profile-specific strategies.
+
+### How the Registry Works
+
+Strategies are registered in `lib/strategy-registry.js`:
+
+```javascript
+// Example registration
+this.register('title_strike', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"picketed"',
+        confidence: 'high',
+        description: 'Film title + picketed'
+    }),
+    defaultWeight: 2.5,
+    category: 'labor',
+    profileRequired: 'labor'  // Only runs with labor profile
+});
+```
+
+### Registry Components
+
+Each strategy registration includes:
+- **generator**: Function that creates the search keywords
+- **defaultWeight**: Base importance (can be overridden by profiles)
+- **category**: Grouping for related strategies
+- **profileRequired**: Optional - restricts to specific profiles
+- **condition**: Optional - function to check if strategy should run
+
+### Current Implementation Status
+
+⚠️ **Mixed Implementation**: Not all strategies have been migrated to the registry yet. Currently:
+- New profile-specific strategies use the registry
+- Core strategies still use the legacy system
+- Both systems work together seamlessly
+
 ## Strategy Categories
 
 ### 1. Title Variations (HIGH-MEDIUM confidence)
@@ -21,34 +60,34 @@ These strategies handle the many ways a film title might appear in historical te
 
 #### Exact Title
 - **Query:** `"The Wizard of Oz"`
-- **Confidence:** MEDIUM
+- **Confidence:** HIGH
 - **Purpose:** Find exact title matches
-- **When useful:** Film titles that are unique and unlikely to have false positives, films that don't have extensive media coverage (e.g., that rare short from 1910)
+- **Registry:** ✅ Migrated
 
 #### Title Without Article
 - **Query:** `"Wizard of Oz"` (removes The/A/An)
 - **Confidence:** HIGH
-- **Purpose:** Handles inconsistent article usage in trade papers
-- **When useful:** Most films starting with articles
-- **Also generates:** Broad version without quotes for wider matching
+- **Purpose:** Handles inconsistent article usage
+- **Registry:** ✅ Migrated
+- **Also generates:** Broad version without quotes
 
 #### Abbreviated Title
 - **Query:** `"Wizard Oz"` (first 2-3 significant words)
 - **Confidence:** MEDIUM
-- **Purpose:** Catches shortened references common in trade papers
-- **When useful:** Long titles often abbreviated in period sources
+- **Purpose:** Catches shortened references
+- **Legacy:** Still in original system
 
 #### Possessive Form
 - **Query:** `"The Wizard of Oz's"`
 - **Confidence:** LOW
-- **Purpose:** Finds possessive uses ("The film's success...")
-- **When useful:** Reviews and commentary
+- **Purpose:** Finds possessive uses
+- **Legacy:** Still in original system
 
 #### Keyword + Film
 - **Query:** `"Wizard" film`
 - **Confidence:** LOW
-- **Purpose:** Broadest search using most distinctive word
-- **When useful:** When other searches fail
+- **Purpose:** Broadest search
+- **Legacy:** Still in original system
 
 ### 2. Creator Searches (HIGH-MEDIUM confidence)
 
@@ -58,147 +97,137 @@ Focus on authors (for adaptations) and directors.
 - **Query:** `"L. Frank Baum" "The Wizard of Oz"`
 - **Confidence:** HIGH
 - **Purpose:** Links author to film adaptation
-- **When useful:** Literary adaptations where author is credited
-
-#### Author Only
-- **Query:** `"L. Frank Baum"`
-- **Confidence:** MEDIUM
-- **Purpose:** Finds all author mentions in date range
-- **When useful:** Tracking author's Hollywood presence
-
-#### Author Last Name + Title
-- **Query:** `"Baum" "The Wizard of Oz"`
-- **Confidence:** MEDIUM
-- **Purpose:** Catches informal references
-- **When useful:** Reviews and news items
+- **Registry:** ✅ Migrated
 
 #### Author Variations
-- **Query:** `"Fannie Hurst"` OR `"Fanny Hurst"`
-- **Confidence:** MEDIUM
-- **Purpose:** Handles spelling variations
+- **Configurable in:** `lib/utils.js`
 - **Known variations:**
   - Fannie/Fanny Hurst
   - Gene Stratton-Porter/Gene Stratton Porter
   - Harriet Comstock/Harriet T. Comstock
 
-#### Director Searches
-- **Similar patterns for directors**
-- **Additional query:** `"Fleming" director "The Wizard of Oz"`
-
 ### 3. Production Searches (MEDIUM confidence)
 
-Studio and business-focused queries using keyword stacking.
+Studio and business-focused queries.
 
-#### Studio + Title
-- **Query:** `"MGM" "The Wizard of Oz"`
-- **Confidence:** HIGH
-- **Purpose:** Links studio to specific production
-- **Uses:** Keyword stacking (2 terms)
-
-#### Studio Abbreviations
-- **Query:** `"Metro-Goldwyn-Mayer"` → `"MGM"`
-- **Known abbreviations:**
-  - Metro-Goldwyn-Mayer → MGM
-  - Radio-Keith-Orpheum → RKO
-  - 20th Century Fox → Fox
-  - United Artists → UA
-
-#### Box Office Searches
+#### Title + Box Office
 - **Query:** `"The Wizard of Oz" "box office"`
 - **Confidence:** MEDIUM
-- **Purpose:** Financial performance data
-- **Stacks:** Title + box office terminology
+- **Registry:** ✅ Migrated
+- **Uses:** Keyword stacking
 
-#### Production News
-- **Query:** `"The Wizard of Oz" production filming`
-- **Confidence:** MEDIUM
-- **Purpose:** Behind-the-scenes coverage
-- **Uses:** 3-keyword stacking
+### 4. Profile-Specific Strategies (Registry-Based)
 
-#### Exhibitor Searches
-- **Query:** `"The Wizard of Oz" exhibitor`
-- **Confidence:** MEDIUM
-- **Purpose:** Theater owner perspectives
+These strategies only run with specific research profiles.
 
-### 4. Star Searches (HIGH-MEDIUM confidence)
+#### Labor History Strategies
+```javascript
+// In registry - only with labor profile
+'title_strike': '"Film Title" "picketed"'
+'title_work_stoppage': '"Film Title" "work stoppage"'
+'studio_labor': '"Studio Name" "labor dispute"'
+'studio_boycott': '"Studio Name" boycott'
+```
 
-Actor-focused queries, especially for star vehicles.
+#### Review Strategies
+```javascript
+// Historical terminology for reviews
+'title_notices': '"Film Title" "notices"'
+'title_comment': '"Film Title" "comment"'
+```
 
-#### Star + Title
-- **Query:** `"Judy Garland" "The Wizard of Oz"`
-- **Confidence:** HIGH
-- **Purpose:** Star-film connection
+#### Interview/Publicity Strategies
+```javascript
+// Period-specific terminology
+'director_says': '"Director Name" "says"'
+'star_tells': '"Star Name" "tells"'
+'personality_sketch': '"Star Name" "personality"'
+```
 
-#### Star Only
-- **Query:** `"Judy Garland"`
-- **Confidence:** MEDIUM
-- **Purpose:** All star mentions in date range
+#### Advertisement Strategies
+```javascript
+'title_playdate': '"Film Title" "playdate"'
+'title_booking': '"Film Title" "booking"'
+'title_exploitation': '"Film Title" "exploitation"'
+```
+
+#### Early Cinema Strategies
+```javascript
+'photoplay_version': '"Title" "photoplay"' // pre-1930
+'picture_play': '"Title" "picture play"' // pre-1920
+```
+
+## Adding New Strategies
+
+### Method 1: Registry (Recommended)
+
+Add to `lib/strategy-registry.js`:
+
+```javascript
+this.register('my_new_strategy', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"my search term"',
+        confidence: 'high',
+        description: 'What this finds'
+    }),
+    defaultWeight: 1.5,
+    category: 'myCategory',
+    condition: (film) => film.year > 1930  // Optional condition
+});
+```
+
+### Method 2: Legacy System
+
+Add to `lib/search-strategy-generator.js`:
+
+```javascript
+myNewSearches(film) {
+    const strategies = [];
+    strategies.push({
+        query: `"${film.title}" "search term"`,
+        type: 'my_search_type',
+        confidence: 'medium',
+        description: 'Description'
+    });
+    return strategies;
+}
+```
+
+Then add to `generateAllStrategies()`.
+
+## Configurable Data
+
+Many aspects are configurable without code changes:
+
+### In `lib/utils.js`:
+
+#### Author Name Variations
+```javascript
+const knownVariations = {
+    'Fannie Hurst': ['Fanny Hurst'],
+    'Your Author': ['Alternate Spelling'],
+    // Add more as needed
+};
+```
+
+#### Studio Abbreviations
+```javascript
+const abbreviations = {
+    'Metro-Goldwyn-Mayer': 'MGM',
+    'Your Studio Name': 'YSN',
+    // Add more as needed
+};
+```
 
 #### Known Stars by Film
-- Pre-configured star lists for major films:
-  - *The Wizard of Oz*: Judy Garland, Ray Bolger, Bert Lahr
-  - *Gone with the Wind*: Clark Gable, Vivien Leigh
-  - *The Maltese Falcon*: Humphrey Bogart, Mary Astor
-
-Add your own!
-
-### 5. Fuzzy Searches (LOW confidence)
-
-Handle OCR errors and title variations.
-
-#### OCR Variants
-- **Common substitutions:**
-  - l → 1, i
-  - I → l, 1
-  - 0 → O
-  - S → 5
-- **Example:** "W1zard of 0z" for OCR errors
-
-#### Partial Titles
-- **For long titles:** First half only
-- **Example:** "Gone with the" (for "Gone with the Wind")
-- **When useful:** Very long titles often truncated
-
-### 6. Contextual Searches (LOW-MEDIUM confidence)
-
-Theme and adaptation-focused searches.
-
-#### Source Material
-- **Query:** `"Wonderful Wizard of Oz" adaptation`
-- **Confidence:** MEDIUM
-- **Purpose:** Links to source novel
-- **When useful:** Title differs from film
-
-#### Novel + Film Title
-- **Query:** `"Wonderful Wizard of Oz" "The Wizard of Oz"`
-- **Confidence:** HIGH
-- **Purpose:** Explicit adaptation discussion
-
-#### Genre Searches
-- **Query:** `"The Wizard of Oz" musical`
-- **Confidence:** LOW
-- **Purpose:** Genre-specific coverage
-- **Inferred from:** Title keywords and metadata
-
-#### Remake Searches
-- **Query:** `"The Wizard of Oz" remake 1939`
-- **Confidence:** LOW
-- **Purpose:** For films with multiple versions
-
-### Profile-Specific Strategies
-
-Some strategies only activate with certain profiles:
-
-#### Labor History Profile
-- `"The Wizard of Oz" walk out`
-- `"MGM" labor dispute`
-- `"MGM" work stoppage`
-- `"The Wizard of Oz" picketing`
-
-#### Adaptation Studies Profile
-- Prioritizes author searches
-- Adds novel title searches
-- Skips box office searches
+```javascript
+const starsByFilm = {
+    'The Wizard of Oz': ['Judy Garland', 'Ray Bolger'],
+    'Your Film': ['Star 1', 'Star 2'],
+    // Add more as needed
+};
+```
 
 ## Confidence Levels & Date Ranges
 
@@ -208,98 +237,145 @@ Confidence affects date range filtering:
 - **MEDIUM**: ±2 years from release  
 - **LOW**: ±3 years from release
 
+These ranges can be customized per profile.
+
 ## Keyword Stacking
 
-Lantern's advanced search supports up to 3 keywords:
-
-```
-keyword="The Wizard of Oz"
-second_keyword="MGM"
-third_keyword="production"
-```
-
-All keywords use AND operator for precise results.
-
-## Strategy Execution Order
-
-1. Profile weights determine order (highest weight first)
-2. Within same weight, confidence determines order (HIGH → MEDIUM → LOW)
-3. Execution stops when sufficient results found (configurable)
-
-## Deduplication
-
-- Each unique item ID tracked across all searches
-- Highest scoring version kept if found multiple times
-- Prevents counting same article multiple times
-
-## Examples in Action
-
-### Film: "Little Women" (1933) by Louisa May Alcott
-
-**Generated searches include:**
-1. `"Little Women"` - Exact title
-2. `"Louisa May Alcott" "Little Women"` - Author + title
-3. `"Alcott" "Little Women"` - Last name + title
-4. `"RKO" "Little Women"` - Studio + title
-5. `"Little Women" "box office"` - Commercial data
-6. `"George Cukor" "Little Women"` - Director + title
-7. `"Little Women" adaptation` - Adaptation angle
-8. `"Katharine Hepburn" "Little Women"` - Star + title
-
-### Film with Labor History Profile
-
-Additional searches for any film:
-1. `"[Film Title]" picketing`
-2. `"[Film Title]" work stoppage`
-3. `"[Studio]" labor dispute`
-4. `"strike against [Studio]"`
-
-## Customizing Strategies
-
-To add new strategies, edit `lib/strategy-registery.js`:
+Lantern's API supports up to 3 keywords with AND operator:
 
 ```javascript
-// In lib/strategy-registry.js
-  this.register('my_Custom_Search', {
-    generator: (film) => ({
-      keyword: `"${film.title || film.Title}"`,
-      secondKeyword: '"on location"',
-      confidence: 'high',
-      description: 'Film title + "on location"'
-    }),
-      defaultWeight: 2.5,
-      category: 'myCategory',
-      profileRequired: 'myProfile'
-  });
+// Registry format
+generator: (film) => ({
+    keyword: `"${film.title}"`,
+    secondKeyword: '"box office"',
+    thirdKeyword: 'earnings'  // Optional third keyword
+})
 ```
 
-### Finding Configurable Data
+## Strategy Execution
 
-Many aspects of search strategies are configurable in `lib/utils.js`:
+### Order Determination
 
-- **Author name variations**: See `getAuthorVariations()` 
-  - Add your own author spelling variants
-- **Studio abbreviations**: See `getStudioAbbreviation()`
-  - Map full studio names to common abbreviations  
-- **Known stars by film**: See `getKnownStars()`
-  - Pre-populate star searches for specific films
-- **Known remakes**: See `isKnownRemake()`
-  - Films that have multiple versions
-- **OCR error patterns**: See `generateOCRVariants()`
-  - Common character substitutions in historical OCR
+1. **Profile weights** determine order (highest first)
+2. **Registry defaultWeight** used if no profile weight
+3. **Confidence** as tiebreaker (HIGH → MEDIUM → LOW)
+4. **Weight 0** strategies are skipped entirely
 
-This means you can keep your input CSV simple!
+### Stop Conditions
+
+Execution stops when:
+- Maximum results reached (configurable)
+- High-quality threshold met
+- All strategies executed
+
+## Profile Integration
+
+Profiles control which strategies run:
+
+```javascript
+// In profile file
+searchStrategies: {
+    enabled: {
+        titleVariations: true,
+        creatorSearches: false,    // Skip all author searches
+        laborSearches: true        // Custom category
+    },
+    
+    weights: {
+        'title_strike': 2.5,       // Run first
+        'exact_title': 0.3,        // Run last
+        'author_title': 0          // Skip entirely
+    }
+}
+```
+
+## Debugging Strategies
+
+### View Generated Strategies
+
+Temporarily add logging:
+
+```javascript
+// In generateAllStrategies()
+console.log('📋 All strategies:', strategies.map(s => ({
+    type: s.type,
+    query: s.query,
+    weight: s.profileWeight || s.defaultWeight || 1.0
+})));
+```
+
+### Test Specific Strategies
+
+```javascript
+// Only run registry strategies
+const registeredStrategies = strategyRegistry.getByCategory('labor');
+```
+
+### Check Strategy Execution
+
+The console shows execution order:
+
+```
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + picketed
+   2. [2.0] title_work_stoppage - Film title + work stoppage
+   3. [1.0] exact_title - Exact title match
+```
 
 ## Best Practices
 
-1. **Start broad, get specific** - Exact matches first, then variations
-2. **Use confidence appropriately** - HIGH for precise matches, LOW for experimental
-3. **Consider the era** - Abbreviations more common in early cinema
-4. **Think about OCR** - Historical texts often have scanning errors
-5. **Profile appropriately** - Different research questions need different strategies
+1. **Use the Registry** for new strategies - it's more flexible
+2. **Set meaningful weights** - 2.0+ for priority, 0.5 for low priority
+3. **Choose appropriate confidence** - affects date filtering
+4. **Add to utils.js** for configurable data (stars, variants, etc.)
+5. **Test with small corpus** before running full searches
+6. **Document your strategies** with clear descriptions
+
+## Examples
+
+### Creating a Genre-Specific Strategy
+
+```javascript
+// In strategy-registry.js
+this.register('musical_songs', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"songs"',
+        thirdKeyword: '"musical numbers"'
+    }),
+    defaultWeight: 2.0,
+    category: 'genre',
+    condition: (film) => film.genre === 'musical',
+    description: 'Musical film songs and numbers'
+});
+```
+
+### Creating a Time-Period Strategy
+
+```javascript
+this.register('silent_era_variant', {
+    generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"photo play"'
+    }),
+    defaultWeight: 1.5,
+    category: 'early',
+    condition: (film) => parseInt(film.year) < 1930,
+    description: 'Common two-word variant in silent era'
+});
+```
+
+## Future Development
+
+The goal is to migrate all strategies to the registry system, which will enable:
+- Easier profile customization
+- Dynamic strategy loading
+- Better strategy organization
+- Simpler testing and debugging
 
 ## Next Steps
 
 - Learn about [Scoring](./SCORING.md) to see how results are ranked
 - Explore [Research Profiles](./RESEARCH-PROFILES.md) to customize strategy priorities
 - Read [Custom Profiles](./CUSTOM-PROFILES.md) to add your own strategies
+- Check [Development Guide](./DEVELOPMENT.md) for contributing

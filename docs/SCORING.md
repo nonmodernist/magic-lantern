@@ -1,18 +1,30 @@
 # Scoring System Documentation
 
-Magic Lantern uses a sophisticated scoring system to rank search results, ensuring the most valuable sources rise to the top. This guide explains how scoring works and how to customize it.
+Magic Lantern uses a sophisticated scoring system to rank search results, ensuring the most valuable sources rise to the top. This guide explains both the original scoring system and the experimental context-aware alternative.
 
 ## Overview
 
-Each search result receives a score based on three factors:
+Magic Lantern offers two scoring approaches:
 
-1. **Position Score** (10-100 points) - Where it appeared in search results
-2. **Publication Weight** (0.5-2.0x multiplier) - The value of the source
-3. **Collection Weight** (0.7-1.5x multiplier) - Which MHDL collection it's from
+### 1. Original Scoring (Default)
+Based on two factors:
+- **Position Score** (10-100 points) - Where it appeared in search results
+- **Publication Weight** (0.5-2.0x multiplier) - The value of the source
 
-**Final Score = Position Score × Publication Weight × Collection Weight**
+**Final Score = Position Score × Publication Weight**
 
-## Position Scoring
+### 2. Context-Aware Scoring (Experimental)
+A diversity-focused algorithm that emphasizes:
+- **Source Credibility** (30%) - Publication quality and profile weights
+- **Search Precision** (25%) - Trust in the search strategy used
+- **Diversity** (35%) - Variety bonus to reduce redundancy
+- **Lantern Relevance** (10%) - Original position ranking
+
+Enable with: `--context-aware` flag
+
+## Original Scoring System
+
+### Position Scoring
 
 Results are scored based on their position in Lantern's search results:
 
@@ -23,269 +35,299 @@ Results are scored based on their position in Lantern's search results:
 | 11-20 | 50-30 | Decent results, -2 points per position |
 | 21+ | 30-10 | Lower results, decreasing to minimum 10 |
 
-```javascript
-// Position 1 = 100 points
-// Position 5 = 80 points
-// Position 10 = 55 points
-// Position 20 = 30 points
-// Position 50 = 10 points
-```
+### Publication Weights
 
-## Publication Weights
+Different publications have different research value:
 
-Different publications have different research value. Weights are configured in profiles:
-
-### Default Weights
-
-```javascript
-  publications: {
-    weights: {
-      // sample publications, all scored the same for default
-      "variety": 1.0,
-      "motion picture herald": 1.0,
-      "film daily": 1.0,
-      "exhibitors herald": 1.0,
-      "moving picture world": 1.0,
-      "photoplay": 1.0,
-      "modern screen": 1.0,
-      "silver screen": 1.0,
-      "screenland": 1.0,
-      "motography": 1.0,
-    },
-```
-
-### How Weights Work
-
-A result from *Motography* weighted 1.5 scores 50% higher than the same position in Variety (weight: 1.0):
-
-- Variety at position 1: 100 × 1.0 = **100 points**
-- Motography at position 1: 100 × 1.5 = **150 points**
-
-### Profile-Specific Weights
-
-Different research profiles adjust these weights:
-
-**Labor History Profile:**
-```javascript
-"variety": 1.5,                 // Excellent strike coverage
-"motion picture herald": 1.3,   // Somewhere in between
-"photoplay": 0.5,               // Rarely discussed labor
-```
-
-**Regional Reception Profile:**
-```javascript
-"boxoffice": 1.8,           // Kansas City perspective
-"variety": 0.8,             // NYC/LA bias downweighted
-"harrisons reports": 1.5    // Small-town focus
-```
-
-## Collection Weights
-
-MHDL organizes materials into collections. These also affect scoring (but only for the top set of results):
-
-### Default Collection Weights
-
-```javascript
-collections: {
-  weights: {
-    "Hollywood Studio System": 1.0,
-    "Early Cinema": 1.0,
-    "Fan Magazines": 0.8,
-    "Broadcasting & Recorded Sound": 0.8,
-    "Theatre and Vaudeville": 0.8,
-    "Year Book": 0.7
-  }
-}
-```
-
-### Collection Weight Application
-
-Collection weights are applied during full-text fetching:
-- Multiple collections? The highest weight is used
-
-## Publication Identification
-
-Magic Lantern identifies publications from Lantern item IDs using regex patterns:
-
-```javascript
-// Examples:
-"variety137-1940-01_0054" → "variety"
-"motionpictureher21unse_0123" → "motion picture herald"
-"photoplay11chic_0456" → "photoplay"
-```
-
-### Pattern Matching
-
-Located in `base-patterns.js`:
-```javascript
-'variety': /variety/,
-'motion picture world': /motionpicture?wor|mopicwor/i, //case-insensitive
-'moving picture world': /movingpicture|movpict/i,
-'pictures and the picturegoer': /\bpicture(?!n)/i, // Avoid false matches
-```
-
-## Scoring in Action
-
-### Example 1: Basic Scoring
-
-**Search:** "The Wizard of Oz"
-
-| Publication | Position | Position Score | Pub Weight | Final Score |
-|-------------|----------|----------------|------------|-------------|
-| Variety | 1 | 100 | 1.0 | 100.0 |
-| Photoplay | 2 | 95 | 1.2 | 114.0 |
-| Fan Scrapbook | 3 | 90 | 0.7 | 63.0 |
-
-**Result:** Photoplay ranks #1 despite being position #2
-
-### Example 2: Profile Impact
-
-**Film:** "The Wizard of Oz" with Labor History Profile
-
-| Publication | Position | Base Score | Labor Weight | Final Score |
-|-------------|----------|------------|--------------|-------------|
-| Variety | 5 | 80 | 1.5 | 120.0 |
-| Photoplay | 1 | 100 | 0.5 | 50.0 |
-| Hollywood Reporter | 8 | 65 | 1.3 | 84.5 |
-
-**Result:** Variety ranks #1 due to labor history boost
-
-## Customizing Scoring
-
-### Adjusting Publication Weights
-
-In your profile:
 ```javascript
 publications: {
   weights: {
-    "rare_publication": 2.0,    // Double value
-    "common_publication": 0.5,  // Half value
-    "new_publication": 1.3      // 30% boost
+    "variety": 1.0,
+    "motion picture herald": 1.0,
+    "rare_publication": 1.5,
+    "fan_magazine": 0.8
   }
 }
 ```
 
-### Adding New Publications
+### How Original Scoring Works
 
-Because the Lantern API returns an item ID that abbreviates the magazine title, Magic Lantern uses pattern matching to attempt to correctly identify result titles. See [API](./API.md) for more. 
+Example calculation:
+- Variety at position 1: 100 × 1.0 = **100 points**
+- Rare publication at position 5: 80 × 1.5 = **120 points**
 
-1. Add pattern to `base-patterns.js`:
-```javascript
-'my publication': /mypub|my_publication/,
+Result: Rare publication ranks higher despite lower position
+
+## Context-Aware Scoring (Experimental)
+
+### Why Context-Aware?
+
+The original system can lead to:
+- Repetitive results from the same publication
+- Overemphasis on position (which can be arbitrary)
+- Missing diverse perspectives
+
+Context-aware scoring addresses these issues by considering the broader research context.
+
+### How to Enable
+
+```bash
+# Add --context-aware flag
+node core/magic-lantern-v5.js films.csv --context-aware
+
+# Works with any corpus/profile
+node core/magic-lantern-v5.js films.csv --corpus=medium --profile=labor-history --context-aware
 ```
 
-2. Add weight in profile:
+### Component Breakdown
+
+#### 1. Source Credibility (30%)
+Based on publication quality from your profile:
 ```javascript
-"my publication": 1.5,
+// Uses your profile's publication weights
+"variety": 1.5 → 75% credibility
+"fan_magazine": 0.5 → 25% credibility
 ```
 
-### Changing Position Scoring
-
-Edit `getPositionScore()` in `magic-lantern-v5.js`:
+#### 2. Search Precision (25%)
+How much we trust different search strategies:
 ```javascript
-getPositionScore(position) {
-  // Custom scoring algorithm
-  if (position === 1) return 150;  // Boost first result
-  if (position <= 3) return 100;   // Top 3 equal weight
-  // etc.
-}
+// High precision strategies
+'exact_title': 95% trust
+'author_title': 92% trust
+
+// Medium precision
+'studio_title': 75% trust
+'title_box_office': 70% trust
+
+// Lower precision
+'abbreviated_title': 50% trust
+'keyword_film': 40% trust
 ```
 
-## Score Thresholds
+#### 3. Diversity Score (35%)
+Rewards variety, penalizes repetition:
+- First result from a publication: 100%
+- Second result: 60%
+- Third result: 36%
+- Duplicate content detected: 20%
 
-### Full Text Fetching
+#### 4. Lantern Relevance (10%)
+Original position, but with less weight:
+- Position 1: 100%
+- Position 10: ~75%
+- Position 50: ~40%
 
-Only results above minimum score get full text:
-```javascript
-fullText: {
-  minScoreForFetch: 50  // Default threshold
-}
-```
+### Understanding Context-Aware Output
 
-### Quality Assessment
+When using `--context-aware`, scoring includes additional fields:
 
-General score ranges:
-- **150+**: Exceptional (targeted publication at top position)
-- **100-150**: Excellent (good publication, high position)
-- **75-100**: Very good (decent publication or position)
-- **50-75**: Good (worth examining)
-- **Below 50**: Lower priority
-
-## Understanding Your Results
-
-In the output JSON:
 ```json
-{
-  "scoring": {
-    "position": 3,
-    "positionScore": 90,
-    "publication": "photoplay",
-    "publicationWeight": 1.2,
-    "collectionWeight": 1.0,
-    "finalScore": 108.0
+"scoring": {
+  "position": 1,
+  "publication": "variety",
+  "finalScore": 87.5,
+  "components": {
+    "credibility": 75,      // Publication quality
+    "precision": 95,        // Search strategy trust
+    "diversity": 100,       // Variety bonus
+    "relevance": 80         // Position-based
+  },
+  "breakdown": {
+    "credibility": 22.5,    // 75 × 0.30
+    "precision": 23.75,     // 95 × 0.25
+    "diversity": 35,        // 100 × 0.35
+    "relevance": 8          // 80 × 0.10
   }
 }
 ```
 
-This tells you:
-- Found at position 3 in search results
-- Base score of 90 for that position
-- From Photoplay (weight: 1.2)
-- Final score: 90 × 1.2 = 108
+### Console Output Comparison
 
-## Strategic Considerations
-
-### For Comprehensive Coverage
-Use balanced weights to avoid missing sources:
-```javascript
-// Don't over-weight too extremely
-"variety": 1.2,      // Not 3.0
-"fan_mag": 0.8,      // Not 0.1
+**Original Scoring:**
+```
+🏆 Top 5 scored results:
+1. [Score: 100.0] variety
+   Position: 1 (100) × Publication: 1.0
+2. [Score: 95.0] variety
+   Position: 2 (95) × Publication: 1.0
+3. [Score: 90.0] variety
+   Position: 3 (90) × Publication: 1.0
 ```
 
-### For Focused Research
-Aggressively weight your key sources:
-```javascript
-// Labor history example
-"variety": 2.0,              // Strong labor coverage
-"harrisons reports": 2.0,    // Pro-worker stance
-"photoplay": 0.3,           // Rarely useful
+**Context-Aware Scoring:**
+```
+🏆 Top 5 results (Context-Aware Scoring):
+1. [87.5] variety via exact_title
+   Credibility: 75 | Precision: 95 | Diversity: 100 | Relevance: 100
+2. [72.3] motion picture herald via author_title
+   Credibility: 65 | Precision: 92 | Diversity: 100 | Relevance: 85
+3. [58.1] photoplay via title_production
+   Credibility: 60 | Precision: 68 | Diversity: 100 | Relevance: 70
+
+📈 Top 10 Diversity: 5 publications, 7 search strategies
+⚠️  3 potential duplicate/redundant results detected
 ```
 
-### For Rare Materials
-Boost hard-to-find publications:
+## Comparing the Systems
+
+### Original Scoring Strengths
+- Simple and predictable
+- Fast computation
+- Position-focused (good when Lantern's ranking is reliable)
+- Stable across runs
+
+### Context-Aware Strengths
+- Promotes source diversity
+- Reduces redundant results
+- Considers search quality
+- Better for exploratory research
+
+### When to Use Each
+
+**Use Original Scoring when:**
+- You trust Lantern's relevance ranking
+- You want consistent, reproducible results
+- You're focusing on a specific publication
+- Speed is important
+
+**Use Context-Aware when:**
+- You want diverse perspectives
+- You're doing exploratory research
+- You see too many similar results
+- You want to discover unexpected sources
+
+## Customizing Context-Aware Scoring
+
+### Adjust Component Weights
+
+In `config/scoring.config.js`:
+
 ```javascript
-"motography": 2.0,           // Rare technical journal
-"early_trade": 1.8,          // Limited surviving issues
+module.exports.contextAwareWeights = {
+    sourceCredibility: 0.30,    // Reduce to rely less on publication weights
+    searchPrecision: 0.25,      // Increase to trust strategy quality more
+    diversity: 0.35,            // Increase for more variety
+    lanternRelevance: 0.10      // Increase to trust position more
+};
+```
+
+### Modify Trust Levels
+
+In `lib/context-aware-scoring.js`:
+
+```javascript
+this.strategyTrust = {
+    // Adjust trust levels for your research
+    'exact_title': 0.95,
+    'your_custom_strategy': 0.85,
+    'broad_keyword': 0.30
+};
+```
+
+### Change Diversity Decay
+
+```javascript
+// In getDiversityScore()
+// Current: 60% decay per occurrence
+score *= Math.pow(0.6, pubCount);
+
+// More aggressive: 50% decay
+score *= Math.pow(0.5, pubCount);
+
+// Gentler: 80% decay
+score *= Math.pow(0.8, pubCount);
 ```
 
 ## Debugging Scores
 
-To see why results ranked as they did:
+### For Original Scoring
 
-1. Check position in results:
+Check the scoring object:
 ```json
-"scoring": { "position": 15 }
+"scoring": {
+    "position": 3,
+    "positionScore": 90,
+    "publication": "variety",
+    "publicationWeight": 1.5,
+    "finalScore": 135
+}
 ```
 
-2. Verify publication was identified:
+### For Context-Aware
+
+Look at the components breakdown:
 ```json
-"scoring": { "publication": "variety" }
+"components": {
+    "credibility": 75,  // Is publication recognized?
+    "precision": 95,    // Is strategy trusted?
+    "diversity": 36,    // Third occurrence = penalty
+    "relevance": 85     // Position 5 = good
+}
 ```
 
-3. Confirm weights applied:
-```json
-"scoring": { "publicationWeight": 1.5 }
+Low diversity score? Check if:
+- Multiple results from same publication
+- Same publication + strategy combo
+- Potential duplicate content
+
+## Performance Considerations
+
+Context-aware scoring:
+- Takes slightly longer (processes all results twice)
+- Uses more memory (tracks seen publications/strategies)
+- May produce different rankings between runs (due to encounter order)
+
+## Best Practices
+
+### For Original Scoring
+1. Set publication weights carefully
+2. Consider position reliability
+3. Use consistent weights across similar publications
+
+### For Context-Aware
+1. Start with default weights
+2. Review diversity statistics
+3. Adjust weights based on your needs
+4. Check for duplicate detection
+
+### General Tips
+1. Try both systems on a test corpus
+2. Compare top 20 results from each
+3. Choose based on your research goals
+4. Document which system you used
+
+## Future Development
+
+Context-aware scoring may become the default if testing proves successful. Potential enhancements:
+- Time-based diversity (prefer different dates)
+- Topic modeling for semantic diversity
+- Adjustable duplicate detection sensitivity
+- Profile-specific trust levels
+
+## Examples
+
+### Research Scenario: Comprehensive Coverage
+
+```bash
+# Use context-aware for maximum diversity
+node core/magic-lantern-v5.js films.csv --corpus=medium --context-aware
 ```
 
-Common issues:
-- Publication not recognized → Add pattern
-- Publication matched wrong → Check the regular expression used for matching 
-- Wrong weight applied → Check profile loading
-- Unexpected ranking → Review all three factors
+Result: Top results include variety of publications and perspectives
+
+### Research Scenario: Publication Focus
+
+```bash
+# Use original scoring with targeted profile
+node core/magic-lantern-v5.js films.csv --profile=trade-papers-only
+```
+
+Result: Consistent ranking based on position and configured weights
 
 ## Next Steps
 
-- Explore [Research Profiles](./RESEARCH-PROFILES.md) to see scoring in context
-- Learn to [Create Custom Profiles](./CUSTOM-PROFILES.md) with your own weights
-- Understand [Search Strategies](./SEARCH-STRATEGIES.md) that generate the results
+- Try both scoring systems with `--corpus=test`
+- Review [Research Profiles](./RESEARCH-PROFILES.md) to understand weight configurations
+- Learn to [Create Custom Profiles](./CUSTOM-PROFILES.md) with scoring preferences
+- See [Output Formats](./OUTPUT-FORMATS.md) for scoring field details
