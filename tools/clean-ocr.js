@@ -111,27 +111,29 @@ class OCRCleaner {
         this.regexPatterns = [
             // Fix hyphenation at line breaks
             { pattern: /(\w+)-\s*\n\s*(\w+)/g, replacement: '$1$2' },
-            
+
             // Multiple spaces
             { pattern: /\s{2,}/g, replacement: ' ' },
-            
+
             // Broken sentences
             { pattern: /([a-z])\s*\n\s*([a-z])/g, replacement: '$1 $2' },
-            
+
             // Floating punctuation
             { pattern: /\s+([,.;:!?])/g, replacement: '$1' },
-            
-            // Opening quotes/parens
-            { pattern: /([(\["])\s+/g, replacement: '$1' },
-            
-            // Closing quotes/parens
-            { pattern: /\s+([\)\]"])/g, replacement: '$1' },
-            
+
+            // Opening quotes/parens - only remove spaces WITHIN the quotes/parens
+            // { pattern: /([(\[])\s+(\w)/g, replacement: '$1$2' },
+            // { pattern: /"\s+(\w)/g, replacement: '"$1' },
+
+            // Closing quotes/parens - only remove spaces WITHIN the quotes/parens
+            // { pattern: /(\w)\s+([\)\]])/g, replacement: '$1$2' },
+            // { pattern: /(\w)\s+"/g, replacement: '$1"' },
+
             // Page numbers (optional removal)
             { pattern: /^\s*\d{1,4}\s*$/gm, replacement: '' },
-            
+
             // Headers/footers (common patterns)
-            { pattern: /^(VARIETY|MOTION PICTURE HERALD|THE FILM DAILY).*\d{4}\s*$/gm, replacement: '' }
+            { pattern: /^(VARIETY|MOTION PICTURE HERALD|THE FILM DAILY|MOTOGRAPHY).*\d{4}\s*$/gm, replacement: '' }
         ];
         
         // Industry-specific term corrections
