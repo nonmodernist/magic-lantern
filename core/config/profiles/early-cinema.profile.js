@@ -4,25 +4,42 @@ const basePatterns = require('./base-patterns');
 
 module.exports = {
     name: "Early Cinema (1905-1920)",
-    description: "Focused on early film industry formation",
+    description: "Comprehensive early film industry coverage showcasing global perspectives",
     
     publications: {
-        // Prioritize early trade papers
+        // Diverse publication weights showcasing ML's scoring capabilities
         weights: {
-            "moving picture world": 1.5,
-            "reel life": 1.8, // mutual film company
-            "motion picture story magazine": 1.5,
-            "cinemundial": 1.6,
-            "motography": 1.5,
-            "wids": 1.5,
-            "the film daily": 1.3,
-            "motion picture news": 1.4,
-            "exhibitors herald": 1.5,
-            "the new york clipper": 1.3,
+            // US Trade Papers - Core coverage
+            "moving picture world": 1.7,        
+            "motography": 1.7,                  
+            "motion picture news": 1.6,         
+            "exhibitors herald": 1.5,           
+            "wids": 1.5,                        
             "exhibitors trade review": 1.5,
-            "picture play": 1.5,
-            "variety": 1.2,  // existed but less film-focused early
-            "photoplay": 1.2, // fan mag, different perspective
+            "billboard": 1.5,
+
+            // Studio Publications
+            "reel life": 1.8,
+            "universal weekly": 1.8,                   
+            
+            // Fan/Popular Magazines
+            "motion picture story magazine": 1.6,
+            "photoplay": 1.4,                   
+            "picture play": 1.5,                
+            "picture-play magazine": 1.5,       
+            
+            // International Perspectives
+            "the bioscope": 1.8,                
+            "canadian moving picture digest": 1.7,
+            "cinemundial": 1.6,                 
+            "cine-journal": 1.7,                
+            "der kinematograph": 1.7,           
+            
+            // General Entertainment
+            "variety": 1.2,                     
+            "the new york clipper": 1.3,            
+            "the film daily": 1.3,              
+            "show world": 1.4,  
         },
 
     patterns: basePatterns
@@ -30,7 +47,10 @@ module.exports = {
     
     collections: {
         weights: {
-            "Early Cinema": 1.5,
+            "Early Cinema": 1.8,                
+            "Hollywood Studio System": 1.2,     
+            "Theatre and Vaudeville": 1.3,      
+            "Fan Magazines": 1.2,    
         }
     },
     

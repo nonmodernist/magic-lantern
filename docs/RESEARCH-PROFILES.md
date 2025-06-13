@@ -1,260 +1,364 @@
-# Research Profiles Guide
+# Research Profiles
 
-Research profiles are the heart of Magic Lantern's flexibility. They let you tailor searches to your specific research questions and the historical period you're studying.
+Research profiles let you tailor Magic Lantern's behavior to your specific research needs. Each profile adjusts search strategies, scoring weights, and output characteristics.
 
-## What Are Research Profiles?
+## Quick Start
 
-Research profiles are configuration files that adjust:
-- 📊 **Publication weights** - Which sources are most valuable for your research
-- 🔍 **Search strategy priorities** - Which types of searches to run first (or skip entirely)
-- 📅 **Date ranges** - How broadly to search around a film's release year
-- 📚 **Collection preferences** - Which MHDL collections to prioritize
+```bash
+# List all available profiles
+node core/magic-lantern-v5.js --list-profiles
+
+# Use a specific profile
+node core/magic-lantern-v5.js films.csv --profile=adaptation-studies
+
+# Combine with corpus size and other options
+node core/magic-lantern-v5.js films.csv --profile=labor-history --corpus=medium --context-aware
+```
 
 ## Available Profiles
 
 ### Default Profile
-The balanced, general-purpose profile.
+The standard Magic Lantern configuration that works well for most research.
 
-**Best for:** General film history research, getting started
-**Key features:**
-- Equal weight to all search strategies
-- Standard publication weights (Variety = 1.0)
-- Moderate date ranges (±2 years)
+**Best for:** General film history research
+**Search strategies:** All standard strategies
+**Scoring:** Balanced weights for major publications
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=default
+node core/magic-lantern-v5.js films.csv
 ```
 
-### Adaptation Studies Profile
-Emphasizes literary sources and author attribution.
+### 📚 Adaptation Studies
+Optimized for researching film adaptations of literary works.
 
-**Best for:** Studying film adaptations of literature
-**Key features:**
-- Prioritizes author + title searches (weight: 2.5)
-- Boosts publications that discussed sources (Photoplay: 1.5)
-- Searches for novel titles separately from film titles
-- Downweights box office and exhibitor searches
+**Best for:** Literature-to-film research
+**Emphasis:** Author searches, adaptation terminology, source material
+**Special strategies:** 
+- Author name variations (Fannie/Fanny Hurst)
+- "adapted from" queries
+- Publisher and book review searches
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=adaptation-studies
+node core/magic-lantern-v5.js films.csv --profile=adaptation-studies
 ```
 
-**Example enhanced searches:**
-- `"Louisa May Alcott" "Little Women"`
-- `"Little Women" "novel"`
-- `"Alcott" "RKO"`
-
-### Labor History Profile
-
-Focuses on strikes, unions, and working conditions.
+### ⚒️ Labor History
+Focused on finding labor disputes, strikes, and working conditions.
 
 **Best for:** Film industry labor research
-**Key features:**
-- Adds labor-specific searches (strike, work stoppage, labor dispute)
-- Boosts trade papers with good labor coverage (Variety: 1.5)
-- Downweights fan magazines (Photoplay: 0.5)
-- Wider date ranges to catch pre/post-production labor actions
+**Emphasis:** Strike coverage, union activities, working conditions
+**Special strategies:**
+- `title_strike` - Film + "strike"/"picketed"
+- `title_work_stoppage` - Film + "work stoppage"
+- `studio_labor` - Studio + "labor dispute"
+- `studio_boycott` - Studio + "boycott"
+**Higher weights:** Labor-focused publications
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=labor-history
+node core/magic-lantern-v5.js films.csv --profile=labor-history
 ```
 
-**Example unique searches:**
-- `"MGM" strike`
-- `"The Wizard of Oz" union`
-- `"Metro-Goldwyn-Mayer" labor`
+### 📰 Reviews and Reception
+Focused on critical and audience response.
 
-### Early Cinema Profile
-Optimized for silent era research (1905-1920).
-
-**Best for:** Early film history
-**Key features:**
-- Prioritizes early trade papers (Moving Picture World: 1.5)
-- Emphasizes abbreviated title searches (common in era)
-- Wider date ranges (±3 years) for uncertain release dates
-- Focuses on Early Cinema collection
+**Best for:** Reception studies, critical analysis
+**Emphasis:** Reviews, criticism, audience reaction
+**Special strategies:**
+- Historical review terminology ("notices", "comment")
+- Critics by name
+- Box office performance
+**Higher weights:** Review-heavy publications
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=early-cinema
+node core/magic-lantern-v5.js films.csv --profile=reviews-and-reception
 ```
 
-### Regional Reception Profile
-Studies how films played outside major cities.
+### 🎬 Early Cinema
+Optimized for pre-1930 film research.
 
-**Best for:** Reception studies, regional film history
-**Key features:**
-- Boosts regional publications (BoxOffice Kansas City: 1.8)
-- Downweights coastal publications (Variety: 0.8)
-- Prioritizes box office and exhibition data
-- Searches for regional reception keywords
+**Best for:** Silent era, early sound films
+**Special terminology:** 
+- "photoplay" instead of "film"
+- "picture play" variants
+- Early studio names
+**Date ranges:** Expanded to ±5 years
+**Special handling:** Pre-1920 terminology
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=regional-reception
+node core/magic-lantern-v5.js films.csv --profile=early-cinema
 ```
 
-### Studio Era Adaptations Profile
-Prestige pictures of the 1930s-1940s.
+### 📻 Interviews and Publicity - COMING SOON
+Find period interviews and publicity materials.
 
-**Best for:** Classical Hollywood literary adaptations
-**Key features:**
-- Peak influence of fan magazines discussing sources
-- National trade coverage emphasis
-- Studio system search patterns
-- Focus on prestige production coverage
+**Best for:** Star studies, publicity campaigns
+**Emphasis:** Direct quotes, personality pieces
+**Special strategies:**
+- `director_says` - Director + "says"
+- `star_tells` - Star + "tells"
+- `personality_sketch` - Star + "personality"
+**Period-aware:** Different terms for different eras
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=studio-era-adaptations
+node core/magic-lantern-v5.js films.csv --profile=interviews-and-publicity
 ```
 
-### 1950s Adaptations Profile
-Widescreen era with fewer publications.
+### 📺 Advertisement Focused - COMING SOON
+Locate historical film advertisements and marketing.
 
-**Best for:** Post-war Hollywood research
-**Key features:**
-- Adjusted for publications that survived to 1950s
-- Emphasis on remakes and readaptations
-- Regional exhibitor focus (many trades had folded)
+**Best for:** Marketing history, exhibition studies
+**Emphasis:** Theater ads, promotional materials
+**Special strategies:**
+- `title_playdate` - Film + "playdate"
+- `title_booking` - Film + "booking"
+- `title_exploitation` - Film + "exploitation"
+- Theater chain searches
 
 ```bash
-node magic-lantern-v5.js films.csv --profile=50s-adaptations
+node core/magic-lantern-v5.js films.csv --profile=advertisement-focused
 ```
 
 ## How Profiles Work
 
-### Publication Weights
+### Profile Structure
 
-Profiles adjust the value of different publications:
+Each profile configures:
 
 ```javascript
-// In labor-history.profile.js
-publications: {
-  weights: {
-    "variety": 1.5,              // Boosted - good strike coverage
-    "hollywood reporter": 1.3,   // Boosted - industry perspective
-    "photoplay": 0.5,           // Reduced - rarely discussed labor
+{
+  // Basic metadata
+  name: "Labor History",
+  description: "Focused on film industry labor",
+  
+  // Search strategy configuration
+  searchStrategies: {
+    enabled: {
+      titleVariations: true,
+      laborSearches: true,    // Profile-specific category
+      creatorSearches: false  // Disabled for this profile
+    },
+    
+    // Strategy-specific weights (execution order)
+    weights: {
+      'title_strike': 2.5,      // Run first (highest weight)
+      'exact_title': 0.3,       // Run last (low weight)
+      'author_title': 0         // Skip entirely (zero weight)
+    }
+  },
+  
+  // Publication scoring weights
+  publications: {
+    weights: {
+      "variety": 1.5,           // Boost labor coverage
+      "motion picture herald": 1.2,
+      "daily worker": 2.0       // Heavily boost labor papers
+    }
+  },
+  
+  // Search behavior
+  searchBehavior: {
+    dateRange: 3,               // ±3 years instead of default
+    maxResultsPerSearch: 200,   // More results per query
+    stopOnHighQuality: false    // Search exhaustively
   }
 }
 ```
 
-### Search Strategy Weights
+### Strategy Execution
 
-Profiles can prioritize or skip certain search types:
+Profiles control:
+1. **Which strategies run** - Enable/disable categories
+2. **What order they run** - Higher weights run first
+3. **Whether they run** - Zero weight skips entirely
 
-```javascript
-// In adaptation-studies.profile.js
-searchStrategies: {
-  weights: {
-    'author_title': 2.5,        // Run first, highest priority
-    'novel_film_title': 2.0,    // Also prioritized
-    'title_box_office': 0,      // Skip entirely
-  }
-}
-```
+### Integration with New Features
 
-### Date Range Configuration
-
-Different profiles use different date windows:
-
-```javascript
-// Tight range for well-documented era
-dateRanges: {
-  high: { before: 1, after: 1 },
-  medium: { before: 2, after: 2 },
-  low: { before: 3, after: 3 }
-}
-
-// Wider range for early cinema
-dateRange: { before: 3, after: 2 }
-```
-
-## Choosing a Profile
-
-Ask yourself:
-
-1. **What's my research question?**
-   - Literary adaptations → `adaptation-studies`
-   - Labor conditions → `labor-history`
-   - Regional reception → `regional-reception`
-
-2. **What era am I studying?**
-   - Silent era → `early-cinema`
-   - Classical Hollywood → `studio-era-adaptations`
-   - 1950s → `50s-adaptations`
-
-3. **What sources matter most?**
-   - Trade papers → Most profiles work well
-   - Fan magazines → `adaptation-studies` or `studio-era-adaptations`
-   - Regional publications → `regional-reception`
-
-## Combining Profiles with Corpus Settings
-
-Profiles work with corpus settings to control search scope:
+#### With Context-Aware Scoring
+Profiles work seamlessly with the experimental scoring:
 
 ```bash
-# Quick test of labor profile
-node magic-lantern-v5.js films.csv --corpus=test --profile=labor-history
-
-# Full labor history research
-node magic-lantern-v5.js films.csv --corpus=full --profile=labor-history
-
-# Medium-scale adaptation study
-node magic-lantern-v5.js films.csv --corpus=medium --profile=adaptation-studies
+# Labor profile + context-aware = diverse labor sources
+node core/magic-lantern-v5.js films.csv --profile=labor-history --context-aware
 ```
 
-## Profile Output Differences
+Publication weights in profiles affect the "credibility" component of context-aware scoring.
 
-Different profiles will find different results for the same film:
+#### With Strategy Registry
+New profile-specific strategies are defined in the registry:
 
-### Example: "The Wizard of Oz" (1939)
-
-**Default profile might find:**
-- Reviews in Variety
-- Box office reports
-- General production news
-
-**Adaptation-studies profile emphasizes:**
-- Mentions of "L. Frank Baum"
-- References to the source novel
-- Discussions of adaptation choices
-
-**Labor-history profile highlights:**
-- Exhibitor actions against MGM
-- Makeup artist union issues
-- Production delays from disputes
+```javascript
+// Only runs with labor-history profile
+this.register('title_strike', {
+    profileRequired: 'labor',
+    // ... strategy definition
+});
+```
 
 ## Creating Custom Profiles
 
-See [Creating Custom Profiles](./CUSTOM-PROFILES.md) for a detailed guide.
+See [CUSTOM-PROFILES.md](./CUSTOM-PROFILES.md) for detailed instructions on creating your own profiles.
 
-Basic structure:
+Quick example:
+
 ```javascript
-// my-research.profile.js
+// config/profiles/my-research.js
 module.exports = {
   name: "My Research Focus",
-  description: "What this profile does",
-  publications: {
-    weights: {
-      // Adjust publication values
-    }
-  },
+  description: "Customized for my specific needs",
+  
   searchStrategies: {
     weights: {
-      // Prioritize search types
+      'exact_title': 2.0,        // Prioritize exact matches
+      'my_custom_strategy': 1.5  // Custom strategy
+    }
+  },
+  
+  publications: {
+    weights: {
+      "special_publication": 3.0  // Heavily weight this source
     }
   }
+};
+```
+
+## Profile Selection Guide
+
+### By Research Question
+
+**"How was this film made?"**
+→ Use `production-history`
+
+**"What did critics think?"**
+→ Use `reviews-and-reception`
+
+**"How was the book adapted?"**
+→ Use `adaptation-studies`
+
+**"Were there labor issues?"**
+→ Use `labor-history`
+
+**"How was it marketed?"**
+→ Use `advertisement-focused`
+
+### By Time Period
+
+**Silent era (pre-1930)**
+→ Use `early-cinema`
+
+**Studio system (1930-1960)**
+→ Use `studio-system` or `default`
+
+**Any period**
+→ Start with `default`
+
+### By Source Type Needed
+
+**Trade papers only**
+→ Modify weights in any profile
+
+**Fan magazines**
+→ Use `interviews-and-publicity`
+
+**Technical journals**
+→ Use `production-history`
+
+## Combining Profiles with Other Features
+
+### Full Workflow Example
+
+```bash
+# 1. Run focused search with labor profile
+node core/magic-lantern-v5.js films.csv --profile=labor-history --corpus=medium
+
+# 2. Fetch full text for high-scoring labor sources
+node tools/fetch-full-text.js results/search-results_[timestamp].json --score-threshold=80
+
+# 3. Annotate labor incidents
+node tools/annotation-helper.js results/search-results_[timestamp].json --interactive
+# Focus on: labor type annotations
+
+# 4. Export findings
+node tools/annotation-helper.js results/search-results_[timestamp].json --export labor-findings.csv
+```
+
+### Testing Profiles
+
+Compare profile effectiveness:
+
+```bash
+# Test 1: Default profile
+node core/magic-lantern-v5.js test-films.csv --corpus=test
+
+# Test 2: Specialized profile
+node core/magic-lantern-v5.js test-films.csv --corpus=test --profile=labor-history
+
+# Compare results counts and top sources
+```
+
+## Profile Limitations
+
+1. **One profile at a time** - Cannot combine profiles
+2. **Fixed categories** - Some strategies always run
+3. **Publication weights** - Only affect scoring, not search
+
+## Tips for Profile Selection
+
+1. **Start with default** - Get baseline results first
+2. **Try relevant profiles** - Test 2-3 that match your research
+3. **Compare outputs** - See which finds most useful sources
+4. **Consider custom** - Create your own for repeated research
+5. **Document choice** - Note which profile you used
+
+## Profile Development
+
+Profiles are actively maintained and expanded. Recent additions:
+- Registry-based strategies for profile-specific searches
+- Better weight configurations
+- More granular control
+
+Future plans:
+- Composite profiles (combine multiple)
+- Time-period auto-detection
+- Profile recommendation engine
+
+## Debugging Profiles
+
+### See Active Profile
+
+The console shows which profile is loaded:
+
+```
+✨ MAGIC LANTERN v5.1.0
+
+📚 Research Profile: Labor History
+   Focused on film industry labor and working conditions
+```
+
+### Check Strategy Weights
+
+Temporarily add logging to see execution order:
+
+```
+📊 Strategy execution order (by profile weight):
+   1. [2.5] title_strike - Film title + strike/picketed
+   2. [2.0] studio_labor - Studio + labor dispute
+   3. [1.0] exact_title - Exact title match
+```
+
+### Verify Publication Weights
+
+Check the scoring breakdown in results:
+
+```json
+"scoring": {
+    "publication": "daily worker",
+    "publicationWeight": 2.0,  // Labor profile boost
+    "finalScore": 180
 }
 ```
 
-## Tips for Using Profiles
-
-1. **Start with the closest match** - Modify an existing profile rather than starting from scratch
-2. **Test with small corpus** - Use `--corpus=test` to see how a profile performs
-3. **Compare profiles** - Run the same film(s) through different profiles to see variations
-4. **Document your choices** - Note why you weighted certain publications or strategies
-5. **Share your profiles** - Help other researchers with similar interests!
-
 ## Next Steps
 
-- Learn to [Create Custom Profiles](./CUSTOM-PROFILES.md)
+- Review [Custom Profiles](./CUSTOM-PROFILES.md) to create your own
 - Understand [Search Strategies](./SEARCH-STRATEGIES.md) that profiles control
-- See how [Scoring](./SCORING.md) uses profile weights
+- Learn about [Scoring](./SCORING.md) and how profiles affect it

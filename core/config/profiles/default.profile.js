@@ -40,7 +40,7 @@ module.exports = {
   searchStrategies: {
     enabled: {
       titleVariations: true,
-      creatorSearches: true,
+      reviewSearches: true,
       productionSearches: true,
       starSearches: true,
       fuzzySearches: false, // currently turned off for performance optimization

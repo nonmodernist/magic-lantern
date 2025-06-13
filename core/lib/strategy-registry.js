@@ -1,65 +1,78 @@
 // lib/strategy-registry.js
 class StrategyRegistry {
-    constructor() {
-        this.strategies = new Map();
-        this.initializeStrategies();
-    }
+  constructor() {
+    this.strategies = new Map();
+    this.initializeStrategies();
+  }
 
-    initializeStrategies() {
-        // Title-based strategies
-        this.register('exact_title', {
-            generator: (film) => ({
-            keyword: `"${film.title || film.Title}"`,
-            confidence: 'high',
-            description: 'Exact title match'
-        }),
-        defaultWeight: 1.0,
-        category: 'title'
+  initializeStrategies() {
+    
+    // TITLE-based strategies
+    this.register('exact_title', {
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        confidence: 'high',
+        description: 'Exact title match'
+      }),
+      defaultWeight: 1.0,
+      category: 'title'
     });
 
     this.register('title_no_article', {
-        condition: (film) => {
-            const title = film.title || film.Title;
-            return ['The', 'A', 'An'].some(article => title.startsWith(article + ' '));
-        },
-        generator: (film) => {
-            const title = film.title || film.Title;
-            const article = ['The', 'A', 'An'].find(a => title.startsWith(a + ' '));
-            const shortTitle = title.substring(article.length + 1);
-            return {
-            keyword: `"${shortTitle}"`,
-            confidence: 'high',
-            description: `Title without "${article}"`
-            };
-        },
-        defaultWeight: 1.0,
-        category: 'title'
-        });
+      condition: (film) => {
+        const title = film.title || film.Title;
+        return ['The', 'A', 'An'].some(article => title.startsWith(article + ' '));
+      },
+      generator: (film) => {
+        const title = film.title || film.Title;
+        const article = ['The', 'A', 'An'].find(a => title.startsWith(a + ' '));
+        const shortTitle = title.substring(article.length + 1);
+        return {
+          keyword: `"${shortTitle}"`,
+          confidence: 'high',
+          description: `Title without "${article}"`
+        };
+      },
+      defaultWeight: 1.0,
+      category: 'title'
+    });
 
-        // Labor-specific strategies
-        this.register('title_strike', {
-            generator: (film) => ({
-                keyword: `"${film.title || film.Title}"`,
-                secondKeyword: '"picketed"',
-                confidence: 'high',
-                description: 'Film title + picketed'
-            }),
-                defaultWeight: 2.5,
-                category: 'labor',
-                profileRequired: 'labor'
-        });
+    this.register('title_studio', {
+      condition: (film) => film.studio && film.studio !== '-',
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: `"${film.studio || film.Studio}"`,
+        confidence: 'high',
+        description: 'Film title + Studio'
+      }),
+      defaultWeight: 1.8,
+      category: 'title',
+    });
+
+    // LABOR-specific strategies
+    this.register('title_strike', {
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"picketed"',
+        confidence: 'high',
+        description: 'Film title + picketed'
+      }),
+      defaultWeight: 2.5,
+      category: 'labor',
+      profileRequired: 'labor'
+    });
 
     this.register('title_work_stoppage', {
-        generator: (film) => ({
-            keyword: `"${film.title || film.Title}"`,
-            secondKeyword: '"work stoppage"',
-            confidence: 'high',
-            description: 'Film title + work stoppage'
-            }),
-            defaultWeight: 2.0,
-            category: 'labor',
-            profileRequired: 'labor'
-            });
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"work stoppage"',
+        confidence: 'high',
+        description: 'Film title + work stoppage'
+      }),
+      defaultWeight: 2.0,
+      category: 'labor',
+      profileRequired: 'labor'
+    });
 
     this.register('studio_labor', {
       condition: (film) => film.studio && film.studio !== '-',
@@ -74,7 +87,7 @@ class StrategyRegistry {
       profileRequired: 'labor'
     });
 
-    // Author/adaptation strategies
+    // AUTHOR/adaptation strategies
     this.register('author_title', {
       condition: (film) => film.author && film.author !== '-',
       generator: (film) => ({
@@ -87,7 +100,53 @@ class StrategyRegistry {
       category: 'adaptation'
     });
 
-    // Review-specific strategies - historical terminology
+    this.register('source_title', {
+      condition: (film) => film.source && film.source !== '-',
+      generator: (film) => ({
+        keyword: `"${film.source || film.Source}"`,
+        secondKeyword: `"${film.title || film.Title}"`,
+        confidence: 'high',
+        description: 'Source + exact film title'
+      }),
+      defaultWeight: 1.3,
+      category: 'adaptation'
+    });
+
+    this.register('author_only', {
+      condition: (film) => film.author && film.author !== '-',
+      generator: (film) => ({
+        keyword: `"${film.author || film.Author}"`,
+        confidence: 'medium',
+        description: 'Author name only'
+      }),
+      defaultWeight: 1.0,
+      category: 'adaptation'
+    });
+
+    this.register('source_adaptation', {
+      condition: (film) => film.source && film.source !== '-',
+      generator: (film) => ({
+        keyword: `"${film.source || film.Source}"`,
+        secondKeyword: `adaptation`,
+        confidence: 'medium',
+        description: 'Source + adaptation'
+      }),
+      defaultWeight: 1.3,
+      category: 'adaptation'
+    });
+
+    // REVIEW-specific strategies - historical terminology
+    this.register('title_review', {
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"review"',
+        confidence: 'high',
+        description: 'Film title + review'
+      }),
+      defaultWeight: 3.0,
+      category: 'review'
+    });
+
     this.register('title_notices', {
       generator: (film) => ({
         keyword: `"${film.title || film.Title}"`,
@@ -106,7 +165,7 @@ class StrategyRegistry {
         confidence: 'high',
         description: 'Film title + comment'
       }),
-      defaultWeight: 2.5,
+      defaultWeight: 2.0,
       category: 'review'
     });
 
@@ -117,7 +176,7 @@ class StrategyRegistry {
         confidence: 'medium',
         description: 'Film title + box office'
       }),
-      defaultWeight: 2.5,
+      defaultWeight: 2.0,
       category: 'review'
     });
 
@@ -169,7 +228,7 @@ class StrategyRegistry {
       category: 'interview'
     });
 
-    // Advertisement/publicity strategies - historical terms
+    // ADVERTISEMENT/publicity strategies - historical terms
     this.register('title_playdate', {
       generator: (film) => ({
         keyword: `"${film.title || film.Title}"`,
@@ -215,7 +274,19 @@ class StrategyRegistry {
       category: 'advertisement'
     });
 
-    // Production/creative staff - period terminology
+    // PRODUCTION/creative staff
+    this.register('director_title', {
+      condition: (film) => film.director && film.director !== '-',
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: `"${film.director || film.Director}"`,
+        confidence: 'high',
+        description: 'Film title + director name'
+      }),
+      defaultWeight: 2.0,
+      category: 'production'
+    });
+
     this.register('megaphoned_by', {
       condition: (film) => film.director && film.director !== '-',
       generator: (film) => ({
@@ -283,7 +354,7 @@ class StrategyRegistry {
         keyword: `"${film.director || film.Director}"`,
         secondKeyword: '"assigned"',
         confidence: 'medium',
-        description: 'Director + assigned to project'
+        description: 'Director + assigned (to project)'
       }),
       defaultWeight: 2.0,
       category: 'production'
@@ -377,29 +448,29 @@ class StrategyRegistry {
 
     // Most strategies follow a pattern of keyword + secondKeyword
     if (quotedPhrases.length > 0) {
-        keywords.keyword = quotedPhrases[0];
-        if (quotedPhrases.length > 1) keywords.second_keyword = quotedPhrases[1];
-        if (quotedPhrases.length > 2) keywords.third_keyword = quotedPhrases[2];
+      keywords.keyword = quotedPhrases[0];
+      if (quotedPhrases.length > 1) keywords.second_keyword = quotedPhrases[1];
+      if (quotedPhrases.length > 2) keywords.third_keyword = quotedPhrases[2];
     }
 
     // Add any unquoted words
     let keywordIndex = keywords.second_keyword ? 2 : (keywords.keyword ? 1 : 0);
     unquotedWords.forEach(word => {
-        if (keywordIndex === 0) keywords.keyword = word;
-        else if (keywordIndex === 1) keywords.second_keyword = word;
-        else if (keywordIndex === 2) keywords.third_keyword = word;
-        keywordIndex++;
+      if (keywordIndex === 0) keywords.keyword = word;
+      else if (keywordIndex === 1) keywords.second_keyword = word;
+      else if (keywordIndex === 2) keywords.third_keyword = word;
+      keywordIndex++;
     });
 
     return keywords;
-}
+  }
 
   // Fallback for strategies not yet migrated
-    legacyParse(query) {
+  legacyParse(query) {
     // This would contain the existing parsing logic
     // for backward compatibility
     return {};
-    }
+  }
 }
 
 module.exports = new StrategyRegistry();

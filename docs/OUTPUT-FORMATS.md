@@ -1,26 +1,24 @@
 # Output Format Documentation
 
-Magic Lantern generates two JSON files containing your research results. This guide explains the structure and contents of each file.
+Magic Lantern generates a single JSON file containing your research results. This guide explains the structure and contents of this file.
 
 ## File Naming Convention
 
 Files are timestamped to preserve your research history:
 ```
-comprehensive-search-results_YYYYMMDD_HHMMSS.json
-full-text-results_YYYYMMDD_HHMMSS.json
+search-results_YYYYMMDD_HHMMSS.json
 ```
 
 Example:
 ```
-comprehensive-search-results_20241215_143022.json
-full-text-results_20241215_143022.json
+search-results_20241215_143022.json
 ```
 
-## File 1: Comprehensive Search Results
+## File Structure
 
-This file contains ALL search results with complete metadata.
+The single output file contains ALL search results with metadata and placeholders for full text.
 
-### Structure
+### Overall Structure
 
 ```json
 [
@@ -70,7 +68,10 @@ This file contains ALL search results with complete metadata.
           "publicationWeight": 1,
           "publication": "variety",
           "finalScore": 100
-        }
+        },
+        "fullText": null,
+        "fullTextFetched": false,
+        "fullTextFetchedAt": null
       }
     ]
   }
@@ -95,11 +96,15 @@ This file contains ALL search results with complete metadata.
 #### Sources Array
 Each source contains:
 
+**Core Fields:**
+
 **id**: Lantern's unique identifier
 
 **attributes**: Raw data from Lantern API
 - `read`: Link to Internet Archive page
 - `body`: Text excerpt (usually ~200 characters)
+
+**Search Context:**
 
 **foundBy**: Which search strategy discovered this
 - Useful for understanding what searches work
@@ -112,6 +117,8 @@ Each source contains:
 **keywords**: How the query was parsed for API
 - Shows keyword stacking in action
 
+**Scoring Information:**
+
 **scoring**: Complete scoring breakdown
 - `position`: Where in search results (1-based)
 - `positionScore`: Points for that position
@@ -119,140 +126,117 @@ Each source contains:
 - `publicationWeight`: Profile-based weight
 - `finalScore`: Combined score
 
-### Use Cases
+**Full Text Fields (User-Initiated):**
 
-1. **Analyze search effectiveness**
-   - Which strategies find the most results?
-   - Which find the highest-quality results?
+**fullText**: `null` by default, filled when fetched
+- Complete OCR text of the page when retrieved
 
-2. **Deduplicated corpus analysis**
-   - Total unique sources per film
-   - Coverage patterns across your corpus
+**fullTextFetched**: `false` by default
+- Boolean indicating if full text has been retrieved
 
-3. **Debugging searches**
-   - See exactly what queries were run
-   - Understand why items scored as they did
+**fullTextFetchedAt**: `null` by default
+- Timestamp when full text was fetched
 
-4. **Further processing**
-   - Extract Internet Archive URLs
-   - Build bibliography entries
-   - Create visualization data
+**fullTextMetadata**: Added when full text is fetched
+- `wordCount`: Length of full text
+- `collections`: MHDL collections containing this item
+- `title`: Publication title
+- `volume`: Volume information
+- `date`: Publication date
+- `year`: Publication year
+- `creator`: Publisher/creator
+- `iaPage`: Internet Archive page identifier
+- `readUrl`: Direct link to view on Internet Archive
+- `contentTypes`: Detected types (review, production, etc.)
 
-## File 2: Full-Text Results
+**annotations**: Added by annotation helper (optional)
+- Structured research findings
+- Multiple annotation types per source
+- Each annotation timestamped
 
-Contains complete OCR text for the highest-scored results.
+## Full Text Fetching
 
-### Structure
+Full text is fetched separately using the fetch-full-text tool:
+
+```bash
+# Fetch top 100 sources
+node tools/fetch-full-text.js search-results_20241215_143022.json --top=100
+```
+
+After fetching, sources are updated:
 
 ```json
-[
-  {
-    "film": {
-      "title": "The Wizard of Oz",
-      "year": "1939",
-      "author": "L. Frank Baum",
-      "director": "Victor Fleming",
-      "studio": "Metro-Goldwyn-Mayer"
-    },
-    "totalFound": 145,
-    "fullTextAnalyzed": 7,
-    "treasures": [
+{
+  "id": "variety137-1940-01_0054",
+  "fullText": "[Complete OCR text - can be thousands of words]",
+  "fullTextFetched": true,
+  "fullTextFetchedAt": "2024-12-15T16:45:30.000Z",
+  "fullTextMetadata": {
+    "wordCount": 1247,
+    "collections": ["Hollywood Studio System", "Feature Films"],
+    "title": "Variety",
+    "volume": ["Variety (Jan 1940)"],
+    "date": "1940-01-03",
+    "year": 1940,
+    "contentTypes": ["review", "box_office"]
+  }
+}
+```
+
+## Annotations
+
+When using the annotation helper, sources gain an annotations field:
+
+```json
+{
+  "id": "variety137-1940-01_0054",
+  "annotations": {
+    "productionDates": [
       {
-        "id": "variety137-1940-01_0054",
-        "fullText": "[Complete OCR text of the page - can be 1000s of words]",
-        "title": "Variety",
-        "volume": ["Variety (Jan 1940)"],
-        "date": "1940-01-03",
-        "year": 1940,
-        "creator": null,
-        "collection": ["Hollywood Studio System", "Feature Films"],
-        "collectionWeight": 1,
-        "iaPage": "variety137-1940-01_0054",
-        "readUrl": "http://archive.org/stream/variety137-1940-01#page/n53/",
-        "wordCount": 1247,
-        "contentTypes": ["review", "box_office"],
-        "hasPhoto": false,
-        "excerpt": "THE WIZARD OF OZ (MUSICAL) Excellent fantasy...",
-        "foundBy": "exact_title",
-        "searchQuery": "\"The Wizard of Oz\"",
-        "strategyConfidence": "medium",
-        "finalScore": 100,
-        "publication": "variety"
+        "date": "1939-03-15",
+        "dateType": "filming_start",
+        "excerpt": "Principal photography on the Oz picture began yesterday",
+        "confidence": "explicit",
+        "addedAt": "2024-12-16T10:30:00.000Z"
+      }
+    ],
+    "locations": [
+      {
+        "location": "MGM Studios, Culver City",
+        "locationType": "studio",
+        "excerpt": "on the Metro lot",
+        "addedAt": "2024-12-16T10:32:00.000Z"
       }
     ]
   }
-]
+}
 ```
 
-### Key Fields Explained
+## Context-Aware Scoring (Experimental)
 
-#### Summary Fields
-- `totalFound`: Total results before full-text fetch
-- `fullTextAnalyzed`: How many got full text (based on score/limit)
+When using `--context-aware`, the scoring object includes additional fields:
 
-#### Treasures Array
-Each treasure contains:
-
-**fullText**: Complete OCR text
-- Full page content
-- May include other articles/ads on same page
-- Check for OCR errors in historical texts
-
-**Metadata Fields**:
-- `title`: Publication title
-- `volume`: Volume information
-- `date`: Publication date (if available)
-- `year`: Publication year
-- `creator`: Publisher/creator
-- `collection`: MHDL collections containing this item
-- `collectionWeight`: Highest weight from collections
-
-**Internet Archive Access**:
-- `iaPage`: Page identifier
-- `readUrl`: Direct link to view on Internet Archive
-
-**Content Analysis**:
-- `wordCount`: Length of full text
-- `contentTypes`: Detected types (review, production, etc.)
-- `hasPhoto`: Whether photo indicators found
-- `excerpt`: Beginning of full text
-
-**Search Context**:
-- `foundBy`: Strategy that found this
-- `searchQuery`: Original query
-- `finalScore`: Why this ranked high enough for full text
-- `publication`: Identified publication
-
-### Content Type Detection
-
-Magic Lantern identifies these content types:
-
-- **review**: Film reviews and criticism
-- **production**: Behind-the-scenes, filming news
-- **boxOffice**: Financial performance, earnings
-- **advertisement**: Theater ads, showings
-- **photo**: Production stills, photo captions
-- **interview**: Discussions with cast/crew
-- **listing**: Calendars, release schedules
-
-### Use Cases
-
-1. **Close reading**
-   - Full text for detailed analysis
-   - Context around your search terms
-
-2. **Content analysis**
-   - What types of coverage did films receive?
-   - How did coverage differ by publication?
-
-3. **Historical research**
-   - Contemporary reception
-   - Production histories
-   - Box office performance
-
-4. **Citation building**
-   - All metadata needed for citations
-   - Direct links to Internet Archive
+```json
+"scoring": {
+  "position": 1,
+  "positionScore": 100,
+  "publication": "variety",
+  "publicationWeight": 1.0,
+  "finalScore": 87.5,
+  "components": {
+    "credibility": 75,
+    "precision": 95,
+    "diversity": 100,
+    "relevance": 80
+  },
+  "breakdown": {
+    "credibility": 22.5,
+    "precision": 23.75,
+    "diversity": 35,
+    "relevance": 8
+  }
+}
+```
 
 ## Working with the Output
 
@@ -260,17 +244,22 @@ Magic Lantern identifies these content types:
 
 Count total sources:
 ```bash
-jq '.[].totalUniqueSources' comprehensive-search-results_*.json | paste -sd+ | bc
+jq '.[].totalUniqueSources' search-results_*.json | paste -sd+ | bc
 ```
 
 List all publications found:
 ```bash
-jq -r '.[].sources[].scoring.publication' comprehensive-search-results_*.json | sort | uniq -c
+jq -r '.[].sources[].scoring.publication' search-results_*.json | sort | uniq -c
 ```
 
-Extract high-scoring reviews:
+Find sources with full text:
 ```bash
-jq '.[] | .treasures[] | select(.contentTypes | contains(["review"])) | {film: .film.title, score: .finalScore, text: .excerpt}' full-text-results_*.json
+jq '.[] | .sources[] | select(.fullTextFetched == true) | {film: .film.title, id: .id}' search-results_*.json
+```
+
+Extract annotations:
+```bash
+jq '.[] | .sources[] | select(.annotations != null) | .annotations' search-results_*.json
 ```
 
 ### Python Analysis Example
@@ -280,7 +269,7 @@ import json
 import pandas as pd
 
 # Load results
-with open('comprehensive-search-results_20241215_143022.json') as f:
+with open('search-results_20241215_143022.json') as f:
     results = json.load(f)
 
 # Create DataFrame of all sources
@@ -292,7 +281,9 @@ for film_result in results:
             'film': film_title,
             'publication': source['scoring']['publication'],
             'score': source['scoring']['finalScore'],
-            'strategy': source['foundBy']
+            'strategy': source['foundBy'],
+            'has_fulltext': source['fullTextFetched'],
+            'has_annotations': 'annotations' in source
         })
 
 df = pd.DataFrame(sources)
@@ -300,54 +291,59 @@ df = pd.DataFrame(sources)
 # Analyze by publication
 print(df.groupby('publication')['score'].agg(['count', 'mean']).sort_values('count', ascending=False))
 
-# Most effective strategies
-print(df['strategy'].value_counts())
+# Check full text coverage
+print(f"Full text fetched: {df['has_fulltext'].sum()} / {len(df)}")
 ```
 
-### Creating a Bibliography
+## Use Cases
 
-```python
-# Extract citation data
-for film_result in full_text:
-    for treasure in film_result['treasures']:
-        citation = {
-            'title': f"{film_result['film']['title']} - {treasure['contentTypes'][0]}",
-            'publication': treasure['publication'],
-            'date': treasure['date'],
-            'url': treasure['readUrl'],
-            'accessed': datetime.now().strftime('%Y-%m-%d')
-        }
-        print(format_citation(citation))
-```
+1. **Analyze search effectiveness**
+   - Which strategies find the most results?
+   - Which find the highest-quality results?
+
+2. **Selective full text retrieval**
+   - Fetch only high-scoring sources
+   - Focus on specific publications or films
+
+3. **Research database building**
+   - Add structured annotations
+   - Export to CSV for analysis
+
+4. **Further processing**
+   - Extract Internet Archive URLs
+   - Build bibliography entries
+   - Create visualization data
 
 ## Tips for Using Output
 
-1. **Start with full-text results**
-   - These are your highest-quality sources
-   - Already have complete text for analysis
+1. **Start with search results**
+   - Review scores and excerpts
+   - Identify promising sources
 
-2. **Use comprehensive results for patterns**
-   - Which strategies work best?
-   - What publications cover your films?
-   - Coverage gaps in your corpus
+2. **Fetch full text selectively**
+   - Use score thresholds
+   - Target specific publications
+   - Work incrementally
 
-3. **Preserve your files**
+3. **Annotate as you read**
+   - Structure your findings
+   - Maintain single source of truth
+   - Export regularly
+
+4. **Preserve your files**
    - Timestamps prevent overwriting
    - Keep for reproducibility
    - Build corpus over time
 
-4. **Check OCR quality**
+5. **Check OCR quality**
    - Historical texts may have errors
    - "rn" might be "m", "1" might be "l"
    - Context usually clarifies
 
-5. **Follow the links**
-   - readUrl goes to Internet Archive
-   - Often can see full page/issue
-   - May find related articles nearby
-
 ## Next Steps
 
+- Use [Full Text Fetcher](./tools/fetch-full-text.md) to retrieve page text
+- Add annotations with [Annotation Helper](./tools/annotation-helper.md)
 - Understand [Scoring](./SCORING.md) to know why items ranked highly
 - See [Research Profiles](./RESEARCH-PROFILES.md) to generate different result sets
 - Explore [Custom Profiles](./CUSTOM-PROFILES.md) to tailor output to your needs

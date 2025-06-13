@@ -297,7 +297,7 @@ if (response.data && Array.isArray(response.data)) {
 While not currently implemented, consider adding:
 ```javascript
 headers: {
-  'User-Agent': 'Magic-Lantern/5.0 (Research-Tool)'
+  'User-Agent': 'Magic-Lantern/5.1 (Research-Tool)'
 }
 ```
 
