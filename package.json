@@ -13,7 +13,17 @@
     "magic-lantern": "./core/magic-lantern-v5.js",
     "ml-filter": "./tools/filter-films.js"
   },
-  "keywords": ["film-history", "research", "automation", "mhdl"],
+  "keywords": [
+    "film-history",
+    "research",
+    "automation",
+    "mhdl"
+  ],
   "author": "Alexandra Edwards",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "compromise": "^14.14.4",
+    "compromise-dates": "^3.7.1",
+    "compromise-numbers": "^1.4.0"
+  }
 }
