@@ -48,7 +48,7 @@ node core/magic-lantern-v5.js films.csv
 
 ---
 
-## What It Does
+## ✨ What It Does
 For each film, Magic Lantern:
 
 - 🔍 Generates 15-30 smart search variations
@@ -84,12 +84,12 @@ node core/magic-lantern-v5.js core/data/films.csv --profile=labor-history
 
 ## 📊 Scoring Systems
 
-### Original Scoring (Default)
+**Original Scoring (Default)**
 - Position-based (1-100 points)
 - Publication weights from profile
 - Simple and predictable
 
-### Context-Aware Scoring (Experimental)
+**Context-Aware Scoring (Experimental)**
 Enable with `--context-aware` for:
 - Source diversity emphasis (35%)
 - Search strategy trust levels (25%)
@@ -252,7 +252,7 @@ module.exports = {
 
 ---
 
-## ✨ New in v5.1.0
+## 🆕 New in v5.1.0
 
 - **📄 Selective Full Text Fetching** - Choose exactly which sources to retrieve
 - **📝 Annotation System** - Transform results into structured research data
@@ -307,7 +307,7 @@ Built on:
 
 ---
 
-## Quick Links
+## 🔗 Quick Links
 
 - 📖 [Full Documentation](./docs/)
 - 🚀 [Getting Started Guide](./docs/QUICKSTART.md)  
