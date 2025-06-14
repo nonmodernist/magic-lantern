@@ -208,7 +208,7 @@ module.exports = {
 
 </details>
 
-<details><summary>Add Data to `lib/utils.js`</summary>
+<details><summary>Add Data to lib/utils.js</summary>
 - Author name variations
 - Studio abbreviations  
 - Known stars by film
@@ -247,15 +247,6 @@ module.exports = {
 - Check https://lantern.mediahist.org/
 - Verify internet connection
 - Try again later
-
-### Debug Mode
-Add temporary logging:
-```javascript
-console.log('🔍 Debug:', {
-  searchQuery: strategy.query,
-  resultsFound: results.length
-});
-```
 
 </details>
 
