@@ -38,9 +38,9 @@ module.exports = {
   'motion picture story magazine': /motionpicturesto/i, // fan mag
   'motion picture magazine': /motionpicturemag/i, // fan mag
   'motion picture classic': /motionpicturecla/i, // fan mag
-  'motion picture': /motionpicture(?!pro)/i, // fan mag
-  'motion play': /motion-play|motionplay/i,
   'motion picture news': /motionpicturenew|motionnew|^motionpic(?!ture)|^motionp(?!icture|lay)|^motion(?!picture|-play)|^picturen/i, // trade mag with many pattern variations
+  'motion picture': /motionpicture(?!new|rev|dai|her|exh|pro|stu|sto|mag|cla)/i, // fan mag
+  'motion play': /motion-play|motionplay/i,
 
   'the movies and the people who make them': /moviespeoplewhom/i,
   'movie classic': /movieclassic/i,
