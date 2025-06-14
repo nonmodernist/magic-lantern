@@ -54,7 +54,7 @@ module.exports = {
   'pictures and the picturegoer': /^picture(?!n)/i,
 
   'exhibitors daily review': /exhibitorsdailyr/i,
-  'exhibitors herald': /exhibher|exhibitorsh/i,
+  'exhibitors herald': /exhibher|exhibitorsh|exibitorsheraldw/i,
   'the exhibitor': /^exhibitor/i,
   'independent exhibitors film bulletin': /independentexhibitorsfilm|filmbulletin|^indepe/i,
   'the philadelphia exhibitor': /philadelphiaexhi/i,
@@ -84,6 +84,7 @@ module.exports = {
   'boxoffice': /boxoffice(?!digest|baromet|checkup)/i,  // NOT followed by 'digest' or 'baromet'
 
   'billboard': /billboard/i,
+  'broadway and hollywood movies': /broadwayhollywoo/i,
   'cine-journal': /cinejournal|^cine(?!mundial)/i,
   'cinelandia': /cinelandia/i,
   'cinemundial': /cinemundial/i,
@@ -97,9 +98,10 @@ module.exports = {
   'modern screen': /modernscreen/i,
   'motography': /motography/i,
   'movie mirror': /moviemirror/i,
+  'new york state exhibitor': /newyorkstateexhi/i,
   'photoplay': /photoplay|^photo|^pho/i,
   'publix opinion': /publix/i,
-  'radio tv mirror': /radiotvmirror|radiotvmi|radiotv/i,
+  'radio tv mirror': /radiotvmirror|radiotvmi|radiotv|radiom/i,
   'reel life': /reellife/i,
   'the screen writer': /screenwriter/i,
   'shadowland': /shadowland/i,
@@ -112,6 +114,7 @@ module.exports = {
   'technicolor news and views': /technewsviews/i,
   'variety': /variety/i,
   'wids': /wids/i,
+  'world film and television progress': /worldfilm/i,
   'the writers monthly': /writersmonthly/i,
 
   '20th century fox dynamo': /dynamo/i,
@@ -127,10 +130,10 @@ module.exports = {
 
   'MPPC lawsuit': /indistrictcourto/i,
 
-  // Additional publications found in June 3rd results
   'british kinematograph': /britishk/i,
   'canadian film weekly': /canadianfilmweekly/i,
   'der kinematograph': /kinematograph/i,
   'whats new': /whats-new/i,
   'neue filmwelt': /neue-filmwelt/i,
+  'weekly kinema guide': /^weeklyki/i, 
 };
