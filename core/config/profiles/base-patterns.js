@@ -63,6 +63,7 @@ module.exports = {
   'the film daily': /filmdai/i,
   'film mercury': /filmmercury/i,
   'film fun': /filmfun/i,
+  'film and tv technician': /filmtvtech/i,
 
   'glamour of hollywood': /glamourofhollywo/i,
 
@@ -93,6 +94,7 @@ module.exports = {
   'camera': /camera/i,
   'close up': /closeup/i,
   'the new york clipper': /clipper/i,
+  'focus': /focusfilmreview/i,
   'harrisons reports': /harrisons/i,
   'illustrated films monthly': /illustra/i,
   'modern screen': /modernscreen/i,
@@ -132,6 +134,7 @@ module.exports = {
 
   'british kinematograph': /britishk/i,
   'canadian film weekly': /canadianfilmweekly/i,
+  'ballyhoo': /ballyhoo/i,
   'der kinematograph': /kinematograph/i,
   'whats new': /whats-new/i,
   'neue filmwelt': /neue-filmwelt/i,
