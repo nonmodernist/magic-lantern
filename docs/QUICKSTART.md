@@ -1,11 +1,10 @@
-# Quick Start Guide
+# Getting Started Guide
 
 Get your first Magic Lantern search running in 5 minutes! 🚀
 
 ## Prerequisites
 
-- Node.js installed (v18 or higher)
-- A CSV file with film data
+- Install [Node.js](https://nodejs.org/en) (v18 or higher)
 
 ## Step 1: Get Magic Lantern
 
@@ -24,6 +23,7 @@ Create a file called `films.csv` with your films:
 title,year,author,director,studio
 "The Wizard of Oz",1939,"L. Frank Baum","Victor Fleming","Metro-Goldwyn-Mayer"
 "Little Women",1933,"Louisa May Alcott","George Cukor","RKO Pictures"
+[...more films...]
 ```
 
 **Required fields:**
@@ -45,31 +45,9 @@ node core/magic-lantern-v5.js films.csv
 
 This uses the default `test` corpus profile (1 film, limited searches).
 
-## Step 4: Check Your Results
+### Example Output
 
-Look in the `results/` directory for your JSON file:
-
-**search-results_[timestamp].json**
-- All search results with metadata
-- Shows which search strategies found what
-- Includes scoring information
-- Ready for full text fetching
-
-## Step 5: Fetch Full Text (Optional)
-
-Get complete OCR text for your best sources:
-
-```bash
-# Fetch top 20 results
-node tools/fetch-full-text.js results/search-results_[timestamp].json --top=20
-
-# Or use interactive mode to choose specific sources
-node tools/fetch-full-text.js results/search-results_[timestamp].json --interactive
-```
-
-## Example Output
-
-Here's what you'll see in the console:
+<details><summary>Here's what you'll see in the console after running your search:</summary>
 
 ```
 ✨ MAGIC LANTERN v5.1.0
@@ -116,6 +94,46 @@ Here's what you'll see in the console:
    Position: 2 (95) × Publication: 1.0
 ```
 
+</details>
+
+## Step 4: Check Your Results
+
+Look in the `results/` directory for your JSON file:
+
+**search-results_[timestamp].json**
+- All search results with metadata
+- Shows which search strategies found what
+- Includes scoring information
+- Ready for full text fetching
+
+
+## Step 5: Fetch Full Text (Optional)
+
+<details><summary>Get complete OCR text for your best sources:</summary>
+
+```bash
+# Fetch top 20 results
+node tools/fetch-full-text.js results/search-results_[timestamp].json --top=20
+
+# Or use interactive mode to choose specific sources
+node tools/fetch-full-text.js results/search-results_[timestamp].json --interactive
+```
+
+</details>
+
+## Step 6: Clean OCR (Optional)
+
+<details><summary>Clean up the OCR of the full text you fetched:</summary>
+
+```bash
+# Remove extra spaces and common OCR errors
+node tools/clean-ocr.js results/search-results_[timestamp]_with_fulltext_[timestamp].json
+```
+
+</details>
+
+---
+
 ## Next Steps
 
 ### Try Different Corpus Sizes
@@ -150,6 +168,23 @@ node core/magic-lantern-v5.js films.csv --profile=early-cinema
 node core/magic-lantern-v5.js --list-profiles
 ```
 
+<details><summary>Sample console output:</summary>
+
+```bash
+🔎 Available Research Profiles:
+
+  adaptation-studies:
+    Emphasizes author attribution and source materials
+
+  default:
+    Standard Magic Lantern configuration
+
+[...more profiles...]
+```
+
+</details>
+
+
 ### Try Context-Aware Scoring (Experimental)
 
 ```bash
@@ -157,21 +192,51 @@ node core/magic-lantern-v5.js --list-profiles
 node core/magic-lantern-v5.js films.csv --context-aware
 ```
 
-### Complete Research Workflow
+<details><summary>Sample console output after running a search:</summary>
+   
+```bash
+🔬 Using context-aware scoring algorithm...
+📊 Context-aware scoring with limited excerpt data...
+
+🏆 Top 5 results (Context-Aware Scoring):
+1. [71.3] motion picture daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 100 | Relevance: 100
+2. [68.5] photoplay via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 90 | Relevance: 99
+3. [66.1] harrisons reports via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 81 | Relevance: 97
+4. [63.8] hollywood filmograph via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 73 | Relevance: 96
+5. [61.8] the motion picture and the family via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 66 | Relevance: 94
+
+📈 Top 10 Diversity: 9 publications, 4 search strategies
+```
+
+</details>
+
+---
+
+## Complete Research Workflow
 
 ```bash
-# 1. Run search with adaptation focus
+# 1. Run search
 node core/magic-lantern-v5.js films.csv --corpus=medium --profile=adaptation-studies
 
 # 2. Fetch full text for top results
 node tools/fetch-full-text.js results/search-results_[timestamp].json --top=100
 
-# 3. Add annotations as you read
-node tools/annotation-helper.js results/search-results_[timestamp].json --interactive
+# 3. Clean up fetched full text
+node tools/clean-ocr.js results/search-results_[timestamp]_with_fulltext_[timestamp].json
 
-# 4. Export annotations for analysis
-node tools/annotation-helper.js results/search-results_[timestamp].json --export findings.csv
+# 4. Add annotations as you read
+node tools/annotation-helper.js results/search-results_[timestamp]_with_fulltext_[timestamp]_cleaned.json --interactive
+
+# 5. Export annotations for analysis
+node tools/annotation-helper.js results/search-results_[timestamp]_with_fulltext_[timestamp]_cleaned.json --export findings.csv
 ```
+
+---
 
 ## Tips for Success
 
@@ -203,6 +268,6 @@ node tools/annotation-helper.js results/search-results_[timestamp].json --export
 
 - Learn about [Research Profiles](./RESEARCH-PROFILES.md) to focus your searches
 - Understand [Search Strategies](./SEARCH-STRATEGIES.md) to see how queries are generated
-- Use the [Full Text Fetcher](./tools/fetch-full-text.md) for selective retrieval
+- Use the [Full Text Fetcher](./tools/fetch-full-text.md) for selective retrieval of page text
 - Explore the [Annotation Helper](./tools/annotation-helper.md) to structure your findings
 - Create [Custom Profiles](./CUSTOM-PROFILES.md) for your specific research needs
