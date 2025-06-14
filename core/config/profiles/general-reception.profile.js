@@ -1,23 +1,27 @@
-// config/profiles/default.profile.js
+// config/profiles/general-reception.profile.js
 const basePatterns = require('./base-patterns');
 
 module.exports = {
-    name: "Reception",
+    name: "General Reception",
     description: "Focus on reviews and exhibitor reports",
 
     publications: {
         weights: {
-            // sample publications, all scored the same for default
             "variety": 1.0,
-            "motion picture herald": 1.0,
+            "exhibitors trade review": 1.2,
+            "showmens trade review": 1.2,
+            "american cinematographer": 1.2,
+            "motion picture herald": 1.3,
             "the film daily": 1.0,
             "exhibitors herald": 1.0,
             "moving picture world": 1.0,
+            "motion picture reviews": 1.4,
             "photoplay": 1.0,
             "modern screen": 1.0,
             "silver screen": 1.0,
             "screenland": 1.0,
             "motography": 1.0,
+            "pressbook": 0.2,
 
         },
 
@@ -44,14 +48,14 @@ module.exports = {
         // No custom weights in default
         weights: {
         // review searches - RUN FIRST
-        'title_review': 2.5,
+        'title_review': 2.1,
         'title_notices': 2.0,
         'title_comment': 1.8,
         'title_exhibitor': 1.6,
         'title_boxoffice': 1.0,
 
         // title searches - run last so they don't overwhelm results
-        'title_studio': 0.3,
+        'title_studio': 0.4,
         'exact_title': 0.3,
         'title_no_article': 0.2,
         }

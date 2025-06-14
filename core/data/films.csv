@@ -1,4 +1,5 @@
 title,year,author,novel,director,studio
+"The Maltese Falcon",1941,"Dashiell Hammett","The Maltese Falcon","John Huston","Warner Bros."
 "Wuthering Heights",1939,"Emily Brontë","Wuthering Heights","William Wyler","United Artists"
 "Little Women",1933,"Louisa May Alcott","Little Women","George Cukor","RKO Pictures"
 "Gone with the Wind",1939,"Margaret Mitchell","Gone with the Wind","Victor Fleming","Selznick International Pictures"
@@ -6,6 +7,5 @@ title,year,author,novel,director,studio
 "Pride and Prejudice",1940,"Jane Austen","Pride and Prejudice","Robert Z. Leonard","MGM"
 "The Grapes of Wrath",1940,"John Steinbeck","The Grapes of Wrath","John Ford","20th Century Fox"
 "Of Mice and Men",1939,"John Steinbeck","Of Mice and Men","Lewis Milestone","United Artists"
-"The Maltese Falcon",1941,"Dashiell Hammett","The Maltese Falcon","John Huston","Warner Bros."
 "Alice in Wonderland",1933,"Lewis Carroll","Alice's Adventures in Wonderland","Norman Z. McLeod","Paramount Pictures"
 "Double Indemnity",1944,"James M. Cain","Double Indemnity","Billy Wilder","Paramount"
