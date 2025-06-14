@@ -46,6 +46,7 @@ module.exports = {
   'movie classic': /movieclassic/i,
   'movieland': /movielandtv/i,
   'movietone': /movietone/i, // projectionist mag and chinese fan mag both use this
+  'movie pictorial': /moviepictorial/i,
   'moving picture age': /movingpictureage/i,
   'moving picture world': /^(MPW\d|moving(?:picture)?wor|moving(?:\d|$)|movin(?:g)?(?:or|wor)|movie?wor|mo(?:v)?(?:pic|wor)|more?wor|move?wor|movure)/i, // yes it really does need to be this complicated and specific
 
@@ -64,6 +65,7 @@ module.exports = {
   'film mercury': /filmmercury/i,
   'film fun': /filmfun/i,
   'film and tv technician': /filmtvtech/i,
+  'the film index': /filmindex/i,
 
   'glamour of hollywood': /glamourofhollywo/i,
 
@@ -101,11 +103,15 @@ module.exports = {
   'motography': /motography/i,
   'movie mirror': /moviemirror/i,
   'new york state exhibitor': /newyorkstateexhi/i,
+  'the nickelodeon': /nickelodeon/i,
   'photoplay': /photoplay|^photo|^pho/i,
   'publix opinion': /publix/i,
   'radio tv mirror': /radiotvmirror|radiotvmi|radiotv|radiom/i,
   'reel life': /reellife/i,
+  'reel and slide': /reelslide/i,
+  'the san francisco dramatic review': /caliweekly|sanfrandram/i,
   'the screen writer': /screenwriter/i,
+  'select pictures magazine': /selectpicturesmag/i,
   'shadowland': /shadowland/i,
   'showmens trade review': /showmen/i,
   'silver screen': /silverscreen/i,
