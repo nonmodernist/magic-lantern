@@ -57,7 +57,7 @@ class StrategyRegistry {
         confidence: 'high',
         description: 'Film title + picketed'
       }),
-      defaultWeight: 2.5,
+      defaultWeight: 2.0,
       category: 'labor',
       profileRequired: 'labor'
     });
@@ -143,7 +143,18 @@ class StrategyRegistry {
         confidence: 'high',
         description: 'Film title + review'
       }),
-      defaultWeight: 3.0,
+      defaultWeight: 2.0,
+      category: 'review'
+    });
+
+        this.register('title_reviewed', {
+      generator: (film) => ({
+        keyword: `"${film.title || film.Title}"`,
+        secondKeyword: '"reviewed"',
+        confidence: 'high',
+        description: 'Film title + reviewed'
+      }),
+      defaultWeight: 2.0,
       category: 'review'
     });
 
@@ -154,7 +165,7 @@ class StrategyRegistry {
         confidence: 'high',
         description: 'Film title + notices (period review term)'
       }),
-      defaultWeight: 3.0,
+      defaultWeight: 2.0,
       category: 'review'
     });
 

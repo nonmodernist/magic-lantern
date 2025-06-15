@@ -1,0 +1,355 @@
+✨ MAGIC LANTERN v5.1.0
+✅ Loaded profile: adaptation-studies
+✅ Loaded profile: default
+✅ Loaded profile: early-cinema
+✅ Loaded profile: general-reception
+✅ Loaded profile: labor-history
+✅ Loaded profile: regional-reception
+
+📚 Research Profile: General Reception
+   Focus on reviews and exhibitor reports
+📊 Corpus Profile: medium
+
+✨ MAGIC LANTERN v5
+   Corpus: medium
+   Research Profile: general-reception
+
+
+🏮 Checking Lantern availability...
+✅ Lantern is available!
+
+🎬 Loading films from: tests/profiles/general-reception/test-films-reception.csv
+✨ Found 5 films to research!
+
+🎬 Processing 5 films...
+
+
+📊 Progress: 1/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: King Kong (1933)
+======================================================================
+
+🎯 Generating search strategies for: King Kong
+✨ Generated 13 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.1] title_review - Film title + review
+   2. [2] title_notices - Film title + notices (period review term)
+   3. [1.8] title_comment - Film title + comment
+   4. [1.6] title_exhibitor - Film title + exhibitor reports
+   5. [1] director_title - Director + title
+   6. [1] title_boxoffice - Film title + box office
+   7. [1] director_says - Director + says (common interview marker)
+   8. [1] grosses_reported - Film + grosses (box office)
+   9. [1] director_only - Director name only
+   10. [1] percentage_terms - Film + percentage (exhibition terms)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + review
+   Weight: 2.1 | Type: title_review
+   Keywords: "King Kong" + "review"
+   ✅ Found 32 results!
+
+🔍 [HIGH] Film title + notices (period review term)
+   Weight: 2 | Type: title_notices
+   Keywords: "King Kong" + "notices"
+   ✅ Found 6 results!
+
+🔍 [HIGH] Film title + comment
+   Weight: 1.8 | Type: title_comment
+   Keywords: "King Kong" + "comment"
+   ✅ Found 28 results!
+
+🔍 [MEDIUM] Film title + exhibitor reports
+   Weight: 1.6 | Type: title_exhibitor
+   Keywords: "King Kong" + "exhibitor"
+   ✅ Found 84 results!
+   ⚡ Reached maximum results limit (50)
+
+🔬 Using context-aware scoring algorithm...
+
+📊 Context-aware scoring with limited excerpt data...
+
+🏆 Top 5 results (Context-Aware Scoring):
+1. [71.3] new york state exhibitor via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 100 | Relevance: 100
+2. [69.1] motion picture herald via title_review
+   Credibility: 65 | Precision: 55 | Diversity: 73 | Relevance: 96
+3. [68.5] new movie magazine via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 90 | Relevance: 99
+4. [66.1] national board of review magazine via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 81 | Relevance: 97
+5. [60.5] motion picture herald via title_review
+   Credibility: 65 | Precision: 55 | Diversity: 39 | Relevance: 94
+
+📈 Top 10 Diversity: 8 publications, 3 search strategies
+
+⚠️  41 potential duplicate/redundant results detected
+
+📊 Progress: 2/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: Snow White and the Seven Dwarfs (1937)
+======================================================================
+
+🎯 Generating search strategies for: Snow White and the Seven Dwarfs
+✨ Generated 14 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.1] title_review - Film title + review
+   2. [2] title_notices - Film title + notices (period review term)
+   3. [1.8] title_comment - Film title + comment
+   4. [1.6] title_exhibitor - Film title + exhibitor reports
+   5. [1] director_title - Director + title
+   6. [1] title_boxoffice - Film title + box office
+   7. [1] director_says - Director + says (common interview marker)
+   8. [1] grosses_reported - Film + grosses (box office)
+   9. [1] director_only - Director name only
+   10. [1] percentage_terms - Film + percentage (exhibition terms)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + review
+   Weight: 2.1 | Type: title_review
+   Keywords: "Snow White and the Seven Dwarfs" + "review"
+   ✅ Found 81 results!
+
+🔍 [HIGH] Film title + notices (period review term)
+   Weight: 2 | Type: title_notices
+   Keywords: "Snow White and the Seven Dwarfs" + "notices"
+   ✅ Found 5 results!
+
+🔍 [HIGH] Film title + comment
+   Weight: 1.8 | Type: title_comment
+   Keywords: "Snow White and the Seven Dwarfs" + "comment"
+   ✅ Found 52 results!
+
+🔍 [MEDIUM] Film title + exhibitor reports
+   Weight: 1.6 | Type: title_exhibitor
+   Keywords: "Snow White and the Seven Dwarfs" + "exhibitor"
+   ✅ Found 207 results!
+   ⚡ Reached maximum results limit (50)
+
+🔬 Using context-aware scoring algorithm...
+
+📊 Context-aware scoring with limited excerpt data...
+
+🏆 Top 5 results (Context-Aware Scoring):
+1. [71.3] motion picture herald via title_review
+   Credibility: 65 | Precision: 55 | Diversity: 81 | Relevance: 97
+2. [71.3] independent exhibitors film bulletin via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 100 | Relevance: 100
+3. [68.5] cine-journal via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 90 | Relevance: 99
+4. [67.3] motion picture daily via title_notices
+   Credibility: 50 | Precision: 55 | Diversity: 100 | Relevance: 73
+5. [63.9] the film daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 73 | Relevance: 96
+
+📈 Top 10 Diversity: 8 publications, 3 search strategies
+
+⚠️  44 potential duplicate/redundant results detected
+
+📊 Progress: 3/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: Citizen Kane (1941)
+======================================================================
+
+🎯 Generating search strategies for: Citizen Kane
+✨ Generated 13 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.1] title_review - Film title + review
+   2. [2] title_notices - Film title + notices (period review term)
+   3. [1.8] title_comment - Film title + comment
+   4. [1.6] title_exhibitor - Film title + exhibitor reports
+   5. [1] director_title - Director + title
+   6. [1] title_boxoffice - Film title + box office
+   7. [1] director_says - Director + says (common interview marker)
+   8. [1] grosses_reported - Film + grosses (box office)
+   9. [1] director_only - Director name only
+   10. [1] percentage_terms - Film + percentage (exhibition terms)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + review
+   Weight: 2.1 | Type: title_review
+   Keywords: "Citizen Kane" + "review"
+   ✅ Found 312 results!
+
+🔍 [HIGH] Film title + notices (period review term)
+   Weight: 2 | Type: title_notices
+   Keywords: "Citizen Kane" + "notices"
+   ✅ Found 7 results!
+
+🔍 [HIGH] Film title + comment
+   Weight: 1.8 | Type: title_comment
+   Keywords: "Citizen Kane" + "comment"
+   ✅ Found 67 results!
+
+🔍 [MEDIUM] Film title + exhibitor reports
+   Weight: 1.6 | Type: title_exhibitor
+   Keywords: "Citizen Kane" + "exhibitor"
+   ✅ Found 295 results!
+   ⚡ Reached maximum results limit (50)
+
+🔬 Using context-aware scoring algorithm...
+
+📊 Context-aware scoring with limited excerpt data...
+
+🏆 Top 5 results (Context-Aware Scoring):
+1. [76.5] motion picture herald via title_review
+   Credibility: 65 | Precision: 55 | Diversity: 100 | Relevance: 100
+2. [68.5] the film daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 90 | Relevance: 99
+3. [66.1] motion picture daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 81 | Relevance: 97
+4. [65.3] showmens trade review via title_review
+   Credibility: 60 | Precision: 55 | Diversity: 66 | Relevance: 94
+5. [63.8] hollywood via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 73 | Relevance: 96
+
+📈 Top 10 Diversity: 7 publications, 3 search strategies
+
+⚠️  37 potential duplicate/redundant results detected
+
+📊 Progress: 4/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: The Best Years of Our Lives (1946)
+======================================================================
+
+🎯 Generating search strategies for: The Best Years of Our Lives
+✨ Generated 15 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.1] title_review - Film title + review
+   2. [2] title_notices - Film title + notices (period review term)
+   3. [1.8] title_comment - Film title + comment
+   4. [1.6] title_exhibitor - Film title + exhibitor reports
+   5. [1] director_title - Director + title
+   6. [1] title_boxoffice - Film title + box office
+   7. [1] director_says - Director + says (common interview marker)
+   8. [1] grosses_reported - Film + grosses (box office)
+   9. [1] director_only - Director name only
+   10. [1] percentage_terms - Film + percentage (exhibition terms)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + review
+   Weight: 2.1 | Type: title_review
+   Keywords: "The Best Years of Our Lives" + "review"
+   ✅ Found 231 results!
+
+🔍 [HIGH] Film title + notices (period review term)
+   Weight: 2 | Type: title_notices
+   Keywords: "The Best Years of Our Lives" + "notices"
+   ✅ Found 18 results!
+
+🔍 [HIGH] Film title + comment
+   Weight: 1.8 | Type: title_comment
+   Keywords: "The Best Years of Our Lives" + "comment"
+   ✅ Found 81 results!
+   ⚡ Reached maximum results limit (50)
+
+🔬 Using context-aware scoring algorithm...
+
+📊 Context-aware scoring with limited excerpt data...
+
+🏆 Top 5 results (Context-Aware Scoring):
+1. [73.8] motion picture herald via title_review
+   Credibility: 65 | Precision: 55 | Diversity: 90 | Relevance: 99
+2. [71.3] independent exhibitors film bulletin via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 100 | Relevance: 100
+3. [67.3] showmens trade review via title_review
+   Credibility: 60 | Precision: 55 | Diversity: 73 | Relevance: 96
+4. [61.8] boxoffice via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 66 | Relevance: 94
+5. [58.2] motion picture daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 53 | Relevance: 91
+
+📈 Top 10 Diversity: 5 publications, 2 search strategies
+
+⚠️  44 potential duplicate/redundant results detected
+
+📊 Progress: 5/5
+
+======================================================================
+🎭 COMPREHENSIVE SEARCH: Gentleman's Agreement (1947)
+======================================================================
+
+🎯 Generating search strategies for: Gentleman's Agreement
+✨ Generated 18 unique search strategies!
+
+📊 Strategy execution order (by profile weight):
+   1. [2.1] title_review - Film title + review
+   2. [2] title_notices - Film title + notices (period review term)
+   3. [1.8] title_comment - Film title + comment
+   4. [1.6] title_exhibitor - Film title + exhibitor reports
+   5. [1] author_title - Author + exact title
+   6. [1] adapted_from - Film adapted from source
+   7. [1] director_title - Director + title
+   8. [1] author_only - Author name only
+   9. [1] title_boxoffice - Film title + box office
+   10. [1] director_says - Director + says (common interview marker)
+
+🔍 Beginning searches...
+
+🔍 [HIGH] Film title + review
+   Weight: 2.1 | Type: title_review
+   Keywords: "Gentleman's Agreement" + "review"
+   ✅ Found 227 results!
+
+🔍 [HIGH] Film title + notices (period review term)
+   Weight: 2 | Type: title_notices
+   Keywords: "Gentleman's Agreement" + "notices"
+   ✅ Found 8 results!
+
+🔍 [HIGH] Film title + comment
+   Weight: 1.8 | Type: title_comment
+   Keywords: "Gentleman's Agreement" + "comment"
+   ✅ Found 53 results!
+
+🔍 [MEDIUM] Film title + exhibitor reports
+   Weight: 1.6 | Type: title_exhibitor
+   Keywords: "Gentleman's Agreement" + "exhibitor"
+   ✅ Found 173 results!
+   ⚡ Reached maximum results limit (50)
+
+🔬 Using context-aware scoring algorithm...
+
+📊 Context-aware scoring with limited excerpt data...
+
+🏆 Top 5 results (Context-Aware Scoring):
+1. [74.8] showmens trade review via title_review
+   Credibility: 60 | Precision: 55 | Diversity: 100 | Relevance: 100
+2. [67.2] boxoffice via title_notices
+   Credibility: 50 | Precision: 55 | Diversity: 100 | Relevance: 73
+3. [63.9] the film daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 73 | Relevance: 96
+4. [63.0] showmens trade review via title_review
+   Credibility: 60 | Precision: 55 | Diversity: 54 | Relevance: 99
+5. [61.8] motion picture daily via title_review
+   Credibility: 50 | Precision: 55 | Diversity: 66 | Relevance: 95
+
+📈 Top 10 Diversity: 7 publications, 3 search strategies
+
+⚠️  39 potential duplicate/redundant results detected
+
+💾 Saving intermediate results...
+
+💾 Results saved to: /Users/akedwards/magic-lantern/results/search-results_interim_20250614_203024.json
+   Total films: 5
+   Total sources: 293
+
+💾 Results saved to: /Users/akedwards/magic-lantern/results/search-results_20250614_203024.json
+   Total films: 5
+   Total sources: 293
+
+🎉 Search complete!
+   Corpus: medium
+   Research Profile: general-reception
+   Films processed: 5
