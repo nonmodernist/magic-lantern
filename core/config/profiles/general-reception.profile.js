@@ -45,7 +45,7 @@ module.exports = {
             advertisementSearches: false,
         },
 
-        // No custom weights in default
+
         weights: {
         // review searches - RUN FIRST
         'title_review': 2.1,

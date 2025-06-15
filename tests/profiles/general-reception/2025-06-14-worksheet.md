@@ -166,7 +166,7 @@ _____________________________________________________
 ### Changes to implement
 
 1. Add "Radio" as variation of RKO
-2. ________________________________________________
+2. Add "reviewed" as a search strategy - DONE
 3. ________________________________________________
 4. ________________________________________________
 5. ________________________________________________
@@ -181,17 +181,13 @@ _____________________________________________________
 ## 10. General Notes
 
 ### Surprises:
-_____________________________________________________
-_____________________________________________________
-_____________________________________________________
+it basically works!!
 
 ### Profile works best for:
-_____________________________________________________
-_____________________________________________________
+surfacing different responses to a set of films
 
 ### Profile struggles with:
-_____________________________________________________
-_____________________________________________________
+locating all reviews for a movie or specific reviews from specific magazines
 
 ### Ideas for new profiles based on findings:
 _____________________________________________________
@@ -200,7 +196,7 @@ _____________________________________________________
 ### Overall assessment
  
 - [ ] Ready to use 
-- [ ] Needs minor adjustments 
+- [x] Needs minor adjustments 
 - [ ] Needs major revision
 - [ ] Fundamentally broken - start over
 

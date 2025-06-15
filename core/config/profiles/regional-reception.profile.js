@@ -24,5 +24,39 @@ module.exports = {
         patterns: basePatterns
   },
 
+    searchStrategies: {
+        enabled: {
+            titleVariations: false,
+            titleSearches: true,
+            reviewSearches: true,
+            productionSearches: false,
+            starSearches: true,
+            advertisementSearches: false,
+        },
+
+
+        weights: {
+        // review searches - RUN FIRST
+        'title_reviewed': 2.1,
+        'title_notices': 2.0,
+        'title_comment': 1.8,
+        'title_review':1.7,
+        'title_exhibitor': 1.6,
+        'title_boxoffice': 1.3,
+
+        // title searches - run last so they don't overwhelm results
+        'title_studio': 0.4,
+        'exact_title': 0.3,
+        'title_no_article': 0.2,
+        }
+    },
+
+    // Date ranges restrict searches based on year given in csv (usually a film's release year)
+    dateRanges: {
+        high: { before: 1, after: 1 },
+        medium: { before: 1, after: 2 },
+        low: { before: 1, after: 3 }
+    }
+
 }
 
